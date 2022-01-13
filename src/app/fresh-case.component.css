@@ -1,0 +1,77 @@
+/* Add application styles & imports to this file! */
+body {
+  font-family: Lato;
+  padding: 0;
+  margin: 0;
+}
+.fill-space {
+  flex: 1 1 auto;
+}
+
+.solution { padding: 15px;}
+
+mat-panel-description.right-aligned {
+  flex-grow: 0;
+}
+
+.zeroMarginPadding{
+padding:4px;
+margin:4px;
+}
+.div1 {
+  width: 310px;
+  height: 25px;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+}
+.divHoldsProjectType {
+  
+  height: 25px;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+}
+
+body.modal-open {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+li {
+  width: 3em;
+  height: 2.5em;
+  text-align: center;
+  line-height: 2em;
+  border-radius: 2em;
+  background: dodgerblue;
+  margin: 0 1.5em;
+  display: inline-block;
+  color: white;
+  position: relative;
+}
+
+li::before{
+  content: '';
+  position: absolute;
+  top: 1.2em;
+  left: -4em;
+  width: 4em;
+  height: .2em;
+  background: dodgerblue;
+  z-index: -1;
+}
+
+
+li:first-child::before {
+  display: none;
+}
+
+.active {
+  background: dodgerblue;
+}
+
+
+.col{
+  
+  background: red;
+ 
+}

@@ -1,0 +1,85 @@
+
+<!-- app.component.html -->
+<h3>Test with Category Entry</h3>
+<div >
+  <div fxFlex>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" [(ngModel)]="filterVal">
+    </mat-form-field>
+  </div>
+  <div fxFlex>
+    <button mat-icon-button color="primary"  matTooltip="Add a new entry"
+              matTooltipPosition="below" (click)="openDialog('Add',{})">
+                  <mat-icon matTooltip="Add a new entry" matTooltipPosition="below" aria-label="Example icon-button with a heart icon">add</mat-icon> Add
+                </button> 
+  </div>
+   
+  </div>
+  
+  <div class="example-container mat-elevation-z8">
+
+    <!-- <button mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Add Row</button> -->
+  
+    <mat-table [dataSource]="dataSource" matSort #mytable class="my-table mat-elevation-z8">
+
+           <!-- Id Column -->
+           <ng-container matColumnDef="UnqueID">
+            <mat-header-cell *matHeaderCellDef  mat-sort-header> ID </mat-header-cell>
+            <mat-cell *matCellDef="let element"> <span  class="mobile-label ">ID:</span> {{element.UnqueID}} </mat-cell>
+          </ng-container>
+          
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+        <!-- Id Column -->
+        <ng-container matColumnDef="Name">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header> Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Name:</span> {{element.Name}} </mat-cell>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="ShortName">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header> ShortName </mat-header-cell>
+          <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Short Name:</span>{{element.ShortName}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="Category">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header> Category </mat-header-cell>
+          <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Category:</span>{{element.Category}} </mat-cell>
+        </ng-container>
+    
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef > Action 
+              <button mat-icon-button color="primary"  matTooltip="Add a new entry"
+              matTooltipPosition="below" (click)="openDialog('Add',{})">
+                  <mat-icon matTooltip="Add a new entry" matTooltipPosition="below" aria-label="Example icon-button with a heart icon">add</mat-icon> Add
+                </button> 
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="action-link">
+  
+              <button mat-icon-button color="accent" (click)="openDialog('Update',element)">
+                  <mat-icon matTooltip="Edit the entry" matTooltipPosition="below" aria-label="Edit">edit</mat-icon>
+                </button>
+        
+                <button mat-icon-button color="accent" (click)="openDialog('Delete',element)">
+                  <mat-icon matTooltip="Delete the entry" matTooltipPosition="below" aria-label="Delete">delete</mat-icon>
+                </button>
+  
+               
+            <!-- <a (click)="openDialog('Update',element)">Edit</a> | 
+            <a (click)="openDialog('Delete',element)">Delete</a>   -->
+          </mat-cell>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  
+  </div>
+
+
+  
+

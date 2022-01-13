@@ -1,0 +1,413 @@
+
+
+<div class="container1">
+
+  <div class="itemC1">
+    <h2> {{HeaderText}} Inventory Information <strong style="color:#0094ff"> </strong></h2>  </div>
+  
+  <div class="itemC">
+    <button (click)="ShowInventoryTemplate()" style="background-color:#3c70a3;color:#FFFFFF;font-size:small;width:150px;height:25px;
+border-color:#a2aabe;border-style:dashed;border-width:1px;">
+            &#128269;Show Inventory Form
+        </button>
+  </div>
+  
+  <div class="itemC">
+    <button (click)="CreateBlankInventoryTemplate()" style="background-color:#3c70a3;color:#FFFFFF;font-size:small;width:150px;height:25px;
+    border-color:#a2aabe;border-style:dashed;border-width:1px;">
+                &#10003;Add a new Inventory
+            </button>
+  </div>
+  <div class="itemC">
+    <span style="font-weight: bold;font-style: italic;" (click)="OpenCalculator()">
+      <mat-icon matTooltip="Open Calculator" color="white" >domain</mat-icon><u>CALCULATOR(F3)</u>
+      <span [ngShortcut]="'@cancel'" (click)="cancel()"></span>  
+                <ng-shortcut></ng-shortcut>
+  </span>
+  </div>
+</div>
+
+<!-- <div layout-align="center center"
+    style="height: 30px; background-color:#336699 ; color:#FFFFFF ;border: solid 1px #659EC7;">
+   
+    <h2> {{HeaderText}} Inventory Information <strong style="color:#0094ff"> </strong>
+        <button (click)="ShowInventoryTemplate()" style="background-color:#3c70a3;color:#FFFFFF;font-size:small;width:150px;height:25px;
+border-color:#a2aabe;border-style:dashed;border-width:1px;">
+            &#128269;Show Inventory Form
+        </button>
+        &nbsp;&nbsp;
+        <button (click)="CreateBlankInventoryTemplate()" style="background-color:#3c70a3;color:#FFFFFF;font-size:small;width:150px;height:25px;
+border-color:#a2aabe;border-style:dashed;border-width:1px;">
+            &#10003;Add a new Inventory
+        </button>
+
+        &nbsp; &nbsp; 
+        <span style="font-weight: bold;font-style: italic;" (click)="OpenCalculator()">
+          <mat-icon matTooltip="Open Calculator" color="white" >domain</mat-icon><u>CALCULATOR(F3)</u>
+          <span [ngShortcut]="'@cancel'" (click)="cancel()"></span>  
+                    <ng-shortcut></ng-shortcut>
+      </span>
+    </h2>
+</div> -->
+<div class="solution" *ngIf="showTheAddInventory==true">
+    <form fxLayout="column" [formGroup]="inventoryForm" (ngSubmit)="submit()">
+        <!--------------------------------------------------------------------------------------->
+        <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+            <mat-form-field fxFlex>
+                <mat-label><span style="color:red">*</span>Item Name</mat-label>
+                <input matInput placeholder="item Name" formControlName="itemName" (change)="onForm2NameChange($event)">
+                <mat-error *ngIf="inventoryForm.get('itemName').hasError('required')">
+                    Item Name is Required!
+                  </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field fxFlex>
+                <mat-label><span style="color:red">*</span>Stock Quantity</mat-label>
+                <input matInput type="number" placeholder="stockQty" formControlName="stockQty">
+                <mat-error *ngIf="inventoryForm.get('stockQty').hasError('required')">
+                    Stock Quantity is Required!
+                  </mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex>
+                <mat-label>reorderQty</mat-label>
+                <input matInput placeholder="ReOrder Quantity" formControlName="reorderQty">
+            </mat-form-field>
+
+            <mat-form-field fxFlex>
+              <mat-label>Order Date</mat-label>
+              <input matInput [matDatepicker]="picker" [min]="todayDate" formControlName="DateReorder" 
+              readonly (click)="picker.open()" (focus)="picker.open()">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+  
+              
+  
+             
+
+        </div>
+        <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+          <mat-form-field fxFlex>
+            <mat-label><span style="color:red">*</span>Unit(Purchase) Price(&#8377;)</mat-label>
+            <input type="number" matInput placeholder="Unit Price (only number)" formControlName="UnitPrice">
+            <mat-error *ngIf="inventoryForm.get('UnitPrice').hasError('required')">
+                Unit Price is Required!
+              </mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex>
+            <mat-label><span style="color:red">*</span>Sale(MRP) Price(&#8377;)</mat-label>
+            <input matInput type="number" placeholder="SellPrice" formControlName="SellPrice">
+            <mat-error *ngIf="inventoryForm.get('SellPrice').hasError('required')">
+                Sale Price is Required!
+              </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label><span style="color:red">*</span>Discount(%)</mat-label>
+          <input matInput type="number" placeholder="Discount" formControlName="Discount">
+          <mat-error *ngIf="inventoryForm.get('Discount').hasError('required')">
+              Discount is Required!
+            </mat-error>
+      </mat-form-field>
+
+      <mat-checkbox id="amateur" color="primary" formControlName="priorityStatus">priority Status</mat-checkbox>
+        </div>
+      
+        <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+            <mat-form-field fxFlex>
+                <mat-label><span style="color:red">*</span>SGST(%)</mat-label>
+                <input matInput type="number" placeholder="SGST" formControlName="SGST">
+                <mat-error *ngIf="inventoryForm.get('SGST').hasError('required')">
+                    SGST is Required!
+                  </mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex>
+                <mat-label><span style="color:red">*</span>CGST(%)</mat-label>
+                <input matInput type="number" placeholder="CGST"  formControlName="CGST">
+                <mat-error *ngIf="inventoryForm.get('CGST').hasError('required')">
+                    CGST is Required!
+                  </mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex>
+                <mat-label>IGST(%)</mat-label>
+                <input matInput placeholder="IGST"  formControlName="IGST">
+                
+            </mat-form-field>
+            <mat-form-field fxFlex>
+              <mat-label>Expire Month</mat-label>
+              <mat-select [(value)]="ExpireMonth" formControlName="ExpireMonth">
+                <mat-option>--</mat-option>
+                <mat-option value="1">1(Jan)</mat-option>
+            <mat-option value="2">2(Feb)</mat-option>
+            <mat-option value="3">3(Mar)</mat-option>
+            <mat-option value="4">4(Apr)</mat-option>
+            <mat-option value="5">5(May)</mat-option>
+            <mat-option value="6">6(June)</mat-option>
+            <mat-option value="7">7(July)</mat-option>
+            <mat-option value="8">8(Aug)</mat-option>
+            <mat-option value="9">9(Sept)</mat-option>
+            <mat-option value="10">10(Oct)</mat-option>
+            <mat-option value="11">11(Nov)</mat-option>
+            <mat-option value="12">12(Dec)</mat-option>
+            
+              </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>Expire Year</mat-label>
+            <mat-select  [(value)]="ExpireYear" formControlName="ExpireYear">
+              <mat-option>--</mat-option>
+              
+           
+            <mat-option value="2021">2021</mat-option>
+            <mat-option value="2022">2022</mat-option>
+            <mat-option value="2023">2023</mat-option>
+            <mat-option value="2024">2024</mat-option>
+            <mat-option value="2025">2025</mat-option>
+            <mat-option value="2026">2026</mat-option>
+            <mat-option value="2027">2027</mat-option>
+            <mat-option value="2028">2028</mat-option>
+            <mat-option value="2029">2029</mat-option>
+            <mat-option value="2030">2030</mat-option>
+            <mat-option value="2031">2031</mat-option>
+            <mat-option value="2032">2032</mat-option>
+            <mat-option value="2033">2033</mat-option>
+            <mat-option value="2034">2034</mat-option>
+            <mat-option value="2035">2035</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+            
+        </div>
+        <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+          
+          <mat-form-field fxFlex>
+            <mat-label>HSN Code</mat-label>
+            <input matInput placeholder="HSN"  formControlName="HSNCode">
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label>UOM</mat-label>
+          <input matInput placeholder="UOM"  formControlName="UOM">
+      </mat-form-field>
+      <mat-form-field fxFlex>
+        <mat-label>Batch Number</mat-label>
+        <input matInput placeholder="Batch Number"  formControlName="BatchNumber">
+    </mat-form-field>
+
+          <mat-form-field fxFlex>
+            <mat-label>Place/Position</mat-label>
+            <input matInput placeholder="Position"  formControlName="RackPlaceLocation">
+        </mat-form-field>
+        </div>
+        
+        <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+          <mat-form-field fxFlex>
+            <mat-label>Extra</mat-label>
+            <input matInput placeholder="Extra"  formControlName="Extra">
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label>Catgory&nbsp;Type</mat-label>
+          <mat-select  formControlName="Others">
+            <mat-option >-Select-</mat-option>
+            <mat-option *ngFor="let emp of asyncPipeCategoryDetails" [value]=emp>{{emp}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+     
+         
+      
+            <mat-form-field fxFlex>
+                 <mat-label>VendorAddress</mat-label>
+                <input matInput placeholder="VendorAddress" disabled formControlName="VendorAddress">
+            </mat-form-field>
+            <!-- <button type="button" (click)="submit()">{{btnText}}</button> -->
+          
+
+
+        </div>
+
+        <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+          <mat-form-field fxFlex>
+            <mat-label>BarCode</mat-label>
+            <input matInput placeholder="BarCode"  formControlName="BarCode">
+        </mat-form-field>
+        <mat-form-field fxFlex>
+            <mat-label>ItemCode</mat-label>
+            <input matInput placeholder="ItemCode" formControlName="ItemCode">
+        </mat-form-field>
+        <button type="button" (click)="submit()" style="background-color:#0d254f;color:#FFFFFF;font-size:small;width:80px;height:30px;
+        border-color:#a2aabe;border-style:dashed;border-width:1px;">
+                        {{btnText}}
+                    </button>
+                    <button type="button" (click)="HideInventoryTemplate()" style="background-color:#0d254f;color:#FFFFFF;font-size:small;width:80px;height:30px;
+        border-color:#a2aabe;border-style:dashed;border-width:1px;">
+                        Close
+                    </button>
+      </div>
+
+        <!--------------------------------------------------------------------------------------->
+
+
+    </form>
+
+</div>
+<h3>Inventory Details:</h3>
+<hr style="padding:px"/>
+<div >
+  <div fxFlex>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" name="filterVal" [ngModelOptions]="{standalone: true}" [(ngModel)]="filterVal">
+    </mat-form-field> &nbsp;&nbsp;
+  </div>
+  <div fxFlex>
+    <button mat-icon-button color="red"  matTooltip="Add a new entry"
+              matTooltipPosition="below" (click)="CreateBlankInventoryTemplate()">
+               <b><u>&#43;Add</u></b>
+                </button> 
+              </div>
+              <div fxFlex>
+    <button type="button" (click)="LoadInventories()" style="background-color:#0d254f;color:#FFFFFF;font-size:small;width:90px;height:30px;
+border-color:#a2aabe;border-style:dashed;border-width:1px;">
+               Show&nbsp;All&nbsp;
+            </button>
+          </div>
+  </div>
+  
+  <div class="example-container mat-elevation-z8">
+
+    <!-- <button mat-button (click)=(click)="openDialog('Add',{},element.UnqueID,'Add')" mat-flat-button color="primary">Add Row</button> -->
+  
+    <mat-table [dataSource]="dataSource" matSort #mytable class="my-table mat-elevation-z8" style="background-color:#FFFFFF; border:2px #6D7B8D; padding:5px;width:99%;table-layout:fixed;">
+
+        <ng-container matColumnDef="slno">
+            <mat-header-cell *matHeaderCellDef class="HeaderStyle"> Slno. </mat-header-cell>
+            <mat-cell *matCellDef="let item; let i = index"> <span  class="mobile-label ">SlNo:</span> {{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }} 
+             
+            </mat-cell>
+            
+           </ng-container>
+
+        
+           <!-- Id Column -->
+           <!-- <ng-container matColumnDef="UnqueID">
+            <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> ID </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.UnqueID}} </mat-cell>
+          </ng-container> -->
+
+          <ng-container matColumnDef="inventoryID">
+            <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> InventoryID </mat-header-cell>
+            <mat-cell *matCellDef="let element"> <span  class="mobile-label ">ID:</span>{{element.inventoryID}} </mat-cell>
+          </ng-container>
+          
+          
+          <!-- Id Column -->
+        <ng-container matColumnDef="itemName">
+            <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Item&nbsp;Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"><span  class="mobile-label ">Name:</span> {{element.itemName}} </mat-cell>
+          </ng-container>
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+            <ng-container matColumnDef="ItemCode">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Item&nbsp;Code </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Code:</span>{{element.ItemCode}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="BarCode">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Bar&nbsp;Code </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <span  class="mobile-label ">BarCode:</span>{{element.BarCode}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="stockQty">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Stock&nbsp;Qty </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Stock Qty:</span>{{element.stockQty}} 
+                    <span *ngIf="element?.stockQty < 21" style="color: red;">(Low)<span class="glyphicon  glyphicon glyphicon-hand-right" style="color:green"></span> 
+                    <a href="mailto:vendor@vendor.com"><u>Order</u></a></span>
+                    
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="UnitPrice">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Unit&nbsp;Price </mat-header-cell>
+                <mat-cell *matCellDef="let element"><span  class="mobile-label ">Buying Price:</span> {{element.UnitPrice}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="SellPrice">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Sale&nbsp;Price </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Sale Price:</span>{{element.SellPrice}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="Discount">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Discount </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Discount:</span>{{element.Discount}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="CGST">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> CGST </mat-header-cell>
+                <mat-cell *matCellDef="let element"><span  class="mobile-label ">CGST:</span> {{element.CGST}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="SGST">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> SGST </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <span  class="mobile-label ">SGST:</span>{{element.SGST}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="BatchNumber">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Batch </mat-header-cell>
+                <mat-cell *matCellDef="let element"><span  class="mobile-label ">Batch:</span> {{element.BatchNumber}} </mat-cell>
+              </ng-container>
+
+
+
+
+              <ng-container matColumnDef="Expiry">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Expiry </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Expiry:</span>{{element.ExpireMonth==undefined || element.ExpireMonth==''?'00':element.ExpireMonth}}/{{element.ExpireYear==undefined || element.ExpireYear==''?'0000':element.ExpireYear}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="EntryOwner">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Owner </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Entry By:</span>{{element.EntryOwner}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="priorityStatus">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Priority </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Priority:</span>
+                    <span *ngIf="element?.priorityStatus==1" style="background-color: red; background-repeat: no-repeat;height:15px;width:22px">&#10003;</span>
+                            <span *ngIf="element?.priorityStatus !==1" style="background-color: cadetblue; background-repeat: no-repeat;height:15px;width:22px">&#x2717;</span>
+                            
+                           
+                </mat-cell>
+              </ng-container>
+    
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef class="HeaderStyle"> Action 
+              <button mat-icon-button color="red"  matTooltip="Add a new entry"
+              matTooltipPosition="below" (click)="CreateBlankInventoryTemplate()">
+                  <b><u>&#43;Add Item</u></b> 
+                </button> 
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="action-link">
+  
+              <button mat-icon-button color="accent" (click)=editInventoryDetailsMat(element)>
+                  <mat-icon matTooltip="Edit the entry" matTooltipPosition="below" aria-label="Edit">edit</mat-icon>
+                </button>
+        
+                <button mat-icon-button color="accent"  (click)=deleteinventoryDetailsMat(element.UnqueID)>
+                  <mat-icon matTooltip="Delete the entry" matTooltipPosition="below" aria-label="Delete">delete</mat-icon>
+                </button>
+  
+               
+            <!-- <a (click)="openDialog('Update',element)">Edit</a> | 
+            <a (click)="openDialog('Delete',element)">Delete</a>   -->
+          </mat-cell>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></mat-row>
+      </mat-table>
+      <mat-paginator #paginatorRef [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+      <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+  
+  </div>
+
+   
+
+    <!-- {{Inventory|json}} -->

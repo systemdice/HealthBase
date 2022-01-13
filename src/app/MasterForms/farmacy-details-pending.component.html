@@ -1,0 +1,134 @@
+<div class="main-content">
+  <h3>All Farmacy Pending Details:</h3>
+<!-- {{asyncPipeNewModifyCase|json}} -->
+  <hr style="padding:0px" />
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)"
+        placeholder="Filter for (Case ID or Patient ID or Date)" name="filterVal" [ngModelOptions]="{standalone: true}"
+        [(ngModel)]="filterVal">
+    </mat-form-field>
+  </div>
+
+  <div class="example-container mat-elevation-z8">
+
+    <!-- <button mat-button (click)=(click)="openDialog('Add',{},element.UnqueID,'Add')" mat-flat-button color="primary">Add Row</button> -->
+
+    <mat-table [dataSource]="dataSource" matSort #mytable class="my-table mat-elevation-z8"
+      style="background-color:#FFFFFF;border-radius: 2em; border:2px #6D7B8D; padding:5px;width:99%;table-layout:fixed;">
+
+      <ng-container matColumnDef="slno">
+        <mat-header-cell *matHeaderCellDef class="HeaderStyle"> Slno. </mat-header-cell>
+        <mat-cell *matCellDef="let item; let i = index"> <span  class="mobile-label ">SlNo:</span>{{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1)
+          }} </mat-cell>
+
+      </ng-container>
+
+
+      <!-- Id Column -->
+      <!-- <ng-container matColumnDef="UnqueID">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Reference ID </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <u style="cursor:pointer;color:blue" (click)="addEditExpenseItem(element,element.CustomerName,element.OPDIPDID)">
+            bb{{element.UnqueID}} </u>
+        </mat-cell>
+      </ng-container> -->
+
+      <ng-container matColumnDef="OPDIPDID">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Case ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"><span  class="mobile-label ">Case ID:</span>
+          <u style="cursor:pointer;color:blue" (click)="addEditLabTestItem(element,element.CustomerName,element.OPDIPDID)">
+            {{element.OPDIPDID}} </u>
+        </mat-cell>
+      </ng-container>
+
+
+
+     
+
+      <!-- <ng-container matColumnDef="DateStart">
+                  <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Date </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.DateStart}} </mat-cell>
+                </ng-container> -->
+
+   
+
+      <!-- <div *ngIf="item.hideme">
+                  <li *ngFor="let itemInn of returnAllAppoinrmrmnt(item.DateStart); let j = index">
+                    <span class="glyphicon glyphicon-user" style="color:red"></span>{{itemInn.PatientDetails.FirstName}}&nbsp;&nbsp;[Sex:<span style="color:red">{{itemInn.PatientDetails.Gender=='1'?'M':'F'}}</span>]&nbsp;&nbsp;<span class="glyphicon glyphicon-phone-alt" style="color:red"></span>:<u>{{itemInn.PatientDetails.ContactNumber}}</u>
+                  </li>
+      
+                </div> -->
+      <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+      <ng-container matColumnDef="CaseID">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Reference ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Ref ID:</span>{{element.CaseID}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="DateStart">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Date:</span>{{element.DateStart}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="CustomerName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Patient Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Name:</span>{{element.CustomerName}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="ContactNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> ContactNumber </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Phone:</span>{{element.ContactNumber}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Year">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Year </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Age:</span>{{element.Year}}+ </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="DoctorFeedback">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Medicine List </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Medicines:</span>{{element.DoctorFeedback}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="RefferDoctorName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Reffered By </mat-header-cell>
+        <mat-cell *matCellDef="let element"><span  class="mobile-label ">Doctor:</span> {{element.RefferDoctorName}} </mat-cell>
+      </ng-container>
+     
+      
+      
+
+          
+              <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef class="HeaderStyle">
+         
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="action-link">
+
+          <button type="button" class="btn btn-sm btn-info text-white actionButton mr-2" matTooltip="Edit Expense"
+          (click)="addEditLabTestItem(element,element.CustomerName,element.OPDIPDID)">
+            <i class="fa fa-pencil"></i><span class="sm-1"></span> Add Medicines
+          </button>
+         
+
+          <!-- <button class="btn btn-sm btn-danger text-white actionButton mr-2" matTooltip="Delete Expense"                 
+                  (click)="DeleteItem(element.UnqueID)">
+                      <i class="fa fa-trash"></i> <span class="sm-1"></span> Delete
+                  </button> -->
+
+
+
+          <!-- <a (click)="openDialog('Update',element)">Edit</a> | 
+                  <a (click)="openDialog('Delete',element)">Delete</a>   -->
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></mat-row>
+    </mat-table>
+    <mat-paginator #paginatorRef [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+
+  </div>
+</div>
+<!-- {{result|json}}
+only test {{result1|json}}
+--------------------------------------------------------------
+
+all data{{asyncPipeNewModifyCase|json}} -->

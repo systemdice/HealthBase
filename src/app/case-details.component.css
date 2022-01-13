@@ -1,0 +1,65 @@
+.box {
+    display: flex;
+    flex-direction:row;
+  }
+
+  .matBtn {
+    padding: 0;
+    min-width: 0;
+    width: 40px;
+    height: 34px;
+    flex-shrink: 0;
+    line-height: 30px;
+    border-radius: 58%;
+}
+.mat-chip-category { background-color: mat-color(red) !important;border-color: blue; }
+
+.mat-form-field{
+  width:70%;
+}
+
+  section{
+      width:100%;background-color: rgb(238, 245, 245);
+     
+    }
+
+ .divB{
+      
+     /*  flex-basis: 50px;
+      padding:5px;
+      border: 2px solid black; */
+      background-color: #979292;
+      /* width: 100px; */
+      margin: 2px;
+      padding:2px;
+      text-align: top;
+      /* line-height: 35px; */
+      font-size: 20px;
+      word-wrap: break-word;
+    vertical-align: middle;
+      
+  }
+
+  .divItem {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    width: 50px;
+}
+icn {
+    width: 30px;
+    height: 30px;
+    background-color: blue;
+}
+.caption {
+    display: block;
+}
+div.ex1 {
+  background-color: rgb(208, 230, 238);
+  height: 170px;
+  overflow: scroll;
+}
+
+.liClass {
+  display: inline;
+}

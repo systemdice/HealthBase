@@ -1,0 +1,51 @@
+
+<div class="ex3">
+    
+    
+<table id="users" *ngIf="farmacyDeliveryToPatientData !=undefined">
+  <thead>
+    <th style="width:5%">
+        slno.
+    </th>
+    <th style="width:65%">
+        Medicine Name
+    </th>
+    <th style="width:5%">
+        Quantity
+    </th>
+    <th style="width:5%">
+        Price
+    </th>
+    <th style="width:5%">
+        Total
+    </th>
+    <th style="width:15%">
+        Time
+    </th>
+  </thead>
+
+  <tr  *ngFor = "let row of farmacyDeliveryToPatientData[0]?.teachers; let t=index;">
+    <td data-th="SlNo.">
+        {{t+1}}
+    </td>
+    <td data-th="Name">
+        <span style="color:green">&#10003; </span>&nbsp;{{row.name}}
+    </td>
+    <td data-th="Qty">
+        {{row.unit}}
+    </td>
+    <td data-th="Price">
+        {{row.price}}
+    </td>
+    <td data-th="Total">
+        {{row.total}}
+    </td>
+    <td data-th="Date">
+        {{row.expDate}}
+    </td>
+    
+    
+  </tr>
+
+</table>
+</div>

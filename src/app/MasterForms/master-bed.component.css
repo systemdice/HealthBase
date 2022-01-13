@@ -1,0 +1,91 @@
+.seat-row {
+    float: left;
+    position: relative;
+    white-space: nowrap;
+    align-items: baseline;
+    display: flex;
+    -ms-flex-pack: justify;
+    min-width: 400px;
+    clear: both;
+    margin: 3px 0;
+}
+
+.divide-category{
+margin-right: 20px
+}
+
+.seat-label{
+    /* display: block;
+    position: relative; */
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 3rem;
+    padding: 4px 0;
+    border-radius: 15px;
+    animation-duration: 300ms;
+    animation-fill-mode: both;
+    border: 1px solid;
+}
+
+.seat {
+width: 200px;
+padding: 0 5px;
+}
+
+.selected{
+   background: rgb(182, 182, 238);
+}
+.booked {
+   background: #e7d2d4;
+}
+
+.available{
+   background: rgb(226, 236, 226);
+}
+
+.new-booking{
+clear: both;
+padding: 10px 0;
+}
+/* .conformation-container{
+    width: 400px;
+    margin: 0 auto;
+} */
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted violet;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: green;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 150%;
+    left: 50%;
+    margin-left: -60px;
+  }
+  
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent red transparent;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }

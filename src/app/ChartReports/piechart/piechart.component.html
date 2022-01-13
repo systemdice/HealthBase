@@ -1,0 +1,110 @@
+<div class="container">
+    <h3>Catagory wise Expense Detail report:</h3>
+    <hr style="padding:0px"/>
+    <div class="row">
+        <div class="col-md-6 mx-auto p-5 m-3" style="text-align: center;">
+            <b><u>Expense</u></b>
+            <canvas baseChart
+        [data]="pieChartData"
+        [labels]="pieChartLabels"
+        [chartType]="pieChartType"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+        [colors]="pieChartColors"
+        [legend]="pieChartLegend">
+      </canvas>
+        </div>
+
+        <div class="col-md-6 mx-auto p-5 m-3" style="text-align: center;">
+            <b><u>Income</u></b>
+            <canvas baseChart
+        [data]="pieChartDataI"
+        [labels]="pieChartLabelsI"
+        [chartType]="pieChartTypeI"
+        [options]="pieChartOptionsI"
+        
+        [colors]="pieChartColorsI"
+        [legend]="pieChartLegendI">
+      </canvas>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;">
+            <b><u>Total Expense vs. Income All time</u></b>
+            <!-- <button type="button" class="btn btn-sm btn-success text-white" matTooltip="Filter All Expense and income" (click)="AllExpenseIncome()">
+                All Expense/Income 
+        </button> -->
+           
+            <canvas baseChart
+            [data]="pieChartDataFF"
+            [labels]="pieChartLabelsFF"
+            [chartType]="pieChartTypeFF"
+            [options]="pieChartOptionsFF"
+            [plugins]="pieChartPluginsFF"
+            [colors]="pieChartColorsFF"
+            [legend]="pieChartLegendFF">
+          </canvas>
+        </div>
+
+        <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;">
+            <b><u>Total Expense vs. Income Month & Year wise</u></b>
+            
+<div class="form-row">
+    <div class="form-group col-md-3">
+       
+    </div>
+                <div class="form-group col-md-2">
+                    <select name="BusinessType" #BusinessType="ngModel" [(ngModel)]="month" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                   
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <select name="BusinessType" #BusinessType="ngModel" [(ngModel)]="year" class="form-control">
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                    
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <button type="button" class="btn btn-sm btn-success text-white" matTooltip="Filter Month and year wise Expense and income" (click)="AllExpenseIncomeMonthYear()">
+                         View Data 
+                </button>
+                   
+                </div>
+            </div>
+
+            <p *ngIf="DataAvail">No filtered Data found<br/>Change the condition and check.</p>
+            
+            <canvas baseChart
+            [data]="pieChartDataMY"
+            [labels]="pieChartLabelsMY"
+            [chartType]="pieChartTypeMY"
+            [options]="pieChartOptionsMY"
+            [plugins]="pieChartPluginsMY"
+            [colors]="pieChartColorsMY"
+            [legend]="pieChartLegendMY">
+          </canvas>
+          
+            
+        </div>
+    </div>
+</div>

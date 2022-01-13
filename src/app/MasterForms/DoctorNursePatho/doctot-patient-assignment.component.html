@@ -1,0 +1,133 @@
+<!-- aa{{CaseDetailValues|json}}
+bbb{{PatientValues|json}}
+cc{{caseid}} -->
+ 
+<form [formGroup]="DoctortoPatientCommentMedicine" autocomplete="off">
+ <!-- opdipd:{{showAdvanceBoxval}} -->
+    <div >
+  
+      <div>
+        <div  class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+         <b> Test Reports assigned:</b> <span style="cursor:pointer;color:blue" *ngIf="CaseDetailValues.TestType.length < 1">Nothing assigned yet.</span>
+         
+          <span *ngFor="let item of CaseDetailValues.TestType; let jOut = index">
+
+
+            <span *ngFor="let itemInn of item.names; let j = index">
+              <span style="cursor:pointer;color:blue"
+                (click)="OpenLabReport(caseid,itemInn.TestName,item.parentTest)">
+                <span style="cursor:pointer;color:rgb(241, 106, 106)"><b>{{jOut+1}}.{{j+1}}</b>)</span>&nbsp;{{itemInn.TestName}},&nbsp;
+                </span>
+
+
+              </span>
+
+          </span>
+
+        
+        </div>
+        <div  class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px" *ngIf="showAdvanceBoxval == 'OPD'">
+            
+          
+          <mat-form-field fxFlex>
+                <span matPrefix style="color:blue"></span>
+                <textarea matInput id="idPatientHistory" style="background-color: #fcfcfc" placeholder="Patient History"  rows="4" formControlName="PatientHistory"></textarea>
+            
+                 
+              </mat-form-field>
+         
+          
+          </div>
+          <div  class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px"  *ngIf="showAdvanceBoxval == 'OPD'">
+           
+            <mat-form-field fxFlex>
+                  <span matPrefix style="color:blue"></span>
+                  <textarea matInput id="idPatientFinding" style="background-color: #fcfcfc" placeholder="Patient Findings"  rows="4" formControlName="PatientFinding"></textarea>
+              
+                   
+                </mat-form-field>
+           
+            
+            </div>
+            <div  class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px"  *ngIf="showAdvanceBoxval == 'OPD'">
+           
+              <mat-form-field fxFlex>
+                    <span matPrefix style="color:blue"></span>
+                    <textarea matInput id="idPatientDiagnosis" style="background-color: #fcfcfc" placeholder="Patient Condition"  rows="4" formControlName="PatientDiagnosis"></textarea>
+                
+                     
+                  </mat-form-field>
+             
+              
+              </div>
+
+  
+          <div  class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+  
+            <mat-form-field fxFlex>
+                <span matPrefix style="color:blue"></span>
+                <textarea matInput style="background-color: #fcfcfc" placeholder="Doctor observations"  rows="6" formControlName="DoctorComments"></textarea>
+            
+                 
+              </mat-form-field>
+              <mat-form-field fxFlex>
+                <span matPrefix style="color:blue"></span>
+                <textarea matInput rows="6" readonly style="background-color: rgb(248, 248, 248);"  placeholder="Doctor Observations History" formControlName="DoctorCommentsHL"></textarea>
+            
+                 
+              </mat-form-field>
+
+      
+            </div>
+            <hr style="padding:1px;margin:1px;" />
+            
+            <div  class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+               
+              <mat-form-field fxFlex>
+                    <span matPrefix style="color:blue"></span>
+                    <textarea matInput id="idMedicineNames" style="background-color: #fcfcfc" placeholder="New Medicines"  rows="6" formControlName="MedicineNames"></textarea>
+                
+                     
+                  </mat-form-field>
+             
+                <mat-form-field fxFlex>
+                  <span matPrefix style="color:blue"></span>
+                  <textarea matInput rows="6"  id="idMedicineNamesHL" readonly style="background-color: rgb(248, 248, 248);" placeholder="Medicine History" formControlName="MedicineNamesHL"></textarea>
+              
+                   
+                </mat-form-field>
+              </div>
+              <div  class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+               
+                <mat-form-field fxFlex>
+                      <span matPrefix style="color:blue"></span>
+                      <textarea matInput id="idPatientPathoLabTestAdvice" style="background-color: #fcfcfc" placeholder="Patient PathoLab Test Advice"  rows="4" formControlName="PatientPathoLabTestAdvice"></textarea>
+                  
+                       
+                    </mat-form-field>
+               
+                
+                </div>
+              <div >
+                <!-- <li>
+                  <mat-form-field>
+                    <mat-label>What's your name?</mat-label>
+                    <input matInput [(ngModel)]="name"  [ngModelOptions]="{standalone: true}" >
+                  </mat-form-field>
+                </li>
+                <li *ngIf="animal">
+                  You chose: <i>{{animal}}</i>
+                </li>
+                You chose: <i>{{hlData}}</i> -->
+                <button style="display: inline-block;" type="button"  (click)="OpenPrescription()"  class="btn btn-info"><span
+                  class="glyphicon glyphicon-print"  ></span>
+              Print the Prescription</button>
+               </div>
+   
+          
+      </div>
+    </div>
+   
+    
+  
+  </form>

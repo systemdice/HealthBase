@@ -1,0 +1,8 @@
+<section fxLayout="row" fxLayoutAlign="start center" class="color-container">
+	<mat-form-field [floatLabel]="floatLabel ? 'always' : 'never'">
+		<mat-select [placeholder]="placeholder" (selectionChange)="updateColor($event)">
+			<mat-option *ngFor="let c of colors" [value]="c" [style.color]="c.foreground" [style.background-color]="c.value">{{c.name}}</mat-option>
+		</mat-select>
+	</mat-form-field>
+	<section class="color-preview" [style.background-color]="color.value" [style.color]="color.foreground">{{color.name[0]}}</section>
+</section>

@@ -1,0 +1,107 @@
+/* Add application styles & imports to this file! */
+
+.switch {
+    display: block;
+    background-color:#f2f2f3;
+  }
+  
+  fieldset {
+    padding-top:20px;
+  }
+  
+  fieldset > div {
+    background-color:green;
+    display: inline-block;
+    width:100%;
+  }
+  
+  .green{
+    background-color: green;
+  }
+  
+  .grey{
+    background-color: lightgrey;
+    padding:4px;
+    border-radius: 5px;
+    /* height:50px; */
+  }
+  
+  .purple{
+    background-color: purple;
+  }
+  .mt--15{
+    margin-top: 15px;
+  }
+  
+  .marg-b--10{
+    margin-bottom: 10px !important;
+  }
+  
+  .small{
+    font-size: 75%;
+  }
+  
+  body{
+    margin: 0;
+  }
+  
+  .bb-container{
+    padding: 0 35px;
+  }
+  
+  .bottom-sheet{
+    background-color: white;
+    height:500px;
+    width: 200px;
+  }
+
+  /* table, td {
+    
+    border-collapse: collapse;
+  }
+
+  th{
+      font-weight: bold;
+  } */
+
+  table, th, td {
+    border: 1px solid rgb(202, 200, 200);
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .table1 {
+    border: 0px  rgb(202, 200, 200);
+    border-collapse: collapse;
+  }
+
+
+  .test {
+    white-space: pre-line;
+  }
+
+ 
+  .close-button{
+    float: right;
+    top:-24px;
+    right:-24px;
+  }
+
+  .container1{
+   
+    display:flex;
+    flex-wrap:wrap;
+  }
+  .itemC{
+    width:200px;
+    height:200px;
+    background-color: cyan;
+    border:2px solid red;
+    margin:10px;
+    padding:3px;
+  }
+  

@@ -1,0 +1,224 @@
+<h1>{{title}} <button class="btn btn-success" *ngIf="PopupClose" (click)="closeDialog()" color="warn"> <span class="glyphicon glyphicon-off"></span>Close Me</button>
+</h1>
+<div fxShow fxHide.lt-sm>
+  <div class="col-md-6" fxFlex >
+    <ul>
+      <li><span style="color:red">* (Step:1)</span> -Select Category -> PathoLab Test Name -> Price.</li>
+      <li><span style="color:red">* (Step2:)</span> -Click Add parameter so that we can add different parameter to Each Test.</li>
+      <li><span style="color:red">* (Step3:)</span> -FillUp the Parameter Name and Unit. </li>
+      <li><span style="color:red">* (Step:4)</span> -Add Reference for each Parameter if you wish to show Reference Range in Report.</li>
+      <li><span style="color:red">* (Note:)</span> -We can add as many as Valid Parameter and Reference Range for the PathoLAB Test.</li>
+    
+  
+    </ul>
+  </div>
+  <div fxflex class="col-md-4">
+    <div class="profile-img text-center">
+      <img src="assets/images/patholabTestFlow.png" class="leave-emp-profile-img" alt="profile image" height="90" width="400" />
+    </div>
+  </div>
+  
+</div>
+<form [formGroup]="teachersForm" (ngSubmit)="onSubmit()">
+
+  
+
+  <div style="border: 1px solid rgb(83, 91, 126); padding: 10px; width: 99%; display: inline-block; margin: 5px;">
+    <button type="button" (click)="saveLabTest()" class="btn btn-success"><span class="glyphicon glyphicon-off"></span>
+      {{SubmitButtonNameDynamically}}</button>
+
+      
+
+    <div class="form-row">
+
+
+      <div class="form-group col-md-2">
+        <label for="CategoryName" class="control-label"> PathoLab Test Category</label>
+        <select style="display:inline;" class="form-control" formControlName="CategoryName">
+          <option value="0">--Select Category--</option>
+          <option *ngFor="let cat of fromDataCategoryFilter" value="{{cat.CategoryName}}">
+            {{cat.CategoryName}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="name" class="control-label">PathoLab Test Name</label>
+        <input type="text" class="form-control" formControlName="TestName">
+
+      </div>
+
+      <div class="form-group col-md-1">
+        <label for="name" class="control-label">Test Price</label>
+        <input type="number" class="form-control" formControlName="TestPrice" placeholder="Test Price">
+
+      </div>
+      <div class="form-group col-md-2">
+        <label for="name" class="control-label">Created By</label>
+        <input type="text" class="form-control" formControlName="CreatedBy" placeholder="Created By">
+
+      </div>
+
+      <div class="form-group col-md-1">
+        <mat-form-field fxFlex *ngIf="false">
+          <mat-label><span style="color:red">*</span> Category Name</mat-label>
+          <!-- Collection Center By -->
+          <mat-select formControlName="CategoryType" (selectionChange)="CategorySelected('')">
+            <option value="0">--Select Category type--</option>
+            <mat-option *ngFor="let cat of formCategoryMasterFilter" value="{{cat.CategoryType}}"> {{cat.CategoryType}}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-2" style="padding-top:15px;">
+        <span style="color:#9F000F" class="btn">
+
+
+          <button type="button" class="btn btn-sm btn-success" (click)="addTeacher()">
+            &#10003;&nbsp;Add parameter</button>&nbsp;
+        </span>
+      </div>
+
+    </div>
+
+    <div formArrayName="test">
+
+      <div *ngFor="let teacher of teachers().controls; let ti=index">
+
+
+        <div [formGroupName]="ti" style="border: 1px solid rgb(121, 119, 119); padding: 10px; margin: 5px; float:left"
+          fxFlex>
+
+          Parameter Details :
+          <div class="form-row">
+
+            <div class="form-group col-md-7">
+              <label for="name" class="control-label">Parameter Name</label>
+              <input type="text" class="form-control" formControlName="ParamterName" placeholder="Parameter Name">
+
+            </div>
+            <div class="form-group col-md-2">
+              <label class="control-label">Unit</label>
+              <select style="display:inline;" class="form-control" formControlName="Unit">
+                <option value="0">-Select-</option>
+                <option *ngFor="let units of unitsCategory" [value]="units.Name">{{units.Name}}
+                </option>
+              </select>
+              
+            </div>
+            <div class="form-group col-md-1" style="padding-top:10px;">
+              <button mat-icon-button color="primary"  (click)="openDialog('Add',{})">
+                <mat-icon matTooltip="Add a new entry" matTooltipPosition="below" aria-label="Example icon-button with a heart icon">add</mat-icon> Add Unit
+              </button>
+            </div>
+            <div class="form-group col-md-2" style="padding-top:15px;">
+              <span style="color:#9F000F" class="btn">
+                <button type="button" class="btn btn-sm btn-danger" (click)="removeTeacher(ti)">
+                  &#x2717;&nbsp;Del Parameter</button>&nbsp;
+                <button type="button" class="btn btn-sm btn-success" (click)="addBatch(ti)">
+                  &#10003;&nbsp;Add Reference</button>&nbsp;
+              </span>
+            </div>
+
+          </div>
+
+          <div>
+
+
+
+
+          </div>
+
+
+          <div formArrayName="batches">
+
+            <div *ngFor="let batch of batches(ti).controls; let bi=index">
+
+              <div [formGroupName]="bi" style="border: 1px solid rgb(172, 170, 170); padding: 1px; margin: 2px; float:left"
+                fxFlex>
+                <div class="form-row">
+
+                  
+                  <div class="form-group col-md-2">
+                    <label class="control-label">Gender Category</label>
+                    <select style="display:inline;" class="form-control" formControlName="GenderCategory">
+                      <option value="0">-Select Gender Category-</option>
+                    <option value="Neonates">Neonates</option>
+                    <option value="Male Adult">Male Adult</option>
+                    <option value="Female Adult">Female Adult</option>
+                    <option value="Pregnancy">Pregnancy</option>
+                    <option value="Genearal">Genearal</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="name" class="control-label">Minimum Range</label>
+                    <input type="text" class="form-control" formControlName="MinRange" placeholder="Minimum Range">
+      
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="name" class="control-label">Maximum Range</label>
+                    <input type="text" class="form-control" formControlName="MaxRange" placeholder="Maximum Range">
+      
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="name" class="control-label">General Range</label>
+                    <input type="text" class="form-control" formControlName="CommonRange" placeholder="Generic Range">
+      
+                  </div>
+                  <div class="form-group col-md-2" style="padding-top:15px;">
+                    <span style="color:#ee717e" class="btn">
+                      <button type="button" class="btn btn-sm btn-danger" (click)="removeBatch(ti,bi)">
+                        &#x2717;&nbsp;Del Reference</button>
+                      <button type="button" class="btn btn-sm btn-success" (click)="addBatch(ti)">
+                        &#10003;&nbsp;Add Reference</button>&nbsp;
+                    </span>
+                  </div>
+      
+                </div>
+
+               
+
+
+
+              </div>
+
+            </div>
+
+          </div>
+          <!-- <button (click)="addStudent(ti,bi)">Add Student</button> -->
+
+          <!-- <div formArrayName="students">
+
+          <div *ngFor="let batch of students(ti,bi).controls; let si=index">
+            <div [formGroupName]="si" style="border: 1px solid blue; padding: 2px; ">
+              Student Name :
+              <input type="text" formControlName="name">
+              <button (click)="removeStudent(ti,bi,si)">Remove student</button>
+            </div>
+          </div>
+
+        </div> -->
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="col-md-12">
+
+    <button type="button" (click)="saveLabTest()" class="btn btn-success"><span class="glyphicon glyphicon-off"></span>
+      {{SubmitButtonNameDynamically}}</button>
+
+
+  </div>
+
+</form>
+
+<!-- {{this.teachersForm.value | json}} -->
+
+<!-- {{formCategoryMaster|json}} -->

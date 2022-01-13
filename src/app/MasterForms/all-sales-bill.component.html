@@ -1,0 +1,627 @@
+<mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+     All Credit/Cash Report
+
+     
+    </ng-template>
+    <br/>
+    <div>
+      <div class="form-row">
+       
+        <!-- {{asyncPipeFarmacyDeliveryToPatient|json}} -->
+        <!-- {{asyncPipeFarmacyDeliveryToPatient|json}} -->
+          <div class="form-group col-md-3" style="float:left">
+            <h3>All Billing(Credit/Cash) Details:<button type="button" routerLink="/Farmaentry/jj" class="btn btn-warning"><span
+              class="glyphicon glyphicon-edit"></span>
+            Start New Bills</button> </h3>
+          </div>
+          <div class="form-group col-md-5" style="float:left">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)"
+                placeholder="Filter for (BillingID/Credit/Cash or Date)" name="filterVal" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="filterVal">
+            </mat-form-field>
+            <button type="button" (click)="saveLabTest()" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span>
+              Show all Bills</button>&nbsp;
+              <button type="button" (click)="AllCredit()" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span>
+                  All Credit</button>&nbsp;
+                  <button type="button" (click)="AllCash()" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span>
+                      All Cash</button>&nbsp;
+            <button type="button" (click)="ShowTodaysData()" class="btn btn-success"><span
+                class="glyphicon glyphicon-edit"></span>
+              Today's Bills</button>
+
+              <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Date Range Filter:</legend>
+              <mat-form-field style="padding-top:0px;">
+                <mat-label>Start&nbsp;Date</mat-label>
+                <input matInput [matDatepicker]="StartDate1" placeholder="Satrt Date" [(ngModel)]="StartDate"
+                readonly (click)="StartDate1.open()" (focus)="StartDate1.open()" >
+                <mat-datepicker-toggle matSuffix [for]="StartDate1"></mat-datepicker-toggle>
+                <mat-datepicker #StartDate1></mat-datepicker>
+              </mat-form-field>
+        
+            
+              &nbsp;&nbsp;
+                
+                <mat-form-field style="padding-top:0px;">
+                  <mat-label>End&nbsp;Date</mat-label>
+                  <input matInput [matDatepicker]="EndDate1" placeholder="End Date" [(ngModel)]="EndDate"
+                  readonly (click)="EndDate1.open()" (focus)="EndDate1.open()">
+                  <mat-datepicker-toggle matSuffix [for]="EndDate1"></mat-datepicker-toggle>
+                  <mat-datepicker #EndDate1></mat-datepicker>
+                </mat-form-field>&nbsp;&nbsp;
+                <button type="button" (click)="ShowDateRangeDate(StartDate,EndDate)" class="btn btn-success"><span
+                  class="glyphicon glyphicon-edit"></span>
+                Date Range Bills</button>
+              </fieldset>
+          </div>
+          <div class="form-group col-md-4" style="float:left">
+            <mat-form-field>
+        
+              <input matInput readonly [matDatepicker]="FollowupStartDate" placeholder="Select Date"
+              [(ngModel)]="passdate"
+                  readonly (click)="FollowupStartDate.open()" (focus)="FollowupStartDate.open()" >
+              <mat-datepicker-toggle matSuffix [for]="FollowupStartDate"></mat-datepicker-toggle>
+              <mat-datepicker #FollowupStartDate></mat-datepicker>
+          </mat-form-field>
+          <button type="button" (click)="ShowTodaysDataFromCalendar(passdate)" class="btn btn-success"><span
+            class="glyphicon glyphicon-edit"></span>
+          Search Bills</button>
+
+       
+          </div>
+        </div>
+        <!-- <input type="text" name="UserName" class="form-control"  (keyup)="applyFilter($event.target.value)"
+              [(ngModel)]="UserName" placeholder="Username" (input)="applyFilter($event.target.value)">
+           Filter: {{UserName}} -->
+        <hr style="padding:0px;margin:1px;" />
+        <div class="example-header">
+        
+        
+          <div class="example-container mat-elevation-z8">
+        
+            <!-- <button mat-button (click)=(click)="openDialog('Add',{},element.UnqueID,'Add')" mat-flat-button color="primary">Add Row</button> -->
+        
+            <mat-table [dataSource]="dataSource" matSort #mytable class="my-table mat-elevation-z8"  
+              style="background-color:#FFFFFF;border-radius: 2em; border:2px #6D7B8D; padding:5px;width:99%;
+              table-layout:fixed;">
+            
+        
+              <ng-container matColumnDef="slno">
+                <mat-header-cell *matHeaderCellDef class="HeaderStyle"> Slno  </mat-header-cell>
+                <mat-cell *matCellDef="let item; let i = index">  
+                  {{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }} </mat-cell>
+                
+               </ng-container>
+        
+        
+              <!-- Id Column -->
+             
+                <ng-container matColumnDef="UnqueID" *ngIf="false">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> UnqueID </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                      <u style="cursor:pointer;color:blue" (click)="addEditExpenseItem(element.CaseID,element.CeditStatus,element.IPDOPDId)">
+                        <span class="mobile-label">UniqueID:</span> {{element.UnqueID}} </u>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="PharmacyStoreName" >
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Pharmacy </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                    <span class="mobile-label">Pharma:</span>{{element.PharmacyStoreName}}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="CaseID" >
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Bill SlNo. </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                    <span class="mobile-label">SlNo:</span>{{element.CaseID}}
+                    </mat-cell>
+                </ng-container>
+      
+                <ng-container matColumnDef="BillNo">
+                  <mat-header-cell *matHeaderCellDef class="HeaderStyle"> Bill No. </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                    <u style="cursor:pointer;color:blue" (click)="addEditExpenseItem(element.CaseID,element.CeditStatus,element.IPDOPDId)">
+                      <span class="mobile-label">Bill No:</span>{{element.BillNo}} </u>
+                   
+                  </mat-cell>
+          
+                </ng-container>
+      
+                <ng-container matColumnDef="IPDOPDId">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Hospital ID </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> <span class="mobile-label">IP/OP:</span>{{element.IPDOPDId}} </mat-cell>
+                </ng-container>
+              <!-- <ng-container matColumnDef="ID">
+                        <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.IPDOPDId}} </mat-cell>
+                      </ng-container> -->
+        
+        
+              <!-- Id Column -->
+              <!-- <ng-container matColumnDef="DateStart">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Date </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.DateStart}} </mat-cell>
+              </ng-container> -->
+      
+              <ng-container matColumnDef="BillingDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Billing Date </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <span class="mobile-label">Date:</span>{{element.BillingDate| date: 'dd-MM-yyyy'}} </mat-cell>
+              </ng-container>
+              <!-- <ng-container matColumnDef="Uname">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Uname </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.Home.RefferDoctorName}} </mat-cell>
+              </ng-container> -->
+              <!-- <ng-container matColumnDef="Loc">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Loc </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.Location}} </mat-cell>
+              </ng-container> -->
+        
+              <ng-container matColumnDef="CustomerName">
+                        <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Billing Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"><span class="mobile-label">Name:</span> {{element.CustomerName}} </mat-cell>
+                      </ng-container>
+        
+              <ng-container matColumnDef="CaseID" *ngIf="false">
+                <mat-header-cell *matHeaderCellDef class="HeaderStyle"> CaseID(Credit)</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                 
+                  {{element.CaseID}}
+                </mat-cell>
+        
+              </ng-container>
+              <ng-container matColumnDef="CeditStatus">
+                  <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Credit Status </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> <span class="mobile-label">Status:</span>
+                      <span *ngIf="element.CeditStatus=='Credit'"
+                  style="color:red">{{element.CeditStatus}} </span>
+                  <span *ngIf="element.CeditStatus=='Cash'"
+                  style="color:Green">{{element.CeditStatus}} </span>
+                  
+                    
+                  </mat-cell>
+                </ng-container>
+             
+              
+        
+        
+              <!-- Action Column -->
+              <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef class="HeaderStyle">
+                  <!-- <button class="btn btn-sm btn-success text-white actionButtonMain" matTooltip="Add New Case"
+                    (click)="addEditExpenseItem(null,null,null)">
+                    <i class="fa fa-plus"></i> <span class="ml-1"> </span>New Case👆 &nbsp;
+                  </button> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="action-link">
+        
+                  
+        
+                  <button mat-icon-button color="accent" (click)="addEditExpenseItem(element.CaseID,element.CeditStatus,element.IPDOPDId)">
+                    <mat-icon matTooltip="Edit the entry" matTooltipPosition="below" aria-label="Edit">edit</mat-icon>
+                  </button>
+        
+                  <button mat-icon-button color="accent" (click)="DeleteItem(element.UnqueID)">
+                    <mat-icon matTooltip="Delete the entry" matTooltipPosition="below" aria-label="Delete">delete</mat-icon>
+                  </button>
+        
+                  <!-- <button class="btn btn-sm btn-info text-white actionButton mr-2" matTooltip="Edit Case" 
+                        (click)="addEditExpenseItem(element,element.Home.FirstName)">
+                            <i class="fa fa-pencil"></i><span class="sm-1"></span> Modify
+                </button>
+                <button class="btn btn-sm btn-danger text-white actionButton mr-2" matTooltip="Delete Case" 
+                        (click)="DeleteItem(element.UnqueID)">
+                            <i class="fa fa-trash"></i><span class="sm-1"></span> Delete
+                </button> -->
+        
+                  <!-- <button class="btn btn-sm btn-danger text-white actionButton mr-2" matTooltip="Delete Expense"                 
+                        (click)="DeleteItem(element.UnqueID)">
+                            <i class="fa fa-trash"></i> <span class="sm-1"></span> Delete
+                        </button> -->
+        
+        
+        
+                  <!-- <a (click)="openDialog('Update',element)">Edit</a> | 
+                        <a (click)="openDialog('Delete',element)">Delete</a>   -->
+                </mat-cell>
+              </ng-container>
+        
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></mat-row>
+            </mat-table>
+            <mat-paginator #paginatorRef [pageSizeOptions]="[12, 25, 50, 100]"></mat-paginator>
+         
+          </div>
+        </div>
+     </div>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+      Profit Loss
+    </ng-template>
+    <br/>
+    <div>
+      <div class="form-row">
+        <!-- {{asyncPipeFarmacyDeliveryToPatient|json}} -->
+          <div class="form-group col-md-3" style="float:left">
+            <h3>All Proffit/Loss(Credit/Cash) Details: </h3>
+          </div>
+          <div class="form-group col-md-5" style="float:left">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilterPL($event.target.value)"
+                placeholder="Filter for (BillingID/Credit/Cash or Date)" name="filterValPL" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="filterValPL">
+            </mat-form-field>
+            <button type="button" (click)="saveLabTestPL()" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span>
+              Show all Bills</button>&nbsp;
+              <button type="button" (click)="AllCreditPL()" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span>
+                  All Credit</button>&nbsp;
+                  <button type="button" (click)="AllCashPL()" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span>
+                      All Cash</button>&nbsp;
+            <button type="button" (click)="ShowTodaysDataPL()" class="btn btn-success"><span
+                class="glyphicon glyphicon-edit"></span>
+              Today's Bills</button>
+
+              <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Date Range Filter:</legend>
+              <mat-form-field style="padding-top:0px;">
+                <mat-label>Start&nbsp;Date</mat-label>
+                <input matInput [matDatepicker]="StartDate1PL" placeholder="Satrt Date" [(ngModel)]="StartDatePL"
+                readonly (click)="StartDate1PL.open()" (focus)="StartDate1PL.open()" >
+                <mat-datepicker-toggle matSuffix [for]="StartDate1PL"></mat-datepicker-toggle>
+                <mat-datepicker #StartDate1PL></mat-datepicker>
+              </mat-form-field>
+        
+            
+              &nbsp;&nbsp;
+                
+                <mat-form-field style="padding-top:0px;">
+                  <mat-label>End&nbsp;Date</mat-label>
+                  <input matInput [matDatepicker]="EndDate1PL" placeholder="End Date" [(ngModel)]="EndDatePL"
+                  readonly (click)="EndDate1PL.open()" (focus)="EndDate1PL.open()">
+                  <mat-datepicker-toggle matSuffix [for]="EndDate1PL"></mat-datepicker-toggle>
+                  <mat-datepicker #EndDate1PL></mat-datepicker>
+                </mat-form-field>&nbsp;&nbsp;
+                <button type="button" (click)="ShowDateRangeDatePL(StartDatePL,EndDatePL)" class="btn btn-success"><span
+                  class="glyphicon glyphicon-edit"></span>
+                Date Range Bills</button>
+              </fieldset>
+        
+          </div>
+          <div class="form-group col-md-4" style="float:left">
+            <mat-form-field>
+        
+              <input matInput readonly [matDatepicker]="FollowupStartDatePL" placeholder="Select Date"
+              [(ngModel)]="passdatePL" readonly (click)="FollowupStartDatePL.open()" (focus)="FollowupStartDatePL.open()"
+                  >
+              <mat-datepicker-toggle matSuffix [for]="FollowupStartDatePL"></mat-datepicker-toggle>
+              <mat-datepicker #FollowupStartDatePL></mat-datepicker>
+          </mat-form-field>
+          <button type="button" (click)="ShowTodaysDataFromCalendarPL(passdatePL)" class="btn btn-success"><span
+            class="glyphicon glyphicon-edit"></span>
+          Search Proffit/Loss</button>
+          </div>
+        </div>
+        <!-- <input type="text" name="UserName" class="form-control"  (keyup)="applyFilter($event.target.value)"
+              [(ngModel)]="UserName" placeholder="Username" (input)="applyFilter($event.target.value)">
+           Filter: {{UserName}} -->
+        <hr style="padding:0px;margin:1px;" />
+        <div class="example-header">
+        
+        
+          <div class="example-container mat-elevation-z8">
+        
+            <!-- <button mat-button (click)=(click)="openDialog('Add',{},element.UnqueID,'Add')" mat-flat-button color="primary">Add Row</button> -->
+        
+            <mat-table [dataSource]="dataSourcePL" matSort #mytable class="my-table mat-elevation-z8"
+              style="background-color:#FFFFFF;border-radius: 2em; border:2px #6D7B8D; padding:5px;width:99%;
+              table-layout:fixed;">
+        
+              <ng-container matColumnDef="slno">
+                <mat-header-cell *matHeaderCellDef class="HeaderStyle"> Slno  </mat-header-cell>
+                <mat-cell *matCellDef="let item; let i = index">  <span class="mobile-label">SL NO:</span>
+                  {{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }} </mat-cell>
+                
+               </ng-container>
+        
+        
+              <!-- Id Column -->
+             
+                <ng-container matColumnDef="UnqueID" *ngIf="false">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> UnqueID </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                      <u style="cursor:pointer;color:blue" (click)="addEditExpenseItem(element.CaseID,element.CeditStatus,element.IPDOPDId)">
+                        {{element.UnqueID}} </u>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="CaseID" >
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> CaseID </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> <span class="mobile-label">CASE ID:</span>
+                    {{element.CaseID}}
+                    </mat-cell>
+                </ng-container>
+      
+                <ng-container matColumnDef="BillNo">
+                  <mat-header-cell *matHeaderCellDef class="HeaderStyle"> Bill ID </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> <span class="mobile-label">BILL ID:</span>
+                    <u style="cursor:pointer;color:blue" (click)="addEditExpenseItem(element.CaseID,element.CeditStatus,element.IPDOPDId)">
+                      {{element.BillNo}} </u>
+                   
+                  </mat-cell>
+          
+                </ng-container>
+                <ng-container matColumnDef="GrossSalePriceOnthisBill">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Gross Sale </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> <span class="mobile-label">Gross Sale:</span>
+                    {{element.GrossSalePriceOnthisBill | currency :'INR':'symbol':'1.2-2'}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="GrossPurchasePriceOnthisBill">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Gross Purchase </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> <span class="mobile-label">Gross Purchase:</span>
+                    {{element.GrossPurchasePriceOnthisBill | currency :'INR':'symbol':'1.2-2'}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="GrossProffitPriceOnthisBill">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Gross Proffit </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> <span class="mobile-label">Gross Profit:</span>
+                    {{element.GrossProffitPriceOnthisBill | currency :'INR':'symbol':'1.2-2'}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="GrossGSTPriceOnthisBill">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Total GST </mat-header-cell>
+                  <mat-cell *matCellDef="let element"><span class="mobile-label">Total GST:</span>
+                     {{element.GrossGSTPriceOnthisBill| currency :'INR':'symbol':'1.2-2'}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="BillingMonth">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Month </mat-header-cell>
+                  <mat-cell *matCellDef="let element"><span class="mobile-label">MONTH:</span>
+                     {{getMonthName(element.BillingMonth)}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="BillingYear">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Year </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> <span class="mobile-label">YEAR:</span>
+                    {{element.BillingYear}} </mat-cell>
+                </ng-container>
+
+
+
+                <!-- <ng-container matColumnDef="IPDOPDId">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> ID </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.IPDOPDId}} </mat-cell>
+                </ng-container> -->
+              <!-- <ng-container matColumnDef="ID">
+                        <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.IPDOPDId}} </mat-cell>
+                      </ng-container> -->
+        
+        
+              <!-- Id Column -->
+              <!-- <ng-container matColumnDef="DateStart">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Date </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.DateStart}} </mat-cell>
+              </ng-container> -->
+      
+              <ng-container matColumnDef="BillingDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Billing Date </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <span class="mobile-label">Bill Date:</span>
+                  {{element.BillingDate| date: 'dd-MM-yyyy'}} </mat-cell>
+              </ng-container>
+              <!-- <ng-container matColumnDef="Uname">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Uname </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.Home.RefferDoctorName}} </mat-cell>
+              </ng-container> -->
+              <!-- <ng-container matColumnDef="Loc">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Loc </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.Location}} </mat-cell>
+              </ng-container> -->
+        
+              <!-- <ng-container matColumnDef="CustomerName">
+                        <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.CustomerName}} </mat-cell>
+                      </ng-container> -->
+        
+              <!-- <ng-container matColumnDef="CaseID" *ngIf="false">
+                <mat-header-cell *matHeaderCellDef class="HeaderStyle"> CaseID(Credit)</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                 
+                  {{element.CaseID}}
+                </mat-cell>
+        
+              </ng-container> -->
+              <ng-container matColumnDef="CeditStatus">
+                  <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> CeditStatus </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> <span class="mobile-label">Status:</span>
+                      <span *ngIf="element.CeditStatus=='Credit'"
+                  style="color:red">{{element.CeditStatus}} </span>
+                  <span *ngIf="element.CeditStatus=='Cash'"
+                  style="color:Green">{{element.CeditStatus}} </span>
+                  
+                    
+                  </mat-cell>
+                </ng-container>
+             
+              
+        
+        
+              <!-- Action Column -->
+              <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef class="HeaderStyle">
+                  <!-- <button class="btn btn-sm btn-success text-white actionButtonMain" matTooltip="Add New Case"
+                    (click)="addEditExpenseItem(null,null,null)">
+                    <i class="fa fa-plus"></i> <span class="ml-1"> </span>New Case👆 &nbsp;
+                  </button> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="action-link">
+        
+                  
+        
+                  <button mat-icon-button color="accent" (click)="addEditExpenseItem(element.CaseID,element.CustomerName,element.IPDOPDId)">
+                    <mat-icon matTooltip="Edit the entry" matTooltipPosition="below" aria-label="Edit">edit</mat-icon>
+                  </button>
+        
+                  <button mat-icon-button color="accent" (click)="DeleteItem(element.UnqueID)">
+                    <mat-icon matTooltip="Delete the entry" matTooltipPosition="below" aria-label="Delete">delete</mat-icon>
+                  </button>
+        
+                  <!-- <button class="btn btn-sm btn-info text-white actionButton mr-2" matTooltip="Edit Case" 
+                        (click)="addEditExpenseItem(element,element.Home.FirstName)">
+                            <i class="fa fa-pencil"></i><span class="sm-1"></span> Modify
+                </button>
+                <button class="btn btn-sm btn-danger text-white actionButton mr-2" matTooltip="Delete Case" 
+                        (click)="DeleteItem(element.UnqueID)">
+                            <i class="fa fa-trash"></i><span class="sm-1"></span> Delete
+                </button> -->
+        
+                  <!-- <button class="btn btn-sm btn-danger text-white actionButton mr-2" matTooltip="Delete Expense"                 
+                        (click)="DeleteItem(element.UnqueID)">
+                            <i class="fa fa-trash"></i> <span class="sm-1"></span> Delete
+                        </button> -->
+        
+        
+        
+                  <!-- <a (click)="openDialog('Update',element)">Edit</a> | 
+                        <a (click)="openDialog('Delete',element)">Delete</a>   -->
+                </mat-cell>
+              </ng-container>
+        
+              <mat-header-row *matHeaderRowDef="displayedColumnsPL"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumnsPL;" class="table-row"></mat-row>
+            </mat-table>
+            <mat-paginator #paginatorRef [pageSizeOptions]="[15, 25, 50, 100]"></mat-paginator>
+         
+          </div>
+        </div>
+     </div>
+     
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+      Graphical Reports
+    </ng-template>
+    <div>
+      <div class="container">
+        <br/>
+        <h3>Year/Month wise Proffit and Loss report:</h3>
+        <hr style="padding:0px"/>
+        <div class="row">
+          <div class="col-md-2 mx-auto p-1 m-1" style="text-align: right;">Select Year</div>
+          <div class="col-md-6 mx-auto p-1 m-1" style="text-align: left;">
+          <mat-form-field fxFlex>
+            <mat-label>Expire Year</mat-label>
+            <mat-select  [(value)]="ExpireYear" [(ngModel)]="SearchYear">
+              <mat-option>--</mat-option>
+              
+           
+            <mat-option value="2021">2021</mat-option>
+            <mat-option value="2022">2022</mat-option>
+            <mat-option value="2023">2023</mat-option>
+            <mat-option value="2024">2024</mat-option>
+            <mat-option value="2025">2025</mat-option>
+            <mat-option value="2026">2026</mat-option>
+            <mat-option value="2027">2027</mat-option>
+            <mat-option value="2028">2028</mat-option>
+            <mat-option value="2029">2029</mat-option>
+            <mat-option value="2030">2030</mat-option>
+            <mat-option value="2031">2031</mat-option>
+            <mat-option value="2032">2032</mat-option>
+            <mat-option value="2033">2033</mat-option>
+            <mat-option value="2034">2034</mat-option>
+            <mat-option value="2035">2035</mat-option>
+            </mat-select>
+        </mat-form-field>
+      
+      
+      
+      </div>
+      <div class="col-md-2 mx-auto p-1 m-1" style="text-align: left;">
+        <button type="button" (click)="SearchData()" style="background-color:#0d254f;color:#FFFFFF;font-size:small;width:80px;height:30px;
+border-color:#a2aabe;border-style:dashed;border-width:1px;">
+               Search
+            </button>
+      </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;" *ngIf="barChartDataE">
+                <b><u>Proffit Income Monthwise</u></b>
+                <canvas baseChart
+                      [datasets]="barChartDataE"
+                      [labels]="barChartLabelsE"
+                      [options]="barChartOptionsE"
+                      [plugins]="barChartPluginsE"
+                      [legend]="barChartLegendE"
+                      [colors]="lineChartColorsE"
+                      [chartType]="barChartTypeE">
+                    </canvas>
+            </div>
+    
+            <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;" *ngIf="barChartDataE">
+              <b><u>Proffit flow Monthwise</u></b>
+              <canvas baseChart
+                    [datasets]="barChartDataE"
+                    [labels]="barChartLabelsE"
+                    [options]="barChartOptionsE"
+                    [plugins]="barChartPluginsE"
+                    [legend]="barChartLegendE"
+                    [colors]="lineChartColorsE"
+                    [chartType]="barChartTypeEP">
+                  </canvas>
+                 
+          </div>
+          
+        </div>
+        <div class="row">
+          <div class="col-md-8 mx-auto p-1 m-1" style="text-align: center;" >
+          <canvas baseChart *ngIf='chart!=undefined'
+        chartType="bar"
+        [datasets]="chart.datasets"
+        [labels]="chart.labels"
+        [options]="chart.options"
+        legend="true">
+</canvas></div>
+<div class="col-md-4 mx-auto p-1 m-1" style="text-align: center;">
+  <canvas baseChart *ngIf='pieChartData!=undefined'
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          [options]="pieChartOptions"
+          [plugins]="pieChartPlugins">
+        </canvas>
+</div>
+        </div>
+       
+    
+    </div>
+    
+     </div>
+    <!-- {{asyncPipeFarmacyDeliveryToPatientPL|json}}
+    {{result|json}} <br/>liku
+{{groupedMap|json}}
+    {{reportArryX|json}}
+    <br/>
+    {{reportArryY|json}}
+
+   {{asyncPipeFarmacyDeliveryToPatient|json}} -->
+
+  </mat-tab>
+</mat-tab-group>
+
+  
+  <!-- {{asyncPi|json}}
+      --------------------------------
+  
+      {{asyncPipeNewModifyCase|json}} -->
+  
+  <!-- {{labTestIndividual|json}}
+      -----------------------------------------------
+      {{asyncPi|json}} -->
+
+    

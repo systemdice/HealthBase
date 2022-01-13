@@ -1,0 +1,130 @@
+
+<!-- app.component.html -->
+<h3>Appointment Details</h3>
+<div class="example-header">
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" name="filterVal" [(ngModel)]="filterVal">
+      </mat-form-field>
+    </div>
+    <div class="form-group col-md-2">
+      <mat-form-field style="padding-top:0px;">
+        <mat-label><span style="color:red"><b>*</b>Date of Appointment</span></mat-label>
+        <input matInput readonly  [matDatepicker]="StartDate1" placeholder="Date of Appointment" 
+          (dateChange)="addEvent('change', $event)">
+        <mat-datepicker-toggle matSuffix [for]="StartDate1"></mat-datepicker-toggle>
+        <mat-datepicker #StartDate1></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="form-group col-md-2">
+      <button type="button" class="btn btn-success" (click)="ShowAll('today')" style="margin-top:15px;"><span
+        class="glyphicon glyphicon-off"></span> Show Today's Appointments</button>
+    </div>
+    <div class="form-group col-md-2">
+      <button type="button" class="btn btn-success" (click)="LoadAppointmentDetail()" style="margin-top:15px;"><span
+        class="glyphicon glyphicon-off"></span> Show latest Booked Appointments</button>
+    </div>
+    <div class="form-group col-md-3">
+      <button type="button" class="btn btn-success" (click)="ShowAll('')" style="margin-top:15px;"><span
+        class="glyphicon glyphicon-off"></span> Show all Appointments</button>
+    </div>
+  </div>
+   
+    
+  </div>
+  
+  <div >
+
+    <!-- <button mat-button (click)=(click)="openDialog('Add',{},element.UnqueID,'Add')" mat-flat-button color="primary">Add Row</button> -->
+  
+    <mat-table [dataSource]="dataSource" matSort #mytable class="my-table mat-elevation-z8">
+
+           <!-- Id Column -->
+           <ng-container matColumnDef="UnqueID">
+            <mat-header-cell *matHeaderCellDef  mat-sort-header> ID </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.UnqueID}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="DateStart">
+            <mat-header-cell *matHeaderCellDef  mat-sort-header> Book Date </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.DateStart}} </mat-cell>
+          </ng-container>
+          
+          
+          <!-- Id Column -->
+        <ng-container matColumnDef="PatientName">
+            <mat-header-cell *matHeaderCellDef  mat-sort-header> Patient Name </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <ul>
+                    <li><p><span class="glyphicon glyphicon-user"></span>{{element.PatientDetails.FirstName}} </p></li>
+                    <li><p><span class="glyphicon glyphicon-earphone"></span>{{element.PatientDetails.ContactNumber}}<span class="glyphicon glyphicon-bell" style="color:red"></span>SMS</p></li>
+                    <!-- <li><p><span class="glyphicon glyphicon-bell" style="color:red"></span>Send SMS</p></li> -->
+                  </ul> 
+                  
+                 </mat-cell>
+          </ng-container>
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+            <ng-container matColumnDef="AppointmentTime">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header>Appointment Time </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <ul>
+                     <li><p><span class="glyphicon glyphicon-calendar"></span>{{element.ReferralMaster.appointment}} </p></li>
+                     <li><p><span class="glyphicon glyphicon-time"></span>{{element.ReferralMaster.time}} </p></li>
+                </ul>
+                 </mat-cell>
+              </ng-container>
+            <ng-container matColumnDef="DoctorName">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header> Doctor Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <ul>
+                        <li><p><span class="glyphicon glyphicon-user" style="color:red"></span>{{element.ReferralMaster.FirstName}} </p></li>
+                        <li><p><span class="glyphicon glyphicon-phone"></span>{{element.ReferralMaster.ContactNumber}} </p></li>
+                </ul>
+                 </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="AppointmentStatus">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header> Status </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.AppointmentStatus== null ?'Waiting':element.AppointmentStatus}} </mat-cell>
+              </ng-container>
+    
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef > Action 
+              <button mat-icon-button color="primary" 
+              matTooltipPosition="below" routerLink="/freshCase/Add">
+                  <mat-icon matTooltip="Add a new entry" matTooltipPosition="below" aria-label="Example icon-button with a heart icon">add</mat-icon> Add NEW CASE
+                </button> 
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="action-link">
+  
+              <!-- <button mat-icon-button color="accent" (click)="openDialog('Update',element)">
+                  <mat-icon matTooltip="Edit the entry" matTooltipPosition="below" aria-label="Edit">edit</mat-icon>
+                </button> -->
+        
+                <button mat-icon-button color="accent" (click)="openDialog('Delete',element)">
+                  <mat-icon matTooltip="Delete the entry" matTooltipPosition="below" aria-label="Delete">delete</mat-icon>
+                </button>
+
+                <button mat-icon-button color="primary" (click)="addEditExpenseItem(element.PatientDetails,element.UnqueID)"
+              matTooltipPosition="below">
+                  <mat-icon matTooltip="Create a CASE" matTooltipPosition="below" aria-label="Example icon-button with a heart icon">add</mat-icon> CREATE CASE
+                </button> 
+  
+               
+            <!-- <a (click)="openDialog('Update',element)">Edit</a> | 
+            <a (click)="openDialog('Delete',element)">Delete</a>   -->
+          </mat-cell>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  
+  </div>
+
+
+  
+

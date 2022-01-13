@@ -1,0 +1,289 @@
+<div class="row" style="font-size:11px;border-style:solid; margin-left:5px; margin-right:5px;" id="frmIndividualLapReport">
+
+<!-- {{resultRetrieve|json}} -->
+    <table width="100%">
+       
+        <tbody>
+            <tr>
+                <td>
+
+
+
+                    <div style="text-align:right;">
+                        <div style="text-align:center;">
+                            <div style="text-align:center;">
+                                <h3 style="text-align:center; padding-bottom:10px;">
+                                    {{Addressline1}}<br />
+                                    {{Addressline2}}<br />
+                                    {{Addressline3}}<br />
+                                    {{Addressline4}}<br />
+
+                                </h3>
+                                <hr/>
+                                <h4>Datewise Pharmacy Bill Report</h4>
+                                <hr style="height:1px;background-color:black;" />
+                                <hr style="height:3px;background-color:black;" />
+
+                            </div>
+
+                            <div class="col-sm-12">
+
+
+                                <button style="display: inline-block;float:left;" type="button" id="printElement"
+                                    (click)="myPrint('frmIndividualLapReport')" class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print"></span>
+                                    Print</button>
+                                <button type="button" style="display: inline-block;float:left;" id="CloseMe"
+                                    (click)="CloseMe()" class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print"></span>
+                                    Close Me</button>
+
+                               
+                                <!-- <input id="printCheckElement" style="display: inline-block;float:left;" (change)="fieldsChange($event)" value="Show header on each page" type="checkbox"/>
+            <span id="printCheckTextElement" style="display: inline-block;float:left;">Show header on each page</span> -->
+
+
+                            </div>
+
+
+
+                            <div class="first"  id="searchtElement">
+                                
+                                    Start&nbsp;Date:&nbsp;
+                                    <mat-form-field style="padding-top:0px;">
+                                      <mat-label>Start&nbsp;Date</mat-label>
+                                      <input matInput [matDatepicker]="StartDate1" placeholder="Satrt Date" [(ngModel)]="StartDate"
+                                      readonly (click)="StartDate1.open()" (focus)="StartDate1.open()" >
+                                      <mat-datepicker-toggle matSuffix [for]="StartDate1"></mat-datepicker-toggle>
+                                      <mat-datepicker #StartDate1></mat-datepicker>
+                                    </mat-form-field>
+                              
+                                  
+                                    
+                                      &nbsp;End&nbsp;Date:&nbsp;
+                                      <mat-form-field style="padding-top:0px;">
+                                        <mat-label>End&nbsp;Date</mat-label>
+                                        <input matInput [matDatepicker]="EndDate1" placeholder="End Date" [(ngModel)]="EndDate"
+                                        readonly (click)="EndDate1.open()" (focus)="EndDate1.open()">
+                                        <mat-datepicker-toggle matSuffix [for]="EndDate1"></mat-datepicker-toggle>
+                                        <mat-datepicker #EndDate1></mat-datepicker>
+                                      </mat-form-field>
+                              
+                                      &nbsp;Pharmacy&nbsp;Store:&nbsp;
+                                      <mat-form-field >
+                                          <mat-label>Pharmacy Store </mat-label>
+                                          <mat-select [(ngModel)]="PharmacyStoreName" [disabled]='FarmaNameEnable'>
+                                            <mat-option value="All">All</mat-option>
+                                            <mat-option value="Others">Others</mat-option>
+                                            <mat-option *ngFor="let relationship of PharmacyStore" [value]="relationship">{{relationship}}</mat-option>
+                                          </mat-select>
+                                        </mat-form-field>
+                            
+                                  
+  
+                                  
+                                        &nbsp;&nbsp;<button type="button" style="display: inline-block;"  id="CloseMe" (click)="ShowData('All')"   class="btn btn-info"><span
+                                          class="glyphicon glyphicon-print" ></span>
+                                      Search All</button>
+                                      <button type="button" style="display: inline-block;"  id="CloseMe" (click)="ShowData('Credit')"   class="btn btn-info"><span
+                                          class="glyphicon glyphicon-print" ></span>
+                                      Credit Search</button>
+                                      <button type="button" style="display: inline-block;"  id="CloseMe" (click)="ShowData('Cash')"   class="btn btn-info"><span
+                                          class="glyphicon glyphicon-print" ></span>
+                                      Cash Search</button>
+                                  
+                                
+                              </div>
+
+
+
+
+
+
+
+                            <!-- <div class="row"  id="searchtElement">
+
+                                <div class=" col-md-1" style="display: flex;margin-top:15px;">
+                                  <h4>Start date </h4>
+                                </div>
+                          
+                                <div class=" col-md-3" style="display: flex">
+                                  
+                                  <mat-form-field style="padding-top:0px;">
+                                    <mat-label>End&nbsp;Date</mat-label>
+                                    <input matInput [matDatepicker]="StartDate1" placeholder="Admission Date" [(ngModel)]="StartDate"
+                                    readonly (click)="StartDate1.open()" (focus)="StartDate1.open()" >
+                                    <mat-datepicker-toggle matSuffix [for]="StartDate1"></mat-datepicker-toggle>
+                                    <mat-datepicker #StartDate1></mat-datepicker>
+                                  </mat-form-field>
+                                
+                                </div>
+                                <div class=" col-md-1" style="display: flex;margin-top:15px;">
+                                  <h4>Release date </h4>
+                                </div>                         
+                               
+
+                                <div class=" col-md-2" style="display: flex">
+                                    <mat-form-field style="padding-top:0px;">
+                                      <mat-label>Release&nbsp;Date</mat-label>
+                                      <input matInput [matDatepicker]="EndDate1" placeholder="Release Date" [(ngModel)]="EndDate"
+                                      readonly (click)="EndDate1.open()" (focus)="EndDate1.open()">
+                                      <mat-datepicker-toggle matSuffix [for]="EndDate1"></mat-datepicker-toggle>
+                                      <mat-datepicker #EndDate1></mat-datepicker>
+                                    </mat-form-field>
+                            
+                                  </div>
+                                  <div class="col-md-2" style="display: flex">
+                                    <mat-form-field fxFlex>
+                                        <mat-label>Pharmacy Store Name</mat-label>
+                                        <mat-select [(ngModel)]="PharmacyStoreName" [disabled]='FarmaNameEnable'>
+                                          <mat-option value="All">All</mat-option>
+                                          <mat-option value="Others">Others</mat-option>
+                                          <mat-option *ngFor="let relationship of PharmacyStore" [value]="relationship">{{relationship}}</mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                          
+                                </div>
+
+                                <div class=" col-md-3">
+                                    <button type="button" style="display: inline-block;"  id="CloseMe" (click)="ShowData('All')"   class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print" ></span>
+                                    Search All</button>
+                                    <button type="button" style="display: inline-block;"  id="CloseMe" (click)="ShowData('Credit')"   class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print" ></span>
+                                    Credit Search</button>
+                                    <button type="button" style="display: inline-block;"  id="CloseMe" (click)="ShowData('Cash')"   class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print" ></span>
+                                    Cash Search</button>
+                                </div>
+                              </div> -->
+                        </div>
+                    </div>
+
+                    <hr style="padding:0px;margin:0px" />
+
+<!-- {{resultRetrieve|json}}-->
+<!-- ------------------------------------------
+{{groubedByTeam1|json}}
+-------------------------------------<br/>liku
+{{groubedByTeam|json }}  -->
+                   
+                    <div class="container" style="padding-top:1px;">
+                        <div class="row">
+
+                        </div>
+                    </div>
+                    <hr style="margin-bottom:0px; margin-top:0px;">
+
+                    <!-- <table style="width:90%">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Age</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let people of resultRetrieve; let i=index;">
+                            <tr >                                
+                                <td>{{people.DateUse}}</td>
+                                <td>
+                                    <div>
+                                        {{people.ProductName}} 
+                                    </div></td>
+                                <td>{{people.Quantity}}</td>
+                                <td>{{people.Price}}</td>
+                            </tr>
+                           
+                        </tbody>
+                    </table> -->
+
+                    <table style="width:90%">
+                        <thead>
+                            <tr>
+                                <th style="width:5%;text-align:left;">SlNo.</th>
+                                <th style="text-align:left;width:10%;">Date</th>
+                                <th style="text-align:left;">Bill No</th>
+                                <th style="text-align:left;">Patient Name</th>
+                                <th style="text-align:left;">Bill Type</th>
+                                <th style="text-align:left;">Total Amount</th>
+                                <th style="text-align:left;">Pharmacy/Lab Amount</th>
+                                <th style="text-align:left;">Hospital Amount</th>
+                                
+                                <!-- <th>Age</th>
+                                <th>Price</th> -->
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let people of groubedByTeam; let k=index;">
+                            <tr>
+                                <td colspan="7"><b><u><br/>Pharmacy Name :&nbsp;<i>{{(people[0].ProductName==''?'OTHER':people[0].ProductName)|uppercase}} </i></u></b>
+                                &nbsp; (Total Amount: &nbsp;<span style="color:red;font-weight: bold;"> {{(TotalAmt*10/100) | currency :'INR':'symbol':'1.2-2'}}</span>)
+                                </td>
+                            </tr>
+                           
+                        
+                            <tr *ngFor="let people1 of people; let j=index;">  
+                                <td style="width:5%">{{j+1}}.</td>                          
+                                <td style="width:10%"><span >{{people1.DateUse| date:'dd-MM-yyyy'}}</span></td>
+                                <td> {{people1.Billed}}</td>
+                                <td> {{people1.CustomerName}}</td>
+                                <td> {{people1.CreditStatus}}</td> 
+                                <td> <span >{{people1.Price| currency :'INR':'symbol':'1.2-2'}} </span></td>
+                                <td> <span >{{(people1.CreditStatus == 'Credit'? (people1.Price - (people1.Price*10/100)):people1.Price) | currency :'INR':'symbol':'1.2-2'}} </span></td>
+                                <td> <span >{{(people1.CreditStatus == 'Credit'?people1.Price*10/100:0)| currency :'INR':'symbol':'1.2-2'}} </span></td>
+                                
+                              
+
+                                <!-- <td>{{people1[0].Quantity}}</td>
+                                <td>{{people1[0].Price}}</td> -->
+                            </tr>
+                        
+                            
+                        </tbody>
+                    </table>
+
+<br/>
+<br/>
+<br/>
+
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p style="text-align:left;">
+                                <b>Place By:</b><br />
+                                <b>Date:</b>{{myDate}}<br /><br />
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p style="text-align:right;">
+                                <b></b>
+                                <br />
+                                
+                            </p>
+                        </div>
+                    </div>
+                   
+
+                </td>
+            </tr>
+        </tbody>
+        <!-- follwing line make footer repeatable for each page -->
+        <!-- <tfoot><tr><td>Your footer goes here</td></tr></tfoot> -->
+    </table>
+
+
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>

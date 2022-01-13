@@ -1,0 +1,540 @@
+<!-- <div class="row" style="text-align: center;">
+  <img src="/assets/banner.PNG" alt="add" width="100%" height="100px" style="align-items: center;" >
+</div> -->
+<!-- <h4 style="text-align:center">Reporting details
+</h4>
+<hr/> -->
+<mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+      Graphical IPD/OPD/Vaccine Reports
+    </ng-template>
+    <div>
+      <div class="container">
+        <br/>
+        <h3>Year/Month wise IPD/OPD/Vaccine report:</h3>
+        <hr style="padding:0px"/>
+        <div class="row">
+          <div class="col-md-2 mx-auto p-1 m-1" style="text-align: right;">Select Year</div>
+          <div class="col-md-6 mx-auto p-1 m-1" style="text-align: left;">
+          <mat-form-field fxFlex>
+            <mat-label>Expire Year</mat-label>
+            <mat-select  [(value)]="ExpireYear" [(ngModel)]="SearchYear">
+              <mat-option>--</mat-option>
+              <mat-option value="2015">2015</mat-option>
+              <mat-option value="2016">2016</mat-option>
+              <mat-option value="2016">2017</mat-option>
+              <mat-option value="2018">2018</mat-option>
+              <mat-option value="2019">2019</mat-option>
+              <mat-option value="2020">2020</mat-option>
+            <mat-option value="2021">2021</mat-option>
+            <mat-option value="2022">2022</mat-option>
+            <mat-option value="2023">2023</mat-option>
+            <mat-option value="2024">2024</mat-option>
+            <mat-option value="2025">2025</mat-option>
+            <mat-option value="2026">2026</mat-option>
+            <mat-option value="2027">2027</mat-option>
+            <mat-option value="2028">2028</mat-option>
+            <mat-option value="2029">2029</mat-option>
+            <mat-option value="2030">2030</mat-option>
+            <mat-option value="2031">2031</mat-option>
+            <mat-option value="2032">2032</mat-option>
+            <mat-option value="2033">2033</mat-option>
+            <mat-option value="2034">2034</mat-option>
+            <mat-option value="2035">2035</mat-option>
+            </mat-select>
+        </mat-form-field>
+      
+      
+      
+      </div>
+      <div class="col-md-2 mx-auto p-1 m-1" style="text-align: left;">
+        <button type="button" (click)="SearchData()" style="background-color:#0d254f;color:#FFFFFF;font-size:small;width:80px;height:30px;
+border-color:#a2aabe;border-style:dashed;border-width:1px;">
+               Search
+            </button>
+      </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;" *ngIf="barChartDataE">
+                <b><u>Total IPD Monthwise</u></b>
+                <canvas baseChart
+                      [datasets]="barChartDataE"
+                      [labels]="barChartLabelsE"
+                      [options]="barChartOptionsE"
+                      [plugins]="barChartPluginsE"
+                      [legend]="barChartLegendE"
+                      [colors]="lineChartColorsE"
+                      [chartType]="barChartTypeE">
+                    </canvas>
+            </div>
+    
+            <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;" *ngIf="barChartDataE">
+              <b><u>IPD flow Monthwise</u></b>
+              <canvas baseChart
+                    [datasets]="barChartDataE"
+                    [labels]="barChartLabelsE"
+                    [options]="barChartOptionsE"
+                    [plugins]="barChartPluginsE"
+                    [legend]="barChartLegendE"
+                    [colors]="lineChartColorsE"
+                    [chartType]="barChartTypeEP">
+                  </canvas>
+                 
+          </div>
+          
+        </div>
+        <div class="row">
+          <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;" *ngIf="barChartDataOPD">
+              <b><u>Total OPD Monthwise</u></b>
+              <canvas baseChart
+                    [datasets]="barChartDataOPD"
+                    [labels]="barChartLabelsOPD"
+                    [options]="barChartOptionsE"
+                    [plugins]="barChartPluginsE"
+                    [legend]="barChartLegendE"
+                    [colors]="lineChartColorsE"
+                    [chartType]="barChartTypeE">
+                  </canvas>
+          </div>
+          <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;" *ngIf="barChartDataOPD">
+            <b><u>OPD flow Monthwise</u></b>
+            <canvas baseChart
+                  [datasets]="barChartDataOPD"
+                  [labels]="barChartLabelsOPD"
+                  [options]="barChartOptionsE"
+                  [plugins]="barChartPluginsE"
+                  [legend]="barChartLegendE"
+                  [colors]="lineChartColorsE"
+                  [chartType]="barChartTypeEP">
+                </canvas>
+               
+        </div>
+          </div>
+        <div class="row"> 
+          <div class="col-md-8 mx-auto p-1 m-1" style="text-align: center;">
+          <canvas baseChart *ngIf='chartMaster?.datasets!=undefined'
+        chartType="bar"
+        [datasets]="chartMaster.datasets"
+        [labels]="chartMaster.labels"
+        [options]="chartMaster.options"
+        legend="true">
+</canvas></div>
+<div class="col-md-4 mx-auto p-1 m-1" style="text-align: center;">
+  <canvas baseChart *ngIf='pieChartDataMaster!=undefined'  width="450" height="450"
+          [data]="pieChartDataMaster"
+          [labels]="pieChartLabelsMaster"
+          [chartType]="pieChartTypeMaster"
+          [options]="pieChartOptionsMaster"
+          [plugins]="pieChartPlugins">
+        </canvas>
+</div>
+        </div>
+        <div class="row"> 
+          <div class="col-md-8 mx-auto p-1 m-1" style="display: block">
+          <canvas baseChart *ngIf='chartMaster?.datasets!=undefined'
+        chartType="line"
+        [datasets]="chartMaster.datasets"
+        [labels]="chartMaster.labels"
+        [options]="chartMaster.options"
+        legend="true">
+</canvas></div>
+<div class="col-md-4 mx-auto p-1 m-1" style="text-align: center;">
+  <!-- <canvas baseChart *ngIf='chartMaster!=undefined'
+          [chartType]="barChartType"
+        [datasets]="chartMaster.datasets"
+        [labels]="barChartLabels"
+        [options]="chartMaster.options"
+        legend="true">
+</canvas> -->
+</div>
+        </div>
+       
+    
+    </div>
+    
+     </div>
+    <!-- {{asyncPipeFarmacyDeliveryToPatientPL|json}}
+    {{result|json}} <br/>liku
+{{groupedMap|json}}
+    {{reportArryX|json}}
+    <br/>
+    {{reportArryY|json}}
+
+   {{asyncPipeFarmacyDeliveryToPatient|json}} -->
+
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+      Graphical Doctor Reports
+    </ng-template>
+    <div>
+      <div class="container">
+        <br/>
+        <h3>Year/Month wise Doctor activity report:</h3>
+        <hr style="padding:0px"/>
+        <div class="row">
+          <div class="col-md-2 mx-auto p-1 m-1" style="text-align: right;">Select Year</div>
+          <div class="col-md-6 mx-auto p-1 m-1" style="text-align: left;">
+          <mat-form-field fxFlex>
+            <mat-label>Expire Year</mat-label>
+            <mat-select  [(value)]="ExpireYear" [(ngModel)]="SearchYear">
+              <mat-option>--</mat-option>
+              
+           
+            <mat-option value="2021">2021</mat-option>
+            <mat-option value="2022">2022</mat-option>
+            <mat-option value="2023">2023</mat-option>
+            <mat-option value="2024">2024</mat-option>
+            <mat-option value="2025">2025</mat-option>
+            <mat-option value="2026">2026</mat-option>
+            <mat-option value="2027">2027</mat-option>
+            <mat-option value="2028">2028</mat-option>
+            <mat-option value="2029">2029</mat-option>
+            <mat-option value="2030">2030</mat-option>
+            <mat-option value="2031">2031</mat-option>
+            <mat-option value="2032">2032</mat-option>
+            <mat-option value="2033">2033</mat-option>
+            <mat-option value="2034">2034</mat-option>
+            <mat-option value="2035">2035</mat-option>
+            </mat-select>
+        </mat-form-field>
+      
+      
+      
+      </div>
+      <div class="col-md-2 mx-auto p-1 m-1" style="text-align: left;">
+        <button type="button" (click)="SearchData()" style="background-color:#0d254f;color:#FFFFFF;font-size:small;width:80px;height:30px;
+border-color:#a2aabe;border-style:dashed;border-width:1px;">
+               Search
+            </button>
+      </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;">
+                <b><u>Patient per each doctor</u></b>
+                <canvas baseChart *ngIf="barChartDataDoct != undefined"
+                      [datasets]="barChartDataDoct"
+                      [labels]="barChartLabelsDoct"
+                      [options]="barChartOptionsE"
+                      [plugins]="barChartPluginsE"
+                      [legend]="barChartLegendE"
+                      [colors]="lineChartColorsE"
+                      [chartType]="barChartTypeHorizontal">
+                    </canvas>
+            </div>
+    
+            <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;">
+              <b><u>Patient per each doctor flow</u></b>
+              <canvas baseChart *ngIf="barChartDataDoct != undefined"
+                    [datasets]="barChartDataDoct"
+                    [labels]="barChartLabelsDoct"
+                    [options]="barChartOptionsE"
+                    [plugins]="barChartPluginsE"
+                    [legend]="barChartLegendE"
+                    [colors]="lineChartColorsE"
+                    [chartType]="barChartTypeEP">
+                  </canvas>
+                 
+          </div>
+          
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;">
+              <b><u>Patient per Individual Doctor Monthwise</u></b>
+              <canvas baseChart *ngIf="barChartDataIndDoct != undefined"
+                    [datasets]="barChartDataIndDoct"
+                    [labels]="barChartLabelsIndDoct"
+                    [options]="barChartOptionsE"
+                    [plugins]="barChartPluginsE"
+                    [legend]="barChartLegendE"
+                    [colors]="lineChartColorsE"
+                    [chartType]="barChartTypeE">
+                  </canvas>
+          </div>
+  
+          <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;">
+            <b><u>Patient per Individual doctor Monthwise flow</u></b>
+            <canvas baseChart *ngIf="barChartDataIndDoct != undefined"
+                  [datasets]="barChartDataIndDoct"
+                  [labels]="barChartLabelsIndDoct"
+                  [options]="barChartOptionsE"
+                  [plugins]="barChartPluginsE"
+                  [legend]="barChartLegendE"
+                  [colors]="lineChartColorsE"
+                  [chartType]="barChartTypeEP">
+                </canvas>
+               
+        </div>
+        
+      </div>
+       
+        <div class="row"> 
+          <div class="col-md-8 mx-auto p-1 m-1" style="text-align: center;">
+          <canvas baseChart *ngIf='chartMaster?.datasets!=undefined'
+        chartType="bar"
+        [datasets]="chartMaster.datasets"
+        [labels]="chartMaster.labels"
+        [options]="chartMaster.options"
+        legend="true">
+</canvas></div>
+<div class="col-md-4 mx-auto p-1 m-1" style="text-align: center;">
+  <canvas baseChart *ngIf='pieChartDataMaster!=undefined'  width="450" height="450"
+          [data]="pieChartDataMaster"
+          [labels]="pieChartLabelsMaster"
+          [chartType]="pieChartTypeMaster"
+          [options]="pieChartOptionsMaster"
+          [plugins]="pieChartPlugins">
+        </canvas>
+</div>
+        </div>
+        <div class="row"> 
+          <div class="col-md-8 mx-auto p-1 m-1" style="display: block">
+          <canvas baseChart *ngIf='chartMaster?.datasets!=undefined'
+        chartType="line"
+        [datasets]="chartMaster.datasets"
+        [labels]="chartMaster.labels"
+        [options]="chartMaster.options"
+        legend="true">
+</canvas></div>
+<div class="col-md-4 mx-auto p-1 m-1" style="text-align: center;">
+  <!-- <canvas baseChart *ngIf='chartMaster!=undefined'
+          [chartType]="barChartType"
+        [datasets]="chartMaster.datasets"
+        [labels]="barChartLabels"
+        [options]="chartMaster.options"
+        legend="true">
+</canvas> -->
+</div>
+        </div>
+       
+    
+    </div>
+    
+     </div>
+    <!-- {{asyncPipeFarmacyDeliveryToPatientPL|json}}
+    {{result|json}} <br/>liku
+{{groupedMap|json}}
+    {{reportArryX|json}}
+    <br/>
+    {{reportArryY|json}}
+
+   {{asyncPipeFarmacyDeliveryToPatient|json}} -->
+
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+      Case(Entry) Report
+    </ng-template>
+    <br/>
+    <app-barchart></app-barchart>
+     
+  </mat-tab>
+
+  
+</mat-tab-group>
+
+
+
+
+
+<div class="container-fluid">
+  <!-- 1st button -->
+ 
+
+
+  <br />
+
+ 
+
+  <div class="row height">
+    <div class="icon-text">
+      <h4>Detail Appointment booked Date wise</h4> &nbsp;&nbsp;<span>
+        <mat-form-field>
+          <mat-label>Choose a date for filter</mat-label>
+          <input matInput [matDatepicker]="picker" [value]="date.value" [(ngModel)]="filterVal" (dateChange)="valueChanged(filterVal)">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- <mat-form-field appearance="fill">
+          <input matInput [matDatepicker]="picker"  placeholder="Appointment date"
+          [(ngModel)]="filterVal" (dateChange)="valueChanged(filterVal)">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field> -->
+        </span>
+    </div>
+    
+
+    <table class="style">
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Patient Name</th>
+        <th>Department</th>
+        <th>Doctor Name</th>
+        <th>Fees</th>
+        <th>Discount</th>
+        <th>Net</th>
+
+      </tr>
+      <tr *ngFor="let item of actualAppointmentDeatils; let i = index">
+        <td>{{item.ReferralMaster.appointment}}</td>
+        <td> {{item.ReferralMaster.time}} </td>
+        <td><span class="glyphicon glyphicon-user" style="color:red"></span>{{item.PatientDetails.FirstName}} {{item.PatientDetails.LastName}} &nbsp;<u><span class="glyphicon  glyphicon-earphone" style="color:red"></span>{{item.PatientDetails.ContactNumber}}</u></td>
+        <td> {{item.ReferralMaster.department}} </td>
+        <td> <span class="glyphicon glyphicon-user" style="color:red"></span>{{item.ReferralMaster.doctorname}}&nbsp;<u><span class="glyphicon  glyphicon-phone-alt" style="color:red"></span>{{item.ReferralMaster.ContactNumber}}</u> </td>
+        <td> &#x20B9;.{{item.ReferralMaster.fees}} </td>
+        <td> &#x20B9;.{{item.ReferralMaster.Discount}} </td>
+        <td>&#x20B9;.{{item.ReferralMaster.fees - item.ReferralMaster.Discount}}</td>
+       </tr>
+       <tr style="color:red;">
+        <td colspan="4"></td>
+        
+        <td> <b>Total:</b> </td>
+        <td> &#x20B9;.{{returnAllAppointmrntFees(valChangeforActualAppointmnet)}} </td>
+        <td> &#x20B9;.{{returnAllAppointmrntDiscount(valChangeforActualAppointmnet)}} </td>
+        <td> <b> &#x20B9;.{{returnAllAppointmrntFees(valChangeforActualAppointmnet)-returnAllAppointmrntDiscount(valChangeforActualAppointmnet)}}</b> </td>
+       </tr>
+        
+    </table>
+  </div>
+
+  <div class="row height">
+    <div class="icon-text">
+      <h4>Booking creation on any day</h4> &nbsp;&nbsp;<span>
+        <!-- <mat-form-field>
+        <input matInput  placeholder="Filter" [(ngModel)]="filterValDaywise">
+      </mat-form-field> -->
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date for filter</mat-label>
+        <input matInput [matDatepicker]="picker11" [(ngModel)]="filterValDaywise" (dateChange)="valueChangedWorkingDat(filterValDaywise)">
+        <mat-datepicker-toggle matSuffix [for]="picker11"></mat-datepicker-toggle>
+        <mat-datepicker #picker11></mat-datepicker>
+      </mat-form-field>
+      
+      <button mat-icon-button color="accent" (click)="makearray()">
+        <mat-icon matTooltip="Show All" matTooltipPosition="below" aria-label="Edit">calendar_view_day</mat-icon>Show all
+      </button>
+
+      <!-- <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="picker1"  placeholder="Working date"
+        [(ngModel)]="filterValDaywise" (dateChange)="valueChangedWorkingDat(filterValDaywise)">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field> -->
+    
+    </span>
+    </div>
+    
+
+    <table class="style">
+      <tr>
+        <th>Date</th>
+        <th>ID</th>
+        <th>No of Appointments</th>
+        <th>Patient Details</th>
+        <th>Doctor Details</th>
+        <th>Total colletion<br/>(&#x20B9;.Total -&#x20B9;. Discount= &#x20B9;.Net)</th>
+
+      </tr>
+      <tr *ngFor="let item of testTable; let i = index">
+        <td>{{item.DateStart}}</td>
+        <td> APP-{{item.UnqueID}} </td>
+        <td>
+          <button mat-raised-button color="primary" class="btn btn-sm" style="width : 6em;" matBadge="{{item.appointmentcount}}"
+            matBadgePosition="after" matBadgeColor="accent">
+            Count
+          </button>
+        </td>
+        <td>
+          <a class="btn btn-link" (click)="item.hideme=!item.hideme">
+            <i class="material-icons aignClass" style="color:red;" *ngIf="!item.hideme">
+              expand_more
+            </i> <span class="aignClass" matBadge={{item.appointmentcount}} matBadgeOverlap="false"
+              *ngIf="!item.hideme">Show more</span>
+
+            <div class="icon-text">
+              <i class="material-icons" style="color:red;" *ngIf="item.hideme">
+                expand_less
+              </i> <span *ngIf="item.hideme">Make Less</span>
+            </div>
+
+
+          </a>
+
+
+          <div *ngIf="item.hideme">
+            <li *ngFor="let itemInn of returnAllAppoinrmrmnt(item.DateStart); let j = index">
+              <span class="glyphicon glyphicon-user" style="color:red"></span>{{itemInn.PatientDetails.FirstName}}&nbsp;&nbsp;[Sex:<span style="color:red">{{itemInn.PatientDetails.Gender=='1'?'M':'F'}}</span>]&nbsp;&nbsp;<span class="glyphicon glyphicon-phone-alt" style="color:red"></span>:<u>{{itemInn.PatientDetails.ContactNumber}}</u>
+            </li>
+
+          </div>
+
+          <!-- {{returnAllAppoinrmrmnt(item.DateStart)|json}} -->
+        </td>
+
+        <td>
+          <a class="btn btn-link" (click)="item.hideme=!item.hideme">
+            <i class="material-icons aignClass" style="color:red;" *ngIf="!item.hideme">
+              expand_more
+            </i> <span class="aignClass" matBadge={{item.appointmentcount}} matBadgeOverlap="false"
+              *ngIf="!item.hideme">Show more</span>
+
+            <div class="icon-text">
+              <i class="material-icons" style="color:red;" *ngIf="item.hideme">
+                expand_less
+              </i> <span *ngIf="item.hideme">Make Less</span>
+            </div>
+
+
+          </a>
+
+
+          <div *ngIf="item.hideme">
+            <li *ngFor="let itemInnRef of returnAllAppoinrmrmnt(item.DateStart); let j = index">
+              [<span class="glyphicon glyphicon-user" style="color:red"></span>{{itemInnRef.ReferralMaster.FirstName}}]&nbsp;<span style="color:red;font-weight: bold;">*Fees:</span>&#x20B9;.{{itemInnRef.ReferralMaster.fees}}&nbsp;<span style="color:red;font-weight: bold;">*Discount:</span>&#x20B9;.{{itemInnRef.ReferralMaster.Discount}}&nbsp;<span class="glyphicon glyphicon-calendar" style="color:red"></span>&nbsp;<b>{{itemInnRef.ReferralMaster.appointment}}&nbsp;<span style="color:red">Time</span>:{{itemInnRef.ReferralMaster.time}}</b>&nbsp;<span class="glyphicon glyphicon-folder-close" style="color:red"></span>{{itemInnRef.ReferralMaster.department}}
+            </li>
+
+          </div>
+
+          <!-- {{returnAllAppoinrmrmnt(item.DateStart)|json}} -->
+        </td>
+        <td>&#x20B9;.{{returnAllAppoinrmrmntCount(item.DateStart)}}&nbsp;-&nbsp;&#x20B9;.{{returnAllAppoinrmrmntDiscount(item.DateStart)}} = <span style="color:red"> &#x20B9;.{{returnAllAppoinrmrmntCount(item.DateStart)-returnAllAppoinrmrmntDiscount(item.DateStart)}}</span></td>
+</tr>
+    </table>
+  </div>
+
+  
+
+  <!-- {{actualAppointmentDeatils|json}} kkkk
+  
+  {{result1|json}} -->
+  <!-- <div class="chart-wrapper">
+    
+
+    <div style="display: block">
+       <button (click)="makearray()">load data</button>
+       <button (click)="testtest(this.result2)">any data</button>
+       <button (click)="GroupedDat()">Grouped Dat</button>
+       <button type="button" class="btn btn-default btn-lg">
+        <span class="glyphicon glyphicon-star"></span> Star
+      </button>
+      groupdat: {{Finalresult|json}} ended
+       {{result2|json}}
+       --------------
+       {{resultArray|json}}
+       ************************************
+       {{groupedData|json}}
+       8888888888888888888888888888888888888888888888888888888
+       {{dataOther|json}}
+       
+      </div>
+</div> -->

@@ -1,0 +1,1078 @@
+[{
+  "_id": {
+    "$binary": {
+      "base64": "ZdeNfnzpP0yQ++hWgOrJAg==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42144290127",
+  "DateStart": "06-04-2021",
+  "inventoryID": "421442930144",
+  "itemName": "25% Dextrose",
+  "stockQty": "88",
+  "reorderQty": "",
+  "DateReorder": "",
+  "ExpireMonth": "",
+  "ExpireYear": "",
+  "BarCode": "0406060004",
+  "ItemCode": "M0003",
+  "UnitPrice": "100",
+  "SellPrice": "110",
+  "Discount": "0",
+  "SGST": "0",
+  "CGST": "0",
+  "IGST": "0",
+  "Extra": "",
+  "Others": ""
+},{
+  "_id": {
+    "$binary": {
+      "base64": "0mTNIcztK0+EUPhvp2LKiA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "421460073",
+  "DateStart": "06-04-2021",
+  "inventoryID": "421460076",
+  "itemName": "5-Amino salicylic Acid",
+  "stockQty": "100",
+  "ExpireMonth": "6",
+  "ExpireYear": "2024",
+  "RackPlaceLocation": "R4A",
+  "BarCode": "0406060004",
+  "ItemCode": "M0004",
+  "UnitPrice": "50",
+  "SellPrice": "55",
+  "Discount": "0",
+  "SGST": "0",
+  "CGST": "0",
+  "IGST": "0"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "bENlbxyiWkWVFBOwPsDhaA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4211960574",
+  "DateStart": "06-04-2021",
+  "inventoryID": "42119605106",
+  "itemName": "5-Fluorouracil",
+  "stockQty": "5",
+  "ExpireMonth": "1",
+  "ExpireYear": "2022",
+  "BarCode": "5656556005",
+  "ItemCode": "M0005",
+  "UnitPrice": "10",
+  "SellPrice": "12",
+  "Discount": "0",
+  "SGST": "0",
+  "CGST": "0",
+  "IGST": "0"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "AIO77fGSy0CaJNhkz3tUuA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42131114100",
+  "DateStart": "06-04-2021",
+  "inventoryID": "4213111473",
+  "itemName": "Acetazolamide",
+  "stockQty": "98",
+  "BarCode": "0406060006",
+  "ItemCode": "0406060006",
+  "UnitPrice": "5",
+  "SellPrice": "6",
+  "Discount": "0",
+  "SGST": "0",
+  "CGST": "0",
+  "IGST": "0"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "Zp9gS5ozvk2rD4Vr84Qo+g==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42148334143",
+  "DateStart": "06-04-2021",
+  "inventoryID": "4214833470",
+  "itemName": "Acetyl Salicylic Acid",
+  "stockQty": "100",
+  "ExpireMonth": "4",
+  "ExpireYear": "2023",
+  "BarCode": " 4213111473",
+  "ItemCode": "med7",
+  "UnitPrice": "40",
+  "SellPrice": "50",
+  "SGST": "2",
+  "CGST": "2"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "XNVQQSYXXEOMPBAdimiznA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42118934136",
+  "DateStart": "06-04-2021",
+  "inventoryID": "4211893470",
+  "itemName": "Acriflavin+Glycerin",
+  "ExpireMonth": "6",
+  "ExpireYear": "2022",
+  "RackPlaceLocation": "rack6",
+  "BarCode": " 42131114738",
+  "ItemCode": "med8",
+  "UnitPrice": "40",
+  "SellPrice": "50",
+  "Discount": "2",
+  "SGST": "6",
+  "CGST": "6",
+  "IGST": "0"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "uEpCq9yrUk2ofM2NDG3PcA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42130752121",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4213075268",
+  "itemName": "Actinomycin D"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "ynvTne71R0Wbp1oYo8znPw==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42143809110",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42143809118",
+  "itemName": "Activated Charcoal"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "nL7TFfW+/kyErtwyxfPDxg==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42154563137",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42154563122",
+  "itemName": "Acyclovir"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "PwSs1G9QdUCb1ukDVviXIA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4217806136",
+  "DateStart": "03-04-2021",
+  "inventoryID": "421780695",
+  "itemName": "Adenosine"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "aViC37H41E2hbKB653RdNA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4211814185",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42118141115",
+  "itemName": "Adrenaline Bitartrate"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "GMpCfcZnfUuQNsEBPKfWaQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42131403123",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4213140368",
+  "itemName": "Albendazole"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "CcoIhpc4K0SAm32qgwSELg==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42141282108",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4214128299",
+  "itemName": "Albumin"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "lgCAx19aKkmaXNdJqjKpXg==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42152289148",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42152289135",
+  "itemName": "Allopurinol"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "PsaSy5n7C0mB7fZ5kM3xKA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "421465689",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4214656115",
+  "itemName": "Alpha Interferon"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "QIJpJcAb/ESfljCJ8ukfJw==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4211682466",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42116824104",
+  "itemName": "Alprazolam"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "00bAVqRTWU6ywIgOkIqFbw==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4212757294",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4212757267",
+  "itemName": "Amikacin"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "O9Ip4VoYKkewnqcNhc2TMg==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4213848978",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42138489132",
+  "itemName": "Amiodarone"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "8zzrGVerQkibeah7lNe14g==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42146911141",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42146911113",
+  "itemName": "Amitriptyline"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "0l5u4Y+FjECkutQYZgXlnQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42156658137",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42156658148",
+  "itemName": "Amlodipine"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "CBnzkvb1/UigKW4m999SCA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "421642369",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4216423133",
+  "itemName": "Amoxicillin"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "ijcpXk1RhkqfUEXjG0Mymg==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42121490113",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4212149083",
+  "itemName": "Ampicillin"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "nomeTYZY0Ey+SfXXevDGLw==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4213313884",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4213313877",
+  "itemName": "Anti-D immunoglobin"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "pMQIcDA4sUmTuYHkhAx5jg==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42148185101",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4214818571",
+  "itemName": "Antitetanus Human immunoglobin"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "8EreLdiFVE6y2/fDFTLsMQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4211458100",
+  "DateStart": "03-04-2021",
+  "inventoryID": "421145886",
+  "itemName": "Artesunate "
+},{
+  "_id": {
+    "$binary": {
+      "base64": "SnWTxlZbRU+eJmyPA5iqhA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42113775139",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42113775149",
+  "itemName": "Ascorbic Acid"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "6kG2+DkuA0ecbDeDsthDuA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42123487104",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42123487121",
+  "itemName": "Atenolol"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "uoeXhBYBD0+/pSReBBT4hw==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42134639117",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42134639119",
+  "itemName": "Atorvastatin"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "acznjaYj2E6WDHnVmGOe4w==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42145282131",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4214528269",
+  "itemName": "Atracurium besylate"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "UGjrwwgjtUmaFQLiZx5V/g==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42156984145",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42156984141",
+  "itemName": "Atropine Sulphate"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "14FGhfV+PUm63OizFYQy9g==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4216296116",
+  "DateStart": "03-04-2021",
+  "inventoryID": "421629674",
+  "itemName": "Azathioprine"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "Wd4Plj1Cy0akhE1jEzVB7g==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42117974",
+  "DateStart": "03-04-2021",
+  "inventoryID": "421179141",
+  "itemName": "Azithromycin"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "+vGDsCie/EeB/G0zfYiFuw==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4213052896",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4213052867",
+  "itemName": "B.C.G Vaccine"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "0nNbz/igBE2nW5secX/WuQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42142674141",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42142674150",
+  "itemName": "Barium Sulphate"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "sknmhfGS+Uq1T32HRUwrBQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42153812129",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42153813120",
+  "itemName": "Beclomethasone Dipropionate"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "/Iu0xv89cECDhFeUttrBgg==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4211727476",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4211727478",
+  "itemName": "Benzathine Benzylpenicillin"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "RNwDccmycEiUDOGiQo5MOQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42129892108",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42129892111",
+  "itemName": "Benzoin Compound"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "kCS75hVQtkqVJwyJfDVcFw==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42141243130",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42141243141",
+  "itemName": "Benzyl benzoate"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "xnEl6ocp90i1vY5mGlqJ0g==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4215215980",
+  "DateStart": "06-04-2021",
+  "inventoryID": "42152159141",
+  "itemName": "Betamethasone",
+  "BarCode": "04060600041",
+  "ItemCode": "M0041",
+  "UnitPrice": "20",
+  "SellPrice": "24",
+  "Discount": "0",
+  "SGST": "0",
+  "CGST": "0",
+  "IGST": "0"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "kAt+Mgxl2kyXQ21EbTS/Bg==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4214881126",
+  "DateStart": "03-04-2021",
+  "inventoryID": "421488190",
+  "itemName": "Betamethasone Dipropionate"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "KV7kJR/K60SM5DJ4teypjQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42116426135",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42116426157",
+  "itemName": "Betaxolol Hydrochloride"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "fonXDz802kujT0fWTwmOsg==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42125572105",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42125572136",
+  "itemName": "Bisacodyl"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "21K8wv+jskyasdn6+q4jZQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42136347141",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4213634798",
+  "itemName": "Bleaching Powder"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "HBg5JdCA+UuZ++9RirFklQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "42152267148",
+  "DateStart": "06-04-2021",
+  "inventoryID": "42152267104",
+  "itemName": "Bleomycin",
+  "ExpireMonth": "4",
+  "ExpireYear": "2023",
+  "BarCode": "04060600046",
+  "ItemCode": "M0046",
+  "UnitPrice": "15",
+  "SellPrice": "19",
+  "Discount": "0",
+  "SGST": "0",
+  "CGST": "0",
+  "IGST": "0"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "rFFPcN9rP0yYtNRUR+rgFw==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "421430713",
+  "DateStart": "03-04-2021",
+  "inventoryID": "421430739",
+  "itemName": "Bromocriptine Mesylate"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "wUpUweFQMEeaBtwextR5hw==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4211448832",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4211448825",
+  "itemName": "Busulphan"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "24ldAPCS70ivZwDMmtOtXg==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4212430658",
+  "DateStart": "06-04-2021",
+  "inventoryID": "4212430633",
+  "itemName": "Calamine",
+  "ExpireMonth": "7",
+  "ExpireYear": "2023",
+  "BarCode": "0406060009",
+  "ItemCode": "M0049",
+  "UnitPrice": "30",
+  "SellPrice": "40",
+  "Discount": "0",
+  "SGST": "0",
+  "CGST": "0",
+  "IGST": "0"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "0BpR2RWu6USAn+8IHjKs/w==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4213383223",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4213383259",
+  "itemName": "Calcium carbonate"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "T9joq0nNMkmZXs18ShFN5g==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4214363042",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4214363076",
+  "itemName": "Calcium gluconate"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "byMZvlmRt0yggtUB9XkxWQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4215418793",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4215418730",
+  "itemName": "Calcium Ipodate"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "1MMsGLvia0W4bk/GIlrwtQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "421438837",
+  "DateStart": "03-04-2021",
+  "inventoryID": "421438857",
+  "itemName": "Carbamazepine"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "U73+I6WiXka1VVtwnVeL7g==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4211999057",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4211999051",
+  "itemName": "Carbimazole"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "RpqT06QSaUiZzMX6/vvbWw==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4213047828",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4213047839",
+  "itemName": "Carboplatin"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "BPk5ccBPREmZAVXAnwBWdw==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4214926157",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4214926163",
+  "itemName": "Cefixime"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "ZFXlcYG/cEiLaCAyLA3vPQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "421043532",
+  "DateStart": "03-04-2021",
+  "inventoryID": "421043530",
+  "itemName": "Cefotaxime"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "x0c1WXI3GUWVXhTNGx4zxg==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4211059734",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4211059760",
+  "itemName": "Ceftazidime"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "95o/4yw3fkWI3F7+uFq1UA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4212113868",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4212113885",
+  "itemName": "Ceftriaxone"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "y8dTtVD+r0G3HQBqLYFBRA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4213099746",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4213099765",
+  "itemName": "Cephalexin"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "EbhJzGMZVk61IzgM3zUUkQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "421427385",
+  "DateStart": "03-04-2021",
+  "inventoryID": "421427391",
+  "itemName": "Cetrimide"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "8n+uJ002wkOvKsK689Se5Q==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4215344351",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4215344335",
+  "itemName": "Cetrizine"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "816MOcHjj0yFIIkK8R5n9w==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "421463588",
+  "DateStart": "03-04-2021",
+  "inventoryID": "421463557",
+  "itemName": "Chlorambucil"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "g3yTlTg9QEWpqGiqvYe7qg==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "421137214",
+  "DateStart": "03-04-2021",
+  "inventoryID": "421137217",
+  "itemName": "Chloramphenicol"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "l9VZk12mwUWwbWWrfqtocA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4212222352",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4212222368",
+  "itemName": "Chlorhexidine"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "ugDb5sZiC0GdbNtvhONIJQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4213367163",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4213367165",
+  "itemName": "Chloroquine phosphate"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "hw+z9grdUEeQu1At4BTrGQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4214424155",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4214424126",
+  "itemName": "Chlorpheniramine Maleate"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "AiGUMzJt7ki/WZTQerQq+Q==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4215512191",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4215512191",
+  "itemName": "Chlorpromazine hydrochloride"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "y6s5WEkfWEW01coKkITt4w==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "421535064",
+  "DateStart": "03-04-2021",
+  "inventoryID": "421535018",
+  "itemName": "Ciprofloxacin Hydrochloride"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "IPamtDoeb0O/Hhht5AFyqg==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4211698636",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4211698681",
+  "itemName": "Cisplatin"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "DqMtN86G7USJhkkp0+U4VQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4212665152",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4212665166",
+  "itemName": "Clindamycin"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "+b8OMAD6jkOEW76c5zwiUg==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4213597856",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4213597831",
+  "itemName": "Clofazimine"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "eEyckIB2gUm8MPfATWQIiA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4215712117",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4215712141",
+  "itemName": "Clopidogrel"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "LGr0oVrmuUKv64d2J1dPzQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "421585157",
+  "DateStart": "03-04-2021",
+  "inventoryID": "421585175",
+  "itemName": "Clotrimazole"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "olu+dLX+3EKfVRvCo0Deew==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4211537123",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4211537121",
+  "itemName": "Cloxacillin"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "PlnZ0Nzdd0utgVK23MfzVQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4212627644",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4212627642",
+  "itemName": "Coal Tar"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "3u1mr+DmfUi1lwsPk7x4Mw==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4213776861",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4213776886",
+  "itemName": "Codeine phosphate"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "+uVUqD7mTkWJfKasxVw4rA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4214732142",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4214732115",
+  "itemName": "Colchicine"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "uDUcpz7A7kumA0p8A/QnaQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "421573036",
+  "DateStart": "03-04-2021",
+  "inventoryID": "421573035",
+  "itemName": "Condoms"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "pI+SM1Zmxkqyip8SaS0CVA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "421956699",
+  "DateStart": "03-04-2021",
+  "inventoryID": "421956626",
+  "itemName": "Co-Trimoxazole"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "rghhlh4v+U62NWk0x0FNQA==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4212237493",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4212237496",
+  "itemName": "Cryoprecipitate"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "WwsG+ahc5ESwYsGL4Ec1BQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4213235378",
+  "DateStart": "03-04-2021",
+  "inventoryID": "4213235333",
+  "itemName": "Cyanocobalamin"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "LHbhSJ0TLkiWa7DYHtLyIQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4214266788",
+  "DateStart": "03-04-2021",
+  "inventoryID": "42142667104",
+  "itemName": "Cyclophosphamide"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "8KJH1oXuAU+pXGBgf/NRyQ==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4216185101",
+  "DateStart": "03-04-2021",
+  "inventoryID": "421618528",
+  "itemName": "Cytosine arabinoside"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "c8zIxdB5FUmUryVWMgOJ3w==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "4211274622",
+  "DateStart": "06-04-2021",
+  "inventoryID": "4211274632",
+  "itemName": "medicine5",
+  "stockQty": "96",
+  "reorderQty": "",
+  "DateReorder": "",
+  "ExpireMonth": "3",
+  "ExpireYear": "2023",
+  "RackPlaceLocation": "R6",
+  "BarCode": "7654356234",
+  "ItemCode": "Medicine55",
+  "UnitPrice": "40",
+  "SellPrice": "50",
+  "Discount": "0",
+  "SGST": "2",
+  "CGST": "3",
+  "IGST": "0",
+  "Extra": "",
+  "Others": ""
+},{
+  "_id": {
+    "$binary": {
+      "base64": "Y9E32OozJUGhQBZkT5GSGw==",
+      "subType": "03"
+    }
+  },
+  "UnqueID": "5594385",
+  "DateStart": "12-03-2021",
+  "inventoryID": "12204951486",
+  "itemName": "chips uncle",
+  "stockQty": "70",
+  "reorderQty": "20",
+  "DateReorder": "2020-12-29T18:30:00.000Z",
+  "ExpireMonth": "2",
+  "ExpireYear": "2022",
+  "BarCode": "809654325",
+  "ItemCode": "FoodBisUn",
+  "UnitPrice": "3",
+  "SellPrice": "5",
+  "Discount": "1",
+  "SGST": "2",
+  "CGST": "2",
+  "IGST": "0",
+  "Extra": "extra",
+  "Others": "for biscuits"
+},{
+  "_id": {
+    "$binary": {
+      "base64": "/TXfgIFdbkOonC/fHKRDdg==",
+      "subType": "03"
+    }
+  },
+  "BarCode": "809654315",
+  "CGST": "2",
+  "DateReorder": "2020-12-29T18:30:00.000Z",
+  "DateStart": "12/3/2021",
+  "Discount": "1",
+  "ExpireMonth": "2",
+  "ExpireYear": "2022",
+  "Extra": "extra",
+  "IGST": "0",
+  "ItemCode": "med1",
+  "Others": "for biscuits",
+  "RackPlaceLocation": "",
+  "SGST": "2",
+  "SellPrice": "5",
+  "UnitPrice": "3",
+  "UnqueID": "5594385",
+  "inventoryID": "12203951486",
+  "itemName": "med1",
+  "reorderQty": "20",
+  "stockQty": "70"
+}]

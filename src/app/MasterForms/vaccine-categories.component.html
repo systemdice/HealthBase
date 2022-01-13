@@ -1,0 +1,142 @@
+<!-- app.component.html -->
+<h3>Vaccination Master Entry</h3>
+
+
+
+ 
+
+<div >
+  <div fxFlex>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <div fxFlex>
+    <button mat-icon-button color="primary"  (click)="openDialog('Add',{})">
+      <mat-icon matTooltip="Add a new entry" matTooltipPosition="below" aria-label="Example icon-button with a heart icon">add</mat-icon> <b><u>Add a New Entry</u></b>
+    </button> 
+  </div>
+   
+    
+    
+  </div>
+  <div class="example-container mat-elevation-z8">
+
+    <!-- <button mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Add Row</button> -->
+  
+    <mat-table [dataSource]="dataSource" matSort #mytable class="my-table mat-elevation-z8">
+  
+      <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+      
+ <!-- Id Column -->
+ <ng-container matColumnDef="slno">
+    <mat-header-cell *matHeaderCellDef class="HeaderStyle"> SlNo.  </mat-header-cell>
+    <mat-cell *matCellDef="let item; let i = index">  <span  class="mobile-label ">SlNo:</span>
+      {{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }} </mat-cell>
+    
+   </ng-container>
+
+ <!-- <ng-container matColumnDef="UnqueID">
+  <mat-header-cell *matHeaderCellDef  mat-sort-header> SecretID </mat-header-cell>
+  <mat-cell *matCellDef="let element">{{element.UnqueID}}</mat-cell>
+</ng-container>
+
+
+
+  <ng-container matColumnDef="VSID">
+    <mat-header-cell *matHeaderCellDef  mat-sort-header> Vaccine ID </mat-header-cell>
+    <mat-cell *matCellDef="let element"  (click)="openDialog('Update',element)"><b><u style="cursor:pointer;color:blue;">{{element.VSID}}</u> </b></mat-cell>
+  </ng-container>
+   -->
+      <!-- Id Column -->
+      <ng-container matColumnDef="VaccineName">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> Vaccine Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Name:</span>{{element.VaccineName}} </mat-cell>
+      </ng-container>
+  
+       <!-- Name Column -->
+       <ng-container matColumnDef="Unit">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> Unit </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Unit:</span>{{element.Unit}} </mat-cell>
+      </ng-container>
+       <!-- Name Column -->
+       <ng-container matColumnDef="Quantity">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> Quantity </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Quantity:</span>{{element.Quantity}} </mat-cell>
+      </ng-container>
+       <!-- Name Column -->
+       <ng-container matColumnDef="BatchNumber">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> BatchNumber </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Batch:</span>{{element.BatchNumber}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="HSN">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> HSN </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <span  class="mobile-label ">HSN:</span>{{element.hsn}} </mat-cell>
+      </ng-container>
+       <!-- Name Column -->
+       <ng-container matColumnDef="MRP">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> MRP </mat-header-cell>
+        <mat-cell *matCellDef="let element"><span  class="mobile-label ">MRP:</span> {{element.MRP}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Purchase">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> Purchase </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Amount:</span>{{element.Amount}} </mat-cell>
+      </ng-container>
+       <!-- Name Column -->
+       <ng-container matColumnDef="Expiry">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> Expiry(MM/YYYY) </mat-header-cell>
+        <mat-cell *matCellDef="let element"><span  class="mobile-label ">Expiry:</span> {{element.ExpiryMonth}}/{{element.ExpiryYear}} </mat-cell>
+      </ng-container>
+     
+
+       <!-- Name Column -->
+       <ng-container matColumnDef="Status">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Status:</span>{{element.Status}} </mat-cell>
+      </ng-container>
+       <!-- Name Column -->
+       <ng-container matColumnDef="MonthLeft">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> MonthLeft </mat-header-cell>
+        <mat-cell *matCellDef="let element"><span  class="mobile-label ">MonthLeft:</span>
+          <span [ngStyle]="FindExpireRemainingTime(element.ExpiryYear,element.ExpiryMonth)== '0'?{'color':'red'} : {'color': 'green'}">
+            {{FindExpireRemainingTime(element.ExpiryYear,element.ExpiryMonth)=='0'?'Exp':FindExpireRemainingTime(element.ExpiryYear,element.ExpiryMonth)}} 
+          </span>
+          </mat-cell>
+      </ng-container>
+  
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef > Action 
+            <button mat-icon-button color="primary"  (click)="openDialog('Add',{})">
+                <mat-icon matTooltip="Add a new entry" matTooltipPosition="below" aria-label="Example icon-button with a heart icon">add</mat-icon> Add
+              </button> 
+        </mat-header-cell>
+        
+        <mat-cell *matCellDef="let element" class="action-link">
+
+            <button mat-icon-button color="accent" (click)="openDialog('Update',element)">
+                <mat-icon matTooltip="Edit the entry" matTooltipPosition="below" aria-label="Edit">edit</mat-icon>
+              </button>
+      
+              <button mat-icon-button color="accent" (click)="openDialog('Delete',element)">
+                <mat-icon matTooltip="Delete the entry" matTooltipPosition="below" aria-label="Delete">delete</mat-icon>
+              </button>
+
+             
+          <!-- <a (click)="openDialog('Update',element)">Edit</a> | 
+          <a (click)="openDialog('Delete',element)">Delete</a>   -->
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator #paginatorRef [pageSizeOptions]="[15, 25,50, 100]"></mat-paginator>
+  
+  </div>
+  
+  
+
+
+  

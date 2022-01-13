@@ -1,0 +1,14 @@
+/* 
+  mat-form-field {
+    padding-right: 1em;
+  }
+  
+
+  mat-form-field {
+    width: 10%;
+  } */
+
+  .btn{display: inline-block; margin-right: 20px;}
+
+  select.form-control { transition: none; }
+  select { transition: none; }

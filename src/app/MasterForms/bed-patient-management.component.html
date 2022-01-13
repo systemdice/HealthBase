@@ -1,0 +1,107 @@
+
+ <!-- {{BedDetailsVisit.value|json}} -->
+<form [formGroup]="BedDetailsVisit">
+  <!-- {{objectRoomType|json}}
+
+  <br/>-->
+  <!-- {{data1|json}}  -->
+ 
+    <div formArrayName="teachersBedDetailsVisit">
+  
+      <div *ngFor="let teacher of teachers().controls; let ti=index">
+          <div  [formGroupName]="ti" class="container1" >
+  
+            
+
+              <mat-form-field fxFlex style="width:100px">
+                  <mat-label>Select a Bed Type</mat-label>
+                  <!-- <mat-select formControlName="BedCategory" (selectionChange)="onBookChangeMainBed($event,ti)"> -->
+                    <mat-select formControlName="BedCategory" (selectionChange)="onBookChangeMainBed($event,ti)" >
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let expense of object" [value]="expense.name">{{expense.name}}</mat-option>
+                  </mat-select>
+              </mat-form-field>
+              <mat-form-field fxFlex style="width:200px" >
+                
+                <mat-label>Select Bed</mat-label>
+                <mat-select formControlName="BedName" (selectionChange)="onBookChange($event,ti)" >
+                <!-- <mat-select formControlName="BedName" (selectionChange)="onBookChange($event,ti)"> -->
+                  <!-- <mat-option>--</mat-option> -->
+                  <!-- <mat-option *ngFor="let expense1 of objectRoomType" [value]="expense1.name">{{expense1.name}}</mat-option> -->
+                  <mat-option value="0" disabled selected>Select an Option</mat-option>
+                  <mat-option *ngFor="let where of getCriteria1(BedDetailsVisit.controls['teachersBedDetailsVisit']?.value[ti]?.BedCategory)" value="{{where.name}}" [disabled]="where.OccupySatus === 'BOOKED'">{{where.name}}&nbsp; &#8377;.({{where.price}})</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="caseid !=''" style="padding-top:15px;">
+              <b>({{this.ShowAssignedBedName(ti)}})</b>
+            </div>
+              <mat-form-field fxFlex *ngIf="false">
+                <span matPrefix style="color:blue"></span>
+                <textarea matInput placeholder="Bed Description" maxlength="300" #message formControlName="BedDescription"></textarea>
+            
+                <!-- <textarea type="text" rows="5" formControlName="ExpenseDescription" class="form-control" placeholder="Doctor Advice"></textarea>
+                <input type="text" value="100" matInput formControlName="ExpenseDescription" placeholder="{{BedDetailsVisitPlaceholder}}" -->
+                
+              </mat-form-field>
+              <mat-form-field fxFlex style="width:150px">
+                <mat-label>Admission&nbsp;Date</mat-label>
+                <input matInput [matDatepicker]="StartDate1" placeholder="Admission Date" formControlName="StartDate"
+                (dateChange)="calculateonenddate(ti)"                   
+                  value="{{ DefstartDate }}">
+                <mat-datepicker-toggle matSuffix [for]="StartDate1"></mat-datepicker-toggle>
+                <mat-datepicker #StartDate1></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field fxFlex style="width:150px">
+                <mat-label>Release&nbsp;Date</mat-label>
+                <input matInput [matDatepicker]="EndDate1" placeholder="Release Date" formControlName="EndDate"
+                (dateChange)="calculateonenddate(ti)">
+                <mat-datepicker-toggle matSuffix  [for]="EndDate1"></mat-datepicker-toggle>
+                <mat-datepicker #EndDate1></mat-datepicker>
+              </mat-form-field>
+              <!-- <mat-form-field fxFlex>
+                <span matPrefix style="color:blue">&#x20B9;. &nbsp;</span>
+                <input type="number" value="100" matInput formControlName="Amount" placeholder="Expense Cost"
+                (input)="oninputChange('')" >
+                <mat-icon matSuffix>mode_edit</mat-icon>
+              </mat-form-field> -->
+              <mat-form-field fxFlex >
+                <mat-label>Days</mat-label>
+                <input matInput placeholder="No of Days" value="0" formControlName="NofDays">
+              </mat-form-field>
+              <mat-form-field fxFlex >
+                <mat-label>Total Price</mat-label>
+                <input matInput placeholder="Bed Price" value="0" formControlName="BedPrice">
+              </mat-form-field>
+              <mat-form-field fxFlex >
+                <mat-label>Status</mat-label>
+                <!-- <mat-select formControlName="BedCategory" (selectionChange)="onBookChangeMainBed($event,ti)"> -->
+                  <mat-select formControlName="BedForceRelease" >
+                    <mat-option value="Occupied">Occupied</mat-option>
+                    <mat-option value="Release">Release</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+           
+            
+              <!-- {{teachers().controls.length}} -->
+              <!-- caseid:{{caseid}} -->
+              
+            <span style="color:#9F000F" class="btn" >
+              
+              <button type="button" class="btn btn-sm btn-success" (click)="addTeacher(ti,'clk')" >
+                  &#10003;&nbsp;Add</button>&nbsp;
+              <button type="button" class="btn btn-sm btn-danger"
+                  (click)="removeTeacher(ti)"> &#x2717;&nbsp;Del</button>&nbsp;
+          </span>
+                 
+      
+            </div>
+   
+          
+      </div>
+    </div>
+   
+    
+  
+  </form>

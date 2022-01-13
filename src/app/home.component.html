@@ -1,0 +1,113 @@
+<!-- <p>home works!</p>
+
+<form [formGroup]='addressForm' style="margin-top:30px">
+    <mat-card>Simple card
+        <mat-card-subtitle>sub title</mat-card-subtitle>
+        <mat-card-content> <div formGroupName="phaseExecutions">
+            <button type="button" class="btn btn-primary btn-sm" (click)="addMorePhase()">Add More</button>
+            <button class="btn btn-lg" style="background-color:transparent;">
+                <i class="fa fa-pencil"></i> Edit
+             </button>
+             <button class="mdc-icon-button material-icons">favorite</button>
+    
+             <button mat-button>    
+                <mat-icon class="material-icons">play_circle_filled</mat-icon>
+              </button>
+    
+              <button mat-button style="background-color: aqua;" (click)="addMorePhase()">    
+                <mat-icon style="
+                  height:28px !important;
+                  width:28px !important; 
+                  font-size:28px !important;" class="material-icons">add_task</mat-icon>Add More
+              </button>
+    
+            <div class="row">
+                <div class="col-sm-3">Phase type:</div>
+                <div class="col-sm-3">Phase name:</div>
+                <div class="col-sm-2">Operations</div>
+            </div>
+            <div formArrayName="PRE">
+              <div 
+                *ngFor="let phase of phaseArray.controls; let i = index;" 
+                formGroupName="i">
+    
+                
+                
+                <div class="row">  
+                    <div class="col-sm-3"><input  class="form-control col-sm-2" formControlName="phaseType" ></div>
+                    <div class="col-sm-3"><input  type="text" class="form-control col-sm-2" formControlName="phaseValue"></div>
+                    <div class="col-sm-2">
+                        {{i}}.&nbsp; <button type="button" class="btn btn-primary btn-sm">Remove me</button>
+            
+                    </div>  
+                    
+                  
+                </div>
+              </div>
+            </div>
+          </div></mat-card-content>
+        
+        <mat-card-footer>footer</mat-card-footer>
+    </mat-card>
+
+   
+
+    <label>
+        First Name:
+        <input type="text" formControlName="firstName">
+      </label> <br>
+    <label>
+        Last Name:
+        <input type="text" formControlName="lastName">
+      </label> <br>
+    <label>
+        Age:
+        <input type="text" formControlName="age">
+      </label>
+    <div formGroupName="stackDetails">
+        <h3>Stack Details</h3>
+    
+        <label>
+          Stack:
+          <input type="text" formControlName="stack">
+        </label> <br>
+    
+        <label>
+          Experience:
+          <input type="text" formControlName="experience">
+        </label>
+      </div>
+     
+  
+	<div formArrayName='adresses'>
+		<div *ngFor="let formGroup of adresses.controls; let i = index;">
+			<div [formGroup]="formGroup">
+				Name :<input type="name" name="label1" formControlName="label1">
+        Name :<input type="name" name="rue" formControlName="rue"> 
+        state :<input type="name" name="nomRue" formControlName="nomRue">
+            </div>
+            <span (click)="removeGroup(i)">Remove this group</span>
+      <hr/>
+        </div>
+        
+	</div>
+	<button type="button" class="btn btn-default" (click)="add();">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Add</button>
+	<button type="button" [disabled]="addressForm.invalid" class="btn valid-button" (click)="finish();">
+    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Print </button>
+
+  <label formArrayName="orders" *ngFor="let order of form.controls.orders['controls']; let i = index">
+    <input type="checkbox" [formControlName]="i">
+    {{orders[i].name}}
+  </label>
+
+  
+
+  <div *ngIf="!form.valid">At least one order must be selected</div>
+  <br>
+  <button [disabled]="!form.valid">submit</button>
+
+  {{ addressForm.value | json }}
+</form> -->
+
+<img src="/assets/pathology.jpg" alt="add" width="100%" height="100%" >

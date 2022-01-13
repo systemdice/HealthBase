@@ -1,0 +1,63 @@
+<h3 class="display-7">New Expense/Income entry&nbsp;(<span style="color:blue;">{{formDataExpense.UnqueID}}</span>)</h3>
+<hr>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+
+
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <span style="color:red;font-weight: bold;display:inline">*</span>
+            <select style="display:inline;" name="ExpenseCategory" #ExpenseCategory="ngModel" (change)="CategorySelected($event.target)" [(ngModel)]="formDataExpense.ExpenseCategory" class="form-control">
+                <option value="0">--Select Expense Category--</option>
+                <option *ngFor = "let cat of fromDataCategory" 
+                 value="{{cat.CategoryName}}"> {{cat.CategoryName}}
+            </option>
+            </select>
+        </div>
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <select name="BusinessType" #BusinessType="ngModel" (change)="CategorySelected($event.target)" [(ngModel)]="formDataExpense.BusinessType" class="form-control">
+                <option value="0">--Select Business Expense Type--</option>
+                <option *ngFor = "let cat of ExpenseType" 
+                 value="{{cat.Name}}"> {{cat.Name}}
+            </option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <span style="color:red;font-weight: bold;">*</span>(Used to mark as Income or Expense)
+        </div>
+    </div>
+
+        <input type="hidden" name="Id" #Id="ngModel" [(ngModel)]="formDataExpense.UnqueID">
+
+        <input type="hidden" name="CategoryName" #CategoryName="ngModel" [(ngModel)]="formDataExpense.CategoryName">
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <textarea name="Notes" class="form-control" style="width:100%;height:150px;" #Notes="ngModel" [(ngModel)]="formDataExpense.Notes" placeholder="Expense Notes"></textarea>
+            <!-- <input type="text" name="Notes" class="form-control" #Notes="ngModel" [(ngModel)]="formDataExpense.Notes" placeholder="Expense Notes"> -->
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            <input type="number" name="ExpenseAmount" class="form-control" #ExpenseAmount="ngModel" [(ngModel)]="formDataExpense.ExpenseAmount" placeholder="Expense Amount">
+        </div>
+
+        <div class="form-group col-md-7" style="display: flex">
+
+            <input type="text" [matDatepicker]="picker" placeholder="Expense Date" name="Date" #Date="ngModel" [(ngModel)]="formDataExpense.Date" readonly class="form-control">
+            <mat-datepicker-toggle matSuffix [for]="picker" text-color="yellow"></mat-datepicker-toggle>
+            <mat-datepicker #picker disabled=false></mat-datepicker>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-7"></div>
+        <div class="form-group col-md-5 ">
+            <button type="submit" class="btn btn-primary btn-md text-white " ><i class="fa fa-save"><span class="ml-1"></span></i>Save</button>
+            <button type="button" class="btn btn-danger btn-md float-right " (click)="closeModel()"><i class="fa fa-close"></i><span class="ml-1"></span>Cancel</button>
+        </div>
+    </div>
+</form>

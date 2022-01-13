@@ -1,0 +1,111 @@
+<form [formGroup]="addLabRate" (ngSubmit)="onFormSubmit()">
+
+    <div class="panel panel-default" style="overflow:hidden">
+      <div class="panel-heading"><h2> {{AddorEdit}}  </h2> <span style="color:cornflowerblue"> {{data.row?.Username}}</span>
+        
+        <span> <li>You can use this to create health checkup packages.</li></span>
+    </div>
+        <br/>
+       
+      <div class="panel-body fixed-panel">
+        <mat-grid-list cols="3" [cols]="breakpoint" rowHeight="60px" (window:resize)="onResize($event)">
+  
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Test Name" formControlName="testName"
+                  >
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="text-inside">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="*Fee" formControlName="fee"
+                      >
+                  </mat-form-field>
+            </div>
+          </mat-grid-tile>
+             
+          <mat-grid-tile>
+            <div class="text-inside" style="padding-bottom:10px;">
+              <div>
+                <mat-label>* For Genders</mat-label>
+              </div>
+              <mat-radio-group formControlName="testForGender" class="person-radio-group">
+                <mat-radio-button class="person-radio-button" *ngFor="let gend of gender" [value]="gend.name">
+                  {{gend.name}}
+                </mat-radio-button>
+              </mat-radio-group>
+  
+            </div>
+          </mat-grid-tile>
+         
+
+         
+
+        
+          </mat-grid-list>
+
+          <mat-grid-list cols="1" rowHeight="70px">
+            <mat-grid-tile>
+                <div class="text-inside" style="height:90px;margin:5px;padding:5px;overflow-x:hidden; overflow-y:visible;background-color: lightgray;">
+                    <mat-chip-list aria-label="Fish selection" style="font-size: x-small;">
+                        <mat-chip color="primary">Acid -Fast Bacilli</mat-chip>
+                        <mat-chip>Activated partial Thromboplastin</mat-chip>
+                        <mat-chip>Acid -Fast Bacilli2</mat-chip>
+                        <mat-chip>Activated partial Thromboplastin2</mat-chip>
+                        <mat-chip>Acid -Fast Bacilli3</mat-chip>
+                        <mat-chip>Activated partial Thromboplastin3</mat-chip>
+                        <mat-chip>Acid -Fast Bacilli4</mat-chip>
+                        <mat-chip>Activated partial Thromboplastin4</mat-chip>
+                      </mat-chip-list>
+      
+                </div>
+              </mat-grid-tile>
+            </mat-grid-list>
+              <mat-grid-list cols="1"  rowHeight="90px" (window:resize)="onResize($event)">
+              <mat-grid-tile>
+                <div class="text-inside">
+                    <mat-form-field class="example-chip-list">
+                        <mat-chip-list #chipList aria-label="Fruit selection">
+                    <mat-chip
+      *ngFor="let fruit of fruits"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(fruit)">
+      {{fruit}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input mat-input
+      placeholder="Select option..."
+      #fruitInput 
+      formControlName="fruitCtrl"
+      [formControl]="fruitCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+      {{fruit}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+      
+                </div>
+              </mat-grid-tile>
+          </mat-grid-list>
+  
+  
+      </div>
+      <div class="panel-footer"> 
+        <!-- {{addLabRate.value|json}}  and {{this.fruits|json}} -->
+        <mat-checkbox formControlName="Active">Register this.</mat-checkbox>&nbsp;
+        <button class="btn btn-primary btn-sm" cdkFocusInitial (click)="onAddCus()"
+          [disabled]="!addLabRate.valid">Save</button>&nbsp;|
+        <button class="btn btn-primary btn-sm" [mat-dialog-close]="1" (click)="onNoClick()">Cancel</button>
+      </div>
+    </div>
+  </form>

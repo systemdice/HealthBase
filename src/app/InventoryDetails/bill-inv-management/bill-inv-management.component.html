@@ -1,0 +1,275 @@
+<button *ngIf="false" (click)="patchValue2()">Load</button>
+
+<form [formGroup]="teachersForm">
+    <h1> Billing.... <strong style="color:#0094ff"> </strong></h1>
+    <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+
+        <mat-form-field fxFlex>
+            <mat-label>Name:</mat-label>
+            <input matInput placeholder="Name" formControlName="CustomerName">
+        </mat-form-field>
+        <mat-form-field fxFlex>
+            <mat-label>BilledBy:</mat-label>
+            <input matInput placeholder="BilledBy" formControlName="BilledBy">
+        </mat-form-field>
+
+        <mat-form-field fxFlex>
+            <mat-label>Address</mat-label>
+            <input matInput placeholder="Address" formControlName="Address">
+        </mat-form-field>
+
+        <mat-form-field fxFlex>
+            <mat-label>PhoneNumber</mat-label>
+            <input matInput placeholder="PhoneNumber" formControlName="PhoneNumber"
+                (change)="PopulateCustomerData($event)">
+        </mat-form-field>
+
+        <mat-form-field fxFlex>
+            <mat-label>Billing Date</mat-label>
+            <input matInput placeholder="BillingDate" formControlName="BillingDate">
+        </mat-form-field>
+
+
+        <mat-checkbox id="amateur" color="primary" formControlName="priorityStatus">Active Bill</mat-checkbox>
+
+    </div>
+
+    <div formArrayName="teachers">
+
+        <div>
+
+
+            <hr style="padding:0px;margin:0px;" />
+            <p *ngIf="!Inventory"><em>Loading Inventory Details please Wait ! ...</em></p>
+
+
+
+
+            <table id="customers"  style='width: 70%;table-layout:fixed;'>
+
+                <tr>
+                    <td>
+                        <hr style="height: 1px;color: #123455;background-color: #d55500;border: none;color: #d55500;" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+
+                        <table id="customers" 
+                           *ngIf="Inventory">
+                            <tr
+                                style="height: 20px; background-color:#336699 ; color:#FFFFFF ;border: solid 1px #659EC7;">
+                                <td width="5%" layout-align="left left">Sl No.(Item ID)</td>
+                                <td width="30%" layout-align="left left">Item Filter</td>
+                                <td width="10%" layout-align="left left">Item Name/BarCode</td>
+                                <td width="5%" layout-align="left left">Unit</td>
+                                <td width="5%" layout-align="left left">Price <span style="color:white">(&#8377;)</span>
+                                </td>
+                                <td width="5%" layout-align="left left">Discount<span style="color:white">(%)</span>
+                                </td>
+                                <td width="5%" layout-align="left left">CGST<span style="color:white">(%)</span></td>
+                                <td width="5%" layout-align="left left">SGST<span style="color:white">(%)</span></td>
+                                <td width="5%" layout-align="left left">Total<span style="color:white">(&#8377;)</span>
+                                </td>
+                                <td width="10%" layout-align="left left"></td>
+
+                            </tr>
+                            <tbody *ngFor="let teacher of teachers().controls; let ti=index">
+                                <tr [formGroupName]="ti">
+                                    <td layout-align="left left"  width="5%"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F">
+
+                                            {{ti+1}}.&nbsp;
+                                            ({{getControlLabel(ti)}})
+                                            <!-- <input formControlName="inventoryID"> -->
+                                            <!-- <img src="{{imgEdit}}"  style="height:32px;width:32px" (click)=editStudentsDetails(StudentMasters.stdID,StudentMasters.stdName,StudentMasters.email,StudentMasters.phone,StudentMasters.address)>-->
+                                        </span>
+                                    </td>
+                                    <td layout-align="left left" width="30%"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <mat-form-field style="padding-top:0px;" >
+                                            <input type="text" aria-label="Number" matInput formControlName="name" size="200"
+                                            [formControl]="myControl" [matAutocomplete]="auto"
+                                            (keyup.enter)="update()"  (input)="onForm2NameChange($event,ti)"
+                                        (blur)="update()"
+                                            >
+                                            <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getPosts($event.option.value,ti)' width="200px">
+                                              <mat-option  *ngFor="let option of filteredOptions1| async" [value]="option.itemName">
+                                                {{ option.itemName }}
+                                              </mat-option>
+                                            </mat-autocomplete>
+                                          </mat-form-field>
+                                    </td>
+                                    <td layout-align="left left"  width="10%"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F">
+                                            <!-- <input type="text" placeholder="Assignee" aria-label="Assignee" matInput formControlName = "name" [matAutocomplete]="auto">
+						<mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+							<mat-option *ngFor="let option of options" [value]="option">
+								{{option}}
+							</mat-option>
+                        </mat-autocomplete> -->
+
+
+                                            <input type="text" formControlName="name" (keyup.enter)="update()"  size="25"
+                                                (blur)="update()" (input)="onForm2NameChange($event,ti)">
+                                            <!-- <img src="{{imgDelete}}" style="height:32px;width:32px" (click)=deleteStudentsDetails(StudentMasters.stdID)>-->
+                                        </span>
+                                    </td>
+                                    <td layout-align="left left"  width="5%"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F"><input type="text" formControlName="unit" size="30"
+                                                (input)="onUnitChange($event,ti)"></span>
+                                    </td>
+                                    <td layout-align="left left"  width="5%"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F"><input type="text" formControlName="price"
+                                                [attr.disabled]="true"></span>
+                                    </td>
+
+                                    <td layout-align="left left"  width="5%"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F"><input type="text" formControlName="discount"
+                                                [attr.disabled]="true"></span>
+
+                                    </td>
+                                    <td layout-align="left left"  width="5%"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F"><input type="text" formControlName="CGST"
+                                                [attr.disabled]="true"></span>
+                                    </td>
+                                    <td layout-align="left left"  width="5%"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F"><input type="text" formControlName="SGST"
+                                                [attr.disabled]="true"></span>
+                                    </td>
+                                    <td layout-align="left left"  width="5%"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F"><input type="text" formControlName="total"
+                                                [attr.disabled]="true"></span>
+                                    </td>
+
+                                    <td layout-align="left left"  width="10%"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F" class="btn">
+                                            <button type="button" class="btn btn-sm btn-success" (click)="addTeacher()">
+                                                &#10003;Add</button>&nbsp;
+                                            <button type="button" class="btn btn-sm btn-danger"
+                                                (click)="removeTeacher(ti)"> &#x2717;Del</button>&nbsp;
+                                        </span>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                            <tr>
+                                <td>
+                                    Total
+                                </td>
+                                <td colspan="2">
+                                    Total Item : {{BillDetails.itmCount}}. &nbsp; you saved {{BillDetails.discount}}
+                                </td>
+                                <td colspan="3">CGST:{{BillDetails.cgst}} SGST:{{BillDetails.sgst}} Total
+                                    Tax:{{BillDetails.totalTax}}</td>
+                                <td>Total</td>
+                                <td>{{BillDetails.total}}</td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+
+
+        </div>
+
+    </div>
+
+    <p>
+        <button *ngIf="false" type="button" (click)="addTeacher()">Add Teacher</button>
+    </p>
+    <p>
+        <button type="button" (click)="FinalCalculation()"  class="btn btn-success"><span class="glyphicon glyphicon-off"></span> Final Calculation</button>
+        <mat-checkbox [checked]= "true" class = "example-margin" > 
+            <label>Payment received </label> 
+        </mat-checkbox>
+        <button type="button" (click)="UpdateStock()" class="btn btn-success"><span class="glyphicon glyphicon-off"></span> Print & Update Stock</button>
+        <span style="color:red">**</span>After payment received, 'Print & Update Stock'  will update the stock automatically.
+
+        &nbsp;<button type="button" (click)="UpdateStock()" disabled  class="btn btn-danger"><span class="glyphicon glyphicon-off"></span> Update Stock</button>
+        
+        <!-- <button type="button" (click)="FinalCalculation()">Genearte Bill</button>
+        <button type="button" (click)="UpdateStock()" disabled>Update Stock</button>
+        <button type="button" (click)="UpdateStock()">Print</button> -->
+         
+    </p>
+
+</form>
+
+<hr />
+
+<table class='table' *ngIf="ShowBill"
+style="background-color:#FFFFFF; border:2px #6D7B8D; padding:5px;width:99%;table-layout:fixed;"
+cellpadding="2" cellspacing="2">
+    <caption>Invoice</caption>
+    <thead>
+        <tr  style="height: 30px; background-color:rgb(153, 187, 221); color:#FFFFFF ;border: solid 1px #659EC7;" >
+            <th colspan="4">Invoice #123456789</th>
+            <th>{{myFormattedDateShow}}
+        </tr>
+        <tr  style="height: 30px; background-color:rgb(153, 187, 221); ; color:#FFFFFF ;border: solid 1px #659EC7;">
+            <td colspan="3" cellpadding="2" cellspacing="2"> <strong>Pay to:</strong><br> SystemDICE LLP<br> 123 Main St.<br> Navi Mumbai 221345
+            </td>
+            <td colspan="2" cellpadding="2" cellspacing="2"> <strong>Customer:</strong><br> Deepak Das<br> Nalco<br> Anugul
+                Odisha, 754321 </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr  style="height: 30px; background-color:rgb(168, 162, 162) ; color:#FFFFFF ;border: solid 1px #659EC7;">
+            <th>Slno(Code)</th>
+            <th>Name / Description</th>
+            <th>Qty.</th>
+            <th>Price</th>
+            <th>Discount</th>
+        </tr>
+        <tr *ngFor="let teacher of printBillArray; let ti=index">
+            <td>{{ti+1}}.&nbsp;({{teacher.inventoryID}})</td>
+            <td>{{teacher.name}}</td>
+            <td>{{teacher.unit}}</td>
+            <td>{{teacher.price}}</td>
+            <td>{{teacher.discount}}</td>
+        </tr>
+       
+    </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="4">Subtotal</th>
+            <td> &#8377;.{{BillDetails.total-BillDetails.totalTax}}</td>
+        </tr>
+        <tr>
+            <th colspan="3">Tax</th>
+            <td>  </td>
+            <td>&#8377;.{{BillDetails.totalTax}}</td>
+        </tr>
+        <tr>
+            <th colspan="4">Grand Total</th>
+            <td>&#8377;.{{BillDetails.total}}</td>
+        </tr>
+    </tfoot>
+</table>
+
+
+<!-- {{this.options|json}}
+ ^^^^^^^^^^^^^^^
+{{this.teachersForm.value | json}}--
+{{farmacyToPatient|json}}
+********************
+{{Inventory|json}} -->
+
+<!-- {{Inventory|json}}mmmmmmmmmmmmmmmmmmmm
+{{this.teachersForm.value.teachers | json}}
+------------------------------{{BillDetails|json}}
+------------------------------
+{{resultGroupby|json}} -->

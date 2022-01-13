@@ -1,0 +1,84 @@
+<div class="card m-3">
+    <!-- <h5 class="card-header">Angular 8 Reactive Form Validation</h5> -->
+    <div class="card-body">
+        <form [formGroup]="OPD" *ngIf="OPD">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label>OPD Type (Departments)</label>
+                    <select formControlName="title" class="form-control">
+                        <option value=""></option>
+                        <option value="Accident & Emergency">Accident & Emergency</option>
+                        <option value="OTH">Others </option>
+                        <option value="APM">Anesthesiology and Pain Management</option>
+                        <option value="BWC">Burns and Wound Care</option>
+                        <option value="CC">Critical Care</option>
+                        <option value="C">Cardiology (Non Invasive & Interventional Cardiology)</option>
+                        <option value="CH">Clinical Haematology</option>
+                        <option value="CVS">Cardiothoracic and Vascular Surgery (CTVS)</option>
+                        <option value="DBT">Diabetology</option>
+                        <option value="IM">Internal Medicine</option>
+                        <option value="ORTH">Orthopedics </option>
+                        <option value="PED">Paediatrics </option>
+                    </select>
+
+                </div>
+
+                <div class="form-group col-3">
+                    <label>Doctor's First Name</label>
+                    <input type="text" formControlName="firstName" class="form-control" />
+
+                </div>
+                <div class="form-group col-2">
+                    <label>Doctor's Last Name</label>
+                    <input type="text" formControlName="lastName" class="form-control" />
+
+                </div>
+                
+            </div>
+            <div class="form-group">
+                <label>Doctor's Feedback/Report/Prescription etc.</label>
+                <textarea type="text" rows="5" formControlName="DoctorFeedback" class="form-control"></textarea>
+
+            </div>
+            <div class="form-row">
+
+
+                <div formArrayName="OPDChoice" class='parent form-group form-check'>
+                    <div *ngFor="let order of OPDChoiceFormArray.controls; let ti = index"
+                        class='child inline-block-child'>
+                        <div [formGroupName]="ti">
+                            &nbsp;<input type="checkbox" formControlName="val" (change)="onCheckBoxChanges(ti,$event)">
+                            <label for="acceptTerms" class="form-check-label">&nbsp;{{checkBoxValueList[ti]}}</label>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <hr />
+
+
+                <!-- <label formArrayName="OPDChoice" *ngFor="let order of OPDChoiceFormArray.controls; let i = index">
+                    <input type="checkbox" [formControlName]="i"  (change)="onCheckBoxChanges(i)" >
+                    {{checkBoxValueList[i]}}
+                  </label> -->
+
+                <!-- <div *ngFor="let CountryData of OPDChoiceData; let i=index">
+                    <label>
+                      <input type="checkbox" [value]="CountryData.id" (change)="onCheckboxChange($event)" />
+                      {{CountryData.name}}
+                    </label>
+                  </div> -->
+
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" formControlName="converttoIPD" id="converttoIPD" />
+                <label for="acceptTerms" class="form-check-label">&nbsp;&nbsp;Recomendation for Admission</label><span
+                    style="color:red">*</span>
+
+            </div>
+
+        </form>
+    </div>
+</div>

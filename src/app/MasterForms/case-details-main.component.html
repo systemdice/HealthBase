@@ -1,0 +1,423 @@
+<!-- {{asyncPipeNewModifyCase|json}}
+Total is {{total}} -->
+<div class="form-row">
+
+  <div class="form-group col-md-12" style="float:left">
+    <h3>All Case Details: </h3>
+    
+    <input type="checkbox" (change)="eventCheck($event)" /> Activate Tab Mode
+  </div>
+  <hr/>
+</div>
+<div class="container1">
+  <div fxFlex>
+    <mat-form-field >
+      <input matInput (keyup)="applyFilter($event.target.value)"
+        placeholder="Filter for (Case ID or Patient ID or Date)" name="filterVal" [ngModelOptions]="{standalone: true}"
+        [(ngModel)]="filterVal">
+    </mat-form-field>
+    
+      <span (click)="openDialog()" style="cursor:pointer;color:rgb(10, 19, 153);"><b><u>Bed&nbsp;Status
+      </u></b></span> &nbsp;&nbsp;|&nbsp;&nbsp;
+       <span (click)="OpenBillPendingStatus( null,null)" style="cursor:pointer;color:rgb(10, 19, 153);"><b><u>
+        Payment Status</u></b></span>
+  
+      
+     
+    
+  </div>
+</div>
+<div class="container1">
+ 
+  <div fxFlex>
+    <button type="button" (click)="saveLabTest()" class=" btn btn-success myButton">
+      <span class="glyphicon glyphicon-edit"></span>
+      Show all CASES</button>
+  </div>
+  <div fxFlex>
+    <button type="button" (click)="LoadNDaysData(1)" class="btn btn-success myButton"><span
+        class="glyphicon glyphicon-edit"></span>
+      Today's CASES</button>
+  </div>
+
+  <div fxFlex>
+    <div class="buttonIn   ">
+      <input class='input1' type="text" autocomplete="off" id="enter" [(ngModel)]="NDaysData"
+        (keyup.enter)="LoadNDaysData(NDaysData)">
+      <button class='button1' id="clear" (click)='LoadNDaysData(NDaysData)'><b>Last {{NDaysData}} Day's
+          Data</b></button>
+    </div>
+  </div>
+
+&nbsp;
+  <div fxFlex>
+    <div >
+
+      <mat-form-field >
+
+        <input matInput readonly [matDatepicker]="FollowupStartDate" placeholder="Perticular Date"
+          [(ngModel)]="passdate" (click)="FollowupStartDate.open()" (focus)="FollowupStartDate.open()" readonly>
+        <mat-datepicker-toggle matSuffix [for]="FollowupStartDate"></mat-datepicker-toggle>
+        <mat-datepicker #FollowupStartDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div fxFlex>
+      <div>
+        <button type="button" (click)="ShowTodaysDataFromCalendar(passdate)" class="btn btn-success myButton"><span
+            class="glyphicon glyphicon-edit"></span>
+          Fix Date</button>
+      </div>
+    </div>
+  </div>
+
+  <div fxFlex>
+
+    <mat-form-field >
+
+      <input matInput readonly [matDatepicker]="FollowupStartDateF1" placeholder="From Date"
+        [(ngModel)]="fromdate" (click)="FollowupStartDateF1.open()" (focus)="FollowupStartDateF1.open()" readonly>
+      <mat-datepicker-toggle matSuffix [for]="FollowupStartDateF1"></mat-datepicker-toggle>
+      <mat-datepicker #FollowupStartDateF1></mat-datepicker>
+    </mat-form-field>
+</div>&nbsp;
+<div fxFlex>
+    <mat-form-field >
+
+      <input matInput readonly [matDatepicker]="FollowupStartDateF2" placeholder="To Date"
+        [(ngModel)]="todate" (click)="FollowupStartDateF2.open()" (focus)="FollowupStartDateF2.open()" readonly>
+      <mat-datepicker-toggle matSuffix [for]="FollowupStartDateF2"></mat-datepicker-toggle>
+      <mat-datepicker #FollowupStartDateF2></mat-datepicker>
+    </mat-form-field>
+
+  </div>
+  <div fxFlex>
+    <div>
+      <button type="button" (click)="ShowFromToDataFromCalendar(fromdate,todate)" class="btn btn-success myButton"><span
+          class="glyphicon glyphicon-edit"></span>
+        Date Wise CASES</button>
+
+        <button type="button" (click)="ShowBalnacesheetFromToDataFromCalendar(fromdate,todate)" class="btn btn-success myButton"><span
+          class="glyphicon glyphicon-edit"></span>
+        Balance</button>
+    </div>
+  </div>
+
+ 
+
+
+
+
+</div>
+<!-- <input type="text" name="UserName" class="form-control"  (keyup)="applyFilter($event.target.value)"
+      [(ngModel)]="UserName" placeholder="Username" (input)="applyFilter($event.target.value)">
+   Filter: {{UserName}} -->
+<hr style="padding:0px;margin:1px;" />
+<div class="example-header" style="width:99%;">
+
+
+  <button type="button" (click)="exportArray()" class="btn btn-success myButton"><span
+      class="glyphicon glyphicon-download"></span>
+    Export to EXCEL</button>
+  <div class="example-container mat-elevation-z8" #mytable1>
+
+    <!-- <button mat-button (click)=(click)="openDialog('Add',{},element.UnqueID,'Add')" mat-flat-button color="primary">Add Row</button> -->
+
+    <mat-table id="ExampleMaterialTable" [dataSource]="dataSource" matSort #mytable class="my-table mat-elevation-z8"
+      style="background-color:#FFFFFF;border-radius: 2em; border:2px #6D7B8D; padding:5px;width:99%;
+      table-layout:fixed;">
+
+      <ng-container matColumnDef="slno">
+        <mat-header-cell *matHeaderCellDef class="HeaderStyle"> Slno </mat-header-cell>
+        <mat-cell *matCellDef="let item; let i = index"> <span class="mobile-label ">Serial No:</span>
+          {{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }} </mat-cell>
+
+      </ng-container>
+
+
+      <!-- Id Column -->
+      <ng-container matColumnDef="UnqueID">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Case ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <span class="mobile-label">ID:</span>
+          <ul style="padding:0px;margin:1px;">
+            <li style="padding:0px;margin:1px;">
+              <u style="cursor:pointer;color:blue" (click)="addEditExpenseItem(element,element.Home.FirstName)">
+                {{element.IPDOPDId}} </u> (<span style="color:red">{{element.CaseStatus.charAt(0)}}</span>)
+            </li>
+
+            <li *ngIf="false" style="padding:0px;margin:1px;">
+              <u style="cursor:pointer;color:blue" (click)="addEditExpenseItem(element,element.Home.FirstName)">
+                {{element.UnqueID}} </u> (<span style="color:red">{{element.CaseStatus.charAt(0)}}</span>)
+            </li>
+            <li style="padding:0px;margin:1px;font-style:bold;">
+              ({{element.OPDkimbaIPD != undefined?element.OPDkimbaIPD:'NA'}})
+            </li>
+            <li style="padding:0px;margin:1px;" *ngIf="showPrintoption">
+              <button type="button" class="btn btn-success myButton" (click)="OpenBillPrint(element.UnqueID,'Billing')"><span
+                  class="glyphicon glyphicon-off"></span> Print Bill&nbsp;&nbsp;&nbsp;</button>
+            </li>
+            <li style="padding:0px;margin:1px;" *ngIf="showPrintoption">
+              <button *ngIf="element.CaseStatus.charAt(0) == 'C'" type="button" class="btn btn-success myButton"
+                (click)="btnDischargePrint(element.UnqueID)"><span class="glyphicon glyphicon-off"></span>
+                Discharge</button>
+            </li>
+          </ul>
+
+
+
+        </mat-cell>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="ID">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> ID </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.IPDOPDId}} </mat-cell>
+              </ng-container> -->
+
+
+      <!-- Id Column -->
+      <ng-container matColumnDef="DateStart">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <span class="mobile-label">Date:</span> {{element.DateStart}} </mat-cell>
+      </ng-container>
+      <!-- <ng-container matColumnDef="Uname">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Uname </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Home.RefferDoctorName}} </mat-cell>
+      </ng-container> -->
+      <!-- <ng-container matColumnDef="Loc">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Loc </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Location}} </mat-cell>
+      </ng-container> -->
+
+      <!-- <ng-container matColumnDef="DateStart">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Date </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.DateStart}} </mat-cell>
+              </ng-container> -->
+
+      <ng-container matColumnDef="PatientInfo">
+        <mat-header-cell *matHeaderCellDef class="HeaderStyle"> Patient Info. </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index"
+          stytle="word-wrap: break-word;vertical-align: top;text-align:top;">
+          <span class="mobile-label ">Info:</span>
+          <ul style="padding:0px;margin:1px;">
+            <li><span class="glyphicon glyphicon-user" style="color:rgb(103, 179, 52)"></span>{{element.Home.FirstName}}
+              (<span style="color:red">{{element.Home.Gender=='1'?'M':'F'}}</span>)&nbsp;&nbsp;</li>
+            <li><span class="glyphicon glyphicon-phone-alt"
+                style="color:rgb(57, 102, 197)"></span>:<u>{{element.Home.ContactNumber}}
+              </u></li>
+
+            <!-- ({{element.Home.Year}}Yr {{element.Home.Month}}M  {{element.Home.Days}}D) -->
+            <li>({{element.Home.Year}}Yr+)</li>
+          </ul>
+        </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="TestType">
+        <mat-header-cell *matHeaderCellDef class="HeaderStyle"> Reffered Tests </mat-header-cell>
+        <mat-cell *matCellDef="let element" > <span class="mobile-label ">Patho:</span>
+          <div class="ex1">
+            <u>
+              <span *ngFor="let item of element.TestNameWithCase.TestType; let jOut = index">
+
+                <li  fxShow fxHide.lt-sm *ngFor="let itemInn of item.names; let j = index">
+                  <span style="cursor:pointer;color:blue"
+                    (click)="addEditLabTestItem(element,itemInn.TestName,item.parentTest)">
+                    {{jOut+1}}.{{j+1}}
+                    <span *ngIf="TestStatus(element.UnqueID,itemInn.TestName,item.parentTest) =='Final'"
+                      style="color:red" class="glyphicon glyphicon-print"></span>
+                    {{itemInn.TestName}} | {{labtt(itemInn.TestName,jOut)}}
+                    <span [ngStyle]="{
+                            'color': ReturnStatusColor(TestStatus(element.UnqueID,itemInn.TestName,item.parentTest))}">
+                      ({{TestStatus(element.UnqueID,itemInn.TestName,item.parentTest)}})</span>
+
+                    <span *ngIf="TestStatus(element.UnqueID,itemInn.TestName,item.parentTest) =='Final'"
+                      style="color:rgb(59, 6, 184)" class="glyphicon glyphicon-check"></span>
+
+                  </span>
+
+
+
+
+                </li>
+
+                <li fxHide fxShow.lt-sm *ngFor="let itemInn of item.names; let j = index">
+                  <span style="cursor:pointer;color:blue"
+                    (click)="addEditLabTestItem(element,itemInn.TestName,item.parentTest)">
+                   
+                    <span *ngIf="TestStatus(element.UnqueID,itemInn.TestName,item.parentTest) =='Final'"
+                      style="color:red" class="glyphicon glyphicon-print"></span>
+                      {{ (itemInn?.TestName?.length>18)? (itemInn.TestName | slice:0:18)+'...':(itemInn.TestName) }}
+                      ({{ (TestStatus(element.UnqueID,itemInn.TestName,item.parentTest)?.length>1)? (TestStatus(element.UnqueID,itemInn.TestName,item.parentTest)| slice:0:1):(TestStatus(element.UnqueID,itemInn.TestName,item.parentTest)) }})
+                    <!-- {{itemInn.TestName}} | {{labtt(itemInn.TestName,jOut)}} -->
+                  
+
+                   
+
+                  </span>
+
+
+
+
+                </li>
+
+              </span>
+
+            </u>
+          </div>
+        </mat-cell>
+
+      </ng-container>
+
+      <ng-container matColumnDef="Payment">
+        <mat-header-cell *matHeaderCellDef class="HeaderStyle"> Payment(&#8377;) </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index"> <span class="mobile-label ">Payment:</span>
+          <b> <span style="color:white;"  class="myButton" 
+              [ngStyle]="{
+            'background-color': ReturnStatusPaymentColor(element.PaymentHistory[0].Balance)}">&#8377;.{{element.PaymentHistory[0].Balance}}&nbsp;</span>
+          </b>
+          <span 
+            [ngStyle]="{
+              'color': ReturnStatusPaymentColor(element.PaymentHistory[0].Balance)}">({{ReturnStatusPaymentTest(element.PaymentHistory[0].Balance)}})</span>
+
+        </mat-cell>
+
+      </ng-container>
+      <!-- <ng-container matColumnDef="Location">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Site </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          
+         
+            {{element.Location.substring(0,4)}}
+        </mat-cell>
+      </ng-container> -->
+      <ng-container matColumnDef="Location">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Merge </mat-header-cell>
+        <mat-cell *matCellDef="let element" fxShow fxHide.lt-sm> <span class="mobile-label ">Merge:</span>
+          <u>
+            <li>
+              <span style="cursor:pointer;color:blue" (click)="addEditLabTestItemForAll(element,'Final','LAB')">LAB
+              </span>
+            </li>
+            <li>
+              <span style="cursor:pointer;color:blue"
+                (click)="addEditLabTestItemForAll(element,'Final','Dental')">Dental
+              </span>
+            </li>
+          </u>
+
+        </mat-cell>
+      </ng-container>
+
+      <!-- <div *ngIf="item.hideme">
+                <li *ngFor="let itemInn of returnAllAppoinrmrmnt(item.DateStart); let j = index">
+                  <span class="glyphicon glyphicon-user" style="color:red"></span>{{itemInn.PatientDetails.FirstName}}&nbsp;&nbsp;[Sex:<span style="color:red">{{itemInn.PatientDetails.Gender=='1'?'M':'F'}}</span>]&nbsp;&nbsp;<span class="glyphicon glyphicon-phone-alt" style="color:red"></span>:<u>{{itemInn.PatientDetails.ContactNumber}}</u>
+                </li>
+    
+              </div> -->
+      <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- <ng-container matColumnDef="Notes">
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Notes </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Notes}} </mat-cell>
+                  </ng-container> -->
+      <!-- <ng-container matColumnDef="BusinessType">
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"><span style="color:red;">*</span> Revenue </mat-header-cell>
+                    <mat-cell *matCellDef="let element"
+                      [ngStyle]="{'color': getColor(element.BusinessType)}">
+                      {{element.BusinessType}} &nbsp;<span *ngIf=getGreenMark(element.BusinessType)>&#10003;</span> <span *ngIf=getRedMark(element.BusinessType)>&#10003;</span></mat-cell>
+                  </ng-container>
+    
+                  
+                  <ng-container matColumnDef="ExpenseCategory">
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Category Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.ExpenseCategory}} </mat-cell>
+                  </ng-container>
+                   -->
+
+
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef class="HeaderStyle">
+          <button class="btn btn-sm btn-success text-white actionButtonMain myButton" matTooltip="Add New Case"
+            (click)="addEditExpenseItem(null,null)">
+            <i class="fa fa-plus"></i> <span class="ml-1"> </span>New Case👆 &nbsp;
+          </button>
+
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="action-link"> <span class="mobile-label ">Action:</span>
+
+
+
+          <button mat-icon-button color="accent" (click)="addEditExpenseItem(element,element.Home.FirstName)">
+            <mat-icon matTooltip="Edit the entry" matTooltipPosition="below" aria-label="Edit">edit</mat-icon>
+          </button>
+
+          <button *ngIf="Role=='Admin' || Role=='SuperAdmin'" mat-icon-button color="accent"
+            (click)="DeleteItem(element.UnqueID)">
+            <mat-icon matTooltip="Delete the entry" matTooltipPosition="below" aria-label="Delete">delete</mat-icon>
+          </button>
+
+          <!-- <button class="btn btn-sm btn-info text-white actionButton mr-2" matTooltip="Edit Case" 
+                (click)="addEditExpenseItem(element,element.Home.FirstName)">
+                    <i class="fa fa-pencil"></i><span class="sm-1"></span> Modify
+        </button>
+        <button class="btn btn-sm btn-danger text-white actionButton mr-2" matTooltip="Delete Case" 
+                (click)="DeleteItem(element.UnqueID)">
+                    <i class="fa fa-trash"></i><span class="sm-1"></span> Delete
+        </button> -->
+
+          <!-- <button class="btn btn-sm btn-danger text-white actionButton mr-2" matTooltip="Delete Expense"                 
+                (click)="DeleteItem(element.UnqueID)">
+                    <i class="fa fa-trash"></i> <span class="sm-1"></span> Delete
+                </button> -->
+
+
+
+          <!-- <a (click)="openDialog('Update',element)">Edit</a> | 
+                <a (click)="openDialog('Delete',element)">Delete</a>   -->
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></mat-row>
+    </mat-table>
+    <mat-paginator #paginatorRef [pageSizeOptions]="[10,15, 20, 50, 100]"></mat-paginator>
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+    <div class="row">
+      <ul>
+        <li><span style="color:red">* (P)</span> -Indicates that CASE is in Progress.</li>
+        <li><span style="color:red">* (C)</span> -Indicates that CASE is Closed. No Modifiaction allowed.</li>
+        <li><span style="color:red">* (Clear)</span> -Indicates No Due no Refund for the CASE. </li>
+        <li><span style="color:red">* (Due)</span> -Payment needs to be collected from client for the CASE.</li>
+        <li><span style="color:red">* (Ref)</span> -Fund needs to be returned to client for the CASE.</li>
+        <li><span style="color:red">* (Final)</span> -This PathoLAB Test is completed and Report is ready for the
+          CASE.This can can be printed.</li>
+        <li><span style="color:red">* (Progress)</span> -This PathoLAB Test is in progress and findings are being
+          entered for the CASE.</li>
+        <li><span style="color:red">* (Pending)</span> -This PathoLAB Test is not yet started for the CASE.</li>
+        <li><span style="color:green">* (Discharge)</span> -This will generate and print the complete history for the
+          CASE and Patient experience.</li>
+        <li><span style="color:red">* (Print Bill)</span> -This will print the receipt for he CASE.</li>
+
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- {{asyncPi|json}}
+    --------------------------------
+
+    {{asyncPipeNewModifyCase|json}} -->
+
+<!-- {{labTestIndividual|json}}
+    -----------------------------------------------
+    {{asyncPi|json}} -->
+
+<!-- <table>
+      <tr *ngFor="let teacher of asyncPipeNewModifyCase; let ti=index">
+        <td>{{teacher.UnqueID}}</td>
+        <td>{{teacher.DateStart}}</td>
+      </tr>
+    </table> -->

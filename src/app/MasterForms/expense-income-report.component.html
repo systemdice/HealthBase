@@ -1,0 +1,250 @@
+<div class="row" style="font-size:11px; border-style:solid; margin-left:5px; margin-right:5px;" id="frmIndividualLapReport">
+
+
+    <table width="100%">
+        
+        <tbody>
+            <tr>
+                <td>
+
+
+
+                    <div style="text-align:right;">
+                        <div style="text-align:center;">
+                            <div style="text-align:center;" >
+                                <h3 style="text-align:center; padding-bottom:10px;">
+                                    {{Addressline1}}<br />
+                                   {{Addressline2}}<br />
+                                   {{Addressline3}}<br />
+                                   {{Addressline4}}<br />
+
+                                </h3>
+                                <hr/>
+                                <h4>Datewise Income and Expense Report</h4>
+                                <hr style="height:1px;background-color:black;" />
+                                <hr style="height:3px;background-color:black;" />
+
+
+
+
+                            </div>
+
+                            <div class="col-sm-12">
+
+
+                                <button style="display: inline-block;float:left;" type="button" id="printElement"
+                                    (click)="myPrint('frmIndividualLapReport')" class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print"></span>
+                                    Print</button>
+                                <button type="button" style="display: inline-block;float:left;" id="CloseMe"
+                                    (click)="CloseMe()" class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print"></span>
+                                    Close Me</button>
+
+                               
+                                <!-- <input id="printCheckElement" style="display: inline-block;float:left;" (change)="fieldsChange($event)" value="Show header on each page" type="checkbox"/>
+            <span id="printCheckTextElement" style="display: inline-block;float:left;">Show header on each page</span> -->
+
+
+                            </div>
+                            
+                            
+                        </div>
+                        
+                    </div>
+                    <br/>
+                    
+                    <hr style="padding:0px;margin:0px" />
+                   
+
+<!-- {{resultRetrieve|json}}
+-------------------------------------<br/>
+{{groubedByTeam|json }} -->
+                   
+                    <div class="container" style="padding-top:1px;">
+                        <div class="row">
+
+                        </div>
+                    </div>
+                    <hr style="margin-bottom:0px; margin-top:0px;">
+
+                  <table width="100%">
+                      <tr>
+                          <td colspan="2">
+                            <div class="form-row example-header" id="printCheckElement">
+
+                               
+                          
+                                <div fxFlex>
+                                  <mat-label>From:</mat-label>
+                                  <mat-form-field style="padding-top:0px;">
+                                    <mat-label>From&nbsp;Date</mat-label>
+                                    <input matInput [matDatepicker]="StartDate1" placeholder="From Date" [(ngModel)]="StartDate"
+                                    (click)="StartDate1.open()"
+                                    (focus)="StartDate1.open()" readonly>
+                                    <mat-datepicker-toggle matSuffix [for]="StartDate1"></mat-datepicker-toggle>
+                                    <mat-datepicker #StartDate1></mat-datepicker>
+                                  </mat-form-field>
+                               
+                                </div>
+                                
+                          
+                                <div fxflex>
+                                    <mat-label>To:</mat-label>
+                                  <mat-form-field style="padding-top:0px;">
+                                    <mat-label>To&nbsp;Date</mat-label>
+                                    <input matInput [matDatepicker]="EndDate1" placeholder="To Date" [(ngModel)]="EndDate"
+                                    (click)="EndDate1.open()"
+                        (focus)="EndDate1.open()" readonly>
+                                    <mat-datepicker-toggle matSuffix [for]="EndDate1"></mat-datepicker-toggle>
+                                    <mat-datepicker #EndDate1></mat-datepicker>
+                                  </mat-form-field>
+                          
+                                </div> &nbsp;&nbsp;
+                                <div fxFlex>
+                                    <button type="button" style="display: inline-block;"  id="CloseMe"   (click)="ShowData('grp')" class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print" ></span>
+                                    Quick Details</button>
+        
+                                    <button type="button" style="display: inline-block;"  id="CloseMe"   (click)="ShowData('All')" class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print" ></span>
+                                    Show In Detail</button>
+        
+                                    <button type="button" style="display: inline-block;"  id="CloseMe"   (click)="ShowData('Both')" class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print" ></span>
+                                    Show Both</button>
+                                </div>
+                              </div>
+                          </td>
+                      </tr>
+                  </table>
+
+                    <table *ngIf="showgrp" style="width:95%">
+                        <thead>
+                            <tr>
+                                <th style="text-align:left;">Sl No.</th>
+                                <th style="text-align:left;">Date</th>
+                                <!-- <th>Last Name</th> -->
+                                <th style="text-align:left;">Expense</th>
+                                <!-- <th style="text-align:left;">No. of Expense entry</th> -->
+                                <th style="text-align:left;">Income</th>
+
+                                <!-- <th style="text-align:left;">No. of Income entry</th> -->
+                                <!-- <th>Age</th>
+                                <th>Price</th> -->
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let people1 of groubedByTeam; let j=index;">
+                            <!-- {{people1|json}} -->
+                            <tr>  
+                                <td data-th="SlNo">{{j+1}}.</td>                           
+                                <td data-th="Date"> <span >{{people1[0].DateUse | date: 'dd/MM/yyyy'}}</span></td>
+                                <!-- <td> {{people1[0].ProductName}}</td> -->
+
+                                <td data-th="Expense">
+                                    <!-- pl{{people1.length}} -->
+                                     <span *ngIf='people1.length <= 1 && people1[0].ProductName == "Expense"'>&#8377; {{people1[0].Price < 0?-1*people1[0].Price:people1[0].Price}}.00 </span>
+                                     <span *ngIf='people1.length <= 1 && people1[0].ProductName == "Income"'>&#8377; 00.00 </span>
+                                    
+                                     <span *ngIf="people1.length >1 && people1[0].ProductName == 'Expense'">&#8377; {{people1[0]?.Price < 0?-1*people1[0].Price:people1[0].Price}}.00 </span>
+                                    <span *ngIf="people1.length >1 && people1[1].ProductName == 'Expense'">&#8377; {{people1[1]?.Price < 0?-1*people1[1].Price:people1[1].Price}}.00 </span>
+                                    
+                                </td>
+                                <!-- <td> <span >({{people1[0].Quantity}})</span></td> -->
+                                <td data-th="Income"> 
+                                    <span *ngIf="people1.length <= 1 && people1[0].ProductName == 'Income'">&#8377; {{people1[0].Price}}.00 </span>
+                                    <span *ngIf="people1.length <= 1 && people1[0].ProductName == 'Expense'">&#8377; 00.00 </span>
+                                   
+                                    <span *ngIf="people1.length >1 && people1[0].ProductName == 'Income'">&#8377; {{people1[0]?.Price}}.00 </span>
+                                     <span *ngIf="people1.length >1 && people1[1].ProductName == 'Income'">&#8377; {{people1[1]?.Price}}.00 </span>
+                                    
+                                </td>
+                                <!-- <td> <span *ngIf='people1.length >1'>&nbsp;({{people1[1].Quantity}})</span>
+                                    <span *ngIf='people1.length <= 1'>&nbsp;(0)</span>
+                                </td> -->
+
+                                <!-- <td>{{people1[0].Quantity}}</td>
+                                <td>{{people1[0].Price}}</td> -->
+                            </tr>
+                            
+                        </tbody>
+                       
+                        <tfoot>
+                            <th data-th="Expense" style="text-align:left;"></th>
+                            <th style="text-align:left;">Total</th>
+                            <!-- <th>Last Name</th> -->
+                            <th data-th="Expense" style="text-align:left;">&#8377;.{{Expense}}.00 &nbsp;(Expense)</th>
+                            <!-- <th style="text-align:left;">No. of Expense entry</th> -->
+                            <th data-th="Income" style="text-align:left;">&#8377;.{{Income}}.00  &nbsp;(Income)</th>
+                        </tfoot>
+                    </table>
+
+                    <br/>
+                    <br/>
+                    <div *ngIf="showInDetail">
+                        <table style="width:95%">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:left;">Sl No.</th>
+                                    <th style="text-align:left;">Date</th>
+                                    <th style="text-align:left;">Category</th>
+                                     <th style="text-align:left;">Type</th>
+                                     <th style="text-align:left;">Price (&#8377;).</th>
+                    
+                                </tr>
+                            </thead>
+                            <tr *ngFor="let people1 of resultRetrieveAll; let j=index;">
+                                <td data-th="SlNo.">{{j+1}}.</td>
+                                <td data-th="Date:">{{people1.DateUse| date: 'dd/MM/yyyy'}}</td>
+                                <td data-th="Category">{{people1.ProductName}}</td>
+                                <td data-th="Type">{{people1.Quantity}}</td>
+                                <td data-th="Price">&#8377;.{{people1.Price <0?-1*people1.Price:people1.Price}}</td>
+                                
+                            </tr>
+                        </table>
+                    
+                    </div>
+
+<br/>
+<br/>
+
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p style="text-align:left;">
+                                <b>Place By:</b><br />
+                                <b>Date:</b>{{myDate}}<br /><br />
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p style="text-align:right;">
+                                <b></b>
+                                <br />
+                                
+                            </p>
+                        </div>
+                    </div>
+                   
+
+                </td>
+            </tr>
+        </tbody>
+        <!-- follwing line make footer repeatable for each page -->
+        <!-- <tfoot><tr><td>Your footer goes here</td></tr></tfoot> -->
+    </table>
+
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>

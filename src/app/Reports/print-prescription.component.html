@@ -1,0 +1,342 @@
+<div class="row" id="frmIndividualLapReport">
+
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true" id="customiseCloseElement">
+        <mat-icon class="close-icon" color="warn">close</mat-icon>
+      </button>
+<!-- <div class="page">
+    <div class="subpage">Page 1/2</div>    
+</div>
+<div class="page">
+    <div class="subpage">Page 2/2</div>  -->
+    
+<div style="width: 210mm; height: 297mm">
+<!-- 
+{{data.patientInfo|json}} -->
+    <table width="100%"  >
+       
+        <tbody>
+            <tr>
+                <td>
+
+
+
+                    <div style="text-align:right;">
+                        <div style="text-align:center;">
+                            <div style="text-align:right;">
+                                <h3 style="text-align:right; ">
+                                   {{Addressline1}}<br />
+                                   {{Addressline2}}<br />
+                                   {{Addressline3}}<br />
+                                   {{Addressline4}}<br />
+
+                                </h3>
+
+                            </div>
+<hr/>
+                            <table style="width:100%">
+
+                                <tbody>
+                                    <tr>
+                                        <td  style="text-align:left;">Doctor Name:&nbsp;{{data.individualDoctorName}} </td>
+        
+                                        <td style="text-align:right;">&nbsp;Date:&nbsp;{{myDate}}</td>
+        
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Patient Name:&nbsp;{{data.patientInfo.FirstName}}</td>
+                                        <td style="text-align:right;">Age:&nbsp;{{data.patientInfo.Year=="0"?"______":data.patientInfo.Year}}Yr, &nbsp;&nbsp;{{data.patientInfo.Month=="0"?"______":data.patientInfo.Month}}Mon&nbsp;{{data.patientInfo.Days=="0"?"_______":data.patientInfo.Days}}Days</td>
+                                        
+        
+                                    </tr>
+
+                                   
+                                  
+
+                                    <tr>
+                                        <td  style="text-align:left;">Address:&nbsp;{{data.patientInfo.Address}} </td>
+                                        <td style="text-align:right;">Sex:&nbsp;<span *ngIf='data.patientInfo.UnqueID !== null'>{{data.patientInfo.Gender == "1"?"M":"F"}}</span> &nbsp;<span *ngIf='data.patientInfo.UnqueID == null'>_________</span></td>
+                                       
+        
+        
+                                       
+        
+                                    </tr>
+                                    <tr>
+                                        <td  style="text-align:left;">Mobile No:&nbsp;{{data.patientInfo.ContactNumber}} </td>
+                                        
+        
+                                        <td  style="text-align:right;">Weight:&nbsp;{{data.patientInfo.Weight==''?'______KG':data.patientInfo.Weight}} </td>
+        
+                                    </tr>
+        <tr>
+            <td colspan="2"><hr/></td>
+        </tr>
+                                </tbody>
+        
+        
+                            </table>
+
+
+                            <div class="row">
+                                <div style="background-color:#aaa;float: left;
+                                width: 31%;
+                                padding: 10px;
+                                height: 160px;">
+                                  <h5 style="text-align:left;">GENERAL INFORMATION</h5>
+                                  
+                                  
+<p  style="text-align:left;">
+    Cough (More than 10 days) - No<br/>
+H/O Diabetes - No <br/>
+H/O Smoking - No <br/>
+H/O Alcoholism - No<br/>
+H/O Allergy - No
+
+</p>
+
+                                </div>
+                                <div class="column" style="background-color:#bbb;float: left;
+                                width: 32%;
+                                padding: 10px;
+                                height: 160px;">
+                                  <h5 style="text-align:left;">GENERAL EXAMINATION</h5>
+                                  <p style="text-align:left;"> Blood Pressure - <br/>
+                                    Pulse Rate -<br/>
+                                    Temperature -<br/>
+                                    FBS -<br/>
+                                    PPBS -</p>
+                                </div>
+                                <div class="column" style="background-color:#ccc;float: left;
+                                
+                                padding: 10px;
+                                height: 160px;">
+                                  <h5 style="text-align:left;">COVID 19 Screening</h5>
+                                  <p style="text-align:left;">Fever/ Flu like illness - No<br/>
+                                    Cough - No<br/>
+                                    Travel history - No <br/>
+                                    Known contact history - No</p>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <!-- <div class="col-sm-12">
+                                    <hr/>
+                                </div> -->
+                            <div class="col-sm-12">
+
+
+                                <button style="display: inline-block;float:left;" type="button" id="printElement"
+                                    (click)="myPrint('frmIndividualLapReport')" class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print"></span>
+                                    Print</button>
+                                <button type="button" style="display: inline-block;float:left;" id="CloseMe" *ngIf="false"
+                                    (click)="CloseMe()" class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print"></span>
+                                    Close and Go to Home Page</button>
+
+                                    <button type="button" style="display: inline-block;float:left;"  id="closePopup" 
+                                    (click)="onNoClick()" class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print" ></span>
+                                    Close Me/Popup</button>
+
+                               
+                                <!-- <input id="printCheckElement" style="display: inline-block;float:left;" (change)="fieldsChange($event)" value="Show header on each page" type="checkbox"/>
+            <span id="printCheckTextElement" style="display: inline-block;float:left;">Show header on each page</span> -->
+
+
+                            </div>
+                           </div>
+                        </div>
+                    </div>
+
+                    <!-- <hr style="padding:0px;margin:0px" /> -->
+
+
+                   
+                    <!-- <div class="container" style="padding-top:1px;">
+                        <div class="row">
+
+                        </div>
+                    </div>
+                    <hr style="margin-bottom:0px; margin-top:0px;"> -->
+
+                  
+
+                  
+
+                    <!-- naming convetion has been mismatched. Please don't be panic. we will amke it correct latter -->
+                    <!-- <hr style="border-top: 2px dashed black;" /> -->
+                    <!-- <pre *ngIf="showSection && patientDiagnosisShow" style="min-height:170px;"><b *ngIf="data.opdipd !=='' && data.opdipd !='IPD' && data.opdipd !='OPD'">Condition:&nbsp;</b><br/>{{data.patientDiagnosis}}</pre>
+                    <pre *ngIf="showSection && patientAdviceShow" style="min-height:170px;"><b *ngIf="data.opdipd !=='' && data.opdipd !='IPD' && data.opdipd !='OPD'">Diagnosis:&nbsp;</b><br/>{{data.patientAdvice}}</pre>
+                    <pre *ngIf="showSection && patientPathotestShow" style="min-height:170px;"><b *ngIf="data.opdipd !=='' && data.opdipd !='IPD' && data.opdipd !='OPD'">LAB Test:&nbsp;<br/></b>{{data.patientPathotest}}</pre>
+                    <pre *ngIf="showSection" style="min-height:170px;"><b *ngIf="data.opdipd !=='' && data.opdipd !='IPD' && data.opdipd !='OPD'">History:&nbsp;</b><br/>{{data.patientHistory}}</pre> -->
+                    <!-- <p><span style="font-size: 40px;">R</span> <b>X</b></p> -->
+
+<br/>
+<!-- {{data|json}} -->
+<table style="width:100%;border: 1px solid rgb(177, 176, 176);font-family: cursive;" cellspacing="0px" cellpadding="0px" *ngIf="showSection && patientDiagnosisShow">
+    <tbody>
+       <tr  style="height: 30px; background-color:rgb(201, 198, 198) ; color:#FFFFFF ;border: solid 1px #659EC7;font-family: Georgia, 'Times New Roman', Times, serif;">
+           <th  style="text-align:left;border: 1px solid rgb(206, 206, 206) ;"><b>Condition:&nbsp;</b></th>
+          
+       </tr>
+       <tr>
+           <td style="text-align:left;border: 1px solid rgb(187, 185, 185) ;">
+            <pre style="min-height:50px;">{{data.patientDiagnosis}}</pre>
+                             
+        </td>    
+       </tr>
+   </tbody>    
+</table>
+
+
+<table style="width:100%;border: 1px solid rgb(177, 176, 176);font-family: cursive;" cellspacing="0px" cellpadding="0px" *ngIf="showSection && patientDiagnosisShow">
+    <tbody>
+       <tr  style="height: 30px; background-color:rgb(201, 198, 198) ; color:#FFFFFF ;border: solid 1px #659EC7;font-family: Georgia, 'Times New Roman', Times, serif;">
+           <th  style="text-align:left;border: 1px solid rgb(206, 206, 206) ;"><b>Diagnosis:&nbsp;</b></th>
+          
+       </tr>
+       <tr>
+           <td style="text-align:left;border: 1px solid rgb(187, 185, 185) ;">
+            <pre  style="min-height:50px;">{{data.patientAdvice}}</pre>
+                    
+        </td>    
+       </tr>
+   </tbody>    
+</table>
+
+<table style="width:100%;border: 1px solid rgb(177, 176, 176);font-family: cursive;" cellspacing="0px" cellpadding="0px" *ngIf="showSection && patientDiagnosisShow">
+    <tbody>
+       <tr  style="height: 30px; background-color:rgb(201, 198, 198) ; color:#FFFFFF ;border: solid 1px #659EC7;font-family: Georgia, 'Times New Roman', Times, serif;">
+           <th  style="text-align:left;border: 1px solid rgb(206, 206, 206) ;"><b>PathoLAB Test Advice:&nbsp;</b></th>
+          
+       </tr>
+       <tr>
+           <td style="text-align:left;border: 1px solid rgb(187, 185, 185) ;">
+            <pre style="min-height:50px;">{{data.patientPathotest}}</pre>
+                             
+        </td>    
+       </tr>
+   </tbody>    
+</table>
+<table style="width:100%;border: 1px solid rgb(177, 176, 176);font-family: cursive;" cellspacing="0px" cellpadding="0px" *ngIf="showSection && patientDiagnosisShow">
+    <tbody>
+       <tr  style="height: 30px; background-color:rgb(201, 198, 198) ; color:#FFFFFF ;border: solid 1px #659EC7;font-family: Georgia, 'Times New Roman', Times, serif;">
+           <th  style="text-align:left;border: 1px solid rgb(206, 206, 206) ;"><b>History:&nbsp;</b></th>
+          
+       </tr>
+       <tr>
+           <td style="text-align:left;border: 1px solid rgb(187, 185, 185) ;">
+            <pre style="min-height:50px;">{{data.patientHistory}}</pre>
+                             
+        </td>    
+       </tr>
+   </tbody>    
+</table>
+<!-- {{medicines|json}} -->
+
+<!-- <pre style="min-height:160px;"><b *ngIf="data.opdipd !=='' && data.opdipd !='IPD' && data.opdipd !='OPD'">Advice/Observation:&nbsp;</b><br/>{{data.hlAdvice}}</pre> -->
+
+<table style="width:100%;border: 1px solid rgb(177, 176, 176);font-family: cursive;" cellspacing="0px" cellpadding="0px" >
+     <tbody>
+        <tr  style="height: 30px; background-color:rgb(201, 198, 198) ; color:#FFFFFF ;border: solid 1px #659EC7;font-family: Georgia, 'Times New Roman', Times, serif;">
+            <th  style="text-align:left;border: 1px solid rgb(206, 206, 206) ;"><b>Advice/Observation:&nbsp;</b></th>
+           
+        </tr>
+        <tr>
+            <td style="text-align:left;border: 1px solid rgb(187, 185, 185) ;min-height: 10px;">
+                <pre style="min-height:50px;">{{data.hlAdvice}}</pre></td>    
+        </tr>
+    </tbody>    
+</table>
+
+
+    <table style="width:100%;border: 1px solid rgb(177, 176, 176);font-family: cursive;" cellspacing="0px" cellpadding="0px">
+        
+       
+        <tbody>
+            <tr  style="height: 30px; background-color:rgb(201, 198, 198) ; color:#FFFFFF ;border: solid 1px #659EC7;font-family: Georgia, 'Times New Roman', Times, serif;">
+                <th colspan='5' style="text-align:left;border: 1px solid black ;"><span style="font-size: 40px;">R</span> <b>X</b></th>
+               
+            </tr>
+            <tr  *ngFor="let item of medicines; let jOut = index">
+                <td style="text-align:left;border: 1px solid rgb(187, 185, 185) ;">{{item.IndMedicineName}}</td>
+                <td style="text-align:left;border: 1px solid rgb(192, 189, 189) ;">{{item.unit}}</td>
+                <td style="text-align:left;border: 1px solid rgb(180, 178, 178) ;">{{item.noOfTimes}}</td>
+                <td style="text-align:left;border: 1px solid rgb(192, 190, 190) ;">{{item.noOfDays}}</td>
+                <td style="text-align:left;border: 1px solid rgb(158, 157, 157) ;">{{item.whichTime}}</td>
+                
+            </tr>
+            
+           
+        </tbody>
+        
+    </table>
+
+
+
+
+
+<!-- <pre style="min-height:170px;"><b *ngIf="data.opdipd !=='' && data.opdipd !='IPD' && data.opdipd !='OPD'">Medicines:&nbsp;</b><br/>{{data.hlData}}</pre> -->
+<!-- <pre style="min-height:160px;"><b *ngIf="data.opdipd !=='' && data.opdipd !='IPD' && data.opdipd !='OPD'">Advice/Observation:&nbsp;</b><br/>{{data.hlAdvice}}</pre> -->
+
+
+                    
+                    <!-- <div mat-dialog-content>
+                        {{data.hlData}}
+
+                    </div> -->
+                    <!-- <div mat-dialog-actions>
+                        <button mat-button (click)="onNoClick()">No Thanks</button>
+                        <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+                    </div> -->
+
+                    <br />
+                    <br /><br /><br />
+                    <br /><br /><br />
+                    
+
+                   
+                    <!-- <br/><br/><br/>
+<br/><br/><br/>
+<br/>
+<br/><br/><br/> -->
+
+
+
+        
+                   
+
+
+
+
+
+<!-- <textarea matInput id="idMedicineNames" placeholder="New Medicines"  rows="6" 
+[(ngModel)]="data.hlData"> 
+
+</textarea>-->
+                
+
+                   
+
+                </td>
+            </tr>
+        </tbody>
+        <!-- follwing line make footer repeatable for each page -->
+        <!-- <tfoot><tr><td>Your footer goes here</td></tr></tfoot> -->
+    </table>
+
+    <hr style="border-top: 2px dashed black;" />
+    <p style="text-align: right;"><br/><br/><br/>Doctors's Signature</p>
+<p>
+    Disclaimer: This prescription is based on the diagnosis made physically
+by a physician independently contracted by NABA DIGANATA. Patient (guardian in case of minor) always
+accepts that a request initiated by him/her implies consent to the consultation process. This service is not meant to
+replace face-to-face doctor-patient consultation. Doctors, patient care associates and any other
+personnel directly or indirectly involved with any part of the medicine set up will not be held responsible in the
+unlikely event of an error in diagnosis or management, due to the occurrence of sub optimal technical conditions. While
+every attempt will be made to ensure ideal conditions, unforeseen situations may occur. Do not use prescribed
+medication if you are allergic to any of the medicine mentioned above. For emergency, always call ambulance (108) and reach nearest hospital as soon as possible.
+</p>
+</div>
+</div>

@@ -1,0 +1,90 @@
+<div fxLayout="column">
+
+
+    <div fxLayout="column">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+                <h6 mat-dialog-title>Current Execution :: <strong>{{action}}</strong></h6>
+              
+            </div>
+            <div class="panel-body">
+
+                
+                <div *ngIf="action != 'Delete'; else noTemplate">
+                
+                <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+                    <div  *ngIf="!post; else forminfo">
+
+                    <div class="row">
+                        <div class="col-md-5 col-sm-5">
+                          <mat-form-field>
+                            <input matInput type="text" placeholder="Name" formControlName="Name">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-7 col-sm-7">
+          
+                          <mat-form-field>
+                            <input matInput type="text" placeholder="Description" formControlName="Description">
+                          </mat-form-field>
+                        </div>  
+                        
+          
+                      </div>
+                      <div class="row">
+                        <div class="col-md-5 col-sm-5">
+                          <mat-form-field>
+                            <input matInput type="text" placeholder="Status" formControlName="Status">
+                          </mat-form-field>
+                        </div>
+                      </div>
+          
+                         
+                      
+                    </div>
+
+                </form>
+
+            
+             <ng-template #forminfo>
+                <div class="container">
+                    {{ post | json }}
+                </div>
+            </ng-template>
+
+            <ng-template #noTemplate>
+                Sure to delete <b>{{local_data.name}}</b>?
+            </ng-template>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-5 col-sm-5">
+                        
+                            <button class="btn btn-success btnOneLine" (click)="doAction(action)"><span
+                                class="glyphicon glyphicon-off"></span> {{action}}</button> 
+    
+                                <button class="btn btn-success btnOneLine" (click)="closeDialog()" color="warn"> <span
+                                    class="glyphicon glyphicon-off"></span>Cancel</button>
+                        
+                      </div>
+                   
+                </div>
+                
+                <!-- <button type="submit"  class="btn btn-success"><span
+                    class="glyphicon glyphicon-off"></span> Add Fresh Case</button> -->
+
+            </div>
+          </div>
+  
+  
+        </div>
+       
+  
+      </div>
+    </div>
+    <!-- <mat-divider class="gapDevider"></mat-divider> -->
+  </div>
+  
+  
+  

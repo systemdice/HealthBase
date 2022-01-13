@@ -1,0 +1,33 @@
+.panel {
+    padding:2px;
+    margin:4px;
+
+}
+.panel-info {
+    padding:2px;
+    margin:4px;
+
+}
+
+.panel-body{
+    padding:5px;
+    margin:5px;  
+}
+
+
+.parent {
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+    background-color: yellow;
+  }
+  .bs {
+    background-color: green;
+    color: white;
+    width: 70px;
+  }
+
+  a:hover {    
+    cursor: pointer;
+  }
+

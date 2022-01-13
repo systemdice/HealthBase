@@ -1,0 +1,1085 @@
+<div class="row">
+  <marquee behavior="alternate" width="99%"><span style="color:red; font-size: small;">
+      <img src="/assets/images/logo.png" alt="add" width="64" height="34"><b>Your trial version is running...
+        <span style="color:green">({{tt}} days left) </span>. Call&nbsp;
+        <span class="glyphicon  glyphicon-phone-alt" style="color:green"></span>&nbsp;
+        <u><a href="https://www.systemdice.com/" target="_blank"> 9326218198 / 8904292924</a> or Email to
+          <span class="glyphicon  glyphicon glyphicon-hand-right" style="color:green"></span>&nbsp;
+          <a href="mailto:sales@systemdice.com">sales@systemdice.com</a>
+        </u> to activate your licence.</b></span> </marquee>
+</div> 
+<a href="https://api.whatsapp.com/send?
+         phone=99203 29044
+         &text=Hello, How can I help you."
+   		 class="float" target="_blank">
+<i class="fa fa-whatsapp my-float"></i>
+</a>
+<!-- <mat-toolbar color="primary" class="example-toolbar" *ngIf="Username !== ''">
+  <h1>SYSTEMDICE</h1>
+</mat-toolbar> -->
+
+<!-- //////////////////////////////////// -->
+<mat-toolbar color="primary" class="example-toolbar" *ngIf="Username !== ''">
+  <img src="/assets/images/logo.png" alt="add" width="24" height="24">
+  <button mat-icon-button (click)="isExpanded = !isExpanded || isShowing=!isShowing" fxShow fxHide.lt-sm>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>
+
+    <button mat-button fxShow fxHide.lt-sm><b>{{title}}</b></button>
+    <button mat-button [matMenuTriggerFor] = "menuw" fxShow="true" fxHide.gt-sm><mat-icon>menu</mat-icon>&nbsp;All Options</button>
+    <mat-menu #menuw = "matMenu">
+      <!-- <button mat-menu-item>SYSTEMDICE</button> -->
+      <button mat-menu-item [matMenuTriggerFor] = "Health" *ngIf='menuNo2'>Health </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item [matMenuTriggerFor] = "WorkEntrySection1" *ngIf='menuNo4'>Manage Users/Staffs  </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item [matMenuTriggerFor] = "AccountSection1" *ngIf='menuNo3' >Account </button>
+      <button mat-menu-item [matMenuTriggerFor] = "InventorySaleSection1" *ngIf='menuNo5'>Inventory </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item [matMenuTriggerFor] = "ReportingSection1" *ngIf='menuNo6'>Reporting </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item [matMenuTriggerFor] = "CertificateSection1" *ngIf='menuNo7'>Certificate </button>
+      
+      <button mat-menu-item [matMenuTriggerFor] = "OnlyPharma1" *ngIf='menuNo8'>Pharmacy </button>
+      <mat-divider></mat-divider>
+      <button mat-button [routerLink]="['maindashboard']">
+       
+        Display Board
+      </button>
+      
+
+
+
+    
+
+   </mat-menu>
+
+
+   <mat-menu #WorkEntrySection1="matMenu">
+    <button mat-button [routerLink]="['ReffersDetails']">
+      <mat-icon><span style="color:red"> add_box </span></mat-icon>
+      Staff Management
+    </button>
+    <button mat-button [routerLink]="['LeaveMangement']">
+      <mat-icon><span style="color:red"> add_box </span></mat-icon>
+      Leave Management
+    </button>
+    <button mat-button routerLink="/Followup">
+      <mat-icon> power_settings_new </mat-icon>
+      Job Entry(Add/Update)
+    </button>
+
+    <button mat-button routerLink="/Category">
+      <mat-icon> power_settings_new </mat-icon>
+      Category Master
+    </button>
+    <button mat-button [routerLink]="['UserReg','usrreg']" *ngIf='showMenu'>
+      <mat-icon> view_list </mat-icon>
+      User Management
+    </button>
+    <!-- <button mat-button [routerLink]="['UserReg','pwd']" *ngIf='showMenu'>
+      <mat-icon> view_list </mat-icon>
+      Change Password
+    </button> -->
+    <button mat-button routerLink="/UserList" *ngIf="Username=='deepak'">
+      <mat-icon> power_settings_new </mat-icon>
+      All User List
+    </button>
+    <button mat-button [routerLink]="['MasterBed']" *ngIf='showMenu'>
+      <mat-icon style="color:rgb(27, 29, 25)"> add_shopping_cart </mat-icon>
+      Bed Management
+    </button>
+
+    <button mat-button [routerLink]="['BarCode']" *ngIf='showMenu'>
+      <mat-icon style="color:rgb(0, 13, 128);"> waves</mat-icon>
+      BarCode Configuration
+    </button>
+  </mat-menu>
+    
+
+    <mat-menu #OnlyPharma1="matMenu">
+
+      <button mat-button routerLink="/InventoryManagement">
+        <mat-icon> power_settings_new </mat-icon>
+        Inventory Master(Add/Update)
+      </button>
+      <button mat-button routerLink="/CaseFarmacyDetails">
+        <mat-icon> power_settings_new </mat-icon>
+        Pharmacy Credit bill
+      </button>
+      <button mat-button routerLink="/Farmaentry/jj">
+        <mat-icon> power_settings_new </mat-icon>
+        Pharmacy Cash bill
+      </button>
+      <button mat-button routerLink="/PharmacyBillReport">
+        <mat-icon> power_settings_new </mat-icon>
+        Pharmacy Credit/Cash Report
+      </button>
+      <button mat-button routerLink="/CreditCashBill">
+        <mat-icon> power_settings_new </mat-icon>
+        Display Credit/Cash Bills
+      </button>
+      <button mat-button routerLink="/PharmaDoctorCommission">
+        <mat-icon> power_settings_new </mat-icon>
+        Doctor Commission
+      </button>
+      <!-- <button  mat-button  routerLink="/PharmacyBillReport">
+        <mat-icon> power_settings_new </mat-icon>
+        Pharmacy Report Datewise report
+      </button>  -->
+      <button mat-button [routerLink]="['UserReg','usrreg']">
+        <mat-icon> view_list </mat-icon>
+        Change Password
+      </button>
+      <!-- <button mat-button [routerLink]="['UserReg','pwd']" >
+        <mat-icon> view_list </mat-icon>
+        Change Password
+      </button> -->
+
+
+    </mat-menu>
+
+    <mat-menu #CertificateSection1="matMenu">
+      <button mat-button routerLink="/BirthCertificate">
+        <mat-icon> power_settings_new </mat-icon>
+        Birth Certificate
+      </button>
+      <button mat-button routerLink="/Fitness">
+        <mat-icon> power_settings_new </mat-icon>
+        Fitness Certificate
+      </button>
+      <button mat-button routerLink="/InjuryDisability">
+        <mat-icon> power_settings_new </mat-icon>
+        Injury Disability
+      </button>
+      <button mat-button routerLink="/InjuryTemp">
+        <mat-icon> power_settings_new </mat-icon>
+        Injury Temporary
+      </button>
+
+
+    </mat-menu>
+
+    
+    <mat-menu #Health = "matMenu" >
+      <button mat-button [routerLink]="['freshCase', 'Add']">
+        <mat-icon style="color:green;"> gamepad </mat-icon>
+        New CASE
+
+      </button>
+      <button mat-button [routerLink]="['CaseDetails','']">
+        <mat-icon style="color:rgb(21, 32, 3)"> add_shopping_cart </mat-icon>
+        All CASE Details
+      </button>
+      <button mat-button [routerLink]="['Vaccine']" *ngIf='showMenu'>
+        <mat-icon style="color:red;"> touch_app </mat-icon>
+        Vaccine Management
+      </button>
+
+      <button mat-button [routerLink]="['UnitsCategory']">
+        <mat-icon> dns icon </mat-icon>
+        Units Category
+      </button>
+      <button mat-button [routerLink]="['CatagoryMaster']">
+        <mat-icon> assignment </mat-icon>
+        Master Category Entry
+      </button>
+      <button mat-button routerLink="/Category">
+        <mat-icon> power_settings_new </mat-icon>
+        Add Individual Category
+      </button>
+      <button mat-button [routerLink]="['PatientDetails']">
+        <mat-icon> view_list </mat-icon>
+        Patient Details
+      </button>
+
+
+
+      <button mat-button [routerLink]="['TestDetailsPending']">
+        <mat-icon> view_list </mat-icon>
+        Pending Test Details
+      </button>
+
+
+
+      <button mat-button [routerLink]="['AllLabtest']">
+        <mat-icon style="color:rgb(44, 7, 104);"> center_focus_strong </mat-icon>
+        Show All PathoLab Test
+      </button>
+
+      <button mat-button [routerLink]="['LabtestParameter', 'Add']" *ngIf='showMenu'>
+        <mat-icon> view_list </mat-icon>
+        Add PathoLab Test & Parameters
+      </button>
+      <button mat-button [routerLink]="['GroupTest']">
+        <mat-icon style="color:rgb(44, 7, 104);"> center_focus_strong </mat-icon>
+        All Group Test
+      </button>
+    </mat-menu>
+    <mat-menu #AccountSection1="matMenu">
+      <button mat-button routerLink="/AccountBook">
+        <mat-icon> power_settings_new </mat-icon>
+        Income/Expense Management
+      </button>
+      <button mat-button routerLink="/AccountBook">
+        <mat-icon> power_settings_new </mat-icon>
+        Balance sheet
+      </button>
+      <button mat-button routerLink="/AccountBookCategory">
+        <mat-icon> power_settings_new </mat-icon>
+        Balance sheet(Dept. wise) 
+      </button>
+      <button mat-button routerLink="/Category">
+        <mat-icon> power_settings_new </mat-icon>
+        Category Master
+      </button>
+    </mat-menu>
+    <mat-menu #InventorySaleSection1 = "matMenu">
+
+      <button mat-button [routerLink]="['ComissionReport']" *ngIf='showMenu'>
+        <mat-icon style="color:green;"> center_focus_strong </mat-icon>
+        Comission Report
+      </button>
+      <button mat-button routerLink="/AccountBook">
+        <mat-icon> power_settings_new </mat-icon>
+        Income/Expense Management
+      </button>
+      <button mat-button routerLink="/AccountBookCategory">
+        <mat-icon> power_settings_new </mat-icon>
+        Account category wise
+      </button>
+
+
+      <button mat-button routerLink="/Followup">
+        <mat-icon> power_settings_new </mat-icon>
+        Job Entry(Add/Update)
+      </button>
+    </mat-menu>
+
+    <mat-menu #ReportingSection1="matMenu">
+      <button mat-button routerLink="/BedAvailability">
+        <mat-icon> power_settings_new </mat-icon>
+        Bed Availability
+      </button>
+      <button mat-button routerLink="/BedAdmissionReport">
+        <mat-icon> power_settings_new </mat-icon>
+        BedAdmission Report
+      </button>
+      <button mat-button routerLink="/ExpenseIncome">
+        <mat-icon> power_settings_new </mat-icon>
+        Expense Income Datewise
+      </button>
+
+      <button mat-button routerLink="/PharmacyBillReport">
+        <mat-icon> power_settings_new </mat-icon>
+        Pharmacy Report Datewise
+      </button>
+      <button mat-button routerLink="/Consultation">
+        <mat-icon> power_settings_new </mat-icon>
+        Consultation Form
+      </button>
+      <button mat-button routerLink="/NursesChart">
+        <mat-icon> power_settings_new </mat-icon>
+        Nurses Chart
+      </button>
+      <button mat-button routerLink="/InOutChart">
+        <mat-icon> power_settings_new </mat-icon>
+        Input Output Chart
+      </button>
+      <button mat-button routerLink="/DailyProgress">
+        <mat-icon> power_settings_new </mat-icon>
+        Daily Progress Chart
+      </button>
+      <button mat-button routerLink="/Continuation">
+        <mat-icon> power_settings_new </mat-icon>
+        Continuation Form
+      </button>
+      <button mat-button routerLink="/PatientReg">
+        <mat-icon> power_settings_new </mat-icon>
+        Patient Registration
+      </button>
+      <button mat-button routerLink="/AnesthesiaNote">
+        <mat-icon> power_settings_new </mat-icon>
+        Anesthesia Note
+      </button>
+      <!-- <button  mat-button  routerLink="/BloodRequisitionForm">
+        <mat-icon> power_settings_new </mat-icon>
+        Blood Requisition form
+      </button> 
+      <button  mat-button  routerLink="/CauseDeathForm">
+        <mat-icon> power_settings_new </mat-icon>
+        Cause of Death Form
+      </button>  -->
+      <!-- <button  mat-button  routerLink="/ClearanceForm">
+        <mat-icon> power_settings_new </mat-icon>
+        Clearance form
+      </button> 
+      <button  mat-button  routerLink="/ConsentForm">
+        <mat-icon> power_settings_new </mat-icon>
+        Consent Form
+      </button>  -->
+      <button mat-button routerLink="/ProgressReport">
+        <mat-icon> power_settings_new </mat-icon>
+        Visitor Pass
+      </button>
+      <!-- <button mat-button routerLink="/ProgressReport">
+        <mat-icon> power_settings_new </mat-icon>
+        Progress Report
+      </button> -->
+      <button mat-button routerLink="/PrintPrescription">
+        <mat-icon> power_settings_new </mat-icon>
+        Prescription
+      </button>
+      <button mat-button routerLink="/Discharge">
+        <mat-icon> power_settings_new </mat-icon>
+        Discharge Report
+      </button>
+
+
+    </mat-menu>
+  
+
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>&nbsp;{{Username}}
+    </button>
+    <mat-menu #menu="matMenu" class="text-center">
+      <mat-list>
+        <mat-list-item> <a routerLink="/home/profile" routerLinkActive="active">Profile</a> </mat-list-item>
+        <mat-list-item> <span class="btn btn-sm btn-danger" routerLink="/">Logout</span> </mat-list-item>
+
+      </mat-list>
+    </mat-menu>
+
+
+
+
+    <!-- <button mat-button routerLink="/">
+      <mat-icon> home </mat-icon>
+    </button> -->
+
+
+    <!-- <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+    <mat-icon>menu</mat-icon>
+  </button> -->
+    <!-- <button mat-icon-button [mat-menu-trigger-for]="menu" fxShow="true" fxHide.gt-sm>
+      <mat-icon>menu</mat-icon>Options
+    </button> -->
+
+
+
+  </span>
+
+  <span class="toolbar-spacer"></span>
+
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <!-- <button mat-button [routerLink]="['freshCase', 'Add']">
+      <mat-icon> home </mat-icon>
+      New case
+    </button> -->
+    <!-- <button mat-button [routerLink]="['SalesBill']">
+      <mat-icon style="color:greenyellow"> add_shopping_cart </mat-icon>
+      SBill
+    </button>
+    <button mat-button [routerLink]="['InventoryManagement']">
+      <mat-icon style="color:greenyellow"> add_shopping_cart </mat-icon>
+      INV
+    </button> -->
+    <button *ngIf="Username=='deepak'"
+      style="border-color: darkmagenta;color:white; border-radius: 80px;background-color:rgb(90, 73, 6);" mat-button
+      [routerLink]="['CompanyMasterAllData']">
+      CM
+    </button>
+    <button *ngIf='menuheaderDashboard' mat-button [routerLink]="['maindashboard']">
+      <mat-icon> dashboard </mat-icon>
+      Display Board
+    </button>
+    <button *ngIf='menuheaderDashboard' mat-button [routerLink]="['AppointmentDashboard']">
+      <mat-icon> dashboard </mat-icon>
+      Charts
+    </button>
+    <button *ngIf='menuheaderNewcase' mat-button (click)="addEditExpenseItem(null,null)">
+      <mat-icon style="color:greenyellow;"> gamepad </mat-icon>
+      New CASE
+    </button>
+    <button mat-button [routerLink]="['CaseDetails','']" *ngIf='menuheaderAllCase'>
+      <mat-icon style="color:rgb(21, 32, 3)"> gamepad </mat-icon>
+      All CASE Details
+    </button>
+    <!-- <button mat-button [routerLink]="['Farmaentry']">
+      <mat-icon style="color:greenyellow"> add_shopping_cart </mat-icon>
+      Farma
+    </button>
+    <button mat-button [routerLink]="['MasterBed']">
+      <mat-icon style="color:greenyellow"> add_shopping_cart </mat-icon>
+      Bed
+    </button> -->
+    <!-- <button mat-button [routerLink]="['AddQuestion']">
+      <mat-icon style="color:greenyellow"> add_shopping_cart </mat-icon>
+      Add Question
+    </button> -->
+
+
+
+    <!-- <button mat-button [routerLink]="['ReffersDetails']">
+      <mat-icon style="color:greenyellow"> add_to_queue </mat-icon>
+      Doctors entry
+    </button> -->
+
+    <button mat-button [routerLink]="['AppointmentDetails']" *ngIf='menuheaderAppointment'>
+      <mat-icon> view_list </mat-icon>
+      Appointment list
+    </button>
+
+
+    <button mat-button [routerLink]="['home/pass']">
+      <mat-icon> home </mat-icon>
+      Home
+    </button>
+
+    <!-- <button mat-button (click)="logout()">
+      <mat-icon> exit_to_app </mat-icon>
+      Logout
+    </button> -->
+
+  </div>
+
+  <mat-menu x-position="before" #menu="matMenu">
+
+
+
+    <button mat-menu-item routerLink="/AppointmentDashboard">
+      <mat-icon> power_settings_new </mat-icon>
+      Dashboard
+    </button>
+
+    <button mat-menu-item routerLink="/ReffersDetails">
+      <mat-icon style="color:greenyellow"> add_to_queue </mat-icon>
+      Doctors Entry
+    </button>
+    <button mat-menu-item routerLink="/BillManagement">
+      <mat-icon> gamepad </mat-icon>
+      Bill Management
+    </button>
+
+    <!-- <button mat-menu-item (click)="logout()">
+      <mat-icon> exit_to_app </mat-icon>
+      Logout
+    </button> -->
+  </mat-menu>
+
+  <div class="loginSection">
+    <button mat-button (click)="logout()">
+      Logout
+    </button>
+  </div>
+</mat-toolbar>
+
+
+<mat-sidenav-container class="example-container" autosize>
+  <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
+    (mouseleave)="mouseleave()" *ngIf="Username !== ''">
+    <mat-nav-list fxShow fxHide.lt-sm>
+
+
+      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" *ngIf='menuNo1'>
+        <span class="full-width" *ngIf="isExpanded || isShowing">
+          <button mat-button class="btnSize" [matMenuTriggerFor]="LabReports" #menuTrigger="matMenuTrigger"
+            (click)="isExpanded = !isExpanded || isShowing=!isShowing" class="parent">Appointment Module</button></span>
+        <mat-icon mat-list-icon>filter_1</mat-icon>
+        <!-- <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more
+        </mat-icon> -->
+      </mat-list-item>
+
+      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" *ngIf='menuNo2'>
+        <span class="full-width" *ngIf="isExpanded || isShowing">
+          <button mat-button class="btnSize" [matMenuTriggerFor]="LabReportsMaster" #menuTrigger="matMenuTrigger"
+            (click)="isExpanded = !isExpanded || isShowing=!isShowing" class="parent">Hospital Module</button></span>
+        <mat-icon mat-list-icon>filter_2</mat-icon>
+      </mat-list-item>
+
+      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" *ngIf='menuNo3'>
+        <span class="full-width" *ngIf="isExpanded || isShowing">
+          <button mat-button class="btnSize" [matMenuTriggerFor]="AccountSection" #menuTrigger="matMenuTrigger"
+            (click)="isExpanded = !isExpanded || isShowing=!isShowing" class="parent">Account Section</button></span>
+        <mat-icon mat-list-icon>filter_3</mat-icon>
+      </mat-list-item>
+
+      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" *ngIf='menuNo4'>
+        <span class="full-width" *ngIf="isExpanded || isShowing">
+          <button mat-button class="btnSize" [matMenuTriggerFor]="WorkEntrySection" #menuTrigger="matMenuTrigger"
+            (click)="isExpanded = !isExpanded || isShowing=!isShowing" class="parent">Manage User(All Staff) and
+            Job</button></span>
+        <mat-icon mat-list-icon>filter_4</mat-icon>
+      </mat-list-item>
+
+      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" *ngIf='menuNo5'>
+        <span class="full-width" *ngIf="isExpanded || isShowing">
+          <button mat-button class="btnSize" [matMenuTriggerFor]="InventorySaleSection" #menuTrigger="matMenuTrigger"
+            (click)="isExpanded = !isExpanded || isShowing=!isShowing" class="parent">Inventory & Billing
+            System</button></span>
+        <mat-icon mat-list-icon>filter_5</mat-icon>
+      </mat-list-item>
+
+      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" *ngIf='menuNo6'>
+        <span class="full-width" *ngIf="isExpanded || isShowing">
+          <button mat-button class="btnSize" [matMenuTriggerFor]="ReportingSection" #menuTrigger="matMenuTrigger"
+            (click)="isExpanded = !isExpanded || isShowing=!isShowing" class="parent">Reports</button></span>
+        <mat-icon mat-list-icon>filter_6</mat-icon>
+      </mat-list-item>
+
+      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" *ngIf='menuNo9'>
+        <span class="full-width" *ngIf="isExpanded || isShowing">
+          <!-- <button mat-button class="btnSize" [matMenuTriggerFor]="LabReportsMaster" #menuTrigger="matMenuTrigger"
+            (click)="isExpanded = !isExpanded || isShowing=!isShowing" class="parent">Pharmacy Entry Module</button> -->
+          <button mat-button [routerLink]="['CaseDetails','']">
+
+            All CASE Details
+          </button>
+        </span>
+        <mat-icon mat-list-icon>filter_0</mat-icon>
+      </mat-list-item>
+
+      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" *ngIf='menuNo7'>
+        <span class="full-width" *ngIf="isExpanded || isShowing">
+          <button mat-button class="btnSize" [matMenuTriggerFor]="CertificateSection" #menuTrigger="matMenuTrigger"
+            (click)="isExpanded = !isExpanded || isShowing=!isShowing" class="parent">Certificates</button></span>
+        <mat-icon mat-list-icon>filter_7</mat-icon>
+      </mat-list-item>
+
+      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" *ngIf='menuNo10'>
+        <span class="full-width" *ngIf="isExpanded || isShowing">
+          <!-- <button mat-button class="btnSize" [matMenuTriggerFor]="LabReportsMaster" #menuTrigger="matMenuTrigger"
+            (click)="isExpanded = !isExpanded || isShowing=!isShowing" class="parent">Pharmacy Entry Module</button> -->
+          <button mat-button [routerLink]="['TestDetailsPending']">
+
+            PathoLAB (Enter findings)
+          </button>
+        </span>
+        <mat-icon mat-list-icon>filter_0</mat-icon>
+      </mat-list-item>
+
+      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" *ngIf='menuNo8'>
+        <span class="full-width" *ngIf="isExpanded || isShowing">
+          <button mat-button class="btnSize" [matMenuTriggerFor]="OnlyPharma" #menuTrigger="matMenuTrigger"
+            (click)="isExpanded = !isExpanded || isShowing=!isShowing" class="parent">Pharmacy Options</button></span>
+        <mat-icon mat-list-icon>filter_0</mat-icon>
+      </mat-list-item>
+
+      <mat-menu #OnlyPharma="matMenu">
+
+        <button mat-button routerLink="/InventoryManagement">
+          <mat-icon> power_settings_new </mat-icon>
+          Inventory Master(Add/Update)
+        </button>
+        <button mat-button routerLink="/CaseFarmacyDetails">
+          <mat-icon> power_settings_new </mat-icon>
+          Pharmacy Credit bill
+        </button>
+        <button mat-button routerLink="/Farmaentry/jj">
+          <mat-icon> power_settings_new </mat-icon>
+          Pharmacy Cash bill
+        </button>
+        <button mat-button routerLink="/PharmacyBillReport">
+          <mat-icon> power_settings_new </mat-icon>
+          Pharmacy Credit/Cash Report
+        </button>
+        <button mat-button routerLink="/CreditCashBill">
+          <mat-icon> power_settings_new </mat-icon>
+          Display Credit/Cash Bills
+        </button>
+        <button mat-button routerLink="/PharmaDoctorCommission">
+          <mat-icon> power_settings_new </mat-icon>
+          Doctor Commission
+        </button>
+        <!-- <button  mat-button  routerLink="/PharmacyBillReport">
+          <mat-icon> power_settings_new </mat-icon>
+          Pharmacy Report Datewise report
+        </button>  -->
+        <button mat-button [routerLink]="['UserReg','usrreg']">
+          <mat-icon> view_list </mat-icon>
+          Change Password
+        </button>
+        <!-- <button mat-button [routerLink]="['UserReg','pwd']" >
+          <mat-icon> view_list </mat-icon>
+          Change Password
+        </button> -->
+
+
+      </mat-menu>
+      <!-- 
+      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" *ngIf='menuNo8'>
+        <span class="full-width" *ngIf="isExpanded || isShowing">
+          
+            <button mat-button [routerLink]="['CaseFarmacyDetails']">
+              
+              Pharmacy Credit bill(Supply Medicine)
+            </button>
+            
+          </span>
+       <mat-icon mat-list-icon>filter_0</mat-icon>       
+      </mat-list-item> -->
+
+
+
+
+
+
+      <mat-menu #menu="matMenu" class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
+        <span>
+          <button mat-menu-item>
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+            ........
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Logout</span>
+          </button>
+        </span>
+      </mat-menu>
+
+
+      <mat-menu #LabReports="matMenu">
+
+        <!-- <button mat-menu-item [matMenuTriggerFor]="AddnewLabReports">Add New</button> -->
+        <button mat-menu-item [matMenuTriggerFor]="MorebReports">All Options..</button>
+      </mat-menu>
+
+      <mat-menu #MorebReports="matMenu">
+        <button mat-button [routerLink]="['AppointmentDashboard']">
+          <mat-icon> dashboard </mat-icon>
+          Appointment Dashboard
+        </button>
+        <button mat-button [routerLink]="['BillManagement']" *ngIf='showMenu'>
+          <mat-icon style="color:greenyellow"> add_shopping_cart </mat-icon>
+          Create Appointment
+        </button>
+
+
+        <!-- <button mat-button [routerLink]="['DoctorAvail']" *ngIf='showMenu'>
+          <mat-icon style="color:green"> check_availability </mat-icon>
+          Doctor Availability
+        </button>
+
+
+
+        <button mat-button [routerLink]="['ReffersDetails']" *ngIf='showMenu'>
+          <mat-icon style="color:green"> add_to_queue </mat-icon>
+          Doctors Entry
+        </button> -->
+
+
+
+        <button mat-button [routerLink]="['AppointmentDetails']">
+          <mat-icon> view_list </mat-icon>
+          Appointment Details
+        </button>
+
+
+        <!-- <button mat-button [routerLink]="['LabTestInd', 'Add','blood']" *ngIf='showMenu'>
+          <mat-icon> view_list </mat-icon>
+          Lab Test Report(CASE)
+        </button> -->
+
+
+        <!-- <button mat-button [routerLink]="['barChart']" *ngIf='showMenu'>
+          <mat-icon> view_list </mat-icon>
+          Bar Chart
+        </button>
+        <button mat-button [routerLink]="['pieChart']" *ngIf='showMenu'>
+          <mat-icon> view_list </mat-icon>
+          Pie Chart
+        </button> -->
+
+
+
+
+      </mat-menu>
+      <mat-menu #AccountSection="matMenu">
+        <button mat-button routerLink="/AccountBook">
+          <mat-icon> power_settings_new </mat-icon>
+          Income/Expense Management
+        </button>
+        <button mat-button routerLink="/AccountBook">
+          <mat-icon> power_settings_new </mat-icon>
+          Balance sheet
+        </button>
+        <button mat-button routerLink="/AccountBookCategory">
+          <mat-icon> power_settings_new </mat-icon>
+          Balance sheet(Dept. wise) 
+        </button>
+        <button mat-button routerLink="/Category">
+          <mat-icon> power_settings_new </mat-icon>
+          Category Master
+        </button>
+      </mat-menu>
+
+      <mat-menu #WorkEntrySection="matMenu">
+        <button mat-button [routerLink]="['ReffersDetails']">
+          <mat-icon><span style="color:red"> add_box </span></mat-icon>
+          Staff Management
+        </button>
+        <button mat-button [routerLink]="['LeaveMangement']">
+          <mat-icon><span style="color:red"> add_box </span></mat-icon>
+          Leave Management
+        </button>
+        <button mat-button routerLink="/Followup">
+          <mat-icon> power_settings_new </mat-icon>
+          Job Entry(Add/Update)
+        </button>
+
+        <button mat-button routerLink="/Category">
+          <mat-icon> power_settings_new </mat-icon>
+          Category Master
+        </button>
+        <button mat-button [routerLink]="['UserReg','usrreg']" *ngIf='showMenu'>
+          <mat-icon> view_list </mat-icon>
+          User Management
+        </button>
+        <!-- <button mat-button [routerLink]="['UserReg','pwd']" *ngIf='showMenu'>
+          <mat-icon> view_list </mat-icon>
+          Change Password
+        </button> -->
+        <button mat-button routerLink="/UserList" *ngIf="Username=='deepak'">
+          <mat-icon> power_settings_new </mat-icon>
+          All User List
+        </button>
+        <button mat-button [routerLink]="['MasterBed']" *ngIf='showMenu'>
+          <mat-icon style="color:rgb(27, 29, 25)"> add_shopping_cart </mat-icon>
+          Bed Management
+        </button>
+
+        <button mat-button [routerLink]="['BarCode']" *ngIf='showMenu'>
+          <mat-icon style="color:rgb(0, 13, 128);"> waves</mat-icon>
+          BarCode Configuration
+        </button>
+      </mat-menu>
+
+
+      <mat-menu #InventorySaleSection="matMenu">
+        <button mat-button routerLink="/InventoryDashboard">
+          <mat-icon> power_settings_new </mat-icon>
+          InventoryDashboard
+        </button>
+        <button mat-button routerLink="/InventoryManagement">
+          <mat-icon> power_settings_new </mat-icon>
+          Inventory Master(Add/Update)
+        </button>
+        <button mat-button [routerLink]="['Vaccine']" *ngIf='showMenu'>
+          <mat-icon style="color:red;"> touch_app </mat-icon>
+          Vaccine Management
+        </button>
+
+        <button mat-button routerLink="/SalesBill">
+          <mat-icon> power_settings_new </mat-icon>
+          Sales System
+        </button>
+        <button mat-button routerLink="/Farmaentry/jj">
+          <mat-icon> power_settings_new </mat-icon>
+          Pharmacy Cash System
+        </button>
+
+        <button mat-button routerLink="/CreditCashBill">
+          <mat-icon> power_settings_new </mat-icon>
+          Display Credit/Cash Bills
+        </button>
+        <button mat-button routerLink="/PharmaDoctorCommission">
+          <mat-icon> power_settings_new </mat-icon>
+          Doctor Commission
+        </button>
+      </mat-menu>
+
+      <mat-menu #ReportingSection="matMenu">
+        <button mat-button routerLink="/BedAvailability">
+          <mat-icon> power_settings_new </mat-icon>
+          Bed Availability
+        </button>
+        <button mat-button routerLink="/BedAdmissionReport">
+          <mat-icon> power_settings_new </mat-icon>
+          BedAdmission Report
+        </button>
+        <button mat-button routerLink="/ExpenseIncome">
+          <mat-icon> power_settings_new </mat-icon>
+          Expense Income Datewise
+        </button>
+
+        <button mat-button routerLink="/PharmacyBillReport">
+          <mat-icon> power_settings_new </mat-icon>
+          Pharmacy Report Datewise
+        </button>
+        <button mat-button routerLink="/Consultation">
+          <mat-icon> power_settings_new </mat-icon>
+          Consultation Form
+        </button>
+        <button mat-button routerLink="/Continuation">
+          <mat-icon> power_settings_new </mat-icon>
+          Continuation Form
+        </button>
+        <button mat-button routerLink="/NursesChart">
+          <mat-icon> power_settings_new </mat-icon>
+          Nurses Chart
+        </button>
+        <button mat-button routerLink="/InOutChart">
+          <mat-icon> power_settings_new </mat-icon>
+          Input Output Chart
+        </button>
+        <button mat-button routerLink="/DailyProgress">
+          <mat-icon> power_settings_new </mat-icon>
+          Daily Progress Chart
+        </button>
+        <button mat-button routerLink="/Dailyprogress">
+          <mat-icon> power_settings_new </mat-icon>
+          Daily progress
+        </button>
+        <button mat-button routerLink="/PatientReg">
+          <mat-icon> power_settings_new </mat-icon>
+          Patient Registration
+        </button>
+       
+        <!-- <button  mat-button  routerLink="/BloodRequisitionForm">
+          <mat-icon> power_settings_new </mat-icon>
+          Blood Requisition form
+        </button> 
+        <button  mat-button  routerLink="/CauseDeathForm">
+          <mat-icon> power_settings_new </mat-icon>
+          Cause of Death Form
+        </button>  -->
+        <!-- <button  mat-button  routerLink="/ClearanceForm">
+          <mat-icon> power_settings_new </mat-icon>
+          Clearance form
+        </button> 
+        <button  mat-button  routerLink="/ConsentForm">
+          <mat-icon> power_settings_new </mat-icon>
+          Consent Form
+        </button>  -->
+        <button mat-button routerLink="/ProgressReport">
+          <mat-icon> power_settings_new </mat-icon>
+          Visitor Pass
+        </button>
+        <!-- <button mat-button routerLink="/ProgressReport">
+          <mat-icon> power_settings_new </mat-icon>
+          Progress Report
+        </button> -->
+        <button mat-button routerLink="/PrintPrescription">
+          <mat-icon> power_settings_new </mat-icon>
+          Prescription
+        </button>
+        <button mat-button routerLink="/Discharge">
+          <mat-icon> power_settings_new </mat-icon>
+          Discharge Report
+        </button>
+
+
+      </mat-menu>
+      <mat-menu #CertificateSection="matMenu">
+        <button mat-button routerLink="/BirthCertificate">
+          <mat-icon> power_settings_new </mat-icon>
+          Birth Certificate
+        </button>
+        <button mat-button routerLink="/Fitness">
+          <mat-icon> power_settings_new </mat-icon>
+          Fitness Certificate
+        </button>
+        <button mat-button routerLink="/InjuryDisability">
+          <mat-icon> power_settings_new </mat-icon>
+          Injury Disability
+        </button>
+        <button mat-button routerLink="/InjuryTemp">
+          <mat-icon> power_settings_new </mat-icon>
+          Injury Temporary
+        </button>
+
+
+      </mat-menu>
+
+      <mat-menu #LabReportsMaster="matMenu">
+
+        <!-- <button mat-menu-item [matMenuTriggerFor]="AddnewLabReports">Add New</button> -->
+        <button mat-menu-item [matMenuTriggerFor]="MorebReportsMaster">All Options..</button>
+      </mat-menu>
+
+      <mat-menu #MorebReportsMaster="matMenu">
+        <button mat-button [routerLink]="['freshCase', 'Add']">
+          <mat-icon style="color:green;"> gamepad </mat-icon>
+          New CASE
+        </button>
+        <button mat-button [routerLink]="['freshCaseTab', 'Add']">
+          <mat-icon style="color:green;"> gamepad </mat-icon>
+          New CASE(TAB)
+        </button>
+        <button mat-button [routerLink]="['HealthDashboard']" *ngIf='showMenu'>
+          <mat-icon> dashboard </mat-icon>
+          Test Dashboard
+        </button>
+        <button mat-button [routerLink]="['CaseDetails','']">
+          <mat-icon style="color:rgb(21, 32, 3)"> add_shopping_cart </mat-icon>
+          All CASE Details
+        </button>
+        <button mat-button [routerLink]="['Vaccine']" *ngIf='showMenu'>
+          <mat-icon style="color:red;"> touch_app </mat-icon>
+          Vaccine Management
+        </button>
+        <button mat-button [routerLink]="['TestCategory']" *ngIf='showMenu'>
+          <mat-icon style="color:red;"> touch_app </mat-icon>
+          Test Category
+        </button>
+        <button mat-button [routerLink]="['UnitsCategory']">
+          <mat-icon> dns icon </mat-icon>
+          Units Category
+        </button>
+        <button mat-button [routerLink]="['CatagoryMaster']">
+          <mat-icon> assignment </mat-icon>
+          Master Category Entry
+        </button>
+        <button mat-button routerLink="/Category">
+          <mat-icon> power_settings_new </mat-icon>
+          Add Individual Category
+        </button>
+        <button mat-button [routerLink]="['PatientDetails']">
+          <mat-icon> view_list </mat-icon>
+          Patient Details
+        </button>
+        <button mat-button [routerLink]="['DoctorAvail']" *ngIf='showMenu'>
+          <mat-icon><span style="color:green">contact_mail </span> </mat-icon>
+          Doctor Availability
+        </button>
+
+
+
+        <button mat-button [routerLink]="['TestDetailsPending']">
+          <mat-icon> view_list </mat-icon>
+          Pending Test Details
+        </button>
+        <button mat-button [routerLink]="['FarmacyDetailsPending']">
+          <mat-icon> view_list </mat-icon>
+          Pending Pharmacy Details
+        </button>
+
+
+        <button mat-button [routerLink]="['AllLabtest']">
+          <mat-icon style="color:rgb(44, 7, 104);"> center_focus_strong </mat-icon>
+          Show All PathoLab Test
+        </button>
+
+        <button mat-button [routerLink]="['LabtestParameter', 'Add']" *ngIf='showMenu'>
+          <mat-icon> view_list </mat-icon>
+          Add PathoLab Test & Parameters
+        </button>
+
+        <button mat-button [routerLink]="['GroupTest']">
+          <mat-icon style="color:rgb(44, 7, 104);"> center_focus_strong </mat-icon>
+          All Group Test
+        </button>
+
+        <button mat-button [routerLink]="['ComissionReport']" *ngIf='showMenu'>
+          <mat-icon style="color:green;"> center_focus_strong </mat-icon>
+          Comission Report
+        </button>
+
+        <!-- <button mat-button [routerLink]="['LabTestReport']" *ngIf='showMenu'>
+          <mat-icon style="color:green;"> center_focus_strong </mat-icon>
+          Lab Test Report
+        </button> -->
+        <!-- <button mat-button [routerLink]="['CaseFarmacyDetails']" *ngIf='!showMenu || FarmaRole'>
+          <mat-icon style="color:rgb(27, 29, 25)"> add_shopping_cart </mat-icon>
+          Pharmacy Credit bill(Supply Medicine)
+        </button>
+        <button  mat-button  routerLink="/SalesBill"  *ngIf='!showMenu || FarmaRole'>
+          <mat-icon> power_settings_new </mat-icon>
+          Pharmacy Cash bill
+        </button>  -->
+        <!-- <button mat-button [routerLink]="['Farmaentry','Add']" *ngIf='showMenu'>
+          <mat-icon style="color:rgb(19, 64, 189)"> add_shopping_cart </mat-icon>
+          Farma Management
+        </button> -->
+
+
+        <!-- <button mat-button [routerLink]="['AppointmentDetails']">
+          <mat-icon> developer_board </mat-icon>
+          Appointment Details
+        </button>
+
+        <button mat-button [routerLink]="['AppointmentDashboard']">
+          <mat-icon style="color:green;"> insert_chart_outlined </mat-icon>
+          Appointment Dashboard
+        </button> -->
+
+      </mat-menu>
+
+
+      <mat-menu #AddnewLabReports="matMenu">
+        <button mat-menu-item>New Test</button>
+        <button mat-menu-item>New Test Pannel</button>
+        <button mat-menu-item>New Test Package</button>
+      </mat-menu>
+
+      <mat-menu #Cases="matMenu">
+        <button mat-menu-item>All Cases</button>
+        <button mat-menu-item>Patients</button>
+        <button mat-menu-item>Recipts</button>
+        <button mat-menu-item>Referal Doctors</button>
+      </mat-menu>
+
+      <mat-menu #invertebrates="matMenu">
+        <button mat-menu-item>Insects</button>
+        <button mat-menu-item>Molluscs</button>
+        <button mat-menu-item>Crustaceans</button>
+        <button mat-menu-item>Corals</button>
+        <button mat-menu-item>Arachnids</button>
+        <button mat-menu-item>Velvet worms</button>
+        <button mat-menu-item>Horseshoe crabs</button>
+      </mat-menu>
+
+
+    </mat-nav-list>
+
+
+    <mat-nav-list>
+    </mat-nav-list>
+
+
+  </mat-sidenav>
+
+
+  <div class="example-sidenav-content">
+    <!-- <img style="height:40px;width:20vh;padding:0px;margin:0px;" src="assets/logo.png" /> -->
+
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-sidenav-container>
+
+<mat-toolbar color="primary" class="example-toolbar">
+
+  <span>
+
+    <button mat-button routerLink="/"><span style="color:white;font-size:xx-small;"> © 2020 Systemdice, all rights
+        reserved. &nbsp;</span></button>
+
+
+  </span>
+
+
+
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+
+    <span style="color:white;font-size:xx-small;"> Version:2.8 | <b><u>Documentation</u></b> | &nbsp;</span>
+    <span style="color:yellow;font-size:xx-small;">
+      UPGRADE TO VERSION 3.1
+    </span>
+  </div>
+
+  <span class="toolbar-spacer"></span>
+  <div class="loginSection">
+    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+
+      <a href="#" class="fa fa-facebook"></a>
+      <a href="#" class="fa fa-google"></a>
+      <a href="#" class="fa fa-linkedin"></a>
+    </div>
+  </div>
+
+
+
+
+
+</mat-toolbar>

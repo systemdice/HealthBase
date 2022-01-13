@@ -1,0 +1,22 @@
+mat-form-field {
+    width: 90%;
+    transition: none;
+  }
+
+  select { transition: none; }
+
+  .gapDevider{
+
+    padding-top:5px;
+    padding-bottom:5px;
+
+  }
+
+  h1 {
+    color: #369;
+    font-size: 250%;
+}
+
+.text {
+    font-size: 12px;
+}

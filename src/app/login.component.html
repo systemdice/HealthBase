@@ -1,0 +1,111 @@
+<!-- <mat-card>
+	<mat-card-title style="background-color:rgb(170, 208, 241)">Login  &nbsp;&nbsp;<span formControlName="ccid" style="font-size: small;">({{CompID}})</span></mat-card-title>
+	<mat-card-content>
+		<form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
+			<p>
+				<mat-form-field>
+					<input type="text" matInput placeholder="User Name" formControlName="username">
+			</mat-form-field>
+			<mat-form-field>
+				<input type="password" matInput placeholder="Password" formControlName="password">
+		</mat-form-field>
+			</p>
+			<p *ngIf="error" class="error">
+				{{ error }}
+			</p>
+			
+			<div style="float: right;">
+				
+					<button mat-button  type="submit" style="font-size: x-small;color:green;">
+						<mat-icon style="color:red;font-weight: bold;"> exit_to_app </mat-icon> 
+						<button  type="submit" class="btn btn-success"> Login to System</button>
+					  </button>
+				<button type="submit" mat-button>Start</button> 
+			</div>
+		</form>
+
+		
+	</mat-card-content>
+</mat-card> -->
+
+<!-- {{users|json}} -->
+
+<!-- <div class="col-lg-3 col-md-6">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-xs-3">
+					<i class="fa fa-clock-o fa-5x"></i>
+				</div>
+				<div class="col-xs-9 text-right">
+					<div class="huge">Submitted</div>
+					<div>TimeSheet Submitted Count!</div>
+				</div>
+			</div>
+		</div>
+		<a target="_blank" href="/AllTimeSheet/SubmittedTimeSheet">
+			<div class="panel-footer">
+				<span class="pull-left">View Details</span>
+				<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+				<div class="clearfix"></div>
+			</div>
+		</a>
+	</div>
+</div> -->
+
+<!-- <div class="container">
+	
+</div> -->
+
+<hr />
+<hr />
+<div class="container mx-auto col-md-5 col-lg-4 offset-md-2 loginform-box body" >
+	<form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off" >
+  
+	  <h2 class="text-center mb-3 login-title"> <b>Login</b> </h2>
+	  
+	  <hr/>
+	  <br/>
+  
+	  <div *ngIf="!!login_user_msg" [ngClass]="has_error ? 'alert alert-danger': 'alert alert-info'">{{login_user_msg}}</div>
+  
+	  <div class="row">
+		<mat-form-field class="col-sm-12">
+			<input type="text" matInput  placeholder="Enter your username" formControlName="username" minlength="2" required>
+		  <!-- <input matInput name="username" placeholder="Enter your username" ngModel autofocus minlength="2" required> -->
+		</mat-form-field>
+	  </div>
+  
+	  <div class="row">
+		<mat-form-field class="col-sm-12">
+			<input type="password" matInput placeholder="Password" formControlName="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required>
+		  <!-- <input matInput name="password" ngModel placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required> -->
+		  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+		</mat-form-field>
+	  </div>
+
+
+	  <div class="row">
+		<div class="col-sm-6">
+			<b>Licence Type:&nbsp;</b> {{ProductType}} 
+		</div>
+		
+		<div sclass="col-sm-6" style="float: left;margin-left: auto; 
+		margin-right: 0;">
+				<!-- <button  type="submit" class="btn btn-success"> Login to System</button> -->
+			<button   type="submit" class="btn btn-success myButton" style="border-radius: 20px;" > Login to System
+				<!-- <mat-icon style="color:red;font-weight: bold;"> exit_to_app </mat-icon>  -->
+				
+			  </button>
+		<!-- <button type="submit" mat-button>Start</button> -->
+	</div>
+	  </div>
+  
+  
+	</form>
+  
+  </div>
+  <hr />
+  <hr />
+
+

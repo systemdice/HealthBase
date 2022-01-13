@@ -1,0 +1,115 @@
+p {
+    font-family: Lato;
+  }
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+  h1 {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  form {
+    display: grid;
+    grid-template-columns: 1fr 10px 1fr;
+    grid-template-areas:
+      "val1 sign val2"
+      "symb symb symb"
+      "ans ans ans";
+    grid-gap: 2px;
+    grid-auto-rows: 1fr;
+    margin: auto;
+    width: 300px;
+    background: #fafafa;
+    border: 1px solid #ccc;
+    padding: 5px
+  }
+  input {
+    outline: none;
+    border: none;
+    font-weight: bold;
+  }
+  .symbols {grid-area: symb;font-size: larger;}
+  #val1 {
+    grid-area: val1;
+    background: rgb(205, 205, 241);
+    font-family: sans-serif;
+    color: black;
+    padding-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #val2 {
+    grid-area: val2;
+    background: rgb(238, 201, 201);
+    font-family: sans-serif;
+    color: black;
+    padding-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #sign {grid-area: sign}
+  #ans {
+    grid-area: ans;
+    background: #eee;
+    font-weight: bold;
+  }
+  .ansSign {
+    grid-area: ans;
+    background: #eee;
+    font-weight: bold;
+  }
+  .symbols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+    grid-auto-rows: 30px;
+    grid-gap: 0.75px;
+    font-size: larger;
+  }
+  .symbols input {
+    background: #333;
+    color: #fafafa;
+    cursor: pointer;
+  }
+  #sign {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1.5rem;
+  }
+  
+  #ans{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    text-align:center;
+    color: #333;
+    font-family: sans-serif;
+    font-size: 16px;
+  }
+  
+  input::placeholder {
+    color: black;
+  }
+
+  button{
+      font-weight: bold;
+      font-size: large;
+  }
+
+  .close-button{
+    float: right;
+    top:-4px;
+    right:-24px;
+  }
+  
+  .close-icon {
+    transition: 1s ease-in-out;
+  }
+  body {
+    position: fixed;
+  }

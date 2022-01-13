@@ -1,0 +1,97 @@
+
+ <!-- {{VaccineDetailsVisit.value|json}} -->
+ <form [formGroup]="VaccineDetailsVisit">
+    <!-- {{objectRoomType|json}}
+  
+    <br/>-->
+    <!-- {{data1|json}}  -->
+   
+      <div formArrayName="teachersVaccineDetailsVisit">
+    
+        <div *ngFor="let teacher of teachers().controls; let ti=index">
+            <div  [formGroupName]="ti" class="container1" >
+    
+              
+  
+                <mat-form-field fxFlex>
+                    <mat-label>Select a Vaccine</mat-label>
+                    <!-- <mat-select formControlName="BedCategory" (selectionChange)="onBookChangeMainBed($event,ti)"> -->
+                      <mat-select formControlName="VaccineName" (selectionChange)="onBookChangeMainBed($event,ti)" >
+                      <mat-option>--</mat-option>
+                      <mat-option *ngFor="let expense of VaccineCategories" [value]="expense.VaccineName">{{expense.VaccineName}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex >
+                  <mat-label>Brand Name</mat-label>
+                  <input matInput placeholder="Brand Name" value="0" formControlName="BrandName">
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                  <mat-label>Company Name</mat-label>
+                  <input matInput placeholder="Company Name" value="0" formControlName="CompanyName">
+                </mat-form-field> 
+
+                <mat-form-field fxFlex style="width:50px" >
+                  <mat-label>Quantity</mat-label>
+                  <input matInput placeholder="Quantity" value="0" formControlName="Quantity" readonly (input)="onTotalKMCalculation($event,ti)">
+                </mat-form-field> 
+
+                <mat-form-field fxFlex style="width:70px" >
+                  <mat-label>Unit</mat-label>
+                  <input matInput placeholder="Unit" value="0" formControlName="Unit" >
+                </mat-form-field> 
+                <mat-form-field fxFlex >
+                  <mat-label>Batch Number</mat-label>
+                  <input matInput placeholder="Batch Number" value="0" formControlName="BatchNumber">
+                </mat-form-field> 
+                <mat-form-field fxFlex style="width:70px">
+                  <mat-label>Expiry</mat-label>
+                  <input matInput placeholder="Expiry" value="0" formControlName="Expiry">
+                </mat-form-field> 
+
+             
+               
+                <mat-form-field fxFlex style="width:150px">
+                  <mat-label>Admission&nbsp;Date</mat-label>
+                  <input matInput [matDatepicker]="StartDate1" placeholder="Admission Date" formControlName="StartDate"                               
+                   >
+                  <mat-datepicker-toggle matSuffix [for]="StartDate1"></mat-datepicker-toggle>
+                  <mat-datepicker #StartDate1></mat-datepicker>
+                </mat-form-field>
+  
+              
+                <mat-form-field fxFlex style="width:70px" *ngIf="false">
+                  <mat-label>MRP</mat-label>
+                  <input matInput placeholder="MRP" value="0" formControlName="MRP" readonly>
+                </mat-form-field>
+                
+                <mat-form-field fxFlex style="width:70px">
+                  <mat-label>Amount</mat-label>
+                  <input matInput placeholder="Amount" value="0" formControlName="Amount">
+                </mat-form-field>
+                
+              
+                
+                
+              <span style="color:#9F000F" class="btn">
+                
+                <button type="button" class="btn btn-sm btn-success" (click)="addTeacher(ti)" >
+                    &#10003;&nbsp;Add</button>&nbsp;
+
+                    <!-- hidden Dlete button because once we applied then it updated the stock. If we delete then balnce count will be disturbed.
+                    Still if we need to keep delete then here we need to put logic that, increase the stoct with amount of deleted item.
+                    Code is in freshcase submit method (createstudent) -->
+                <button type="button" class="btn btn-sm btn-danger" *ngIf="false"
+                    (click)="removeTeacher(ti)"> &#x2717;&nbsp;Del</button>&nbsp;
+            </span>
+                   
+        
+              </div>
+     
+            
+        </div>
+      </div>
+     
+      
+    
+    </form>

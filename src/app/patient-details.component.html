@@ -1,0 +1,124 @@
+
+<!-- app.component.html -->
+<h3>Patient Details</h3>
+<div class="example-header">
+  <div fxFlex>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" name="filterVal" [(ngModel)]="filterVal">
+    </mat-form-field>
+  </div>
+  <div fxFlex>
+    <button mat-icon-button color="primary"  fxHide.gt-sm  matTooltip="Add a new entry"
+              matTooltipPosition="below" (click)="openDialog('Add',{},'','Add')">
+                  <mat-icon  aria-label="Example icon-button with a heart icon">add</mat-icon> Add
+                </button> 
+  </div>
+   
+  </div>
+  
+  <div class="example-container mat-elevation-z8">
+
+    <!-- <button mat-button (click)=(click)="openDialog('Add',{},element.UnqueID,'Add')" mat-flat-button color="primary">Add Row</button> -->
+  
+    <mat-table [dataSource]="dataSource" matSort #mytable class="my-table mat-elevation-z8">
+
+           <!-- Id Column -->
+           <ng-container matColumnDef="UnqueID">
+            <mat-header-cell *matHeaderCellDef  mat-sort-header> Patient ID </mat-header-cell>
+            <mat-cell *matCellDef="let element"><span  class="mobile-label ">Patient ID:</span> {{element.UnqueID}} </mat-cell>
+          </ng-container>
+          
+          <!-- Id Column -->
+        <!-- <ng-container matColumnDef="Title">
+            <mat-header-cell *matHeaderCellDef  mat-sort-header> Title </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Title}} </mat-cell>
+          </ng-container> -->
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+        <!-- Id Column -->
+        <!-- <ng-container matColumnDef="UserName">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header> UserName </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.UserName}} </mat-cell>
+        </ng-container> -->
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="FirstName">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header> FirstName </mat-header-cell>
+          <mat-cell *matCellDef="let element"> <span  class="mobile-label ">First Name:</span>{{element.FirstName}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="LastName">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header> LastName </mat-header-cell>
+          <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Last Name:</span>{{element.LastName}} </mat-cell>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="Year">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header> Year </mat-header-cell>
+          <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Year:</span>{{element.Year}} </mat-cell>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="Month">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header> Month </mat-header-cell>
+          <mat-cell *matCellDef="let element"><span  class="mobile-label ">Month:</span> {{element.Month}} </mat-cell>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="Days">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header> Days </mat-header-cell>
+          <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Days:</span>{{element.Days}} </mat-cell>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="Gender">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header> Gender </mat-header-cell>
+          <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Gender:</span>{{element.Gender==1?'Male':'Female'}} </mat-cell>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="Email">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header> Email </mat-header-cell>
+          <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Email:</span>{{element.Email}} </mat-cell>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="ContactNumber">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header> ContactNumber </mat-header-cell>
+          <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Phone:</span>{{element.ContactNumber}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Address">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header> Address </mat-header-cell>
+          <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Address:</span>{{element.Address}} </mat-cell>
+        </ng-container>
+    
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef > Action 
+              <button mat-icon-button color="primary"  matTooltip="Add a new entry"
+              matTooltipPosition="below" (click)="openDialog('Add',{},'','Add')">
+                  <mat-icon  aria-label="Example icon-button with a heart icon">add</mat-icon> Add
+                </button> 
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="action-link">
+  
+              <button mat-icon-button color="accent" (click)="openDialog('Update',element,element.UnqueID,'Update')">
+                  <mat-icon matTooltip="Edit the entry" matTooltipPosition="below" aria-label="Edit">edit</mat-icon>
+                </button>
+        
+                <button mat-icon-button color="accent" (click)="openDialog('Delete',element,element.UnqueID,'Delete')">
+                  <mat-icon matTooltip="Delete the entry" matTooltipPosition="below" aria-label="Delete">delete</mat-icon>
+                </button>
+  
+               
+            <!-- <a (click)="openDialog('Update',element)">Edit</a> | 
+            <a (click)="openDialog('Delete',element)">Delete</a>   -->
+          </mat-cell>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[15, 20, 30, 100]"></mat-paginator>
+  
+  </div>
+
+
+  
+

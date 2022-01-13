@@ -1,0 +1,731 @@
+<div class="container-fluid">
+<form [formGroup]="teachersForm">
+   <h3 *ngIf="!CashBilling"> Medicine supplied for patient Mr./Ms. <span style="color:blue">{{PatientName}}</span>,
+        Case ID is <span style="color:blue">{{newid}}</span><strong style="color:#0094ff"> </strong></h3>
+   
+    
+    <div class="row" >
+        <div class="col-sm-8">
+            <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+
+                <mat-form-field fxFlex>
+                    <mat-label> <span style="color:red;">* Reference ID:</span></mat-label>
+                    <input matInput style="color:red;" placeholder="* Case ID" formControlName="CaseID"
+                        (keyup.enter)="sendit($event.target.value)">
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                    <mat-label>Bill No:</mat-label>
+                    <input matInput placeholder="Bill No" formControlName="BillNo">
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                    <mat-label>Name:</mat-label>
+                    <input matInput placeholder="Name" formControlName="CustomerName">
+                </mat-form-field>
+
+
+                <!-- <mat-form-field fxFlex>
+                  <mat-label>Patient ID:</mat-label>
+                  <input matInput placeholder="Name" formControlName="Patientid">
+              </mat-form-field> -->
+                <mat-form-field fxFlex>
+                    <mat-label>BilledBy:</mat-label>
+                    <input matInput placeholder="BilledBy" formControlName="BilledBy">
+                </mat-form-field>
+
+
+
+            </div>
+            <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+                <mat-form-field fxFlex>
+                    <mat-label>Patient Address</mat-label>
+                    <input matInput placeholder="Address" formControlName="Address">
+                </mat-form-field>
+
+                <mat-form-field fxFlex>
+                    <mat-label>PhoneNumber</mat-label>
+                    <input matInput placeholder="PhoneNumber" formControlName="PhoneNumber"
+                        (change)="PopulateCustomerData($event)">
+                </mat-form-field>
+
+
+                <mat-form-field fxFlex>
+                    <mat-label>Bed Detail</mat-label>
+                    <input matInput placeholder="Bed Details" formControlName="bedDetails">
+                </mat-form-field>
+
+                <mat-form-field fxFlex>
+                    <mat-label>Case Status</mat-label>
+                    <input matInput placeholder="Bed Details" formControlName="extra">
+                </mat-form-field>
+
+            </div>
+
+            <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+
+                <mat-form-field fxFlex>
+                    <mat-label>Refrerred By</mat-label>
+                    <input matInput placeholder="Send By" formControlName="refferDoctor">
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                    <mat-label>Department</mat-label>
+                    <input matInput placeholder="Department" formControlName="department">
+                </mat-form-field>
+
+                <mat-form-field fxFlex>
+                    <input matInput readonly [matDatepicker]="FollowupStartDate" placeholder="Billing Date"
+                        formControlName="BillingDate" (click)="FollowupStartDate.open()"
+                        (focus)="FollowupStartDate.open()" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="FollowupStartDate"></mat-datepicker-toggle>
+                    <mat-datepicker #FollowupStartDate></mat-datepicker>
+
+                    <!-- <mat-label>Billing Date</mat-label>
+                    <input matInput placeholder="BillingDate" formControlName="BillingDate"> -->
+                </mat-form-field>
+
+
+                <mat-checkbox fxFlex id="amateur" color="primary" formControlName="priorityStatus">Active Bill</mat-checkbox>
+
+            </div>
+
+            <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+
+                <mat-form-field fxFlex>
+                    <mat-label>Pharmacy Store User</mat-label>
+                    <mat-select formControlName="PharmacyStoreName" [disabled]='true'>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let relationship of PharmacyStore" [value]="relationship">{{relationship}}
+                        </mat-option>
+                    </mat-select>
+
+                </mat-form-field>
+                <mat-form-field fxFlex>
+
+                    <input matInput placeholder="Pharmacy Store Name" [value]='storename' readonly>
+
+                </mat-form-field>
+
+
+
+                <mat-form-field fxFlex>
+                    <mat-label>Hospital name</mat-label>
+                    <input matInput placeholder="Hospital Name" formControlName="DeliveredHospital"
+                        (change)="PopulateCustomerData($event)">
+                </mat-form-field>
+
+                <mat-form-field >
+                    <mat-label>Mode Of Dispatch</mat-label>
+                    <mat-select formControlName="ModeOfDespach">
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let relationship of DespatchMode" [value]="relationship">{{relationship}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+            </div>
+
+            <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+
+
+               
+                <div fxFlex>
+                    <mat-form-field>
+                        <mat-label>Credit or Cash</mat-label>
+                        <mat-select formControlName="CeditStatus">
+                            <mat-option value='Credit'>Credit</mat-option>
+                            <mat-option value='Cash'>Cash</mat-option>
+                        </mat-select>
+                    </mat-form-field>           
+                </div>
+               
+                <div fxFlex>
+                    <mat-form-field fxFlex>
+                        <mat-label>Referring Doctor</mat-label>
+                        <mat-select formControlName="refferDoctor">
+                          <mat-option>--NA--</mat-option>
+                          <mat-option *ngFor="let option of referralMaster" [value]="option.FirstName">
+                            {{option.FirstName}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+                <div fxFlex>
+                    <span [ngShortcut]="'@cancel'" (click)="cancel()"></span>  
+                    <ng-shortcut></ng-shortcut> 
+                    <button mat-icon-button (click)="openInvestigationDialogNew('Add')">
+                        <mat-icon>menu</mat-icon> &nbsp; Add new Doctor(Ref)
+                      </button>         
+                </div>
+                <div fxFlex>
+                    <span style="color:blue;font-weight: bold;font-style: italic;" (click)="OpenCalculator()">
+                        <mat-icon matTooltip="Open Calculator" color="primary" >domain</mat-icon><u>CALCULATOR(F3)</u>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <h2>Medicines assigned:</h2>
+
+            <div class="ex3">
+                <table style="width:100%;border: 1px solid rgb(177, 176, 176);font-family: cursive;" cellspacing="0px"
+                    cellpadding="0px">
+
+
+                    <tbody>
+                        <tr
+                            style="height: 16px; background-color:rgb(136, 134, 134) ; color:#FFFFFF ;border: solid 1px #659EC7;font-family: Georgia, 'Times New Roman', Times, serif;">
+                            <th colspan='5' style="text-align:left;border: 1px solid black ;"><span
+                                    style="font-size: 15px;">R</span> <b>X</b></th>
+
+                        </tr>
+                        <tr
+                            *ngFor="let item of this.data11?.DoctortoPatientCommentMedicineReDevelop[0]?.medicines; let jOut = index">
+                            <td style="text-align:left;border: 1px solid rgb(187, 185, 185) ;">{{item.IndMedicineName}}
+                            </td>
+                            <td style="text-align:left;border: 1px solid rgb(192, 189, 189) ;">{{item.unit}}</td>
+                            <td style="text-align:left;border: 1px solid rgb(180, 178, 178) ;">{{item.noOfTimes}}</td>
+                            <td style="text-align:left;border: 1px solid rgb(192, 190, 190) ;">{{item.noOfDays}}</td>
+                            <td style="text-align:left;border: 1px solid rgb(158, 157, 157) ;">{{item.whichTime}}</td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+                <!--                 
+                <mat-form-field fxFlex>
+                    <span matPrefix style="color:blue"></span>
+                    <textarea matInput rows="8" readonly style="background-color: rgb(217, 224, 224);"  placeholder="Medicine assigned" formControlName="DoctorCommentsHL"></textarea>
+                
+                     
+                  </mat-form-field> -->
+
+
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row" *ngIf="CashBilling"> -->
+    <div class="row" *ngIf="false">
+        <div class="col-sm-8">
+            <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+                Search the bill:
+                <mat-form-field fxFlex>
+                    <mat-label> <span style="color:red;">* Reference ID:</span></mat-label>
+                    <input matInput style="color:red;" placeholder="* Case ID" formControlName="CaseID"
+                        (keyup.enter)="sendit($event.target.value)">
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                    <mat-label> <span style="color:red;">* Patient Name:</span></mat-label>
+                    <input matInput style="color:red;" placeholder="* Case ID" formControlName="CustomerName"
+                        (keyup.enter)="sendit($event.target.value)">
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                    <mat-label>Age:</mat-label>
+                    <input matInput placeholder="Phone No" formControlName="PhoneNumber">
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                    <mat-label>Sex:</mat-label>
+                    <input matInput placeholder="Address" formControlName="Address">
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                    <mat-label>Reffered Doctor Name:</mat-label>
+                    <input matInput placeholder="Doctor name" formControlName="refferDoctor">
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                    <mat-label>Bill:</mat-label>
+                    <input matInput placeholder="Bill No" formControlName="BillNo">
+                </mat-form-field>
+
+               
+
+                <!-- <mat-form-field fxFlex>
+                  <mat-label>Patient ID:</mat-label>
+                  <input matInput placeholder="Name" formControlName="Patientid">
+              </mat-form-field> -->
+                <mat-form-field fxFlex>
+                    <mat-label>BilledBy:</mat-label>
+                    <input matInput placeholder="BilledBy" formControlName="BilledBy">
+                </mat-form-field>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div formArrayName="teachers">
+
+        <div>
+
+
+            <hr style="padding:0px;margin:0px;" />
+            <p *ngIf="!Inventory"><em>Loading Inventory Details please Wait ! ...</em></p>
+            <table id="tblContainer" style='width: 99%;table-layout:fixed;'>
+
+                <tr>
+                    <td>
+                        <hr style="height: 1px;color: #123455;background-color: #d55500;border: none;color: #d55500;" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+
+                        <table class="table table-bordered table-hover" id="tab_logic" 
+                            style=" border:2px #6D7B8D; padding:5px;width:99%;table-layout:fixed;"
+                            cellpadding="2" cellspacing="2" *ngIf="Inventory">
+                            <thead>
+                            <tr
+                                style="height: 25px; background-color:#336699 ; color:#FFFFFF ;border: solid 1px #659EC7;">
+                                <th width="5%" layout-align="left left">SlNo.(ItemID)</th>
+                                <th *ngIf="false" width="7%" layout-align="left left">Date&Time</th>
+                                <th width="4%" layout-align="left left">HSN</th>
+                                <th width="5%" layout-align="left left">BatchNumber</th>
+                                <th width="4%" layout-align="left left">Expiry</th>
+                                <th width="12%" layout-align="left left">Select Item</th>
+                                <th width="10%" layout-align="left left">Item Name</th>
+                                <th width="3%" layout-align="left left">UOM</th>
+                                <th width="3%" layout-align="left left">Qty</th>
+                                <th width="4%" layout-align="left left">Price <span style="color:white">(&#8377;)</span> </th>
+                                <th width="4%" layout-align="left left">Discount<span style="color:white">(%)</span></th>
+                                <th width="3%" layout-align="left left">CGST<span style="color:white">(%)</span></th>
+                                <th width="3%" layout-align="left left">Amt<span style="color:white">(₹)</span></th>
+                                <th width="3%" layout-align="left left">SGST<span style="color:white">(%)</span></th>
+
+                                <th width="3%" layout-align="left left">Amt<span style="color:white">(₹)</span></th>
+                                <th width="5%" layout-align="left left">Total<span style="color:white">(&#8377;)</span></th>
+                                <td width="10%" layout-align="left left">
+                                    <span style="font-weight: bold;font-style: italic;" (click)="OpenCalculator()">
+                                        <mat-icon matTooltip="Open Calculator" color="white" >domain</mat-icon><u>CALCULATOR(F3)</u>
+                                    </span>
+                                    
+                                </td>
+
+                            </tr>
+                        </thead>
+                            <tbody *ngFor="let teacher of teachers().controls; let ti=index">
+                                <tr [formGroupName]="ti">
+                                    <td layout-align="left left" data-th="SlNo.(ItemID)"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F">
+
+                                            {{ti+1}}.&nbsp;
+                                            ({{getControlLabel(ti)}})
+                                            <!-- <input formControlName="inventoryID"> -->
+                                            <!-- <img src="{{imgEdit}}"  style="height:32px;width:32px" (click)=editStudentsDetails(StudentMasters.stdID,StudentMasters.stdName,StudentMasters.email,StudentMasters.phone,StudentMasters.address)>-->
+                                        </span>
+                                    </td>
+                                    <td layout-align="left left" *ngIf="false" 
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F">
+
+                                            <input type="text" style="border:0px;" formControlName="expDate">
+                                            <!-- <img src="{{imgDelete}}" style="height:32px;width:32px" (click)=deleteStudentsDetails(StudentMasters.stdID)>-->
+                                        </span>
+                                    </td>
+                                    <td layout-align="left left" data-th="HSN"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F">
+                                            <input type="text" style="border:0px;" placeholder='HSN' formControlName="HSNCode" class="form-control" readonly>
+                                        </span>
+                                    </td>
+                                    <td layout-align="left left" data-th="BatchNumber"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F">
+
+                                            <input type="text" style="border:0px;" formControlName="BatchNumber" placeholder="Batch No" class="form-control" readonly>
+                                        </span>
+                                    </td>
+                                    <td layout-align="left left" data-th="Expiry"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F">
+
+                                            <input type="text" style="border:0px;" formControlName="expiryDate" placeholder="Expiry" class="form-control" readonly>
+                                        </span>
+                                    </td>
+                                    <td layout-align="left left" width="10%" data-th="Select Item"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;background-color: rgb(240, 228, 228);;">
+                                        <!-- <mat-form-field class="example-full-width">
+                                            <mat-label>Pick an Item(type a letter)</mat-label>
+                                            <input type="text"
+                                                   placeholder="Pick one"
+                                                   aria-label="Pick one Item"
+                                                   matInput
+                                                   [formControl]="myControl2"
+                                                   [matAutocomplete]="auto2" 
+                                                   >
+                                            <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete" (optionSelected)='getPosts($event.option.value,ti)'>
+                                              <mat-option *ngFor="let option of filteredOptions2 | async" [value]="option">
+                                                {{option}}
+                                              </mat-option>
+                                            </mat-autocomplete>
+
+                                          </mat-form-field> -->
+                                        <!-- <mat-form-field class="example-full-width">
+                                          <mat-label>Pick an object Item(type a letter)</mat-label>
+                                          <input type="text" 
+                                                 placeholder="Pick one object"
+                                                 aria-label="Pick one Item"
+                                                 matInput
+                                                 [formControl]="myControl3"
+                                                 [matAutocomplete]="auto3" 
+                                                 >
+                                          <mat-autocomplete  #auto3="matAutocomplete"  (optionSelected)='getPosts3($event.option.value,$event.option,ti)'>
+                                            <mat-option *ngFor="let option of filteredOptions3 | async" [value]="option.BatchNumber">
+                                              {{option.itemName}}({{option.BatchNumber}})
+                                            </mat-option>
+                                           
+                                          </mat-autocomplete>
+
+                                        </mat-form-field> -->
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput clrInput #typehead name="customer" 
+                                                placeholder="Pick an Item(type a letter)" [formControl]="myControl3"
+                                                [matAutocomplete]="customerAutoComplete"
+                                                (input)="chooseFirstOption()" />
+                                            <mat-autocomplete #customerAutoComplete="matAutocomplete" #input
+                                                [displayWith]="displayWith" (optionSelected)='getPosts4($event,ti)'>
+                                                <mat-option *ngFor="let customer of filteredOptions3| async"
+                                                    [value]="customer">
+                                                    {{customer.itemName}} ({{customer.BatchNumber}})
+                                                </mat-option>
+                                            </mat-autocomplete>
+
+                                        </mat-form-field>
+
+                                        <!-- <span style="color:#9F000F">
+                                           
+                                           
+                                            <mat-form-field style="padding-top:0px;" >
+                                                <input type="text" aria-label="Number" matInput formControlName="name" 
+                                                [formControl]="myControl" [matAutocomplete]="auto"
+                                                (keyup.enter)="update()"
+                                            (blur)="update()" (input)="onForm2NameChange($event,ti)"
+                                                >
+                                                <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getPosts($event.option.value,ti)'>
+                                                  <mat-option  *ngFor="let option of filteredOptions1| async" [value]="option.itemName">
+                                                    {{ option.itemName }}
+                                                  </mat-option>
+                                                </mat-autocomplete>
+                                              </mat-form-field>
+
+
+                                           </span> -->
+                                    </td>
+                                    <td layout-align="left left" width="8%" data-th="Item Name"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F">
+
+                                            <input type="text" style="border:0px;background-color: rgb(245, 241, 241);"
+                                                formControlName="name" readonly formControlName="name" placeholder="Item Name" class="form-control" readonly
+                                                (keyup.enter)="update()" (blur)="update()">
+
+                                            <!-- <input type="text" style="border:0px;"  formControlName="name" (keyup.enter)="update()"
+                                        (blur)="update()" readonly style="background-color: rgb(230, 228, 228);"> -->
+
+
+
+
+                                            <!-- <img src="{{imgDelete}}" style="height:32px;width:32px" (click)=deleteStudentsDetails(StudentMasters.stdID)>-->
+                                        </span>
+                                    </td>
+                                    <td layout-align="left left" data-th="UOM"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F">
+
+                                            <input type="text" style="border:0px;" formControlName="UOM" placeholder="UOM" class="form-control" readonly>
+                                        </span>
+                                    </td>
+                                    <td layout-align="left left" data-th="Qty"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;width:7%">
+                                        <span style="color:#9F000F">
+                                            <input type="text" formControlName="unit" placeholder="Quantity" class="form-control" 
+                                                (input)="onTotalCalculationUnit(ti)" (keyup.enter)="update()"
+                                                (blur)="update()"> </span>
+                                    </td>
+                                    <td layout-align="left left" data-th="Price"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F"><input type="text" formControlName="price" placeholder="MRP" class="form-control" readonly
+                                                (keyup.enter)="update()" (blur)="update()" readonly></span>
+                                    </td>
+
+                                    <td layout-align="left left" data-th="Discount"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F"><input type="text" formControlName="discount" placeholder="Dis" class="form-control" readonly
+                                                ></span>
+
+                                    </td>
+                                    <td layout-align="left left" data-th="CGST"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F"><input type="text" formControlName="CGST" placeholder="CGST" class="form-control" readonly
+                                                ></span>
+                                    </td>
+                                    <td layout-align="left left" data-th="Amt"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F"><input type="text" formControlName="CGSTVal" placeholder="value" class="form-control" readonly
+                                                ></span>
+                                    </td>
+                                    <td layout-align="left left" data-th="SGST" style="border: solid 1px #659EC7; padding: 1px;">
+                                        <span style="color:#9F000F"><input type="text" formControlName="SGST" placeholder="SGST" class="form-control" readonly
+                                                ></span>
+                                    </td>
+                                    <td layout-align="left left" data-th="Amt" style="border: solid 1px #659EC7; padding: 1px;">
+                                        <span style="color:#9F000F"><input type="text" formControlName="SGSTVal" placeholder="Value" class="form-control" readonly
+                                                ></span>
+                                    </td>
+                                    <td layout-align="left left" data-th="Total" style="border: solid 1px #659EC7; padding: 1px;">
+                                        <span style="color:#9F000F">
+                                            <input type="text" formControlName="total" placeholder="Total" class="form-control" readonly></span>
+                                    </td>
+
+                                    <td layout-align="left left"
+                                        style="border: solid 1px #659EC7; padding: 1px;table-layout:fixed;">
+                                        <span style="color:#9F000F" class="btn">
+                                            <button type="button" class="btn btn-sm btn-success" (click)="addTeacher()">
+                                                &#10003;Add</button>&nbsp;
+                                            <button type="button" class="btn btn-sm btn-danger"
+                                                (click)="removeTeacher(ti)"> &#x2717;Del</button>&nbsp;
+                                        </span>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <td colspan="3">
+                                    Total Item : {{BillDetails.itmCount}}. &nbsp; you saved {{BillDetails.discount| currency :'INR':'symbol':'1.2-2'}}
+                                </td>
+                                <td colspan="9">
+                                    <!-- netPurchase:{{BillDetails.TotalPurchasePrice| currency :'INR':'symbol':'1.2-2'}}
+                                    netProfit:{{BillDetails.NetProffit | currency :'INR':'symbol':'1.2-2'}}
+                                    total gst:{{BillDetails.TotalGST| currency :'INR':'symbol':'1.2-2' }} -->
+                                    CGST:{{BillDetails.cgst| currency :'INR':'symbol':'1.2-2'}} <b>|</b>
+                                    SGST:{{BillDetails.sgst| currency :'INR':'symbol':'1.2-2'}} <b>|</b>Total
+                                    Tax:{{BillDetails.totalTax| currency :'INR':'symbol':'1.2-2'}}
+                                </td>
+                                <td>Total</td>
+                                <td>{{BillDetails.total| currency :'INR':'symbol':'1.2-2'}} </td>
+                                <td> <button type="button" (click)="FinalCalculation()" class="btn btn-success"><span
+                                            class="glyphicon glyphicon-off"></span> Final Calculation</button>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+
+
+            <div class="row clearfix" style="margin-top:2px;padding-right: 12px;">
+                <div class="pull-right col-md-10">
+
+                </div>
+                <div class="pull-right col-md-2">
+                  <table class="table table-bordered table-hover" id="tab_logic_total" style="width:99%;">
+                    <tbody>
+                      <tr>
+                        <th class="text-left">Sub Total</th>
+                        <td class="text-left">{{(BillDetails.total - BillDetails.totalTax )| currency :'INR':'symbol':'1.2-2'}}</td>
+                      </tr>
+                      
+                      <tr>
+                        <th class="text-left">Tax Amount</th>
+                        <td class="text-left">{{BillDetails.totalTax| currency :'INR':'symbol':'1.2-2'}}</td>
+                      </tr>
+                      <tr>
+                        <th class="text-left">Grand Total</th>
+                        <td class="text-left">{{BillDetails.total| currency :'INR':'symbol':'1.2-2'}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+
+
+        </div>
+
+    </div>
+
+    <p>
+        <button *ngIf="false" type="button" (click)="addTeacher()">Add Teacher</button>
+    </p>
+
+
+    <p>
+        <mat-checkbox *ngIf="false" [checked]="false" class="example-margin">
+            <label>Payment received </label>
+        </mat-checkbox> &nbsp;&nbsp;
+        <button type="button" *ngIf="CaseStatusFromMain !='Closed' &&  showBasedOnPaymentStatusFinalBill==true"
+            (click)="UpdateStock('')" class="btn btn-success"><span class="glyphicon glyphicon-off"></span> Save the
+            Bill</button>
+        <button type="button" style="display: inline-block;" id="CloseMe" (click)="CloseMe()" class="btn btn-info"><span
+                class="glyphicon glyphicon-print"></span>
+            Close Me & start a new Bill</button>
+
+        <button style="display: inline-block;" type="button" (click)="OpenPrescription()" *ngIf="showPrintAfterSave"
+            class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
+            Print the Bill</button>
+
+        <button style="display: inline-block;" type="button" (click)="refreshPage()" class="btn btn-info"><span
+                class="glyphicon glyphicon-print"></span>
+            Refresh the page</button> (<span style="color:red">* This will reload your page from the beginning.</span>)
+        <!-- <span style="color:red">**</span>After payment received, 'Print & Update Stock'  will update the stock automatically. -->
+
+
+        &nbsp;&nbsp;<input type="checkbox" (change)="eventCheck($event)" *ngIf="showPrintAfterSave" /><label
+            *ngIf="showPrintAfterSave">Payment received </label>&nbsp;&nbsp;
+        &nbsp;<button type="button" (click)="UpdateStockMethod()" *ngIf="showPrintAfterSave"
+            class="btn btn-danger"><span class="glyphicon glyphicon-off"></span> Update Stock</button>
+
+        <!-- <button type="button" (click)="FinalCalculation()">Genearte Bill</button>
+        <button type="button" (click)="UpdateStock()" disabled>Update Stock</button>-->
+        <button style="display: inline-block;" type="button" (click)="tempUpdate()" 
+        class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
+        <i>Old Bill issue fixing</i></button> &nbsp;
+        <!-- <button style="display: inline-block;" type="button" (click)="reloadComponent()" 
+        class="btn btn-warning"><span class="glyphicon glyphicon-print"></span>
+        <i><b>Start a New Bill</b></i></button> -->
+        <button type="button" routerLink="/Farmaentry/jj" class="btn btn-warning"><span
+            class="glyphicon glyphicon-edit"></span>
+          Start New Bills</button>
+        
+          
+            <!-- <button mat-icon-button (click)="openInvestigationDialogNew('Add')">
+              <mat-icon>menu</mat-icon> &nbsp; Add new Referrer
+            </button> -->
+          
+    
+
+    <br>
+   
+   
+</form>
+
+</div>
+<div>
+    <hr/>
+    <h5>Find the Item and code</h5>
+
+    <div fxLayout="row wrap" fxLayoutGap="5px">
+        <div fxFlex>
+            <mat-form-field>
+                <!-- <input matInput type="text" placeholder="Department" formControlName="Department"> -->
+                <mat-label>Catgory&nbsp;Type</mat-label>
+                <mat-select  (selectionChange)="onStatusChange($event)">
+                  <mat-option >-Select-</mat-option>
+                  <mat-option *ngFor="let emp of asyncPipeCategoryDetails" [value]=emp>{{emp}}</mat-option>
+                </mat-select>
+               
+              </mat-form-field>
+        </div>
+        <div fxFlex>
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)"
+                  placeholder="Filter anything" name="filterVal" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="filterVal">
+              </mat-form-field>
+        </div>
+        <div >
+            <div class="mat-elevation-z8">
+               
+                <mat-table #table [dataSource]="bogusDataSource" style="width:800px">
+            
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+            
+                <!-- Position Column -->
+                <ng-container matColumnDef="itemName">
+                  <mat-header-cell *matHeaderCellDef> itemName </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Name:</span> {{element.itemName}} </mat-cell>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="ItemCode">
+                  <mat-header-cell *matHeaderCellDef> ItemCode </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Code:</span>{{element.ItemCode}} </mat-cell>
+                </ng-container>
+            
+                <!-- Weight Column -->
+                <ng-container matColumnDef="Others">
+                  <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Others:</span>{{element.Others}} </mat-cell>
+                </ng-container>
+            
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="inventoryID">
+                  <mat-header-cell *matHeaderCellDef> inventoryID </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> <span  class="mobile-label ">ID:</span>{{element.inventoryID}} </mat-cell>
+                </ng-container>
+            
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+              </mat-table>
+              <mat-table #table [dataSource]="dataSource">
+            
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+            
+                <!-- Position Column -->
+                <ng-container matColumnDef="itemName">
+                  <mat-header-cell *matHeaderCellDef style="padding-left: 0;"></mat-header-cell>
+                  <mat-cell *matCellDef="let element" style="padding-left: 0;"> <span  class="mobile-label ">Name:</span>{{element.itemName}} </mat-cell>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="ItemCode">
+                  <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                  <mat-cell *matCellDef="let element"><span  class="mobile-label ">Code:</span> {{element.ItemCode}} </mat-cell>
+                </ng-container>
+            
+                <!-- Weight Column -->
+                <ng-container matColumnDef="Others">
+                  <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                  <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Category:</span>{{element.Others}} </mat-cell>
+                </ng-container>
+            
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="inventoryID">
+                  <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                  <mat-cell *matCellDef="let element"> <span  class="mobile-label ">ID:</span>{{element.inventoryID}} </mat-cell>
+                </ng-container>
+            
+                <mat-header-row *matHeaderRowDef="displayedColumns" [style.min-height]="20" ></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" > </mat-row>
+              </mat-table>
+            </div>
+        </div>
+        <div fxFlex>
+            <!-- <app-calculator></app-calculator> -->
+        </div>
+        </div>
+   
+      
+    
+    <!-- <table style=" height: 300px;
+    overflow-y: scroll;display: block;">
+        <tr style=" background-color: #b6deee;">
+          <th>Name</th>
+          <th>Code</th>
+          <th>Barcode</th>
+          <th>Category</th>
+          <th>ID</th>
+        </tr>
+        <tr *ngFor="let obj of InventoryInd; let j = index">
+          <td>
+            <u style="cursor:pointer;color:blue" >
+                {{obj.itemName}} </u>
+             </td>
+          <td>{{obj.ItemCode}}</td>
+          <td>{{obj.BarCode}}</td>
+          <td>{{obj.Others}}</td>
+          <td>{{obj.inventoryID}}</td>
+        </tr>
+       
+      </table> -->
+</div>

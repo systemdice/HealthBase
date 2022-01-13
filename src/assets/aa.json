@@ -1,0 +1,59 @@
+[
+  {
+    "_id": {
+      "$binary": {
+        "base64": "Y900KOozJUGhQBZkT5GSGw==",
+        "subType": "03"
+      }
+    },
+    "UnqueID": "5592375",
+    "DateStart": "12-03-2021",
+    "inventoryID": "12204951486",
+    "itemName": "med9",
+    "stockQty": "10",
+    "reorderQty": "20",
+    "DateReorder": "2020-12-29T18:30:00.000Z",
+    "priorityStatus": 1,
+    "ExpireMonth": "2",
+    "ExpireYear": "2022",
+    "BarCode": "809654325",
+    "ItemCode": "med9",
+    "UnitPrice": "3",
+    "SellPrice": "5",
+    "Discount": "1",
+    "SGST": "2",
+    "CGST": "2",
+    "IGST": "0",
+    "Extra": "extra",
+    "Others": "for biscuits"
+  },
+  {
+    "_id": {
+      "$binary": {
+        "base64": "/T01KIFdbkOonC/fHKRDdg==",
+        "subType": "03"
+      }
+    },
+    "BarCode": "809656315",
+    "CGST": "2",
+    "DateReorder": "2020-12-29T18:30:00.000Z",
+    "DateStart": "12/3/2021",
+    "Discount": "1",
+    "ExpireMonth": "2",
+    "ExpireYear": "2022",
+    "Extra": "extra",
+    "IGST": "0",
+    "ItemCode": "med10",
+    "Others": "for biscuits",
+    "RackPlaceLocation": "",
+    "SGST": "2",
+    "SellPrice": "5",
+    "UnitPrice": "3",
+    "UnqueID": "5594385",
+    "inventoryID": "12203951486",
+    "itemName": "med10",
+    "priorityStatus": "1",
+    "reorderQty": "20",
+    "stockQty": "10"
+  }
+]

@@ -1,0 +1,281 @@
+.sign-up-btn {
+    width: 67px;
+    height: 21px;
+    display: flex;
+    background: white;
+    border: 1px solid #c3c3c3;
+    box-sizing: border-box;
+    border-radius: 2px;
+    font-size: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #262b3d;
+}
+.sign-up-btn.complete {
+    margin-left: auto;
+    margin-right: 132px;
+    justify-content: center;
+}
+.sign-up-btn.new {
+    margin-right: 132px;
+    margin-left: auto;
+    margin-top: 11px;
+    justify-content: center;
+    color:black;
+}
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+}
+.dashboard .card {
+    font-family: Gotham Rounded;
+    background: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 0;
+    height: 318px;
+    width: 470px;
+}
+
+.dashboard .card1 {
+    font-family: Gotham Rounded;
+    background: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 0;
+    width:100%;
+    height: 378px;
+}
+
+.dashboard .card2 {
+  font-family: Gotham Rounded;
+  background: #fff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 0;
+  width:600px;
+  height: 378px;
+}
+.dashboard .card .card-title {
+    display: flex;
+}
+.dashboard .card .card-title .title {
+    font-size: 20px;
+    color: #262b3d;
+    margin-left: 15px;
+    margin-top: 16.6px;
+}
+.dashboard .card .card-title .hexagon {
+    margin-left: 21px;
+    margin-top: 16px;
+}
+.dashboard .card .description {
+    height: 454px !important;
+    width:  455px;
+    font-size: 12px;
+    color: #525252;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    margin-top: 5px;
+    overflow: auto;
+}
+.dashboard .card .unlocked-role {
+    display: flex;
+    flex-direction: column;
+}
+.dashboard .card .unlocked-role .progress-container progress {
+    background-color: #f3f3f3;
+    width: 190px;
+    height: 12px;
+    margin-left: 5px;
+}
+.dashboard .card .unlocked-role .progress-container progress::-webkit-progress-bar {
+    background: #dfdfdf;
+}
+.dashboard .card .unlocked-role .progress-container progress::-webkit-progress-value {
+    background: #D1F3A2;
+}
+.dashboard .card .unlocked-role .progress-container label {
+    margin-left: 10px;
+    font-size: 10px;
+    color: #262b3d;
+}
+.dashboard .card .unlocked-role .in-progress {
+    margin-top: 15px;
+    margin-right: 23px;
+    margin-left: auto;
+}
+.dashboard .card .unlocked-role .in-progress .resume-role {
+    border: none;
+    background: none;
+    font-size: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #262b3d;
+    border-radius: 5px;
+}
+.dashboard .card .unlocked-role .completed-before {
+    display: flex;
+    margin-top: 11px;
+}
+.dashboard .card .unlocked-role .completed-before .completed {
+    margin-left: 15px;
+    margin-top: 4px;
+    font-size: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #262b3d;
+    border-radius: 5px;
+}
+.dashboard .card .locked-role .prereq-title {
+    margin-left: 19px;
+    font-size: 8px;
+    text-transform: uppercase;
+    color: #2f2f2f;
+}
+.dashboard .card .locked-role .remaining-prereqs {
+    display: flex;
+    margin-left: 20px;
+    margin-top: 4px;
+}
+.dashboard .card .locked-role .remaining-prereqs .check-for-prereq {
+    padding: 0;
+    margin-right: 6px;
+}
+.dashboard .card .locked-role .remaining-prereqs .check-for-prereq .iterate-cards {
+    padding: 0;
+}
+div.ex3 {
+  background-color: lightblue;
+  width: 440px;
+  height: 110px;
+  overflow: auto;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  .buttons {
+    width: 200px;
+    margin: 0 auto;
+    display: inline;}
+    
+        .action_btn {
+    width: 200px;
+    margin: 0 auto;
+    display: inline;}
+
+    .btn-group button {
+        background-color: #ccf5e6; /* Green background */
+        border: 1px solid rgb(89, 219, 89); /* Green border */
+        color: black; /* White text */
+        padding: 1px 1px; /* Some padding */
+        cursor: pointer; /* Pointer/hand icon */
+        float: left; /* Float the buttons side by side */
+        border-radius: 5px;;
+        
+      }
+      
+      /* Clear floats (clearfix hack) */
+      .btn-group:after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+      
+      .btn-group button:not(:last-child) {
+        border-right: none; /* Prevent double borders */
+      }
+      
+      /* Add a background color on hover */
+      .btn-group button:hover {
+        background-color: #3e8e41;
+      }
+      .numberCircle {
+        width: 35px;
+        line-height: 35px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 12px;
+        border: 2px solid rgb(224, 188, 212);
+        background-color: rgb(67, 73, 92);
+        color:white;
+        margin:2px;
+        padding:2px;
+    }
+    .numberforBedCircle {
+        width: 60px;
+        line-height: 40px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 14px;
+        border: 2px solid rgb(224, 188, 212);
+        background-color: rgb(67, 73, 92);
+        color:white;
+        margin:2px;
+        padding:2px;
+    }
+
+    .cen {
+        display: table-cell;
+        width: 140px;
+        height: 220px;
+        padding: 3px;
+        border: 1px dashed #04395a;
+        vertical-align: middle;
+        /* animation: blink 5s linear infinite!important; */
+      }
+
+      .blink{
+        width:200px;
+        height: 50px;
+        background-color: magenta;
+        padding: 15px;	
+        text-align: center;
+        line-height: 50px;
+      }
+      .pq{
+        font-size: 25px;
+        font-family: cursive;
+        color: white;
+        animation: blink 1s linear infinite;
+      }
+      
+      @keyframes blink{
+        0%{opacity: 0;}
+        50%{opacity: .5;}
+        100%{opacity: 1;}
+      }
+    .spanBlink{
+ 
+        color: red;
+        animation: blink 1s linear infinite;
+      }
+
+      .green{
+        background-color: green;
+        height:15px;
+      }
+      
+      .grey{
+        background-color: lightgrey;
+        padding:4px;
+        border-radius: 5px;
+        /* height:50px; */
+      }
+      
+      .purple{
+        background-color: purple;
+      }
+      

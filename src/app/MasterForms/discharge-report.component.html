@@ -1,0 +1,860 @@
+
+
+    
+    
+<div class="row" style="border-style:solid; margin-left:5px; margin-right:5px;" id="frmIndividualLapReport">
+    <!-- {{EditedCaseData|json}}    -->
+     
+    <table width="100%">
+        <thead><tr><td>
+            <div *ngIf="HeaderRepeat">
+                <h2 *ngIf="MainDischargeReport">Hospital Discharge Report...<span style="font-size: x-small;">(Your complete history)</span>
+                </h2>
+                <h3 style="text-align:center; padding-bottom:10px;">
+                    {{Addressline1}}<br />
+                    {{Addressline2}}<br />
+                    {{Addressline3}}<br />
+                    {{Addressline4}}<br />
+            
+                </h3>
+
+                
+                
+                   
+            </div>
+            <div *ngIf="HeaderRepeat"  class="container">
+                <table width="100%" class="table1">
+                    <tr>
+                        <td style="text-align:left;"><b>Reg.no:&nbsp;</b>{{EditedCaseData?.UnqueID}}</td>
+                        <td style="text-align:left;"><b>Referred By:&nbsp;</b> {{EditedCaseData?.TestNameWithCase?.RefferDoctorName}}</td>
+                       
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;"><b>Name:&nbsp;</b>{{EditedCaseData?.Home?.FirstName}}&nbsp;{{EditedCaseData?.Home?.LastName}} &nbsp;/ Height:&nbsp;{{EditedCaseData?.Home?.Height}}&nbsp;&nbsp;&nbsp;CM/ Weight:&nbsp;{{EditedCaseData?.Home?.Weight}}&nbsp;&nbsp;&nbsp;</td>
+                        <td style="text-align:left;"><b>Date:&nbsp;</b>{{EditedCaseData?.DateStart}}</td>            
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;"><b>Age & Sex:&nbsp;</b>{{EditedCaseData?.Home?.Year}}Yrs&nbsp;{{EditedCaseData?.Home?.Month}}months&nbsp;{{EditedCaseData?.Home?.Days}}Days&nbsp;/{{EditedCaseData?.Home?.Gender=="1"?'Male':'Female'}}</td>
+                        <td *ngIf="false" style="text-align:left;"><b>Received By:&nbsp;</b>{{EditedCaseData?.PaymentHistory[0]?.ReceivedBy}}</td>            
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;"><b>Mobile No:&nbsp;</b>{{EditedCaseData?.Home?.ContactNumber}}</td>
+                        <td style="text-align:left;"></td>            
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;"><b>Email:&nbsp;</b>{{EditedCaseData?.Home?.Email}}</td>
+                        <td style="text-align:left;"></td>            
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;"> <b>Address:&nbsp;</b>{{EditedCaseData?.Home?.Address}}</td>
+                        <td style="text-align:left;"></td>            
+                    </tr>
+                    <tr>
+                        <td colspan="2"><hr/></td>
+                    </tr>
+                   
+                </table>
+                
+                </div>
+        </td></tr></thead>
+        <tbody>
+          <tr><td>
+           
+
+
+<div style="text-align:right;">
+    <div  style="text-align:center;">
+        <div style="text-align:center;" *ngIf="!HeaderRepeat">
+           
+            <h3 style="text-align:center; padding-bottom:10px;">
+                {{Addressline1}}<br />
+                {{Addressline2}}<br />
+                {{Addressline3}}<br />
+                {{Addressline4}}<br />
+        
+            </h3>
+
+            
+            <h2 *ngIf="MainDischargeReport">Hospital Discharge Report...<span style="font-size: x-small;">(Your complete history)</span>
+            </h2> 
+            <hr/>
+               
+        </div>
+        <div *ngIf="!HeaderRepeat" class="container">
+            <table width="100%" class="table1" *ngIf="!VaccineSection">
+                <tr>
+                    <td style="text-align:left;font-size: medium;"><b>Reg.no:&nbsp;</b>{{EditedCaseData?.IPDOPDId}}</td>
+                    <td style="text-align:left;"><b>Referred By:&nbsp;</b>{{EditedCaseData?.TestNameWithCase?.RefferDoctorName}}</td>
+                   
+                </tr>
+                <tr>
+                    <td style="text-align:left;"><b>Name:&nbsp;</b>{{EditedCaseData?.Home?.FirstName}}&nbsp;{{EditedCaseData?.Home?.LastName}} &nbsp;/ Height:&nbsp;{{EditedCaseData?.Home?.Height}}&nbsp;&nbsp;&nbsp;CM/ Weight:&nbsp;{{EditedCaseData?.Home?.Weight}}&nbsp;&nbsp;&nbsp;KG</td> 
+                    <td style="text-align:left;"><b>Date:&nbsp;</b>{{EditedCaseData?.DateStart}}</td>            
+                </tr>
+                <tr>
+                    <td style="text-align:left;"><b>Age & Sex:&nbsp;</b>{{EditedCaseData?.Home?.Year}}Yrs&nbsp;{{EditedCaseData?.Home?.Month}}months&nbsp;{{EditedCaseData?.Home?.Days}}Days&nbsp;/{{EditedCaseData?.Home?.Gender=="1"?'Male':'Female'}}</td>
+                    <td *ngIf="false" style="text-align:left;"><b>Received By:&nbsp;</b>{{EditedCaseData?.PaymentHistory[0]?.ReceivedBy}}</td>            
+                </tr>
+                <tr>
+                    <td style="text-align:left;"><b>Mobile No:&nbsp;</b>{{EditedCaseData?.Home?.ContactNumber}}</td>
+                    <td style="text-align:left;"></td>            
+                </tr>
+                <tr>
+                    <td style="text-align:left;"><b>Email:&nbsp;</b>{{EditedCaseData?.Home?.Email}}</td>
+                    <td style="text-align:left;"></td>            
+                </tr>
+                <tr>
+                    <td style="text-align:left;"> <b>Address:&nbsp;</b>{{EditedCaseData?.Home?.Address}}</td>
+                    <td style="text-align:left;"></td>            
+                </tr>
+                
+               
+            </table>
+
+            <table width="100%" class="table1" *ngIf="VaccineSection">
+                <tr>
+                    <td style="text-align:left;font-size: medium;"><b>Reg.no:&nbsp;</b>{{EditedCaseData?.IPDOPDId}}</td>
+                    <td style="text-align:left;"><b>Bill No:&nbsp;</b>{{EditedCaseData?.TestNameWithCase?.RefferDoctorName}}</td>
+                   
+                </tr>
+                <tr>
+                    <td style="text-align:left;"><b>Baby Name:&nbsp;</b>{{EditedCaseData?.Home?.FirstName}}&nbsp;{{EditedCaseData?.Home?.LastName}} &nbsp;/{{EditedCaseData?.Home?.MaritalStatus=="1"?'Married':'Unmarried'}}/Height:&nbsp;{{EditedCaseData?.Home?.Height}}/Weight:&nbsp;{{EditedCaseData?.Home?.Weight}}</td> 
+                    <td style="text-align:left;"><b>Date:&nbsp;</b>{{EditedCaseData?.DateStart}}</td>            
+                </tr>
+                <tr>
+                    <td style="text-align:left;"><b>Age & Sex:&nbsp;</b>{{EditedCaseData?.Home?.Year}}Yrs&nbsp;{{EditedCaseData?.Home?.Month}}months&nbsp;{{EditedCaseData?.Home?.Days}}Days&nbsp;/{{EditedCaseData?.Home?.Gender=="1"?'Male':'Female'}}</td>
+                    <td *ngIf="false" style="text-align:left;"><b>Received By:&nbsp;</b>{{EditedCaseData?.PaymentHistory[0]?.ReceivedBy}}</td>            
+                </tr>
+                <tr>
+                    <td style="text-align:left;"><b>Mother Name:&nbsp;</b>{{EditedCaseData?.Home?.ContactNumber}}</td>
+                    <td style="text-align:left;"><b>Doctor:&nbsp;</b>{{EditedCaseData?.TestNameWithCase?.RefferDoctorName}}</td>            
+                </tr>
+               
+                <tr>
+                    <td style="text-align:left;"> <b>Father Name:&nbsp;</b>{{EditedCaseData?.Home?.Address}}</td>
+                    <td style="text-align:left;">Department</td>            
+                </tr>
+                <tr>
+                    <td colspan="2"><hr/></td>
+                </tr>
+               
+            </table>
+            
+            
+            </div>
+        <div class="col-sm-12" >
+            <ngx-barcode  *ngFor="let bcValue of values" [bc-value]="bcValue" [bc-width]="1" [bc-height]="20">
+            </ngx-barcode>
+            <label id="printCheckElement" style="display: inline-block;float:left;">
+                <input type="checkbox" (change)="fieldsChange($event)" />
+                Show header on each page
+              </label>
+            <button style="display: inline-block;float:left;" type="button" id="printElement"  (click)="myPrint('frmIndividualLapReport')" class="btn btn-info"><span
+                class="glyphicon glyphicon-print" ></span>
+            Print</button>
+            <!-- <button type="button" style="display: inline-block;float:left;"  id="CloseMe"  (click)="CloseMe()" class="btn btn-info"><span
+                class="glyphicon glyphicon-print" ></span>
+            Close Me</button> -->
+
+            <button type="button" style="display: inline-block;float:left;"  id="closePopup" 
+            (click)="onNoClick()" class="btn btn-info"><span
+                class="glyphicon glyphicon-print" ></span>
+            Close Me/Popup</button>
+
+            
+
+            <!-- <input id="printCheckElement" style="display: inline-block;float:left;" (change)="fieldsChange($event)" value="Show header on each page" type="checkbox"/>
+            <span id="printCheckTextElement" style="display: inline-block;float:left;">Show header on each page</span> -->
+
+        
+        </div>
+    </div>
+</div>
+
+<hr style="padding:0px;margin:0px" />
+
+
+    <!-- <p style="text-align:center;">
+        <b>Bill No.</b>:B{{EditedCaseData?.UnqueID}}
+    </p> -->
+    <div class="container" style="padding-top:1px;">
+    <div class="row">
+       
+        </div>
+        </div>
+    <hr style="margin-bottom:0px; margin-top:0px;">
+
+    <hr *ngIf="PatientDetails" />
+    <p *ngIf="PatientDetails" style="text-align:center; padding-bottom:10px;"><b>Patient Details</b></p>
+    <table *ngIf="PatientDetails" width="100%" class="table1">
+        <tr>
+            <td style="text-align:left;"><b>Care Of:&nbsp;</b>{{EditedCaseData?.Home?.CO}}</td>
+            <td style="text-align:left;"><b>Occupation:&nbsp;</b>{{EditedCaseData?.Home?.Occupation}}</td>
+           
+        </tr>
+        <tr>
+            <td style="text-align:left;"><b>BloodGroup:&nbsp;</b>{{EditedCaseData?.Home?.BloodGroup}}</td> 
+            <td style="text-align:left;"><b>Allergy:&nbsp;</b>{{EditedCaseData?.Home?.Allergy}}</td>            
+        </tr>
+        <tr>
+            <td style="text-align:left;"><b>Height:&nbsp;</b>{{EditedCaseData?.Home?.Height}}</td>
+            <td style="text-align:left;"><b>Weight:&nbsp;</b>{{EditedCaseData?.Home?.Weight}}</td>            
+        </tr>
+        <tr>
+            <td style="text-align:left;"><b>Temperature:&nbsp;</b>{{EditedCaseData?.Home?.Temperature}}</td>
+            <td style="text-align:left;"><b>RespiratoryRate:&nbsp;</b>:{{EditedCaseData?.Home?.Home?.RespiratoryRate}}</td>            
+        </tr>
+        <tr>
+            <td style="text-align:left;"><b>Email:&nbsp;</b>{{EditedCaseData?.Home?.RhType}}</td>
+            <td style="text-align:left;"><b>BPReading:&nbsp;</b>{{EditedCaseData?.Home?.BPReading}}</td>            
+        </tr>
+        
+       
+    </table>
+    <hr *ngIf="PatientDetails" />
+
+<!-- No 1 Medical history -->
+    <p *ngIf="MedicineDoctorAdvice" style="text-align:center; padding-bottom:10px;"><b>Medicine and Doctor Advice</b></p>
+    <table *ngIf="MedicineDoctorAdvice" style="width:100%" >
+                    
+        <thead style="width:100%">
+           
+            <tr>
+                <th style="width:5%;text-align:left;">SlNo.</th>
+                <th style="width:12%;text-align:left;">Visited Doctor</th>
+                <th style="width:12%;text-align:left;">Advice</th>
+                <th style="width:12%;;text-align:right;">Prescription</th>
+                <th style="width:12%;;text-align:right;">History</th>
+                <th style="width:12%;;text-align:right;">Findings</th>
+                <th style="width:12%;;text-align:right;">Diagnosis</th>
+                <th style="width:12%;;text-align:right;">PathoLabTest</th>
+                <th style="width:12%;">Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of EditedCaseData?.DoctortoPatientCommentMedicineReDevelop; let p=index;">
+                <td style="width:5%" >{{ p+1 }}</td>
+                <td style="width:12%">{{ item.name }}</td>
+                <td style="width:12%;"><pre>{{ item.DoctorCommentsHL }}<br/>{{ item.DoctorComments }}</pre></td>
+                <td style="width:12%;text-align:right;"><pre>{{ item.MedicineNamesHL }}<br/>{{ item.MedicineNames}}</pre></td>
+                
+                <td style="width:12%">History:<br/>{{ item.PatientHistory }}</td>
+                <td style="width:12%;"><pre>Finding:<br/>{{ item.PatientFinding }}</pre></td>
+                <td style="width:12%;text-align:right;"><pre>Diagnosis: <br/>{{ item.PatientDiagnosis }}</pre></td>
+                <td style="width:12%;">LabTest:<br/>{{ item.PatientPathoLabTestAdvice }}</td>
+                <td style="width:12%;">{{ item.expDate }}</td>
+                
+            </tr>
+           
+        </tbody>
+    </table>
+    <hr *ngIf="MedicineDoctorAdvice"/>
+
+
+    <p *ngIf="DailyExpenseDetails" style="text-align:center; padding-bottom:10px;"><b>Daily Expense Details</b></p>   
+    <table *ngIf="DailyExpenseDetails" style="width:100%" >
+                    
+        <thead style="width:100%">
+           
+            <tr>
+                <th style="width:5%;text-align:left;">SlNo.</th>
+                <th style="width:30%;text-align:left;">Expense Type</th>
+                <th style="width:45%;text-align:left;">Description</th>
+                <th style="width:7%;;text-align:right;">Price</th>
+                <th style="width:17%;">Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of EditedCaseData?.DailyExpense; let p=index;">
+                <th style="width:5%" >{{ p+1 }}</th>
+                <td style="width:30%">{{ item.name }}</td>
+                <td style="width:40%;">{{ item.ExpenseDescription }}</td>
+                <td style="width:7%;text-align:right;">{{ item.Amount }}</td>
+                <td style="width:17%;">{{ item.expDate }}</td>
+                
+            </tr>
+        </tbody>
+    </table>
+    <hr *ngIf="DailyExpenseDetails"/>
+
+    <p *ngIf="NurseVisitDetails" style="text-align:center; padding-bottom:10px;"><b>Nurse Visit Details</b></p>
+   
+
+    <table *ngIf="NurseVisitDetails" style="width:100%" >
+                    
+        <thead style="width:100%">
+           
+            <tr>
+                <th style="width:5%" style="text-align:left;">SlNo.</th>
+                <th style="width:15%" style="text-align:left;vertical-align: top;">Nurse Name</th>
+                <th style="width:48%;text-align:left;">Observations in Detail</th>
+                <th style="width:17%;">Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of EditedCaseData?.NurseVisit; let p=index;">
+                <th style="width:5%" >{{ p+1 }}</th>
+                <td style="width:15%;text-align:left;">{{ item.name }}</td>
+                <td style="width:48%;text-align:left;">
+                    <table width="100%" style="border: 1px;">
+                        <tr>
+                          <!-- <th>Feedback</th> -->
+                          <th width="160px"  style="text-align:left;"><u>Observation Name</u></th>
+                          <th style="text-align:left;"><u>Feedback</u></th>
+                        </tr>
+                      
+          
+                        <tr>
+                          <!-- <td><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></td> -->
+          
+                          <td>Blood pressure</td>
+                          <td style="background-color: white;"> {{item.task1}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Pulse rate</td>
+                          <td style="background-color: white;">{{item.task2}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Body temperature</td>
+                          <td style="background-color: white;"> {{item.task3}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Breathing rate (respiration)</td>
+                          <td style="background-color: white;"> {{item.task4}}>
+                          </td>
+                        </tr>
+          
+                      </table>
+                </td>
+                <td style="width:17%;vertical-align: top;">{{ item.expDate }}</td>
+                
+            </tr>
+        </tbody>
+    </table>
+    <hr *ngIf="NurseVisitDetails" />
+
+    <p *ngIf="DoctorVisiting" style="text-align:center; padding-bottom:10px;"><b>Doctor Visiting Details</b></p>   
+    <table *ngIf="DoctorVisiting" style="width:100%" >
+                    
+        <thead style="width:100%">
+           
+            <tr>
+                <th style="width:5%;text-align:left;">SlNo.</th>
+                <th style="width:30%;text-align:left;">Doctor Name</th>
+                <th style="width:45%;text-align:left;">Observations</th>
+                <th style="width:17%;">Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of EditedCaseData?.DoctorVisit; let p=index;">
+                <th style="width:5%" >{{ p+1 }}</th>
+                <td style="width:30%;vertical-align: top;">{{ item.name }}</td>
+                <td style="width:40%;"><pre>{{ item.ExpenseDescription }}</pre></td>
+                <td style="width:17%;">{{ item.expDate }}</td>
+                
+            </tr>
+        </tbody>
+    </table>
+    <hr *ngIf="DoctorVisiting"/>
+
+    <p *ngIf="VaccineSection"  style="text-align:center; padding-bottom:10px;"><b>Vaccine Details</b></p>
+    <table *ngIf="VaccineSection"  style="width:100%" >
+                    
+        <thead style="width:100%">
+           
+            <tr>
+                <th style="width:5%" style="text-align:left;">SlNo.</th>
+                <th style="width:15%" style="text-align:left;">Vaccine Name</th>
+                <th style="width:10%;text-align:left;">Brand Name</th>
+                <th style="width:15%;text-align:left;">Company Name</th>
+                <th style="width:15%;text-align:left;">Qty</th>
+                <th style="width:10%;text-align:left;">Unit</th>
+                <th style="width:15%;text-align:left;">Batch No</th>
+                <th style="width:15%;text-align:left;">Expiry</th>
+                <th style="width:15%;text-align:left;">MRP</th>
+                <th style="width:15%;text-align:left;">Amount(₹)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of EditedCaseData?.VaccineDetailsVisit; let p=index;">
+                <th style="width:5%" >{{ p+1 }}</th>
+                <td style="width:15%">{{item.VaccineName}}</td>
+                <td style="width:10%;text-align:left;">{{ item.BrandName }}</td>
+                <td style="width:15%;text-align:left;">{{ item.CompanyName }}</td>
+                <td style="width:15%;text-align:left;">{{ item.Quantity }}</td>
+                <td style="width:10%;text-align:left;">{{ item.Unit }}</td>
+                <td style="width:10%;text-align:left;">{{ item.BatchNumber }}</td>
+                <td style="width:10%;text-align:left;">{{ item.Expiry }}</td>
+                <td style="width:10%;text-align:left;">{{ item.MRP }}</td>
+                <td style="width:15%;text-align:right;">{{ item.MRP* item.Quantity }}</td>
+                
+            </tr>
+            <tr>
+                <td colspan="10">
+                    <hr/>
+                </td>
+            </tr>
+            
+            <tr>
+                <td colspan="6" style="vertical-align: top;">
+
+                    <!-- //this is for consulting fee (OPD fee box is being used for Consultation fee) -->
+                    Rupees &nbsp;{{inWords(finalVal())}}
+                </td>
+                <td  colspan="4" style="text-align: right;">
+                    Total amount:&nbsp;{{EditedCaseData?.PaymentHistory[0]?.Amount-EditedCaseData?.PaymentHistory[0]?.OPDCharge}}<br/>
+                    Consultatnt Charge:&nbsp;{{EditedCaseData?.PaymentHistory[0]?.OPDCharge}}<br/>
+                    <hr/>
+                    <b>Net Amount:&nbsp;{{EditedCaseData?.PaymentHistory[0]?.Amount}}</b>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr *ngIf="VaccineSection" />
+    
+
+    <p *ngIf="BedAdmissionDetails"  style="text-align:center; padding-bottom:10px;"><b>Bed Admission Details</b></p>
+    <table *ngIf="BedAdmissionDetails"  style="width:100%" >
+                    
+        <thead style="width:100%">
+           
+            <tr>
+                <th style="width:5%" style="text-align:left;">SlNo.</th>
+                <th style="width:15%" style="text-align:left;">Category/BedNumber</th>
+                <th style="width:10%;text-align:left;">Price</th>
+                <th style="width:15%;text-align:left;">StartDate</th>
+                <th style="width:15%;text-align:left;">EndDate</th>
+                <th style="width:10%;text-align:left;">Days</th>
+                <th style="width:15%;text-align:left;">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of EditedCaseData?.BedDetailsVisit; let p=index;">
+                <th style="width:5%" >{{ p+1 }}</th>
+                <td style="width:15%">{{item.BedCategory}}/{{ item.BedName }}</td>
+                <td style="width:10%;text-align:left;">{{ item.BedPrice }}</td>
+                <td style="width:15%;text-align:left;">{{ item.StartDate }}</td>
+                <td style="width:15%;text-align:left;">{{ item.EndDate }}</td>
+                <td style="width:10%;text-align:left;">{{ item.NofDays }}</td>
+                <td style="width:15%;text-align:left;">{{ item.BedPrice* item.NofDays }}</td>
+                
+            </tr>
+        </tbody>
+    </table>
+    <hr *ngIf="BedAdmissionDetails"  />
+
+
+    <p *ngIf="OTDetails" style="text-align:center; padding-bottom:10px;"><b>OT Details</b></p>
+    <table *ngIf="OTDetails" style="width:100%" >                    
+        <thead style="width:100%">           
+            <tr>
+                <th style="width:5%" style="text-align:left;">SlNo.</th>
+                <th style="width:15%" style="text-align:left;">Operation Name</th>
+                <th style="width:15%;text-align:left;">Operation Description</th>
+                <th style="width:17%;">Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of EditedCaseData?.OTDetails; let p=index;">
+                <th style="width:5%" >{{p+1}}</th>
+                <td style="width:15%">{{item.OperationMajorMinor}}</td>
+                <td style="width:15%;text-align:left;"><pre>{{item.OperationNote}}</pre></td>
+                <td style="width:17%;">{{item.Date}}</td>
+                
+            </tr>
+        </tbody>
+    </table>
+    <hr *ngIf="OTDetails" />
+    
+    <p *ngIf="FarmacyDetails" style="text-align:center; padding-bottom:10px;"><b>Farmacy Details</b></p>
+    <table id="users" *ngIf="farmacyDeliveryToPatientData !=undefined && FarmacyDetails" style="width:100%" >
+        <tr>
+          <th style="width:5%">
+              slno.
+          </th>
+          <th style="width:65%">
+              Medicine Name
+          </th>
+          <th style="width:5%">
+              Unit
+          </th>
+          <th style="width:5%">
+              Price
+          </th>
+          <th style="width:5%">
+              Total
+          </th>
+          <th style="width:15%">
+              Time
+          </th>
+        </tr>
+      
+        <tr  *ngFor = "let row of farmacyDeliveryToPatientData[0]?.teachers; let t=index;">
+          <td>
+              {{t+1}}
+          </td>
+          <td>
+              <span style="color:green">&#10003; </span>&nbsp;{{row.name}}
+          </td>
+          <td>
+              {{row.unit}}
+          </td>
+          <td>
+              {{row.price}}
+          </td>
+          <td>
+              {{row.total}}
+          </td>
+          <td>
+              {{row.expDate}}
+          </td>
+          
+          
+        </tr>
+      
+      </table>
+    <hr *ngIf="FarmacyDetails"/>
+
+    <p *ngIf="OPDDetails" style="text-align:center; padding-bottom:10px;"><b>OPD Details</b></p>
+    <table *ngIf="OPDDetails"  style="width:100%" >                    
+        <thead style="width:100%">           
+            <tr>
+                <th style="width:5%" style="text-align:left;">SlNo.</th>
+                <th style="width:15%" style="text-align:left;">Treatement Name</th>
+                <th style="width:15%;text-align:left;">Doctor</th>
+                <th style="width:48%;text-align:left;">DoctorFeedback</th>
+                <th style="width:17%;">Choces</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr >
+                <th style="width:5%" >1.</th>
+                <td style="width:15%">{{EditedCaseData?.OPD.title}}</td>
+                <td style="width:15%;text-align:left;">{{EditedCaseData?.OPD.firstName}}</td>
+                <td style="width:48%;text-align:left;">{{EditedCaseData?.OPD.DoctorFeedback}}</td>
+                <td style="width:17%;">
+                    <label *ngFor="let item of EditedCaseData?.OPD.OPDChoice; let p=index;">
+{{item.name}},
+                    </label>
+                </td>
+                
+            </tr>
+        </tbody>
+    </table>
+    <hr *ngIf="OPDDetails"/>
+   
+    <p *ngIf="AmbulanceSection"  style="text-align:center; padding-bottom:10px;"><b>Ambulance Uses Details</b></p>
+    <table *ngIf="AmbulanceSection"  style="width:100%" >
+                    
+        <thead style="width:100%">
+           
+            <tr>
+                <th style="width:5%" style="text-align:left;">SlNo.</th>
+                <th style="width:15%" style="text-align:left;">Ambulance Number</th>
+                <th style="width:10%;text-align:left;">Driver Name</th>
+                <th style="width:15%;text-align:left;">Date & Time</th>
+                <th style="width:15%;text-align:left;">Price/KM</th>
+                <th style="width:10%;text-align:left;">Total KM</th>
+                <th style="width:15%;text-align:left;">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of EditedCaseData?.AmbulanceVisit; let p=index;">
+                <th style="width:5%" >{{ p+1 }}</th>
+                <td style="width:15%">{{item.name}}</td>
+                <td style="width:10%;text-align:left;">{{ item.drivername }}</td>
+                <td style="width:15%;text-align:left;">{{ item.expDate }}</td>
+                <td style="width:15%;text-align:left;">{{ item.perkm }}</td>
+                <td style="width:10%;text-align:left;">{{ item.totalkm }}</td>
+                <td style="width:15%;text-align:left;">{{ item.perkm* item.totalkm }}</td>
+                
+            </tr>
+        </tbody>
+    </table>
+    <hr *ngIf="AmbulanceSection" />
+
+    <p *ngIf="DischargeSection" style="text-align:center; padding-bottom:10px;"><b>Discharge Details</b></p>
+    <table *ngIf="DischargeSection" width="100%" class="table1">
+        <tr>
+            <td colspan="2" style="text-align:left;"><b>Advice Note:&nbsp;</b><pre>{{EditedCaseData?.DischargeNote?.AdviceNote}}</pre></td>
+           
+        </tr>
+        <tr>
+            <td colspan="2"style="text-align:left;"><b>Final Diagnosis:&nbsp;</b><pre>{{EditedCaseData?.DischargeNote?.FinalDiagnosis}}</pre></td> 
+        </tr>
+        <tr>
+            <td style="text-align:left;"><b>Referal:&nbsp;</b>{{EditedCaseData?.DischargeNote?.Referal}}</td>
+            <td style="text-align:left;"><b>Discharge Type:&nbsp;</b>{{EditedCaseData?.DischargeNote?.DischargeType}}</td>            
+        </tr>
+      
+        
+       
+    </table>
+    <hr *ngIf="DischargeSection"  />
+
+    <p *ngIf="pathoLabSection"   style="text-align:center; padding-bottom:10px;"><b>Investigation/Test and Hospital Payment Details</b></p>
+   
+<div *ngIf="pathoLabSection">
+    <table  style="width:100%" *ngFor="let itemOut of EditedCaseData?.TestNameWithCase?.TestType; let p=index;">
+                    
+        <thead style="width:100%">
+            <tr> 
+                <th colspan="5">
+                    #{{p+1}}. Investigation/Test Type: {{itemOut.parentTest}}
+                </th>
+            </tr>
+            <tr>
+                <th style="width:5%" style="text-align:left;">SlNo.</th>
+                <th style="width:60%" style="text-align:left;">Test Name</th>
+                <th style="width:35%;text-align:right;">Test Price(&#8377;)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of itemOut.names; let pInn=index">
+                <th style="width:5%" >{{ pInn+1 }}</th>
+                <td style="width:60%">{{ item.TestName }}</td>
+                <td style="width:36%;text-align:right;">{{ item.TestPrice }}</td>
+                
+            </tr>
+        </tbody>
+    </table>
+    <br/>
+</div>
+<hr/>
+<p *ngIf="pathoLabSection" style="text-align:center; padding-bottom:10px;"><b>Investigation/Test finding in details</b></p>
+   
+    <div *ngIf="pathoLabSection">
+        <div  *ngFor="let MainData of LabTestIndividualArray; let ti=index" style="background-color:#e7e4e4 ; padding-top:10px;">
+            <div class="row">
+                <h3>&nbsp;&nbsp;&nbsp;LAB: Test Name:{{MainData.TestName}}, (Category
+                    :{{MainData.CategoryName}})</h3>
+            </div>
+            <hr class="noPaddingMargin" />
+
+            <div >
+                <!-- sysdice  {{found}} -->
+                <table style="width:100%">
+                    <tr>
+                        <th width="5%" style="text-align:left;">SlNo.</th>
+                        <th width="25%" style="text-align:left;">Test</th>
+                        <th width="20%" style="text-align:left;">Value</th>
+                        <th width="20%" style="text-align:left;">&nbsp;Unit</th>
+                        <th width="20%" style="text-align:left;">Reference(Min to Max)</th>
+                    </tr>
+                    <tr *ngFor="let teacher of MainData?.test; let ti=index" >
+
+                        <td>{{ti+1}}.</td>
+                        <td>{{teacher.ParamterName}}</td>
+
+                        <td>
+                            {{teacher.InputValue}}
+
+                        <td>&nbsp;{{teacher.Unit}}</td>
+                        <td *ngIf='data11 != undefined'>{{myval(MainData.CategoryName,MainData.TestName,EditedCaseData?.Home?.PatientCategory,ti)}}</td>
+                      
+                      
+
+                        <!-- <hr class="noPaddingMargin" /> -->
+
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            Doctor Remarks:&nbsp;<i>{{MainData.MoreDetails.trim().length <1?'NA':MainData.MoreDetails.trim()}}</i>
+                            <hr class="noPaddingMargin" />
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+            <!-- <div>
+                {{MainData.MoreDetails}}
+            </div> -->
+
+            <!-- {{teachersForm.value|json}} -->
+
+
+            <!-- {{this.caseData|json}}
+--------------------------------
+
+            {{this.teachersForm.value | json}} -->
+
+        </div>
+    </div>
+
+    <div *ngIf="pathoLabSection">
+        <div  *ngFor="let MainData of DentalTestIndividualArray; let ti=index" style="background-color:#e7e4e4 ; padding-top:10px;">
+            <div class="row">
+                <h3>&nbsp;&nbsp;&nbsp;DENTAL: Test Name:{{MainData.TestName}}, (Category
+                    :{{MainData.CategoryName}})</h3>
+            </div>
+            <hr class="noPaddingMargin" />
+
+            <div >
+                <!-- sysdice  {{found}} -->
+                <table style="width:100%">
+                    <tr>
+                        <th width="5%" style="text-align:left;">SlNo.</th>
+                        <th width="25%" style="text-align:left;">Test</th>
+                        <th width="20%" style="text-align:left;">Value</th>
+                        <th width="20%" style="text-align:left;">&nbsp;Unit</th>
+                        <th width="20%" style="text-align:left;">Reference(Min to Max)</th>
+                    </tr>
+                    <tr *ngFor="let teacher of MainData?.test; let ti=index" >
+
+                        <td>{{ti+1}}.</td>
+                        <td>{{teacher.ParamterName}}</td>
+
+                        <td>
+                            {{teacher.InputValue}}
+
+                        <td>&nbsp;{{teacher.Unit}}</td>
+                        <td *ngIf='data11 != undefined'>{{myvalDental(MainData.CategoryName,MainData.TestName,EditedCaseData?.Home?.PatientCategory,ti)}}</td>
+                       
+                        <!-- <hr class="noPaddingMargin" /> -->
+
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            Doctor Remarks:&nbsp;<i>{{MainData.MoreDetails.trim().length <1?'NA':MainData.MoreDetails.trim()}}</i>
+                            <hr class="noPaddingMargin" />
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+            <!-- <div>
+                {{MainData.MoreDetails}}
+            </div> -->
+
+            <!-- {{teachersForm.value|json}} -->
+
+
+            <!-- {{this.caseData|json}}
+--------------------------------
+
+            {{this.teachersForm.value | json}} -->
+
+        </div>
+    </div>
+    <hr/>
+    <table *ngIf="BillingSectionInclusion" width="100%" class="table1">
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.LabTestCharge !== '0'">
+            <td style="text-align:left;">LabTest Charge:</td>
+            <td style="text-align:right;">&#8377;. {{EditedCaseData?.PaymentHistory[0]?.LabTestCharge}}</td>           
+        </tr>
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.OPDCharge !== '0'">
+            <td style="text-align:left;">OPD Charge:</td>
+            <td style="text-align:right;">&#8377;. {{EditedCaseData?.PaymentHistory[0]?.OPDCharge}}</td>           
+        </tr>
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.DoctorCharge !== '0'">
+            <td style="text-align:left;">Doctor Charge:</td>
+            <td style="text-align:right;">&#8377;. {{EditedCaseData?.PaymentHistory[0]?.DoctorCharge}}</td>           
+        </tr>
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.BedCharge !== '0'">
+            <td style="text-align:left;">Bed Charge:</td>
+            <td style="text-align:right;">&#8377;. {{EditedCaseData?.PaymentHistory[0]?.BedCharge}}</td>           
+        </tr>
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.FarmaCharge !== '0'">
+            <td style="text-align:left;">Pharmacy Charge:</td>
+            <td style="text-align:right;">&#8377;. {{EditedCaseData?.PaymentHistory[0]?.FarmaCharge}}</td>           
+        </tr>
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.OTCharge !== '0'">
+            <td style="text-align:left;">OT Charge:</td>
+            <td style="text-align:right;">&#8377;. {{EditedCaseData?.PaymentHistory[0]?.OTCharge}}</td>           
+        </tr>
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.OtherCharge !== '0'">
+            <td style="text-align:left;">Other Charge:</td>
+            <td style="text-align:right;">&#8377;. {{EditedCaseData?.PaymentHistory[0]?.OtherCharge}}</td>           
+        </tr>
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.RegdCharge !== '0'">
+            <td style="text-align:left;">Registration Charge:</td>
+            <td style="text-align:right;">&#8377;. {{EditedCaseData?.PaymentHistory[0]?.RegdCharge}}</td>           
+        </tr>
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.NurseCharge !== '0'">
+            <td style="text-align:left;">Nurse Charge:</td>
+            <td style="text-align:right;">&#8377;. {{EditedCaseData?.PaymentHistory[0]?.NurseCharge}}</td>           
+        </tr>
+        
+        <tr>
+            <td colspan="2"><hr/></td>
+            </tr>
+
+        <tr>
+            <td style="text-align:left;">Total Fees:</td>
+            <td style="text-align:right;">&#8377;. {{EditedCaseData?.PaymentHistory[0]?.Amount}}</td>           
+        </tr>
+        <tr>
+            <td style="text-align:left;">Discount:</td>
+            <td style="text-align:right;">&#8377;. {{EditedCaseData?.PaymentHistory[0]?.Discount}}</td>           
+        </tr>
+        <tr>
+            <td style="text-align:left;">Advance Payment:</td>
+            <td style="text-align:right;">&#8377;. {{EditedCaseData?.PaymentHistory[0]?.EarlierPayment}}</td>           
+        </tr>
+        <tr>
+            <td style="text-align:left;">Amount Received:</td>
+            <td style="text-align:right;"><span style="color:green">&#10003; </span>&nbsp;&#8377;.{{TotalAmountRecived}}</td>           
+        </tr>
+        <tr>
+            <td style="text-align:left;" colspan="2"><hr/></td>
+                      
+        </tr>
+        <tr>
+            <td style="text-align:left;">Balance Amount:</td>
+            <td style="text-align:right;">&#8377;.{{EditedCaseData?.PaymentHistory[0]?.Balance}}</td>           
+        </tr>
+        </table>
+
+    
+    <br/>
+    <div class="row">
+        <div class="col-sm-6">
+            <p style="text-align:left;">
+                <b>Place By:&nbsp;</b><br />
+                <b>Date:&nbsp;</b>{{myDate}}<br /><br />                           
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <p style="text-align:right;">
+                <b></b>
+                <br />
+                <!-- <b>Signature:&nbsp;</b><img src="/assets/images/signDoctor.png" alt="add" width="50" height="24"><br />                            -->
+                <b>Signature:&nbsp;</b><br />   
+            </p>
+        </div>
+    </div>
+    <p style="text-align:center;"><b>~~~~Thank You~~~~</b></p>
+    
+
+
+          </td></tr>
+        </tbody>
+        <!-- follwing line make footer repeatable for each page -->
+        <!-- <tfoot><tr><td>Your footer goes here</td></tr></tfoot> -->
+     </table>
+  
+       
+        <div >
+       
+        
+           
+    
+         
+           
+            
+    
+  
+    
+   
+    
+
+</div>  
+
+

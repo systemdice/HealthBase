@@ -1,0 +1,154 @@
+<form [formGroup]="BedDetails" *ngIf="BedDetails">
+<div>
+ 
+    <div class="form-row">
+
+      <div class="form-group col-md-2" style="display: flex;margin-top:15px;">
+        <h4>Admission date </h4>
+      </div>
+
+      <div class="form-group col-md-3" style="display: flex">
+        
+        <mat-form-field style="padding-top:0px;">
+          <mat-label>Admission&nbsp;Date</mat-label>
+          <input matInput [matDatepicker]="StartDate1" placeholder="Admission Date" formControlName="StartDate"
+            (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+          <mat-datepicker-toggle matSuffix [for]="StartDate1"></mat-datepicker-toggle>
+          <mat-datepicker #StartDate1></mat-datepicker>
+        </mat-form-field>
+        <!-- <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" [min]="todayDate" formControlName="StartDate" >
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field> -->
+      </div>
+      <div class="form-group col-md-2" style="display: flex;margin-top:15px;">
+        <h4>Release date </h4>
+      </div>
+
+      <div class="form-group col-md-3" style="display: flex">
+        <mat-form-field style="padding-top:0px;">
+          <mat-label>Release&nbsp;Date</mat-label>
+          <input matInput [matDatepicker]="EndDate1" placeholder="Release Date" formControlName="EndDate">
+          <mat-datepicker-toggle matSuffix [for]="EndDate1"></mat-datepicker-toggle>
+          <mat-datepicker #EndDate1></mat-datepicker>
+        </mat-form-field>
+
+
+        <!-- <input type="text" [matDatepicker]="picker1" placeholder="Release Date" name="EndDate" formControlName="EndDate"
+          class="form-control">
+        <mat-datepicker-toggle matSuffix [for]="picker1" text-color="yellow" style="margin-top: -8px;">
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker1 disabled=false></mat-datepicker> -->
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-2" style="display: flex">
+
+        <mat-checkbox *ngIf="false" class="example-margin" formControlName="Upgrade" (change)="showOptions($event)">Upgrade me!
+        </mat-checkbox>
+      </div>
+      <div class="form-group col-md-3" style="display: flex">
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Bed Number</mat-label>
+          <input matInput placeholder="Ex. Pizza" value="3B" formControlName="BedNumber">
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-2" style="display: flex">
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Bed Price</mat-label>
+          <input matInput placeholder="Ex. Pizza" value="0" formControlName="BedPrice">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group col-md-2" style="display: flex">
+
+        <mat-form-field class="example-full-width">
+          <mat-label>No of Days</mat-label>
+          <input matInput placeholder="Ex. Pizza" value="0" formControlName="Nofdays">
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-2" style="display: flex">
+
+        <mat-form-field class="example-full-width">
+          <mat-label>TotalPrice</mat-label>
+          <input matInput placeholder="Total Price" formControlName="TotalPrice" [value]="0">
+        </mat-form-field>
+      </div>
+
+
+    </div>
+
+
+  
+</div>
+<div class="tooltip">Hover over me
+  <span class="tooltiptext">Tooltip text</span>
+</div>
+<div>
+
+  <div class="seat-row">
+    Deluxe<br />
+    <div *ngFor="let seat of bookingInfo.seats">
+      <div class="seat" [ngClass]="seat.seatNo === 2? 'divide-category': ''" *ngIf="seat.row === 1">
+        <label class="seat-label"
+          [ngClass]="seat.status=== 'booked' ? (bookingForm.controls.name.value === seat.bookedBy ? 'selected' : 'booked'): 'available'">
+          {{seat.seatNo}}
+          Rs.{{seat.price}} (per day)<br />
+          <u><span (click)="ShowFacilities(seat.facility,seat.seatNo,seat.price)"> Show Detail/Facilities
+            </span></u>
+
+
+
+
+          <!-- {{seat.facility}} -->
+        </label>
+      </div>
+    </div>
+  </div>
+  <br />
+</div>
+
+<div>
+
+  <div class="seat-row">
+    Normal<br />
+    <div *ngFor="let seat of bookingInfo.seats">
+      <div class="seat" [ngClass]="seat.seatNo === 7? 'divide-category': ''" *ngIf="seat.row === 2">
+        <label class="seat-label"
+          [ngClass]="seat.status=== 'booked' ? (bookingForm.controls.name.value === seat.bookedBy ? 'selected' : 'booked'): 'available'">
+          {{seat.seatNo}}
+          Rs.{{seat.price}}(Per day))<br />
+          <u><span (click)="ShowFacilities(seat.facility,seat.seatNo,seat.price)"> Show Details/Facilities
+            </span></u>
+
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="new-booking">
+    <button (click)="openBookingForm()"> New Booking1</button>
+  </div> -->
+
+<br />
+<div class="seat-row">
+  <u>Room No-{{roomNo}}</u>
+  <ul>
+    <li *ngFor="let opt of seatFacility">
+      {{opt}}
+    </li>
+  </ul>
+</div>
+
+<!-- <div class="example-events">
+  <div *ngFor="let e of events">{{e}}</div>
+</div> -->
+
+<!-- data {{this.res}} -->
+<!-- {{BedDetails.value|json}} -->
+</form>

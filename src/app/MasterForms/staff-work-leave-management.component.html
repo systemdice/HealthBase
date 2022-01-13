@@ -1,0 +1,207 @@
+<mat-tab-group>
+  <mat-tab label="Apply Leave"> <app-leave-request-main (someEvent)="deletePhone($event)" 
+    [LeaveDetailValues]="asyncPipeUserDetailsObj" [childProperty]="parentProperty" (messageEvent)="receiveMessage($event)">
+  </app-leave-request-main> </mat-tab>
+    <mat-tab label="Leave Details"> 
+        <div class="col-md-12 mt-4">
+
+            <!-- Show Leave Request Details -->
+            <div >
+          
+              <!-- <div class="col-md-12">
+                <div class="jumbotron">
+          
+                </div>
+              </div> -->
+          
+              <div class="row col-md-12">
+                
+                <div class="col-md-4">
+                  <div class="profile-img text-center">
+                    <img src="assets/leave.PNG" class="leave-emp-profile-img" alt="profile image" />
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="profile-head">
+                    <h5><span class="font-weight-bold text-success">
+                        Requester Name:&nbsp; <span>{{asyncPipeUserDetailsObj?.FirstName}}</span>
+                      </span>
+                    </h5>
+                    <h6>Leave Type:&nbsp; <span>{{asyncPipeUserDetailsObj?.leaveId}}</span></h6>
+                    <p>Leave Reason:&nbsp; <span>{{asyncPipeUserDetailsObj?.leaveReason}}</span></p>
+                    <p>No of Days applied:&nbsp; <span>{{asyncPipeUserDetailsObj?.SingleDayLeave}}</span></p>
+                    <p>Current Status:&nbsp; <span>{{asyncPipeUserDetailsObj?.approved}}</span></p>
+                    <p>Submitted On : <span>{{asyncPipeUserDetailsObj?.DateStart}}</span></p>
+                  </div>
+          
+                  <div mat-tab-nav-bar class="custom-tab">
+                    <a mat-tab-link class="nav-link active">Info</a>
+                  </div>
+          
+                  <div class="row font-italic mt-3">
+                    <div class="col-md-6 border-right">
+                      <p>Leave Request Id:&nbsp; <span>1{{asyncPipeUserDetailsObj?.UnqueID}}</span></p>
+                      <p>Approver Name:&nbsp; <span>{{asyncPipeUserDetailsObj?.ReportingManager}}</span></p>
+                      <p>Approver Email:&nbsp; <span>{{asyncPipeUserDetailsObj?.ReportingManagerEmail}}</span></p>
+                      <p>Reason:&nbsp; <span>{{asyncPipeUserDetailsObj?.leaveReason}}</span></p>
+                      
+                    </div>
+          
+                   
+          
+                  
+                  </div>
+          
+                </div>
+          
+              </div>
+          
+            </div>
+          
+          
+          
+          </div>
+    </mat-tab>
+    
+  </mat-tab-group>
+  <div class="main-content" >
+           
+    <!-- <div >
+        <mat-form-field >
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" name="filterVal" [ngModelOptions]="{standalone: true}" [(ngModel)]="filterVal">
+        </mat-form-field>
+      </div> -->
+      
+      <ul>
+        <li><mat-form-field >
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter anything" name="filterVal" [ngModelOptions]="{standalone: true}" [(ngModel)]="filterVal">
+        </mat-form-field>
+      </li>&nbsp;
+        <li>Name starts with: </li>&nbsp;
+        <li *ngFor="let name of alphabet ">
+          <a href="javascript:void(null)" (click)="applyFilterAlphabet(name)">{{name}}</a>&nbsp;
+        </li>
+        
+       </ul>
+        <!-- <ul>
+       <li *ngFor="let name of asyncPipeUserDetails ">
+       {{name.FirstName}}
+       </li>
+       </ul> -->
+      <div class="example-container mat-elevation-z8" >
+    
+        <!-- <button mat-button (click)=(click)="openDialog('Add',{},element.UnqueID,'Add')" mat-flat-button color="primary">Add Row</button> -->
+      
+        <mat-table [dataSource]="dataSource" matSort #mytable class="my-table mat-elevation-z8" style="background-color:#FFFFFF;border-radius: 2em; border:2px #6D7B8D; padding:5px;width:99%;table-layout:fixed;">
+    
+            <ng-container matColumnDef="slno" *ngIf="!SR">
+                <mat-header-cell *matHeaderCellDef class="HeaderStyle"> Slno. </mat-header-cell>
+                <mat-cell *matCellDef="let item; let i = index">  <span  class="mobile-label ">SlNo:</span>{{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }} </mat-cell>
+                
+               </ng-container>
+    
+            
+               <!-- Id Column -->
+               <ng-container matColumnDef="UnqueID" *ngIf="!SR">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Leave ID </mat-header-cell>
+                <mat-cell *matCellDef="let element" > <span  class="mobile-label ">Leave ID:</span>
+                  <u style="cursor:pointer;color:blue" (click)="addEditExpenseItem()">
+                  {{element.UnqueID}} </u></mat-cell>
+              </ng-container>
+    
+              <ng-container matColumnDef="DateStart" *ngIf="!SR">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Apply Date </mat-header-cell>
+                <mat-cell *matCellDef="let element"><span  class="mobile-label ">Apply Date:</span> {{element.DateStart}} </mat-cell>
+              </ng-container>
+              
+              
+              <!-- Id Column -->
+            <ng-container matColumnDef="dateFrom">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> From </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <span  class="mobile-label ">From:</span>{{element.dateFrom| date:'dd/MM/yyyy'}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="dateTo">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> To </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <span  class="mobile-label ">To:</span>{{element.dateTo| date:'dd/MM/yyyy'}} </mat-cell>
+              </ng-container>
+            <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+                
+                  <!-- <ng-container matColumnDef="Notes">
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Notes </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Notes}} </mat-cell>
+                  </ng-container> -->
+                  <ng-container matColumnDef="FirstName">
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Staff Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"><span  class="mobile-label ">Name:</span>
+                      {{element.FirstName}} </mat-cell>
+                  </ng-container>
+    
+                  <ng-container matColumnDef="StaffType">
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Category </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Category:</span>{{element.StaffType}} </mat-cell>
+                  </ng-container>
+                 
+                  <ng-container matColumnDef="leaveId" *ngIf="!SR">
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Leave Type </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Leave Type:</span>{{element.leaveId}} </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="leaveReason" *ngIf="!SR">
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Leave Reason </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Reason:</span>{{element.leaveReason}} </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="ReportingManager" *ngIf="!SR">
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Manager </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Manager:</span>{{element.ReportingManager}} </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="SingleDayLeave" *ngIf="!SR">
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Days </mat-header-cell>
+                    <mat-cell *matCellDef="let element"><span  class="mobile-label ">No of Days:</span> {{element.SingleDayLeave}}&nbsp;Days </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="approved">
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Status </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Status:</span>{{element.approved}} </mat-cell>
+                  </ng-container>
+                 
+                  
+                  
+    
+                  
+        
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef class="HeaderStyle">  
+               
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element" class="action-link">
+    
+                <button class="btn btn-sm btn-info text-white actionButton mr-2" matTooltip="Edit Expense" 
+                (click)="editUserDetailsMat(element.UnqueID)">
+                    <i class="fa fa-pencil"></i><span class="sm-1"></span> Edit
+        </button>
+        <button class="btn btn-sm btn-danger text-white actionButton mr-2" matTooltip="Delete Expense" 
+                (click)="DeleteItem(element.UnqueID)">
+                    <i class="fa fa-trash"></i><span class="sm-1"></span> Del
+        </button>
+    
+                <!-- <button class="btn btn-sm btn-danger text-white actionButton mr-2" matTooltip="Delete Expense"                 
+                (click)="DeleteItem(element.UnqueID)">
+                    <i class="fa fa-trash"></i> <span class="sm-1"></span> Delete
+                </button> -->
+      
+                 
+                   
+                <!-- <a (click)="openDialog('Update',element)">Edit</a> | 
+                <a (click)="openDialog('Delete',element)">Delete</a>   -->
+              </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></mat-row>
+          </mat-table>
+          <mat-paginator #paginatorRef [pageSizeOptions]="[5, 10, 25, 100]" ></mat-paginator>
+          <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+      
+      </div>
+  </div>

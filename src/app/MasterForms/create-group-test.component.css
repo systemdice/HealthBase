@@ -1,0 +1,67 @@
+.example-h2 {
+    margin: 10px;
+  }
+  
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .example-margin {
+    margin: 0 10px;
+  }
+
+  .cb-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    flex-flow: row;
+  }
+  
+  .mat-checkbox {
+    margin-left:20px;
+  } 
+  
+  .cb-vertival {
+    flex-flow: column;
+  }
+  :host::ng-deep.mat-checkbox-layout{
+    white-space: normal !important;
+    }
+    
+    :host::ng-deep.mat-checkbox-inner-container{
+        margin-top: 4px;
+    }
+
+    
+h3{
+    color: skyblue;
+  }
+  
+  .five-a-row{ 
+    float:left;
+    display:table-column;
+    width:25%;
+  }
+  
+  .main-box{
+    width: 100%;
+  }
+
+  .close-button{
+    float: right;
+    top:-24px;
+    right:-24px;
+  }
+  
+  .close-icon {
+    transition: 1s ease-in-out;
+  }
+  
+  .close-icon:hover {
+    transform: rotate(180deg);
+  }
+  
+  

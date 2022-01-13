@@ -1,0 +1,283 @@
+<form [formGroup]="teachersForm" (ngSubmit)="onSubmit()" id="frmIndividualLapReport">
+    <div style="border-style:solid; margin-left:5px; margin-right:5px;">
+        <div>
+            <h3 style="text-align:center; padding-bottom:10px;">
+                {{Addressline1}}<br />
+                {{Addressline2}}<br />
+                {{Addressline3}}<br />
+                {{Addressline4}}<br />
+
+            </h3>
+
+
+        </div>
+        <div class="container" style="text-align:right;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ngx-barcode *ngFor="let bcValue of values" [bc-value]="bcValue" [bc-width]="1" [bc-height]="30">
+                    </ngx-barcode>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- {{caseData|json}} -->
+
+
+        <hr style="margin-bottom:1px; margin-top:0px;">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <p style="text-align:left;">
+                        <b>Reg.no: </b>{{newModifyCase?.IPDOPDId}}<br />
+                        <b>Name: </b>{{ caseData?.Home?.FirstName?.substring(0,1) |
+                        uppercase}}{{caseData?.Home?.FirstName?.substring(1)}} {{
+                        caseData?.Home?.LastName?.substring(0,1)
+                        | uppercase}}{{caseData?.Home?.LastName?.substring(1)}} <br />
+                        <b>Age/Sex:</b>{{caseData?.Home.Year}}&nbsp;Yr&nbsp;{{caseData?.Home.Month}}&nbsp;Mon&nbsp;{{caseData?.Home.Days}}&nbsp;Days/&nbsp;{{caseData?.Home.Gender=='2'?'Female':'Male'}}<br />
+                        <b>Mobile No:</b>{{caseData?.Home.ContactNumber}}<br />
+                        <b>Email:</b>{{caseData?.Home.Email}}<br />
+                        <b>Address:</b>{{caseData?.Home.Address}}
+                    </p>
+                </div>
+                <div class="col-sm-5">
+                    <p style="text-align:right;">
+                        <b>Referred By:</b>{{caseData?.TestNameWithCase.RefferDoctorName}}<br />
+                        <b>Date:</b>{{caseData?.DateStart}}<br />
+                        <b>Sample Collected at:</b>{{caseData?.TestNameWithCase.CollectionCenter}}<br />
+                        <b>Received By:</b>{{this.teachersForm.value.CreatedBy}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <hr class="noPaddingMargin" />
+        <div>
+
+            <div class="container" *ngIf="!finalSave" style="background-color:#e7e4e4 ; padding-top:10px;">
+                <div class="row">
+                    <h3>&nbsp;&nbsp;&nbsp;Test Name:{{this.teachersForm.value.TestName}}, (Category
+                        :{{this.teachersForm.value.CategoryName}})</h3>
+                </div>
+                <hr class="noPaddingMargin" />
+
+                <div formArrayName="test">
+                    <!-- sysdice  {{found}} -->
+                    <table style="width:100%">
+                        <thead>
+                        <tr>
+                            <th width="5%" style="text-align:left;">SlNo.</th>
+                            <th width="25%" style="text-align:left;">Test</th>
+                            <th width="20%" style="text-align:left;">Value</th>
+                            <th width="20%" style="text-align:left;">&nbsp;Unit</th>
+                            <th width="20%" style="text-align:left;">Reference(Min-Max)</th>
+                            <th width="5%" style="text-align:left;"></th>
+                        </tr>
+                    </thead>
+                        <tbody>
+                            <tr *ngFor="let teacher of teachers().controls; let ti=index" [formGroupName]="ti">
+
+                                <td data-th="Sl No.">{{ti+1}}.</td>
+                                <td data-th="Test Name">{{teacher.value.ParamterName}}</td>
+
+                                <td data-th="Value">
+                                    <div>
+                                    <mat-form-field fxFlex>
+                                        <input type="text"
+                                            style="background-color: white;height:22px;font-size: medium;" matInput
+                                            formControlName="InputValue" placeholder="InputValue">
+                                    </mat-form-field>
+                                </div>
+                                </td>
+                                <td data-th="Unit">&nbsp;{{teacher.value.Unit}}</td>
+                                <!-- <td>{{myval(caseData?.Home?.PatientCategory,ti)}}</td> -->
+                                <td data-th="Reference(Min to Max)">
+                                    <!-- <mat-form-field fxFlex>
+                                    <input type="text" style="background-color: white;height:22px;font-size: medium;" matInput
+                                        formControlName="GeneralRef" placeholder="GeneralRef">
+                                </mat-form-field> -->
+                                    {{myval(caseData?.Home?.PatientCategory,ti)}}
+                                </td>
+                                <td data-th=" ">
+                                    <!-- <span style="color:#9F000F" class="btn">
+                                    <button type="button" class="btn btn-sm btn-danger" (click)="removeTeacher(ti)">
+                                        &#x2717;&nbsp;Delete</button>&nbsp;
+                                   
+                                </span> -->
+                                    <!-- <button type="button" (click)="addTeacher()">Add Teacher</button>
+                                        <button (click)="removeTeacher(ti)">Remove</button>  -->
+                                </td>
+
+                                <hr class="noPaddingMargin" />
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                   
+                </div>
+                <div>
+                    <mat-form-field fxFlex>
+                        <mat-label>More details/Leave a comment</mat-label>
+                        <textarea matInput placeholder="More details...." formControlName="MoreDetails" rows="5"
+                            style="background-color: white;"></textarea>
+                    </mat-form-field>
+                </div>
+
+                <!-- {{teachersForm.value|json}} -->
+
+
+                <!-- {{this.caseData|json}}
+--------------------------------
+
+                {{this.teachersForm.value | json}} -->
+
+            </div>
+
+
+            <ng-template [ngIf]="finalSave">
+                <div class="container" style="background-color:#e7e4e4; padding-top:10px;">
+                    <div class="row">
+                        <h3>&nbsp;&nbsp;&nbsp;Test Name: {{this.teachersForm.value.TestName}}, (Category
+                            :{{this.teachersForm.value.CategoryName}})</h3>
+                    </div>
+                    <hr class="noPaddingMargin" />
+
+                    <div formArrayName="test">
+                        <!-- sysdice  {{found}} -->
+                        <table style="width:100%">
+                            <thead>
+                            <tr>
+                                <th width="5%" style="text-align:left;">SlNo.</th>
+                                <th width="25%" style="text-align:left;">Test</th>
+                                <th width="20%" style="text-align:left;">Value</th>
+                                <th width="20%" style="text-align:left;">&nbsp;Unit</th>
+                                <th width="20%" style="text-align:left;">Reference(Min-Max)</th>
+                                <th width="5%" style="text-align:left;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let teacher of teachers().controls; let ti=index" [formGroupName]="ti">
+
+                                <td data-th="Slno.">{{ti+1}}.</td>
+                                <td data-th="Parameter Name">{{teacher.value.ParamterName}}</td>
+
+                                <td data-th="Value">
+                                    <label
+                                        *ngIf="myvalRangeSecurity(teacher.value.InputValue,caseData?.Home?.PatientCategory,ti) !=='(Normal)'"><b>{{teacher.value.InputValue}}</b></label>
+                                    <!-- {{teacher.value.InputValue}} -->
+                                    <span
+                                        *ngIf="myvalRangeSecurity(teacher.value.InputValue,caseData?.Home?.PatientCategory,ti) =='(Normal)'">{{teacher.value.InputValue}}</span>
+
+                                </td>
+
+                                <td  data-th="Unit">&nbsp;{{teacher.value.Unit}}</td>
+                                <td  data-th="Reference(Min-Max)">{{myval(caseData?.Home?.PatientCategory,ti)}} </td>
+                                <td>                                </td>
+
+                                <hr class="noPaddingMargin" />
+
+                            </tr>
+                        </tbody>
+
+                        </table>
+
+                    </div>
+                    <div>
+                        <br />
+                        Remarks By Doctor:&nbsp;{{this.teachersForm.value.MoreDetails ==''?'Not
+                        Required':this.teachersForm.value.MoreDetails }}
+
+                    </div>
+
+
+
+                </div>
+
+            </ng-template>
+
+
+
+
+
+
+            <hr class="noPaddingMargin" />
+            <br />
+            <div class="container" *ngIf="finalSave">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p style="text-align:left;">
+                            <b>Place By:</b><br />
+                            <b>Date:</b>{{myDate}}<br /><br />
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p style="text-align:right;">
+                            <b></b>
+                            <br />
+                            <b>Signature:&nbsp;</b><img src="/assets/images/signDoctor.png" alt="add" width="50"
+                                height="24"><br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3" style="float:right;">
+                        <label id="printCheckElement" style="display: inline-block;float:left;">
+                            <input type="checkbox" (change)="fieldsChange($event)" />
+                            Show header on each page
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" id="printElement" *ngIf="finalSave"
+                            (click)="myPrint('frmIndividualLapReport')" class="btn btn-info"><span
+                                class="glyphicon glyphicon-print"></span>
+                            Print</button>
+                        <button type="button" style="display: inline-block;float:left;" id="CloseMe" (click)="CloseMe()"
+                            class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
+                            Close Me</button>
+                    </div>
+
+                    <div class="col-sm-1">
+                    </div>
+                    <div class="col-sm-1">
+                    </div>
+
+
+                    <div class="col-sm-2" style="float: right;">
+                        <button type="button" *ngIf="!finalSave" (click)="saveLabTest('Progress')"
+                            class="btn btn-success"><span class="glyphicon glyphicon-edit"></span>
+                            Save Findings Data(Draft) </button>
+                    </div>
+
+                    <div class="col-sm-2" style="float: right;">
+                        <button type="button" *ngIf="!finalSave" (click)="saveLabTest('Final')"
+                            class="btn btn-danger"><span class="glyphicon glyphicon-edit"></span>
+                            Final Data Save</button>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="!finalSave">
+                    <ul>
+                        <li><span style="color:red">*</span> 'Save/Draft' will allow to modify the entry again and again
+                        </li>
+                        <li><span style="color:red">*</span> 'Save Final Data' will lock the data entry and will be
+                            ready for print</li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <br />
+    </div>
+    <br />
+
+</form>
+
+<!-- {{data11|json}} -->

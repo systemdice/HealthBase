@@ -1,0 +1,138 @@
+<form [formGroup]="NurseVisit">
+  <!-- {{allStaffParm|json}} --
+  {{referralMaster|json}} -->
+  <div formArrayName="teachersNurseVisit">
+
+    <div *ngFor="let teacher of teachers().controls; let ti=index" class="row">
+      <div [formGroupName]="ti" fxFlex style="padding-left:20px;padding-right:30px;">
+        <div class="row">
+          <div class="col-md-2 col-sm-2 col-xs-2" fxFlex>
+            <mat-form-field >
+              <mat-label>Select a Nurse</mat-label>
+              <mat-select   formControlName="name" (selectionChange)="onBookChange($event)">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let expense of referralMaster" [value]="expense.FirstName">{{expense.FirstName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <table id="customers">
+              <thead>
+                <!-- <th>Feedback</th> -->
+                <th width="160px">Observation Name</th>
+                <th>Feedback</th>
+              </thead>
+              <!-- <tr *ngFor="let name of NurseDuty">
+                  <td><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></td> 
+                 
+                  <td>{{name}}</td>
+                  <td style="background-color: white;"> <textarea matInput placeholder="Nurse observations"  rows="2"  #message></textarea>
+                  </td>
+                </tr> -->
+
+              <tr>
+                <!-- <td><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></td> -->
+
+                <td >Blood Pressure:</td>
+                <td style="background-color: white;"> <textarea matInput formControlName="task1"
+                    placeholder="BP reading" rows="2" #message></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td>Pulse Rate:</td>
+                <td style="background-color: white;"> <textarea matInput formControlName="task2"
+                    placeholder="Pulse rate reading" rows="2" #message></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td>Body Temperature:</td>
+                <td style="background-color: white;"> <textarea matInput formControlName="task3"
+                    placeholder="Body temperature reading" rows="2" #message></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td>Breathing Rate (Respiration):</td>
+                <td style="background-color: white;"> <textarea matInput formControlName="task4"
+                    placeholder="Breathing rate reading" rows="2" #message></textarea>
+                </td>
+              </tr>
+
+            </table>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-3">
+            <mat-form-field>
+              <mat-label>Date Time</mat-label>
+              <input type="text" readonly value="100" matInput formControlName="expDate"
+                placeholder="Expense Description">
+
+            </mat-form-field>
+          </div>
+          <div class="col-md-1 col-sm-1 col-xs-1">
+            <span style="color:#9F000F" class="btn">
+              <button type="button" class="btn btn-sm btn-success" (click)="addTeacher()">
+                &#10003;&nbsp;Add</button>&nbsp;
+              <button type="button" class="btn btn-sm btn-danger" (click)="removeTeacher(ti)">
+                &#x2717;&nbsp;Del</button>&nbsp;
+            </span>
+          </div>
+        </div>
+
+
+        <div class="row">
+
+          <div class="col-md-3 col-sm-3 col-xs-3">
+            <mat-form-field fxFlex style="width:40px">
+              <mat-label>Drug</mat-label>
+              <input matInput placeholder="Drug" formControlName="drug">
+            </mat-form-field>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-3">
+            <mat-form-field fxFlex style="width:40px">
+              <mat-label>Dose</mat-label>
+              <input matInput placeholder="Dose" formControlName="dose">
+            </mat-form-field>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-3">
+            <mat-form-field fxFlex style="width:50px">
+              <mat-label>Frequency</mat-label>
+              <input matInput placeholder="Frequency" formControlName="frequency">
+            </mat-form-field>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-3">
+
+            <mat-form-field fxFlex style="width:100px">
+              <mat-label>Time</mat-label>
+              <mat-select formControlName="applytime">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let expense of applytimeMaster" [value]="expense">{{expense}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <mat-form-field fxFlex *ngIf="false">
+            <span matPrefix style="color:blue"></span>
+            <textarea matInput placeholder="Nurse observations" #message
+              formControlName="ExpenseDescription"></textarea>
+
+            <!-- <textarea type="text" rows="5" formControlName="ExpenseDescription" class="form-control" placeholder="Doctor Advice"></textarea>
+                <input type="text" value="100" matInput formControlName="ExpenseDescription" placeholder="{{NurseVisitPlaceholder}}" -->
+
+          </mat-form-field>
+          <!-- <mat-form-field fxFlex>
+                <span matPrefix style="color:blue">&#x20B9;. &nbsp;</span>
+                <input type="number" value="100" matInput formControlName="Amount" placeholder="Expense Cost"
+                (input)="oninputChange('')" >
+                <mat-icon matSuffix>mode_edit</mat-icon>
+              </mat-form-field> -->
+
+        </div>
+        <hr/> 
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+</form>

@@ -1,0 +1,82 @@
+
+ 
+<form [formGroup]="DischargeNote">
+ 
+    <div >
+  
+      <div>
+         
+            
+
+            <div  class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+               
+              
+             
+                <mat-form-field fxFlex>
+                  <span matPrefix style="color:blue"></span>
+                  <textarea matInput rows="6"  id="idFinalDiagnosis"  placeholder="Final Diagnosis" rows="5" formControlName="FinalDiagnosis"></textarea>
+              
+                   
+                </mat-form-field>
+  
+                
+               
+                
+       
+                   
+        
+              </div>
+              <div  class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+  
+                <mat-form-field fxFlex>
+                     <mat-label>Discharge Type</mat-label>
+                    <mat-select formControlName="DischargeType">
+                      <mat-option>--</mat-option>
+                      <mat-option *ngFor="let relationship of DischargeTypes" [value]="relationship">{{relationship}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+    
+                <mat-form-field fxFlex>
+                    <span matPrefix style="color:blue"></span>
+                    <input matInput type="text" formControlName="Referal" placeholder="Referal" />
+                     
+                  </mat-form-field>
+                  <mat-form-field fxFlex>
+                    <span matPrefix style="color:blue"></span>
+                    <input matInput type="text" formControlName="Other" placeholder="Other" />
+                     
+                  </mat-form-field>
+    
+          
+                </div>
+
+                <div  class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+               
+                  <mat-form-field fxFlex>
+                        <span matPrefix style="color:blue"></span>
+                        <textarea matInput id="idAdviceNote" placeholder="Advice Note"  rows="5" formControlName="AdviceNote"></textarea>
+                    
+                         
+                      </mat-form-field>
+                      </div>
+              <div >
+                <!-- <li>
+                  <mat-form-field>
+                    <mat-label>What's your name?</mat-label>
+                    <input matInput [(ngModel)]="name"  [ngModelOptions]="{standalone: true}" >
+                  </mat-form-field>
+                </li>
+                <li *ngIf="animal">
+                  You chose: <i>{{animal}}</i>
+                </li>
+                You chose: <i>{{hlData}}</i> -->
+                
+               </div>
+   
+          
+      </div>
+    </div>
+   
+    
+  
+  </form>

@@ -1,0 +1,413 @@
+<div class="row" style="font-size:11px; margin-left:5px; margin-right:5px;"
+    id="frmIndividualLapReport">
+
+
+    <table width="100%" cellspacing="0px" cellpadding="0px">
+
+        <tbody>
+            <tr>
+                <td style="border: 0px solid black ;">
+
+
+
+                    <div style="text-align:center;">
+                        <div style="text-align:center;">
+                            <h3 style="text-align:center; padding-bottom:10px;">
+                                {{Addressline1}}<br />
+                                {{Addressline2}}<br />
+                                {{Addressline3}}<br />
+                                {{Addressline4}}
+
+                            </h3>
+                            
+                            <div align="right">
+                                <table>
+                                    <tr>
+                                        <td  style="border: 1px solid black ;font-weight: bold;" colspan="2">
+                                            <div class="div1">Bed Number:&nbsp;<span style="color:blue">{{EditedCaseData?.BedDetailsVisit[0]?.BedName}}</span><br/>IP No.:&nbsp;{{EditedCaseData?.IPDOPDId}}<br />(To be written by Hosp.
+                                                Staff)
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                                            </div>
+                            <hr />
+                            <h2>NEW PATIENT REGISTRATION FORM
+
+                            </h2>
+                            
+
+
+
+                        </div>
+                       
+
+                        <div class="col-sm-12">
+
+                            <button type="button" style="display: inline-block;float:left;" id="printElement"
+                                (click)="myPrint('frmIndividualLapReport')" class="btn btn-info"><span
+                                    class="glyphicon glyphicon-print"></span>
+                                Print</button>
+                            <!-- <button type="button" style="display: inline-block;float:left;" id="CloseMe"
+                                (click)="CloseMe()" class="btn btn-info"><span
+                                    class="glyphicon glyphicon-print"></span>
+                                Close Me</button> -->
+
+
+
+                            <button type="button" style="display: inline-block;float:left;" id="closePopup"
+                                (click)="onNoClick()" class="btn btn-info"><span
+                                    class="glyphicon glyphicon-print"></span>
+                                Close Me/Popup</button>
+                                <div class="form-row" id="searchtElement" *ngIf="showSearch">
+
+                             
+                                    <div class="form" style="display: flex;margin-top:5px;">
+                                      <label>IPD/OPD ID (CASE ID):</label>
+                                      
+                                    </div>
+        
+                                    <div class="form-group " style="display: flex">
+                                        <input type="text" [(ngModel)]="CustomID">
+        
+                                    </div>
+                                    <div class="form">
+        
+                                            <button type="button" style="display: inline-block;float:left;" id="closePopup"
+                                        (click)="LoadSearchID()" class="btn btn-warning"><span
+                                            class="glyphicon glyphicon-print"></span>
+                                            Search</button>
+                                    </div>
+                                </div>
+                            <!-- <input id="printCheckElement" style="display: inline-block;float:left;" (change)="fieldsChange($event)" value="Show header on each page" type="checkbox"/>
+        <span id="printCheckTextElement" style="display: inline-block;float:left;">Show header on each page</span> -->
+
+
+                        </div>
+                        <!-- <div class="form-row" id="searchtElement" *ngIf="showSearch">
+
+                            <div class="form-group col-md-2" style="display: flex;margin-top:15px;">
+
+                            </div>
+
+                            <div class="form-group col-md-3" style="display: flex">
+
+
+                            </div>
+                            <div class="form-group col-md-2" style="display: flex;margin-top:15px;">
+                                <h4>CASE ID </h4>
+                            </div>
+
+                            <div class="form-group col-md-3" style="display: flex">
+                                <input type="text" [(ngModel)]="CustomID">
+
+                            </div>
+                            <div class="form-group col-md-2">
+
+                                    <button type="button" style="display: inline-block;float:left;" id="closePopup"
+                                (click)="LoadSearchID()" class="btn btn-warning"><span
+                                    class="glyphicon glyphicon-print"></span>
+                                    Search</button>
+                            </div>
+                        </div> -->
+                    </div>
+
+                    <!-- <hr style="padding:0px;margin:0px" /> -->
+
+
+
+
+                    <hr style="margin-bottom:0px; margin-top:0px;">
+
+                    <table style="width:100%;border: 1px solid black;" cellspacing="0px" cellpadding="0px">
+
+                        <tr>
+                            <td  style="border: 1px solid black ;" colspan="2">
+                                <!-- <div class="div1">IP No.:&nbsp;{{EditedCaseData?.IPDOPDId}}<br />(To be written by Hosp.
+                                    Staff)
+                                </div> -->
+                            </td>
+                            <td style="border: 1px solid black ;">
+                                <P>Observation</P>
+                            </td>
+                            <td style="border: 1px solid black ;"> <input type="checkbox" class="chkbox"></td>
+                            <td style="border: 1px solid black ;">
+                                <P>Casuality</P>
+                            </td>
+                            <td style="border: 1px solid black ;"> <input type="checkbox" class="chkbox"></td>
+                            <td style="border: 1px solid black ;">
+                                <P>Admission </P>
+                            </td>
+                            <td style="border: 1px solid black ;"> <input type="checkbox" class="chkbox"></td>
+
+
+                        </tr>
+
+
+                        <tr>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;" colspan="8">
+                                <hr />
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;">
+                                <P>
+                                    Admission Date</P>
+                            </td>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;" colspan="3">
+                                {{myDate}}</td>
+                            <td style="border: 1px solid black ;">
+                                <P>Admission Time</P>
+                            </td>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;" colspan="3">
+                                {{timeOnly}}</td>
+
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;">
+                                <P>
+                                    TPA / Corporate</P>
+                            </td>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;" colspan="3">
+                                </td>
+                            <td style="border: 1px solid black ;">
+                                <P>Regd No.</P>
+                            </td>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;" colspan="3">
+                                {{EditedCaseData?.IPDOPDId}}</td>
+
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;" colspan="2">
+                                <P>
+                                    Patient's Name</P>
+                            </td>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;" colspan="2">
+                                {{EditedCaseData?.Home?.FirstName|uppercase}}&nbsp;
+                                {{EditedCaseData?.Home?.LastName|uppercase}}</td>
+
+                            <td style="border: 1px solid black ;">
+                                <P>Category </P>
+                            </td>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;">
+                                {{EditedCaseData?.BedDetailsVisit[0]?.BedCategory}}</td>
+                            <td style="border: 1px solid black ;">
+                                <p>Bed Name</p>
+                            </td>
+                            <td style="border: 1px solid black ;">{{EditedCaseData?.BedDetailsVisit[0]?.BedName}}</td>
+                        </tr>
+
+                        <tr>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;">
+                                <P>
+                                    Age </P>
+                            </td>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;" colspan="3">
+                                &nbsp;&nbsp;&nbsp;
+                                {{EditedCaseData?.Home.Year}}Yrs&nbsp;&nbsp;&nbsp;{{EditedCaseData?.Home.Month}}Month
+                            </td>
+                            <td style="border: 1px solid black ;">
+                                <P>Sex</P>
+                            </td>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;" colspan="3">
+                                {{EditedCaseData?.Home.Gender == '1'?'Male':'Female'}}</td>
+
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black ;">
+                                <P>
+                                    Height : </P>
+                            </td>
+                            <td style="border: 1px solid black ;" colspan="3">
+                                &nbsp;&nbsp;&nbsp;{{EditedCaseData?.Home.Height}}CM</td>
+                            <td style="border: 1px solid black ;">
+                                <P>Weight</P>
+                            </td>
+                            <td style="border: 1px solid black ;" colspan="3">
+                                &nbsp;&nbsp;&nbsp;{{EditedCaseData?.Home.Weight}}KG</td>
+
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black ;">
+                                <P>
+                                    Marital Status : </P>
+                            </td>
+                            <td style="border: 1px solid black ;" colspan="3"></td>
+                            <td style="border: 1px solid black ;">
+                                <P>Occupation </P>
+                            </td>
+                            <td style="border: 1px solid black ;" colspan="3"> {{EditedCaseData?.Home.Occupation}}</td>
+
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black ;">
+                                <P>
+                                    Address :
+                                    
+
+                                      <input type="checkbox" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'A':'B')" /> Same as permanent Address
+                                </P>
+                            </td>
+                            <td style="border: 1px solid black ;" colspan="7">{{EditedCaseData?.Home.Address}}</td>
+
+
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black ;">
+                                <P>
+
+                                    Mobile No.</P>
+                            </td>
+                            <td style="border: 1px solid black ;" colspan="7">{{EditedCaseData?.Home.ContactNumber}}
+                            </td>
+
+
+                        </tr>
+                    </table>
+
+                    <table style="width:100%;border: 1px solid black;padding:0px;" cellspacing="0px" cellpadding="0px">
+                        <tr>
+                            <th>Permanent Address</th>
+                            <th style="text-align: center;vertical-align: top;">
+                                Residential Address</th>
+
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black ;padding:0px;" height="80"
+                                style="border: 1px solid black ;">
+                                <!-- {{permanentAddress}} -->
+                                <div *ngFor='let p of permanentAddress'>
+                                    <span> {{p}} </span><br/>
+                                    </div>
+ 
+<span *ngIf='permanentAddress?.length<1'>At- <br/> PO- <br/>PS- <br/> Dist- <br/> <br/></span>
+
+                            </td>
+                            <td style="border: 1px solid black ;padding:0px;" height="80"
+                                style="border: 1px solid black ;"> 
+                                At- <br/> PO- <br/>PS- <br/> Dist- <br/>
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+                    <table style="width:100%;border: 1px solid black;" cellspacing="0px" cellpadding="0px">
+
+                        <tr>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;">
+                                <P>
+                                    Parents/Father/Husband/Wife/Guardian/Responsible <br />Person's Name Provisional
+                                    Diagnosis :</P>
+                            </td>
+                            <td style="border: 1px solid black ;" colspan="7">{{EditedCaseData?.Home.FatherName}} &nbsp; &nbsp;{{EditedCaseData?.Home.MotherName}}</td>
+
+
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;">
+                                <P>
+                                    Final Diagnosis :</P>
+                            </td>
+                            <td style="border: 1px solid black ;" colspan="7"></td>
+
+
+                        </tr>
+
+                        <tr>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;">
+                                <P>
+                                    Consultant's Name :&nbsp;{{EditedCaseData?.Home?.RefferDoctorName}}
+
+                                </P>
+                            </td>
+                            <td style="border: 1px solid black ;" colspan="1"></td>
+
+                            <td style="border: 1px solid black ;" colspan="2" style="border: 1px solid black ;">
+                                <P>
+                                    Dept:</P>
+                            </td>
+                            <td style="border: 1px solid black ;" colspan="4"> </td>
+
+
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;">Discharge Type:
+                                <br/>Reffered to:
+                            </td>
+                            <td style="border: 1px solid black ;"  style="border: 1px solid black ;"> 
+                                <input
+                                    type="checkbox" class="chkbox">Lama
+                                &nbsp; <input type="checkbox" class="chkbox">Discharged
+                                &nbsp;<input type="checkbox" class="chkbox">Discharge On Request</td>
+                            <td style="border: 1px solid black ;"> <input type="checkbox" class="chkbox">Reffered</td>
+                            <td style="border: 1px solid black ;"> <input type="checkbox" class="chkbox">Death</td>
+                            <td style="border: 1px solid black ;"> Date:</td>
+                            <td style="border: 1px solid black ;" colspan="2"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        </tr>
+
+                        <tr>
+                            <td style="border: 1px solid black ;" colspan="8" style="border: 1px solid black ;">
+                                <P>I have been explained about the disease and I want myself / my child to under go
+                                    treatment in this hospital. I/We agree to abide by the schedule of charges and the
+                                    rules and regulations of the Hospital.</P>
+                            </td>
+
+                        </tr>
+                        <tr>
+
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;">Name</td>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;" colspan="1">
+                                {{EditedCaseData?.Home.FirstName|uppercase}}&nbsp;
+                                {{EditedCaseData?.Home.LastName|uppercase}}</td>
+                            <td style="border: 1px solid black ;" colspan="1">Signature</td>
+                            <td style="border: 1px solid black ;" colspan="5"></td>
+                        </tr>
+                    </table>
+
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                   
+                    
+                    <p style="text-align: right;">Reception Signature</p>
+
+
+
+
+                    <!-- <hr style="border-top: 1px dashed black;" /> -->
+
+
+
+
+
+
+                </td>
+            </tr>
+        </tbody>
+        <!-- follwing line make footer repeatable for each page -->
+        <!-- <tfoot><tr><td style="border: 1px solid black ;" >Your footer goes here</td></tr></tfoot> -->
+    </table>
+
+
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>

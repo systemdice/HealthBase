@@ -1,0 +1,93 @@
+.box{
+    background-color: coral;
+    display: table-cell;
+    border-radius:5px;
+}
+.boxZero{
+    background-color: black;
+    display: table-cell;
+    border-radius:10px;
+    padding:12px;
+    margin:2px;
+}
+.boxDue{
+    background-color: green;
+    display: table-cell;
+    border-radius:10px;
+    padding:2px;
+    margin:2px;
+}
+.boxRef{
+    background-color: red;
+    display: table-cell;
+    border-radius:10px;
+    padding:2px;
+    margin:2px;
+}
+.text{
+    color:white;
+    font-weight:bold;
+    text-align:center;
+    padding: 1px 0;
+    border-spacing: 10px;
+}
+
+.wrapper {
+    display: table;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    /* width: 10%; */
+}
+
+.close-button{
+    float: right;
+    top:-24px;
+    right:-24px;
+  }
+
+  table, th, td {
+    border: 1px solid rgb(202, 200, 200);
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .buttonIn {
+    width: 180px;
+    position: relative;
+}
+  
+.input1 {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    outline: none;
+    height: 25px;
+    border-radius: 5px;
+    background-color: green;
+    font-weight: bold;
+    color:white;
+    font-size: large;
+}
+  
+.button1 {
+    position: absolute;
+    top: 0;
+    border-radius: 5px;
+    right: 0px;
+    z-index: 2;
+    border: none;
+    top: 2px;
+    height: 20px;
+    cursor: pointer;
+    color: white;
+    background-color: green;
+    transform: translateX(2px);
+    font-size: small;
+}

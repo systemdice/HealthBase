@@ -1,0 +1,58 @@
+.example-card {
+    max-width: 100%;
+    margin: 4px
+  }
+  mat-panel-description.right-aligned {
+    flex-grow: 0;
+  }
+
+  .new {
+    background: lightblue;
+    width: 100%;
+    margin: 2px;
+    padding:2px;
+    border: red;
+    min-height: 190px;
+  }
+
+  mat-card-header{
+    justify-content: center;
+  }
+
+  .mat-card-title {
+    margin-left: -16px;
+  }
+
+  .style {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    /* font-family : inherit; */
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .style td, .style th {
+    border: 1px solid #ddd;
+    padding: 4px;
+  }
+  
+  .style tr:nth-child(even)
+  {background-color: #f2f2f2;}
+  
+  .style tr:hover 
+  {background-color: #ddd;}
+  
+  .style th {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: left;
+    background-color: lightgray;
+    color: black;
+  }
+  .height { max-height:200px; min-height: 50px; border:1px solid lightgray; overflow:auto;padding:5px; }
+  .aignClass{display: inline-flex;
+    vertical-align: middle;}
+
+    .icon-text {
+      display: flex;
+      align-items: center;
+  }

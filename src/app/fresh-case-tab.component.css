@@ -1,0 +1,58 @@
+/* Add application styles & imports to this file! */
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0;
+    margin: 0;
+    font-size: large;
+  }
+  .fill-space {
+    flex: 1 1 auto;
+  }
+  
+  .solution { padding: 15px;}
+  
+  mat-panel-description.right-aligned {
+    flex-grow: 0;
+  }
+  
+  .zeroMarginPadding{
+  padding:4px;
+  margin:4px;
+  }
+  .div1 {
+    width: 310px;
+    height: 25px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+  }
+
+  .UpperDIV{
+    margin:0 auto;  height:600px; overflow:hidden
+  }
+  .InnerDIV{
+     width:100%; position:absolute; bottom:0px; top:0px; overflow:auto
+  }
+
+  ::ng-deep.mat-tab-label, ::ng-deep.mat-tab-label-active{
+    min-width: 0!important;
+    max-height: 10!important;
+    padding: 3px!important;
+    margin: 1px!important;
+    color:white;
+    background-color: rgb(72, 161, 245);
+    border-radius: 14px;
+    font-weight:bold;
+    font-style: italic;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+   }
+
+   ::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+    color:white;
+    background-color: rgb(240, 192, 232);
+    }
+    
+    ::ng-deep .mat-tab-list .mat-tab-labels {
+    color:blue;
+    /* background-color: yellow; */
+    }
+    

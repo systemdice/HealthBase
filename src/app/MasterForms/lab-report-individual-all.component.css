@@ -1,0 +1,19 @@
+table, td {
+    /* border: 1px solid black; */
+    border-collapse: collapse;
+  }
+
+  th{
+      font-weight: bold;
+  }
+
+  .noPaddingMargin{
+      padding:1px;
+      margin:1px;
+  }
+
+  @media print {
+    :not(.printMe) {
+      display: none !important;
+    }
+  }

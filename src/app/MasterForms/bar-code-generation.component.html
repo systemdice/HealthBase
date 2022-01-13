@@ -1,0 +1,195 @@
+<div fxLayout="column">
+	<mat-divider class="gapDevider"></mat-divider>
+	<div fxLayout="column">
+		<div class="row">
+			<div class="col-md-4 col-sm-4">
+				<mat-form-field>
+					<mat-label>Leave a BarCode generate Value</mat-label>
+					<input matInput placeholder="BarCode-value" name="value" [(ngModel)]="value">
+				</mat-form-field>
+
+			</div>
+			<div class="col-md-4 col-sm-4">
+				<mat-form-field>
+					<mat-select name="countryString" placeholder="Type" name="elementType" [(ngModel)]="elementType">
+						<mat-option [value]="'Select one'">--Select a Type--</mat-option>
+						<mat-option [value]="'US'">svg</mat-option>
+						<mat-option [value]="'img'">Image</mat-option>
+						<mat-option [value]="'canvas'">canvas</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="col-md-4 col-sm-4">
+				<mat-form-field>
+					<mat-label>Format</mat-label>
+					<mat-select name="format" [(ngModel)]="format">
+						<mat-option>--Select a Format--</mat-option>
+						<mat-option *ngFor="let code of codeList" [value]="code">{{code}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</div>
+	</div>
+	<mat-divider class="gapDevider"></mat-divider>
+
+	<div fxLayout="column">
+		<div class="row">
+			<div class="col-md-4 col-sm-4">
+				<app-color-picker (selected)="updateBarColor($event)" ></app-color-picker>
+			</div>
+			<div class="col-md-2 col-sm-2">
+				<mat-form-field>
+					<mat-label>Barcode Line Width</mat-label>
+					<input matInput placeholder="bc-width" name="width" [(ngModel)]="width">
+				</mat-form-field>
+			</div>
+			<div class="col-md-2 col-sm-2">
+				<mat-form-field>
+					<mat-label>Barcode Line Height</mat-label>
+					<input matInput placeholder="bc-height" name="height" [(ngModel)]="height">
+				</mat-form-field>
+			</div>
+			<div class="col-md-3 col-sm-4">
+				<mat-checkbox style="padding-top: 15px;" name="displayValue" [(ngModel)]="displayValue">Barcode Display
+					Value</mat-checkbox>
+				&nbsp;
+			</div>
+		</div>
+	</div>
+
+	<mat-divider class="gapDevider"></mat-divider>
+	<!-- <div fxLayout="column">
+		<textarea placeholder="bc-value" [(ngModel)]="value"></textarea>
+		<br />
+		<select placeholder="bc-element-type" [(ngModel)]="elementType">
+			<option value="svg">svg</option>
+			<option value="img">img</option>
+			<option value="canvas">canvas</option>
+		</select>
+		<br />
+		<select placeholder="bc-format" [(ngModel)]="format">
+			<option *ngFor="let code of codeList" [value]="code">{{code}}</option>
+		</select>
+		<input type="text" placeholder="bc-line-color" [(ngModel)]="lineColor">
+		<input type="number" placeholder="bc-width" [(ngModel)]="width">
+		<input type="number" placeholder="bc-height" [(ngModel)]="height">
+		<input type="checkbox" [(ngModel)]="displayValue">bc-display-value
+		<input type="text" placeholder="bc-font-options" [(ngModel)]="fontOptions">
+		<input type="text" placeholder="bc-font" [(ngModel)]="font">
+	</div> -->
+	<div fxLayout="column">
+		<div class="row">
+			<div class="col-md-2 col-sm-2">
+				<mat-form-field>
+					<mat-label>Barcode Text align</mat-label>
+					<input matInput placeholder="bc-text-align">
+				</mat-form-field>
+			</div>
+			<div class="col-md-2 col-sm-2">
+				<mat-form-field>
+					<mat-label>Barcode Text Position</mat-label>
+					<input matInput placeholder="bc-text-position">
+				</mat-form-field>
+			</div>
+			<div class="col-md-1 col-sm-1">
+				<mat-form-field>
+					<mat-label>Barcode Text margin</mat-label>
+					<input matInput placeholder="bc-text-margin">
+				</mat-form-field>
+			</div>
+			<div class="col-md-1 col-sm-1">
+				<mat-form-field>
+					<mat-label>Barcode margin</mat-label>
+					<input matInput placeholder="bc-margin">
+				</mat-form-field>
+			</div>
+			<div class="col-md-2 col-sm-2">
+				<mat-form-field>
+					<mat-label>Barcode Text Size</mat-label>
+					<input matInput placeholder="bc-font-size">
+				</mat-form-field>
+			</div>
+			<div class="col-md-3 col-sm-3">
+				<app-color-picker (selected)="updateBGColor($event)" ></app-color-picker>
+			</div>
+
+
+		</div>
+	</div>
+	<mat-divider class="gapDevider"></mat-divider>
+	<div fxLayout="column">
+		<div class="row">
+			<div class="col-md-2 col-sm-2">
+				<mat-form-field>
+					<mat-label>Barcode margin</mat-label>
+					<input matInput placeholder="bc-margin">
+				</mat-form-field>
+			</div>
+			<div class="col-md-2 col-sm-2">
+				<mat-form-field>
+					<mat-label>Barcode margin-top</mat-label>
+					<input matInput placeholder="bc-margin-top">
+				</mat-form-field>
+			</div>
+			<div class="col-md-2 col-sm-2">
+				<mat-form-field>
+					<mat-label>Barcode margin-bottom</mat-label>
+					<input matInput placeholder="bc-margin-bottom">
+				</mat-form-field>
+			</div>
+			<div class="col-md-2 col-sm-2">
+				<mat-form-field>
+					<mat-label>Barcode margin-left</mat-label>
+					<input matInput placeholder="bc-margin-left">
+				</mat-form-field>
+			</div>
+			<div class="col-md-2 col-sm-2">
+				<mat-form-field>
+					<mat-label>Barcode margin-right</mat-label>
+					<input matInput placeholder="bc-margin-right">
+				</mat-form-field>
+			</div>
+			<div class="col-md-3 col-sm-3">
+
+			</div>
+
+
+		</div>
+	</div>
+
+
+	<!-- <div fxLayout="column">
+				<input type="text" placeholder="bc-text-align" [(ngModel)]="textAlign">
+				<input type="text" placeholder="bc-text-position" [(ngModel)]="textPosition">
+				<input type="number" placeholder="bc-text-margin" [(ngModel)]="textMargin">
+				<input type="number" placeholder="bc-font-size" [(ngModel)]="fontSize">
+				<input type="text" placeholder="bc-background" [(ngModel)]="background">
+				<input type="number" placeholder="bc-margin" [(ngModel)]="margin">
+				<input type="number" placeholder="bc-margin-top" [(ngModel)]="marginTop">
+				<input type="number" placeholder="bc-margin-bottom" [(ngModel)]="marginBottom">
+				<input type="number" placeholder="bc-margin-left" [(ngModel)]="marginLeft">
+				<input type="number" placeholder="bc-margin-right" [(ngModel)]="marginRight">
+			</div> -->
+	<mat-divider class="gapDevider"></mat-divider>
+	<div fxLayout="column">
+		<ngx-barcode *ngFor="let bcValue of values" [bc-element-type]="elementType" [bc-value]="bcValue"
+			[bc-format]="format" [bc-line-color]="lineColor" [bc-width]="width" [bc-height]="height"
+			[bc-display-value]="displayValue" [bc-font-options]="fontOptions" [bc-font]="font"
+			[bc-text-align]="textAlign" [bc-text-position]="textPosition" [bc-text-margin]="textMargin"
+			[bc-font-size]="fontSize" [bc-background]="background" [bc-margin]="margin" [bc-margin-top]="marginTop"
+			[bc-margin-bottom]="marginBottom" [bc-margin-left]="marginLeft" [bc-margin-right]="marginRight">
+		</ngx-barcode>
+		<br />
+		<ngx-barcode *ngFor="let bcValue of values" [bc-value]="bcValue">
+		</ngx-barcode>
+	</div>
+
+	{{values}}
+
+	<div>
+		qrcode
+		<qrcode [qrdata]="value1" [size]="256" [level]="'M'"></qrcode>
+
+		<qrcode [qrdata]="value2" [size]="256" [level]="'M'"></qrcode>
+	</div>
+</div>

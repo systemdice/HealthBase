@@ -1,0 +1,460 @@
+<div class="container-fluid">
+  <div mat-dialog-title class="dialog-title" *ngIf="showPopupCloseSection">
+    <h2>Add Staff</h2>
+    <button mat-icon-button aria-label="close dialog" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <form [formGroup]="addrFrom" (ngSubmit)="onSubmit()">
+    <!-- <div class="row" style="padding-left:1px;" mat-dialog-actions *ngIf="showPopupCloseSection">
+      <div class="form-group col-xs-2">
+        <button class="btn btn-success" (click)="closeDialog()" color="warn"> <span
+            class="glyphicon glyphicon-off"></span>Close Popup</button>
+
+      </div>
+      <div class="col-md-9">
+      </div>
+    </div>
+    <br /> -->
+
+    <ng-container *ngIf="isHidden">
+      <!-- {{addrFrom.value|json}}
+  ----------
+  {{avl|json}} -->
+
+      <div class="row" formGroupName="AvailabilityDetails">
+        <div class="form-group col-xs-12">
+
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <span>
+                <button mat-button style="font-size: x-small;">
+                  <mat-icon> exit_to_app </mat-icon> Fill the Event/Activity details: <span
+                    style="color:red">{{dateSelected}}</span>
+                </button>
+              </span>
+            </div>
+
+            <div class="panel-body">
+
+              <div fxLayout="column">
+                <mat-divider class="gapDevider"></mat-divider>
+
+                <div fxLayout="column">
+                  <div class="row height">
+                    <table class="style">
+                      <tr>
+                        <th>Title</th>
+                        <th>Day</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th></th>
+                      </tr>
+                      <tr *ngFor="let item of evenRows; let i = index">
+                        <td>{{item.title}}</td>
+                        <td> {{getUnit(item.date).replace('null (FullDay Available)','XXXXXXX')}} </td>
+                        <td> {{getUnitStarEnd(item.date,item.start)}} </td>
+                        <td>{{getUnitStarEnd(item.date,item.end)}} </td>
+                        <td>
+                          <button mat-icon-button color="accent" (click)="deleteRow(i)" class="btn btn-sm">
+                            <mat-icon matTooltip="Delete the entry" matTooltipPosition="below" aria-label="Delete">
+                              delete</mat-icon>
+                          </button>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 col-sm-2">
+                      <app-color-picker></app-color-picker>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                      <mat-form-field>
+                        <mat-label>Event Title</mat-label>
+                        <input matInput placeholder="Event Title" formControlName="title">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-1 col-sm-1" style="padding-top:12px;">
+                      <mat-checkbox formControlName="date" (change)="onCheckboxChange($event)">Full Day</mat-checkbox>
+                    </div>
+                    <div class="col-md-2 col-sm-2">
+                      <mat-form-field>
+                        <mat-label>Begin at(YYYY-MM-DD)</mat-label>
+                        <input matInput placeholder="Start Date Time" style="color:timeColor" formControlName="start">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-2">
+                      <mat-form-field>
+                        <mat-label>Finish by(Year-Month-Day)</mat-label>
+                        <input matInput placeholder="End Date Time " formControlName="end">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-2 col-sm-2" style="padding-top:10px;">
+
+
+                      <button class="btn btn-success" (click)="showInnerData()"><span
+                          class="glyphicon glyphicon-off"></span> Save</button>
+
+                      <button class="btn btn-success" (click)="closeEventSetting()"><span
+                          class="glyphicon glyphicon-off"></span> Close</button>
+
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <div id="editContent" fxLayout="column">
+
+
+      <div >
+        <div >
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <span>
+                <button mat-button style="font-size: x-small;">
+                  <mat-icon> exit_to_app </mat-icon> Staff Entry: {{employeeIdUpdate}}
+                </button>
+              </span>
+            </div>
+            <div class="panel-body">
+
+
+              <div class="d-flex align-content-between flex-wrap">
+                <div>
+
+                  <mat-form-field>
+                    <!-- <input matInput type="text" placeholder="Department" formControlName="Department"> -->
+                    <mat-label>Staff Type</mat-label>
+                    <mat-select formControlName="StaffType">
+                      <mat-option>-Select-</mat-option>
+                      <mat-option *ngFor="let city of constStaffType" [value]=city.name>{{city.name}}</mat-option>
+                    </mat-select>
+                    <mat-error
+                      *ngIf="addrFrom.get('Department').hasError('required') && addrFrom.get('Department').pristine">
+                      Required Message
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div>
+
+
+                  <mat-form-field>
+                    <mat-label>Title</mat-label>
+                    <mat-select [(value)]="selected" formControlName="Title">
+                      <mat-option>--</mat-option>
+                      <mat-option *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div>
+
+                  <mat-form-field>
+                    <input matInput type="text" placeholder="Name" formControlName="FirstName"
+                      (keypress)="this.doctorNameModel=$event.target.value">
+                    <mat-error *ngIf="addrFrom.get('FirstName').hasError('required')">
+                      Name is Required!
+                    </mat-error>
+                    <mat-error *ngIf="addrFrom.get('FirstName').hasError('minlength')">
+                      Name should be atleast 5 characters long!
+                    </mat-error>
+
+                    <mat-error *ngIf="addrFrom.get('FirstName').hasError('maxlength')">
+                      Name can be at max 30 characters long!
+                    </mat-error>
+
+
+                  </mat-form-field>
+                </div>
+
+                <div>
+
+                  <mat-form-field>
+                    <input matInput type="text" placeholder="Address" formControlName="Address">
+                  </mat-form-field>
+                </div>
+                <div>
+
+                  <mat-form-field>
+                    <input matInput type="text" placeholder="Degree" formControlName="Degree">
+                  </mat-form-field>
+                </div>
+
+                <div>
+
+                  <mat-form-field>
+                    <!-- <input matInput type="text" placeholder="Department" formControlName="Department"> -->
+                    <mat-label>Department</mat-label>
+                    <mat-select formControlName="Department" (selectionChange)="onDoctorDescChange($event)">
+                      <mat-option>-Select-</mat-option>
+                      <mat-option *ngFor="let city of constDoctorDepartment" [value]=city.name>{{city.name}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error
+                      *ngIf="addrFrom.get('Department').hasError('required') && addrFrom.get('Department').pristine">
+                      Required Message
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+              </div>
+              <div class="d-flex align-content-between flex-wrap">
+
+                <div>
+
+                  <mat-form-field>
+                    <input matInput type="text" placeholder="Email ID" formControlName="Email">
+                    <mat-error *ngIf="addrFrom.get('Email').hasError('required')">
+                      Email is Required!
+                    </mat-error>
+                    <mat-error *ngIf="addrFrom.get('Email').invalid">Not a valid email ID</mat-error>
+
+                  </mat-form-field>
+                </div>
+
+
+
+                <div>
+                  <mat-form-field>
+                    <input matInput type="number" placeholder="Experience (Only numbers)"
+                      formControlName="Experience">
+                    <mat-error *ngIf="addrFrom.get('Experience').hasError('required')">
+                      Experience is Required!
+                    </mat-error>
+                    <!-- <mat-error *ngIf="addrFrom.get('Experience').hasError('minlength')">
+                  Experience should be atleast 1 characters long!
+                </mat-error>
+            
+                <mat-error *ngIf="addrFrom.get('Experience').hasError('maxlength')">
+                  Experience can be at max 2 characters long!
+                </mat-error> -->
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field>
+                    <input matInput type="number" placeholder="ContactNumber (Only numbers)"
+                      formControlName="ContactNumber">
+                    <mat-error *ngIf="addrFrom.get('ContactNumber').hasError('required')">
+                      ContactNumber is Required!
+                    </mat-error>
+
+                  </mat-form-field>
+                </div>
+                <div>
+
+                  <mat-form-field>
+                    <input matInput type="number" placeholder="Fees (Only numbers)" formControlName="fees">
+                    <mat-error *ngIf="addrFrom.get('fees').hasError('required')">
+                      fees is Required!
+                    </mat-error>
+                    <!-- <mat-error *ngIf="addrFrom.get('fees').hasError('minlength')">
+                  fees should be atleast 2 characters long!
+                </mat-error>
+            
+                <mat-error *ngIf="addrFrom.get('fees').hasError('maxlength')">
+                  fees can be at max 4 characters long!
+                </mat-error> -->
+                  </mat-form-field>
+                </div>
+
+                <div>
+
+                  <mat-form-field>
+                    <input matInput type="number" placeholder="Commission (in Percentage)"
+                      formControlName="Commission">
+                  </mat-form-field>
+                </div>
+
+
+                <div>
+
+                  <mat-form-field>
+                    <input matInput type="number" placeholder="Discount (Only numbers)" formControlName="Discount">
+                  </mat-form-field>
+                </div>
+
+
+
+              </div>
+
+              <div style="text-align: left;">
+                <!-- <button type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-plus" style="color:red;font-weight: bold;"
+                aria-hidden="true"></span>&nbsp;Update me</button> -->
+
+                <button class="btn btn-success" (click)="AddDoctor()"><span style="color:red;font-weight: bold;"
+                    class="glyphicon glyphicon-plus"></span> {{btnTest}} Staff</button>
+
+                <button class="btn btn-success" (click)="CancelDoctorPage()"><span
+                    style="color:red;font-weight: bold;" class="glyphicon glyphicon-remove-sign"></span> Cancel
+                </button>
+
+              </div>
+              <hr />
+              <div>
+
+                <b><span style='color:red'>*</span>&nbsp; Staff Description:&nbsp;</b>{{DoctorDesc}}
+
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+
+
+
+
+
+</div>
+<div>
+  <div class="panel panel-info">
+
+
+    <div class="panel-body" *ngIf="showLeaveSection">
+      <!-- <div class='app-calendar'>
+    <full-calendar id="abc1" height="300px" style="height: 300;" [options]="calendarOptions"></full-calendar>
+  </div> -->
+      <div >
+
+        <app-leave-request-main></app-leave-request-main>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+      
+
+      
+      <mat-divider class="gapDevider"></mat-divider>
+
+    </div>
+
+    <div fxLayout="column">
+      <div class="example-header">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter"
+            [(ngModel)]="filterValDoctorSearch" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+      </div>
+
+      <div class="example-container mat-elevation-z8">
+
+        <!-- <button mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Add Row</button> -->
+
+        <mat-table [dataSource]="dataSource" matSort #mytable class="my-table mat-elevation-z8">
+
+          <!-- Id Column -->
+          <ng-container matColumnDef="UnqueID">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+            <mat-cell *matCellDef="let element"><span class="mobile-label ">ID:</span><b>{{element.UnqueID}}</b>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Id Column -->
+          <ng-container matColumnDef="FirstName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Staff Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> <span class="mobile-label ">Name:</span>{{element.FirstName}} &nbsp;
+            </mat-cell>
+          </ng-container>
+          <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Id Column -->
+          <!-- <ng-container matColumnDef="LastName">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header> LastName </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.LastName}} </mat-cell>
+        </ng-container> -->
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="ContactNumber">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ContactNumber </mat-header-cell>
+            <mat-cell *matCellDef="let element"> <span class="mobile-label ">Phone:</span>📱{{element.ContactNumber}}
+            </mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="Department">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Department </mat-header-cell>
+            <mat-cell *matCellDef="let element"> <span class="mobile-label ">Dept:</span>{{element.Department}}
+            </mat-cell>
+          </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="fees">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Fees </mat-header-cell>
+            <mat-cell *matCellDef="let element"> <span class="mobile-label ">Fees:(&#8377;)</span>{{element.fees}}
+            </mat-cell>
+          </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="Discount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Discount </mat-header-cell>
+            <mat-cell *matCellDef="let element"> <span class="mobile-label ">Dis:</span>{{element.Discount}} </mat-cell>
+          </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="Experience">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Experience </mat-header-cell>
+            <mat-cell *matCellDef="let element"> <span class="mobile-label ">Exp:</span>{{element.Experience}}
+            </mat-cell>
+          </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="Email">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+            <mat-cell *matCellDef="let element"><span class="mobile-label ">Email:</span> 📧{{element.Email}}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Degree">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Degree </mat-header-cell>
+            <mat-cell *matCellDef="let element"> <span class="mobile-label ">Degree:</span>{{element.Degree}}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="StaffType">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Staff Type </mat-header-cell>
+            <mat-cell *matCellDef="let element"> <span class="mobile-label ">Type:</span>{{element.StaffType}}
+            </mat-cell>
+          </ng-container>
+
+          <!-- Action Column -->
+          <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef> Action
+
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="action-link">
+
+              <button mat-icon-button color="accent" (click)="UpdateForm('Update',element)">
+                <mat-icon matTooltip="Edit the entry" matTooltipPosition="below" aria-label="Edit">edit</mat-icon>👆
+              </button>
+
+              <button mat-icon-button color="accent" (click)="DeleteForm('Delete',element)">
+                <mat-icon matTooltip="Delete the entry" matTooltipPosition="below" aria-label="Delete">delete</mat-icon>
+              </button>
+
+
+              <!-- <a (click)="openDialog('Update',element)">Edit</a> | 
+            <a (click)="openDialog('Delete',element)">Delete</a>   -->
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+      </div>
+
+    </div>
+  </form>
+</div>

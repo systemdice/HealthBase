@@ -1,0 +1,22 @@
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Bill Generation and Doctor Management</h4>
+    </div>
+    <div class="panel-body">
+        <mat-tab-group>
+            <mat-tab label="Generate Bill">
+                <div class="bar">                   
+                    <!-- bellow component is used for Patient entry with doctor option -->
+                    <app-doctor-availability [PatientComponent]="true"></app-doctor-availability>
+                </div>
+            </mat-tab>
+            
+            <mat-tab label="LAB Test Management" [disabled]="true" >
+                <div class="bar">
+                    <app-bar-code-generation></app-bar-code-generation>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

@@ -1,0 +1,334 @@
+<form [formGroup]="OTDetails">
+
+  <div formArrayName="teachersOTDetails">
+
+    <div *ngFor="let teacher of teachers().controls; let ti=index">
+      <div [formGroupName]="ti" >
+        
+<div *ngIf="false">
+        <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-3">
+            <mat-form-field fxFlex>
+              <span matPrefix style="color:blue"></span>
+              <input type="text" value="100" matInput formControlName="OperationName" placeholder="OperationName">
+            </mat-form-field>
+            </div>
+          
+          <div class="col-md-3 col-sm-3 col-xs-3">
+            <mat-form-field fxFlex>
+              <span matPrefix style="color:blue"></span>
+              <input type="text" value="100" matInput formControlName="OperationType" placeholder="OperationType">
+            </mat-form-field>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-3">
+              <!-- <mat-form-field fxFlex>
+                <span matPrefix style="color:blue"></span>
+                <input type="text" value="100" matInput formControlName="Date" placeholder="Operation Date">
+              </mat-form-field> -->
+
+              <mat-form-field style="padding-top:0px;">
+                <mat-label>OT&nbsp;Date</mat-label>
+                <input matInput [matDatepicker]="StartDate1" placeholder="OT Date" formControlName="Date">
+                <mat-datepicker-toggle matSuffix [for]="StartDate1"></mat-datepicker-toggle>
+                <mat-datepicker #StartDate1></mat-datepicker>
+              </mat-form-field>
+              
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-3">
+                <span style="color:#9F000F" class="btn">
+                  <button type="button" class="btn btn-sm btn-success" (click)="addTeacher()">
+                    &#10003;&nbsp;Add OT</button>&nbsp;
+                  <button type="button" class="btn btn-sm btn-danger" (click)="removeTeacher(ti)">
+                    &#x2717;&nbsp;Del OT</button>&nbsp;
+                </span>
+                </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-3">
+            
+
+              <mat-form-field fxFlex>
+                <mat-label>Assign a Doctor</mat-label>
+                <mat-select formControlName="ConsultationDoctor" >
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let option of referralMaster" [value]="option.FirstName">
+                    {{option.FirstName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              </div>
+            
+            <div class="col-md-3 col-sm-3 col-xs-3">
+              <mat-form-field fxFlex>
+                <mat-label>Asst. Doctor 1</mat-label>
+                <mat-select formControlName="AsstDoctor1" >
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let option of referralMaster" [value]="option.FirstName">
+                    {{option.FirstName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              </div>
+  
+              <div class="col-md-3 col-sm-3 col-xs-3">
+                <mat-form-field fxFlex>
+                  <mat-label>Asst. Doctor 1</mat-label>
+                  <mat-select formControlName="AsstDoctor2" >
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let option of referralMaster" [value]="option.FirstName">
+                      {{option.FirstName}}
+                    </mat-option>
+                  </mat-select> 
+                </mat-form-field>
+                </div>
+  
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                 * All the very best
+                  </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 col-sm-3 col-xs-3">
+                <mat-form-field fxFlex>
+                  <mat-label>Nurse1</mat-label>
+                <mat-select formControlName="Nurse1" >
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let option of NurseMaster" [value]="option.FirstName">
+                    {{option.FirstName}}
+                  </mat-option>
+                </mat-select>
+                </mat-form-field>
+                </div>
+              
+              <div class="col-md-3 col-sm-3 col-xs-3">
+                <mat-form-field fxFlex>
+                  <mat-label>Nurse2</mat-label>
+                <mat-select formControlName="Nurse2" >
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let option of NurseMaster" [value]="option.FirstName">
+                    {{option.FirstName}}
+                  </mat-option>
+                </mat-select>
+                </mat-form-field>
+                </div>
+    
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                  <mat-form-field fxFlex> 
+                    <mat-label>Helper1</mat-label>
+                  <mat-select formControlName="Helper1" >
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let option of HelperMaster" [value]="option.FirstName">
+                      {{option.FirstName}}
+                    </mat-option>
+                  </mat-select>
+                  </mat-form-field>
+                  </div>
+    
+                  <div class="col-md-3 col-sm-3 col-xs-3">
+                    <mat-form-field fxFlex>
+                      <mat-label>Helper 2</mat-label>
+                    <mat-select formControlName="Helper2" >
+                      <mat-option>--</mat-option>
+                      <mat-option *ngFor="let option of HelperMaster" [value]="option.FirstName">
+                        {{option.FirstName}}
+                      </mat-option>
+                    </mat-select>
+                    </mat-form-field>
+                    </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                  
+
+                  <mat-form-field fxFlex>
+                    <mat-label>AnastheticPerson1</mat-label>
+                  <mat-select formControlName="AnastheticPerson1" >
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let option of AnastheticPersonMaster" [value]="option.FirstName">
+                      {{option.FirstName}}
+                    </mat-option>
+                  </mat-select>
+                  </mat-form-field>
+                  </div>
+                
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                  <mat-form-field fxFlex>
+                    <mat-label>Anasthetic Type 1</mat-label>
+                  <mat-select formControlName="AnastheticType1" >
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let option of AnastheticPersonMaster" [value]="option.FirstName">
+                      {{option.FirstName}}
+                    </mat-option>
+                  </mat-select>
+                  </mat-form-field>
+                  </div>
+      
+                  <div class="col-md-3 col-sm-3 col-xs-3">
+                   
+                    <mat-form-field fxFlex>
+                      <mat-label>Anasthetic Person 2</mat-label>
+                    <mat-select formControlName="AnastheticPerson2" >
+                      <mat-option>--</mat-option>
+                      <mat-option *ngFor="let option of AnastheticPersonMaster" [value]="option.FirstName">
+                        {{option.FirstName}}
+                      </mat-option>
+                    </mat-select>
+                    </mat-form-field>
+                    </div>
+      
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                      <mat-form-field fxFlex>
+                        <mat-label>Anasthetic Type 2</mat-label>
+                      <mat-select formControlName="AnastheticType2" >
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let option of AnastheticPersonMaster" [value]="option.FirstName">
+                          {{option.FirstName}}
+                        </mat-option>
+                      </mat-select>
+                      </mat-form-field>
+                      </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-3 col-sm-3 col-xs-3">
+                    <mat-form-field fxFlex>
+                      <mat-label>OTTechnician1</mat-label>
+                    <mat-select formControlName="OTTechnician1" >
+                      <mat-option>--</mat-option>
+                      <mat-option *ngFor="let option of OTTechMaster" [value]="option.FirstName">
+                        {{option.FirstName}}
+                      </mat-option>
+                    </mat-select>
+                    </mat-form-field>
+                   
+                    </div>
+                  
+                  <div class="col-md-3 col-sm-3 col-xs-3">
+                    <mat-form-field fxFlex>
+                      <mat-label>OTTechnicianAsst1</mat-label>
+                    <mat-select formControlName="OTTechnicianAsst1" >
+                      <mat-option>--</mat-option>
+                      <mat-option *ngFor="let option of OTTechMaster" [value]="option.FirstName">
+                        {{option.FirstName}}
+                      </mat-option>
+                    </mat-select>
+                    </mat-form-field>
+                   
+                    </div>
+        
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                      <mat-form-field fxFlex>
+                        <mat-label>OTTechnician2</mat-label>
+                      <mat-select formControlName="OTTechnician2" >
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let option of OTTechMaster" [value]="option.FirstName">
+                          {{option.FirstName}}
+                        </mat-option>
+                      </mat-select>
+                      </mat-form-field>
+                      
+                      </div>
+        
+                      <div class="col-md-3 col-sm-3 col-xs-3">
+                        <mat-form-field fxFlex>
+                          <mat-label>OT Technician Asst 2</mat-label>
+                        <mat-select formControlName="OTTechnicianAsst2" >
+                          <mat-option>--</mat-option>
+                          <mat-option *ngFor="let option of OTTechMaster" [value]="option.FirstName">
+                            {{option.FirstName}}
+                          </mat-option>
+                        </mat-select>
+                        </mat-form-field>
+                        
+                        </div>
+                  </div>
+
+                  <div class="row">                 
+                    <div class="col-md-5 col-sm-5 col-xs-5">
+                      
+                      <mat-form-field fxFlex>
+                        <textarea matInput placeholder="Result" maxlength="300" #message formControlName="Result"></textarea>
+                      </mat-form-field>
+                      </div>
+          
+                      <div class="col-md-4 col-sm-4 col-xs-4">
+                        <mat-form-field fxFlex>
+                          <textarea matInput placeholder="Remarks" maxlength="300" #message formControlName="Remarks"></textarea>
+                        </mat-form-field>
+                        </div>
+                       
+          
+                        <div class="col-md-2 col-sm-2 col-xs-2">
+                          <mat-form-field fxFlex>
+                            <span matPrefix style="color:blue"></span>
+                            <input type="text" value="100" matInput formControlName="TotalPrice" placeholder="TotalPrice">
+                          </mat-form-field>
+                          </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 col-sm-2 col-xs-2">
+                      <mat-form-field fxFlex>
+                        <mat-label>Select a OT type</mat-label>
+                        <mat-select formControlName="OperationMajorMinor" (selectionChange)="onBookChange($event,ti)">
+                          <mat-option>--</mat-option>
+                          <mat-option *ngFor="let expense of OperationMajorMinorData" [value]="expense">{{expense}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                      <!-- <mat-form-field fxFlex>
+                        <span matPrefix style="color:blue"></span>
+                        <input type="text" value="100" matInput formControlName="TotalPrice" placeholder="OperationMajorMinor">
+                      </mat-form-field> -->
+                      </div>
+                      <div class="col-md-5 col-sm-5 col-xs-5">
+                        <mat-form-field fxFlex>
+                          <span matPrefix style="color:blue"></span>
+                          <textarea matInput placeholder="Operation Note" formControlName="OperationNote"  rows="4"  #message></textarea>
+                           </mat-form-field>
+                        </div>
+                    
+                 
+          
+                      <div class="col-md-2 col-sm-2 col-xs-2">
+                       
+          
+                        <mat-form-field style="padding-top:0px;">
+                          <mat-label>OT&nbsp;Date</mat-label>
+                          <input matInput [matDatepicker]="StartDate1" placeholder="OT Date" formControlName="Date">
+                          <mat-datepicker-toggle matSuffix [for]="StartDate1"></mat-datepicker-toggle>
+                          <mat-datepicker #StartDate1></mat-datepicker>
+                        </mat-form-field>
+                        
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1">
+                          <mat-form-field fxFlex>
+                        <span matPrefix style="color:blue"></span>
+                        <input type="text" value="100" matInput formControlName="TotalPrice" placeholder="Price">
+                      </mat-form-field>
+                    </div>
+          
+                        <div class="col-md-2 col-sm-2 col-xs-2">
+                          <span style="color:#9F000F" class="btn">
+                            <button type="button" class="btn btn-sm btn-success" (click)="addTeacher()">
+                              &#10003;&nbsp;Add OT</button>&nbsp;
+                            <button type="button" class="btn btn-sm btn-danger" (click)="removeTeacher(ti)">
+                              &#x2717;&nbsp;Del OT</button>&nbsp;
+                          </span>
+                          </div>
+                    </div>
+              <hr/>
+          
+
+         
+          
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+</form>

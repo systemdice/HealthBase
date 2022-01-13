@@ -1,0 +1,104 @@
+<h1>{{title}}</h1>
+<p>
+    <button (click)="patchValue2()">PatchValue1</button>
+</p>
+
+<form [formGroup]="subjectsForm" (ngSubmit)="onSubmit()">
+
+    <div formArrayName="subjects">
+
+        <div *ngFor="let subject of subjects().controls; let ti=index">
+
+            <div [formGroupName]="ti"
+                style="border: 1px solid blue; padding: 10px; width: 100%; display: inline-block; margin: 5px;">
+                Subject Name :
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Name" value="Sushi" formControlName="name">
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>paper Category</mat-label>
+                    <mat-select formControlName="paperCategory">
+                        <mat-option [value]=''>-Select me-</mat-option>
+                        <mat-option *ngFor="let pos of PaperCategory" [value]="pos">
+                            {{pos}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Class Category</mat-label>
+                    <mat-select formControlName="classCategory">
+                        <mat-option [value]=''>-Select me-</mat-option>
+                        <mat-option *ngFor="let pos of ClassCategory" [value]="pos">
+                            {{pos}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Dificulty Level</mat-label>
+                    <mat-select formControlName="dificultyLevel">
+                        <mat-option [value]=''>-Select me-</mat-option>
+                        <mat-option *ngFor="let pos of DificultyLevel" [value]="pos">
+                            {{pos}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br />
+                Description :
+                <input type="text" formControlName="description">
+                <button class="btn btn-success btnOneLine" (click)="doAction()"><span
+                    class="glyphicon glyphicon-off"></span> <span style="color:white;">&#x2717;</span> Remove</button> 
+                <button type="button" (click)="removeSubject(ti)">Remove</button>
+                <button type="button" (click)="addQuestion(ti)">Add Question</button>
+
+                <div formArrayName="questions">
+
+                    <div *ngFor="let batch of questions(ti).controls; let bi=index">
+
+                        <div [formGroupName]="bi" style="border: 1px solid red; padding: 10px; margin: 5px; float:left">
+
+                            Question Name :
+                            <input type="text" formControlName="name">
+                            <button type="button" (click)="removeQuestion(ti,bi)">Remove Question</button>
+                            <button type="button" (click)="addOption(ti,bi)">Add Options</button>
+
+                            <div formArrayName="options">
+
+                                <div *ngFor="let batch of options(ti,bi).controls; let si=index">
+                                    <div [formGroupName]="si" style="border: 1px solid blue; padding: 2px; ">
+                                        Option Name :
+                                        <input type="text" formControlName="id">
+                                        <input type="text" formControlName="questionId">
+                                        <input type="text" formControlName="name">
+                                        <mat-checkbox formControlName="isAnswer">Correct Answer?</mat-checkbox>
+
+
+                                        <button type="button" (click)="removeOption(ti,bi,si)">Remove student</button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <p>
+        <button type="button" (click)="addSubject()">Add Subject</button>
+    </p>
+    <p>
+        <button type="submit">Submit</button>
+    </p>
+
+</form>
+

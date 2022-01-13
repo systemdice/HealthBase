@@ -1,0 +1,104 @@
+.expensesDiv{
+    margin-top: 4%;
+    padding: 4px 4px 4px 4px;
+}
+
+.actionButton{
+    width: 80px;
+    height: 30px;
+    padding:0px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.actionButtonMain{
+  width: 165px;
+  height: 30px;
+  padding:0px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+    background: #ffc048;
+  }
+
+
+  .fill-space {
+    flex: 1 1 auto;
+}
+
+.solution { padding: 15px;}
+
+.HeaderStyle{
+    height: 35px; background-color:#e9ecef ; color:black ;font-weight: bold; border: solid 1px #dee2e6;border-radius: .3em;
+}
+div.ex1 {
+  min-height: 20px;
+  max-height: 80px;
+  width:450px!important;
+  overflow: auto;
+}
+.mat-column-UnqueID {
+  flex: 0 0 9%;
+}
+.mat-column-TestType {
+  flex: 0 0 34%;
+}
+.mat-column-PatientID {
+  flex: 0 0 6%;
+}
+.mat-column-PatientInfo {
+  flex: 0 0 23%;
+}
+.mat-column-Location {
+  flex: 0 0 6%;
+}
+.mat-column-DateStart {
+  flex: 0 0 7%;
+}
+.mat-column-Payment {
+  flex: 0 0 8%;
+}
+
+
+
+  .mat-header-row, .mat-row {
+    min-height: 35px;
+    /* max-height: 150px !important; */
+  }
+
+  .mat-column-stockQty {
+    flex: 0 0 13%;
+}
+.mat-column-slno {
+  flex: 0 0 5%;
+  padding-left: 0;
+}
+.mat-column-priorityStatus {
+  flex: 0 0 5%;
+}
+
+.mat-column-inventoryID {
+  flex: 0 0 10%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 2em;
+  }
+  .mat-table
+  {
+    background-color:transparent!important;  
+   /* border-collapse: collapse;
+     border-radius: 2em; */
+    padding: 30px;
+  border-bottom-left-radius: 2em;
+  border-bottom-right-radius: 2em;
+  }
+
+  table tr:last-child td /*To remove the last border*/
+  {
+    border-bottom:0 solid
+  }

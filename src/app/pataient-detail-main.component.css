@@ -1,0 +1,29 @@
+#container {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    max-width: 1200px;
+}
+
+
+.column.left {
+    width: 230px;
+}
+
+.column.right {
+    width: 230px;
+    border-left: 1px solid #eee;
+}
+
+.column.center {
+    border-left: 1px solid #eee;
+}
+
+mat-form-field {
+    width: 90%;
+    transition: none;
+  }
+ 
+
+ 
+

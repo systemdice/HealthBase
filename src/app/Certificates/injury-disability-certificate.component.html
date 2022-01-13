@@ -1,0 +1,53 @@
+<form  id="frmIndividualLapReport">
+    <div  style="text-align:center;">
+        <div style="text-align:center;" >
+            <h3 style="text-align:center; padding-bottom:10px;">
+                {{Addressline1}}<br />
+                {{Addressline2}}<br />
+                {{Addressline3}}<br />
+                {{Addressline4}}<br />
+        
+            </h3>
+            
+            <hr style="height:1px;background-color:black;"/>
+            <hr style="height:3px;background-color:black;" />
+    
+            
+            
+               
+        </div>
+       
+        <div class="col-sm-12" >
+            
+            
+            <button style="display: inline-block;float:left;" type="button" id="printElement"  (click)="myPrint('frmIndividualLapReport')" class="btn btn-info"><span
+                class="glyphicon glyphicon-print" ></span>
+            Print</button>
+            <button type="button" style="display: inline-block;float:left;"  id="CloseMe"  (click)="CloseMe()" class="btn btn-info"><span
+                class="glyphicon glyphicon-print" ></span>
+            Close Me</button>
+            </div>
+            </div>
+    <table>
+        <tr>
+            <td>
+                <p style="text-align: center;"><strong>INJURY &amp; DISABILITY CERTIFICATE</strong></p>
+    <p style="text-align: center;">&nbsp;</p>
+    <p style="text-align: left;">Dr. M.S. ( Orth. )</p>
+    <p style="text-align: left;">Registration No. :</p>
+    <p style="text-align: left;"><br />Consultant Date :</p>
+    <p style="text-align: left;">Address : .</p>
+    <p style="text-align: left;">This is to certify that Mr. / Ms. ________________________________has been examined by me today. As per medical records available with him on_________________.</p>
+    <p style="text-align: left;">He / She is / was admitted and treated in another hospital from_______________ to____________. As per examination done by me today, he has following findings .</p>
+    <p style="text-align: left;">&nbsp;</p>
+    <p style="text-align: left;">&nbsp;</p>
+    <p style="text-align: left;">&nbsp;</p>
+    <p style="text-align: left;">&nbsp;</p>
+    <p style="text-align: left;">This in my opinion constitutes a Temporary Partial Disability of ______ Percent.</p>
+    <p style="text-align: left;">&nbsp;</p>
+    <p style="text-align: left;">&nbsp;</p>
+    <p style="text-align: left;">Authorize Signature</p>
+            </td>
+        </tr>
+    </table>
+    </form>

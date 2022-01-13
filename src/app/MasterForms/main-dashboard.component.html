@@ -1,0 +1,1121 @@
+<!-- {{leaveresultRetrieveAll|json}} -->
+
+<div id="over" style="position:absolute; width:100%; height:100%" fxHide.gt-sm>
+    <div>
+        <h2 style="text-align: center;align-items: center;">WELCOME &nbsp;<span class="glyphicon glyphicon-user" style="color:red"></span> {{Username}}&nbsp;!!!</h2>
+        <hr/>
+     </div>
+    <div>
+        
+    <div fxFlex>
+        
+        <button type="button"  [routerLink]="['/freshCase', 'Add']" class="btn btn-success ">
+          <span class="glyphicon glyphicon-edit"></span>
+          CREATE CASES</button>
+      </div>
+      <div fxFlex>
+        <button type="button" [routerLink]="['/CaseDetails','']" class="btn btn-success"><span
+            class="gglyphicon glyphicon-film"></span>
+          VIEW CASES</button>
+
+          
+      </div>
+      <div fxFlex>
+        <button type="button" [routerLink]="['/home/pass']" class="btn btn-success"><span
+            class="glyphicon glyphicon-home"></span>
+          GO HOME</button>
+      </div>
+    </div>
+    <div style="text-align: center;"><span style="font: bold;font-size: medium;color:blue;">
+        It is health that is the real wealth, and not pieces of gold and silver.</span>
+        
+    </div>
+    
+    <img src="/assets/images/dashboardMobile2.PNG" alt="add" width="360" height="640">
+  </div>
+<div class="row" fxShow fxHide.lt-sm>
+    <div class="col-1" style="text-align: center;padding:4px;margin:0px;">
+        <div class="side-navigation__menu-button" >
+            <h3 class="side-navigation__menu-button-label"><i>UPDATES..</i></h3>
+            <span>{{StatusTodayorAll}}</span>
+          </div>
+       <div>
+           <hr style="height:2px;color:red;background-color: blue;"/>
+        <!-- <label >Updates(<span class='spanBlink' style="color:blue">&#x20B9;</span>)</label> -->
+        <button type="button" class="btn btn-primary top-btn-left" style="width:100%;"
+       >
+        <span><i class="fa fa-address-book-o" aria-hidden="true"></i> Total Patient: </span>
+        <span class="numberCircle"><b>{{TotalPatient}}</b></span>
+    </button>
+        <hr/>
+        <button type="button" class="btn btn-primary top-btn-left" style="width:100%;"
+       ><i class="fa fa-address-book-o" aria-hidden="true"></i> IPD Patient 
+        <span class="numberCircle">{{totalIPD}}</span></button>
+        <span class="completed">
+            <span class="numberCircle">{{(totalIPD/TotalPatient)*100| number : '1.2-2'}} % </span>
+            
+         </span>
+        <hr/>
+        <button type="button" class="btn btn-primary top-btn-left" style="width:100%;"
+       ><i class="fa fa-address-book-o" aria-hidden="true"></i> OPD Patient 
+        <span class="numberCircle">{{totalOPD}}</span></button>
+        <span class="numberCircle">{{(totalOPD/TotalPatient)*100| number : '1.2-2'}} % </span>
+        <hr/>
+        <button type="button" class="btn btn-primary top-btn-left" style="width:100%;"
+       ><i class="fa fa-address-book-o" aria-hidden="true"></i> Vaccine Patient 
+        <span class="numberCircle">{{totalVS}}</span></button>
+        <span class="numberCircle">{{(totalVS/TotalPatient)*100| number : '1.2-2'}} % </span>
+        <hr/>
+       
+        <button type="button" class="btn btn-primary top-btn-left" style="width:100%;"
+       ><i class="fa fa-address-book-o" aria-hidden="true"></i> Available Bed 
+        <span class="numberCircle">{{availableBeds}}</span></button> 
+        <span class="numberCircle">{{ (availableBeds/(availableBeds+occupiedBed))*100| number : '1.2-2'}}%</span>
+        <hr/>
+        <button type="button" class="btn btn-primary top-btn-left" style="width:100%;"
+       ><i class="fa fa-address-book-o" aria-hidden="true"></i> Occupied Bed 
+        <span class="numberCircle">{{occupiedBed}}</span></button> 
+        <span class="numberCircle">{{ (occupiedBed/(availableBeds+occupiedBed))*100| number : '1.2-2'}}%</span>
+        <hr/>
+        <mat-card class="example-card">
+           
+           
+            <mat-card-content>
+              
+                Average IPD: <span matBadge="{{(totalIPD/TotalPatient)| number : '1.1-1'}}" matBadgeOverlap="false"></span><br/><hr/>
+                Average OPD: <span matBadge="{{(totalOPD/TotalPatient)| number : '1.1-1'}}" matBadgeOverlap="false"></span> 
+              
+            </mat-card-content>
+           
+          </mat-card>
+          <div class="panel panel-primary">
+            <div class="panel-heading" style="padding-top:10px;"> Average Waiting time</div>
+            <div class="panel-body"><span class="numberCircle">20 Mins</span></div>
+          </div>
+        
+         </div>
+    </div>
+    <div class="col-11">
+        <div> 
+            <div class="panel panel-primary" style="margin-right:45px;">
+                <div class="panel-heading">
+                    <div class="btn-group" style="width:100%; padding:0px;margin:0px;">
+                        <button type="button"  class="btn-sm sign-up-btn new" style="width:25%" (click)='LoadAllCases()'>All IPD/OPD/VS Cases</button>
+                        <button type="button" class="sign-up-btn new" style="width:45%" (click)="addEditExpenseItemPopup('expinc')">Add Income/ Expense</button>
+                        <button type="button" class="sign-up-btn new" style="width:45%" (click)="OpenBillPendingStatus('','pendingbill')">Filter Payment Status</button>
+                     
+                        <button type="button" class="sign-up-btn new" style="width:45%" (click)="addEditExpenseItemPopup('staff')">ADD STAFF</button>
+                        <button type="button" class="sign-up-btn new" style="width:45%" (click)="addEditExpenseItemPopup('leave')">Apply/Entry Leave</button>
+                        <button type="button" class="sign-up-btn new" style="width:45%" (click)="Openit('https://clinicnuasakala.com/')">visit Naba dinganta</button>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+
+        
+        <div class="dashboard" >
+          
+            <ul class="card">
+                <div class="panel panel-primary" style="margin:0px;">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-9">
+                                <!-- <i class="fa fa-comments fa-5x"></i> -->
+                                <img class="hexagon" [src]="constructSrc('113409', 5)">
+                                <span style="font-size: large;" ><b> OPD CASES</b></span>
+                            </div>
+                            <div class="col-xs-3 text-right">
+                                <span class="numberCircle">{{totalOPD}}  </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- <div class="card-title">
+                    <img class="hexagon" [src]="constructSrc('113409', 10)">
+                    <span class="title"><b> OPD CASES</b></span>
+                </div> -->
+                <div class="description" style="height:400px;margin:0px;">
+                    <div class="btn-group" style="width:100%; padding:0px;margin:0px;">
+                        <!-- <input type='text' class="form-control input-sm" style="width:80px;height:18px;margin-top:12px;"> -->
+                        <mat-form-field  style="width:80px;height:18px;margin-bottom:2px;padding-bottom: 2  px;">
+                            <input matInput   (keyup)="applyFilterOPD($event.target.value)" placeholder="Search OPD" [(ngModel)]='filterOPD'>
+                          </mat-form-field>
+                          <button type="button"  class="btn-sm sign-up-btn new" style="width:25%" (click)='AllOPD()'>All</button>
+                        <button class="sign-up-btn new" style="width:25%" (click)="LoadTodaysCaseInd('OPD')">Todays cases</button>
+                       
+                        <!-- <button  class="sign-up-btn new" style="width:25%">2 Days Data</button>                        
+                        <button class="sign-up-btn new" style="width:25%">Progress</button> -->
+                      </div>
+                    
+                    
+                      <table>
+                        <tr style=" background-color: #b6deee;">
+                          <th>ID</th>
+                          <th>Name</th>
+                          <th>Status</th>
+                        </tr>
+                        <tr *ngFor="let obj of asyncPipeNewModifyCaseOPD; let j = index">
+                          <td>
+                            <u style="cursor:pointer;color:blue" (click)="addEditExpenseItem(obj,obj.Home.FirstName)">
+                                {{obj.IPDOPDId}} </u>
+                             </td>
+                          <td>{{obj.Home.FirstName}}</td>
+                          <td>{{obj.CaseStatus}}</td>
+                        </tr>
+                       
+                      </table>
+                  
+                </div>
+               
+               
+        <div class="unlocked-role">
+            <div class="panel-footer" style="margin:0px;padding:0px;color:rgb(54, 2, 54);font-weight: bold;">
+                <span class="completed">
+                    {{(opdmale/totalOPD)*100| number : '1.2-2'}} % Male,&nbsp;
+                 </span> <span class="completed">
+                     {{(opdfemale/totalOPD)*100| number : '1.2-2'}} % Female,&nbsp;
+                 </span>
+                 <span style='color:red'>||</span>
+                 <span class="completed">
+                     {{(opdadult/totalOPD)*100| number : '1.2-2'}} % Adult,&nbsp;
+                 </span>
+                 <span class="completed">
+                     {{(opdchildren/totalOPD)*100| number : '1.2-2'}} % Children,&nbsp;
+                 </span>
+                 <a style="margin:0px;padding-bottom:5px;" [routerLink]="['/CaseDetails','']">
+                    <span class="pull-right" style="margin:0px;padding-bottom:0px;"> View details<i class="fa fa-arrow-circle-right"></i></span>
+                 </a>
+                <!-- <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span> -->
+                <div class="clearfix"></div>
+            </div>
+            
+                    
+                  
+                 
+        
+                </div>
+              
+            </ul>
+        
+            <ul class="card">
+                <div class="panel panel-primary" style="margin:0px;">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-9">
+                                <!-- <i class="fa fa-comments fa-5x"></i> -->
+                                <img class="hexagon" [src]="constructSrc('113409', 10)">
+                                <span style="font-size: large;" ><b> IPD CASES</b></span>
+                            </div>
+                            <div class="col-xs-3 text-right">
+                                <span class="numberCircle">{{totalIPD}}  </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- <div class="card-title">
+                    <img class="hexagon" [src]="constructSrc('113409', 10)">
+                    <span class="title"><b> IPD CASES</b></span>
+                </div> -->
+                <div class="description" style="height:400px;">
+                    <div class="btn-group" style="width:100%; padding:0px;margin:0px;">
+                        <!-- <input type='text' class="form-control input-sm" style="width:80px;height:18px;margin-top:12px;"> -->
+                        <mat-form-field  style="width:80px;height:18px;margin-bottom:2px;padding-bottom: 2  px;">
+                            <input matInput   (keyup)="applyFilterIPD($event.target.value)" placeholder="Search IPD" [(ngModel)]='filterIPD'>
+                          </mat-form-field>
+                          <button type="button"  class="btn-sm sign-up-btn new" style="width:25%" (click)='AllIPD()'>All</button>
+                        <button class="sign-up-btn new" style="width:25%" (click)="LoadTodaysCaseInd('IPD')">Todays cases</button>
+                       
+                        <!-- <button  class="sign-up-btn new" style="width:25%">2 Days Data</button>
+                        <button class="sign-up-btn new" style="width:25%">Progress</button> -->
+                      </div>
+                    
+                    
+                      <table>
+                        <tr style=" background-color: #b6deee;">
+                          <th>ID</th>
+                          <th>Name</th>
+                          <th>Status</th>
+                        </tr>
+                        <tr *ngFor="let obj of asyncPipeNewModifyCaseIPD; let j = index">
+                          <td>
+                            <u style="cursor:pointer;color:blue" (click)="addEditExpenseItem(obj,obj.Home.FirstName)">
+                                {{obj.IPDOPDId}} </u>
+                             </td>
+                          <td>{{obj.Home.FirstName}}</td>
+                          <td>{{obj.CaseStatus}}</td>
+                        </tr>
+                       
+                      </table>
+                  
+                </div>
+               
+                <div class="unlocked-role">
+                    <div class="panel-footer" style="margin:0px;padding:0px;color:rgb(54, 2, 54);font-weight: bold;">
+                        <span class="completed">
+                            {{(ipdmale/totalIPD)*100| number : '1.2-2'}} % Male,&nbsp;
+                         </span> <span class="completed">
+                             {{(ipdfemale/totalIPD)*100| number : '1.2-2'}} % Female,&nbsp;
+                         </span>
+                         <span style='color:red'>||</span>
+                         <span class="completed">
+                             {{(ipdadult/totalIPD)*100| number : '1.2-2'}} % Adult,&nbsp;
+                         </span>
+                         <span class="completed">
+                             {{(ipdchildren/totalIPD)*100| number : '1.2-2'}} % Children,&nbsp;
+                         </span>
+                         <a style="margin:0px;padding-bottom:5px;" [routerLink]="['/CaseDetails','']">
+                            <span class="pull-right" style="margin:0px;padding-bottom:0px;"> View details<i class="fa fa-arrow-circle-right"></i></span>
+                         </a>
+                        <!-- <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span> -->
+                        <div class="clearfix"></div>
+                    </div>
+                    
+                            
+                          
+                         
+                
+                        </div>
+            </ul>
+        
+            <ul class="card">
+                <div class="panel panel-primary" style="margin:0px;">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-9">
+                                <!-- <i class="fa fa-comments fa-5x"></i> -->
+                                <img class="hexagon" [src]="constructSrc('113409', 5)">
+                                <span style="font-size: large;" ><b> VACCINE CASES</b></span>
+                            </div>
+                            <div class="col-xs-3 text-right">
+                                <span class="numberCircle">{{totalVS}}  </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- <div class="card-title">
+                    <img class="hexagon" [src]="constructSrc('113409', 10)">
+                    <span class="title"><b> VACCINE CASES</b></span>
+                </div> -->
+                <div class="description" style="height:400px;">
+                    <div class="btn-group" style="width:100%; padding:0px;margin:0px;">
+                        <!-- <input type='text' class="form-control input-sm" style="width:80px;height:18px;margin-top:12px;"> -->
+                        <mat-form-field  style="width:80px;height:18px;margin-bottom:2px;padding-bottom: 2  px;">
+                            <input matInput   (keyup)="applyFilterVS($event.target.value)" placeholder="Search" [(ngModel)]='filterVS'>
+                          </mat-form-field>
+                          <button type="button"  class="btn-sm sign-up-btn new" style="width:25%" (click)='AllVS()'>All</button>
+                        <button class="sign-up-btn new" style="width:25%" (click)="LoadTodaysCaseInd('VS')"> Todays cases</button>
+                       
+                        <!-- <button  class="sign-up-btn new" style="width:25%">2 Days Data</button>
+                        <button class="sign-up-btn new" style="width:25%">Progress</button> -->
+                      </div>
+                    
+                    
+                      <table>
+                        <tr style=" background-color: #b6deee;">
+                          <th>ID</th>
+                          <th>Name</th>
+                          <th>Status</th>
+                        </tr>
+                        <tr *ngFor="let obj of asyncPipeNewModifyCaseVS; let j = index">
+                          <td>
+                            <u style="cursor:pointer;color:blue" (click)="addEditExpenseItem(obj,obj.Home.FirstName)">
+                                {{obj.IPDOPDId}} </u>
+                             </td>
+                          <td>{{obj.Home.FirstName}}</td>
+                          <td>{{obj.CaseStatus}}</td>
+                        </tr>
+                       
+                      </table>
+                  
+                </div>
+               
+               
+                <div class="unlocked-role">
+                    <div class="panel-footer" style="margin:0px;padding:0px;color:rgb(54, 2, 54);font-weight: bold;">
+                        <span class="completed" style="margin:5px;padding-top:5px;">
+                            {{(vsmale/totalVS)*100| number : '1.2-2'}} % Male,&nbsp;
+                         </span> <span class="completed">
+                             {{(vsfemale/totalVS)*100| number : '1.2-2'}} % Female,&nbsp;
+                         </span>
+                         <span style='color:red'>||</span>
+                         <span class="completed">
+                             {{(vsadult/totalVS)*100| number : '1.2-2'}} % Adult,&nbsp;
+                         </span>
+                         <span class="completed">
+                             {{(vschildren/totalVS)*100| number : '1.2-2'}} % Children,&nbsp;
+                         </span>
+                         <!-- <span mat-button [routerLink]="['/CaseDetails','']">
+                            <mat-icon style="color:rgb(21, 32, 3)"> add_shopping_cart </mat-icon>
+                            All CASE Details
+                         </span>
+                         <button mat-button [routerLink]="['CaseDetails','']" >
+                            <mat-icon style="color:rgb(21, 32, 3)"> gamepad </mat-icon>
+                            All CASE Details
+                          </button> -->
+                         <a style="margin:0px;padding-bottom:5px;" [routerLink]="['/CaseDetails','']">
+                           <span class="pull-right" style="margin:0px;padding-bottom:0px;"> View details<i class="fa fa-arrow-circle-right"></i></span>
+                        </a>
+                        <!-- <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span> -->
+                        <div class="clearfix"></div>
+                    </div>
+                    
+                            
+                          
+                         
+                
+                        </div>
+            </ul>
+        
+        
+        
+        
+            <ul class="card">
+                <div class="panel panel-primary" style="margin:0px;">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-9">
+                                <!-- <i class="fa fa-comments fa-5x"></i> -->
+                                <img class="hexagon" [src]="constructSrc('113409', 10)">
+                                <span style="font-size: large;" ><b> VACCINE DETAILS</b></span>
+                            </div>
+                            <div class="col-xs-3 text-right">
+                                <span class="numberCircle">. </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- <div class="card-title">
+                    <img class="hexagon" [src]="constructSrc('113409', 10)">
+                    <span class="title"><b> VACCINE Details</b></span>
+                </div> -->
+                <div class="description" style="height:400px;">
+                    <div class="btn-group" style="width:100%">
+                        <!-- <input type='text' class="form-control input-sm" style="width:80px;height:18px;margin-top:12px;"> -->
+                        <mat-form-field  style="width:80px;height:18px;margin-bottom:2px;padding-bottom: 2  px;">
+                            <input matInput   (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                          </mat-form-field>
+                        <button class="sign-up-btn new" style="width:25%">Expiry Vaccines</button>
+                       
+                        <button  class="sign-up-btn new" style="width:25%">Expiry in 3 month</button>
+                       
+                      </div>
+                    
+                    
+                    
+                     
+        
+                      
+                      <div class="example-container mat-elevation-z8">
+                    
+                        <!-- <button mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Add Row</button> -->
+                      
+                        <mat-table *ngIf="dataSource !=undefined" [dataSource]="dataSource" matSort #mytable class="my-table mat-elevation-z8">
+                      
+                          <!--- Note that these columns can be defined in any order.
+                              The actual rendered columns are set as a property on the row definition" -->
+                          
+                     <!-- Id Column -->
+                     <ng-container matColumnDef="slno">
+                        <mat-header-cell *matHeaderCellDef class="HeaderStyle"> SlNo.  </mat-header-cell>
+                        <mat-cell *matCellDef="let item; let i = index">  
+                          {{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }} </mat-cell>
+                        
+                       </ng-container>
+                    
+                     <!-- <ng-container matColumnDef="UnqueID">
+                      <mat-header-cell *matHeaderCellDef  mat-sort-header> SecretID </mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.UnqueID}}</mat-cell>
+                    </ng-container>
+                    
+                    
+                    
+                      <ng-container matColumnDef="VSID">
+                        <mat-header-cell *matHeaderCellDef  mat-sort-header> Vaccine ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element"  (click)="openDialog('Update',element)"><b><u style="cursor:pointer;color:blue;">{{element.VSID}}</u> </b></mat-cell>
+                      </ng-container>
+                       -->
+                          <!-- Id Column -->
+                          <ng-container matColumnDef="VaccineName">
+                            <mat-header-cell *matHeaderCellDef  mat-sort-header> Name </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.VaccineName}} </mat-cell>
+                          </ng-container>
+                      
+                          
+                           <!-- Name Column -->
+                           <ng-container matColumnDef="Quantity">
+                            <mat-header-cell *matHeaderCellDef  mat-sort-header> Quantity </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.Quantity}} </mat-cell>
+                          </ng-container>
+                          
+                           <!-- Name Column -->
+                           <ng-container matColumnDef="MRP">
+                            <mat-header-cell *matHeaderCellDef  mat-sort-header> MRP </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.MRP}} </mat-cell>
+                          </ng-container>
+                         
+                           <!-- Name Column -->
+                           <ng-container matColumnDef="Expiry">
+                            <mat-header-cell *matHeaderCellDef  mat-sort-header> Expiry </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.ExpiryMonth}}/{{element.ExpiryYear}} </mat-cell>
+                          </ng-container>
+                         
+                    
+                          
+                          
+                      
+                          <!-- Action Column -->
+                          <ng-container matColumnDef="action">
+                            <mat-header-cell *matHeaderCellDef > Action 
+                                
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="action-link">
+                    
+                                <button mat-icon-button color="accent" (click)="openDialog('Update',element)">
+                                    <mat-icon matTooltip="Edit the entry" matTooltipPosition="below" aria-label="Edit">edit</mat-icon>
+                                  </button>
+                          
+                                 
+                                  <button mat-icon-button color="accent" (click)="openDialog('Delete',element)">
+                                    <mat-icon matTooltip="Delete the entry" matTooltipPosition="below" aria-label="Delete">delete</mat-icon>
+                                  </button>
+                                 
+                            
+                            </mat-cell>
+                          </ng-container>
+                      
+                          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+                        <mat-paginator #paginatorRef [pageSizeOptions]="[15, 25,50, 100]"></mat-paginator>
+                      
+                      </div>
+        
+        
+                  
+                </div>
+               
+               
+        <div class="unlocked-role">
+                    <!-- <div class="progress-container">
+                        <progress id="progress" class="progress-bar" value="30" max="100"></progress>
+                        <label for="progress">30 %</label>
+                    </div>
+                    <div class="in-progress">
+                        <input class="resume-role" type="button" (click)="resumeRole()" value="Resume >">
+                    </div> -->
+        
+                    <div class="completed-before">
+                      
+                    </div>
+        
+        
+                </div>
+              
+            </ul>
+            <ul class="card">
+                <div class="panel panel-primary" style="margin:0px;">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-9">
+                                <!-- <i class="fa fa-comments fa-5x"></i> -->
+                                <img class="hexagon" [src]="constructSrc('113409', 5)">
+                                <span style="font-size: large;" ><b> BED AVAILABILITY</b></span>
+                            </div>
+                            <div class="col-xs-3 text-right">
+                                <span class="numberCircle">{{availableBeds}} </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- <div class="card-title">
+                    <img class="hexagon" [src]="constructSrc('113409', 10)">
+                    <span class="title"><b> BED AVAILABILITY</b></span>
+                </div> -->
+                <div class="description" style="height:400px;">
+                  
+                    
+                  
+
+                      <div  style="width:100%;border-radius: 30px;" >
+                       
+                        
+                        <div  style="padding:0px;margin:0px;" *ngFor="let itemOut of asyncPipeBedReport[0]?.teachers">
+                          
+                            <span class="numberforBedCircle">{{itemOut.name|uppercase }} </span>
+                    
+                          <div colspan='2' style="padding:0px;margin:0px;">
+                           
+                            <span fxFlex="20" *ngFor="let item of itemOut.batches;let ss=index">
+                              &nbsp;<p style="color:black;height:25px;text-align: center;" 
+                              
+                                [ngStyle]="item.OccupySatus=='BOOKED'?{'background-color':'#FAA8B4'} : {'background-color': '#D1F3A2'}">
+                                <span class='cen' style="color:black;height:30px;"><b>{{item.name}}</b>&nbsp;</span><br />
+                                <!-- Status:&nbsp;<span
+                                  [ngStyle]="item.OccupySatus=='BOOKED'?{'color':'LightPink'} : {'color': 'PaleGreen'}"></span> <span
+                                  style="color:black"><b>{{item.OccupySatus}}</b></span><br /> -->
+                                <!-- Occupied By:&nbsp; <span style="color:black"><b>{{findName(item.name)}}</b></span> <br />
+                                IPD ID:&nbsp; <span style="color:black"><b>{{findOPDIPDid(item.name)}}</b></span> <br /> -->
+                    
+                              </p>
+                            </span> 
+                        </div>
+                    </div>
+                </div>
+                     
+                <div class="completed-before">
+                    <!-- <span class="completed" >
+                        Available: {{availableBeds}} ({{ (availableBeds/(availableBeds+occupiedBed))*100| number : '1.2-2'}}%), Ocuupied: {{occupiedBed}} ({{ (occupiedBed/(availableBeds+occupiedBed))*100| number : '1.2-2'}}%)
+                    </span> -->
+                    
+<svg width="10" height="10">
+<rect width="10" height="10" style="fill:#FAA8B4;stroke-width:3;stroke:rgb(0,0,0)" />
+</svg>Occupied
+ 
+ <svg width="10" height="10">
+    <rect width="10" height="10" style="fill:#D1F3A2;stroke-width:3;stroke:rgb(0,0,0)" />
+    </svg>Available
+                   
+                </div>
+
+                
+    
+
+                </div>
+               
+               
+      
+            </ul>
+        
+            <ul class="card">
+                <div class="panel panel-primary" style="margin:0px;">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-7">
+                                <!-- <i class="fa fa-comments fa-5x"></i> -->
+                                <img class="hexagon" [src]="constructSrc('113409', 5)">
+                                <span style="font-size: large;" ><b> ADMITTED PATIENTS </b></span>
+                            </div>
+                            <div class="col-xs-2">
+                                <span class="numberCircle">{{occupiedBed}} </span>
+                            </div>
+
+                            <div class="col-xs-3 text-right">
+                               <!-- <button type="button" class="sign-up-btn new" style="width:45%" (click)="LoadAdmittedPatients()">Load</button>  -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- <div class="card-title ">
+                    <img class="hexagon" [src]="constructSrc('F03333', 50)">
+                    <span class="title">Admitted Patients in details 
+                        
+                        </span>
+                        <button type="button" class="sign-up-btn new" style="width:25%" (click)="LoadAdmittedPatients()">Load Data</button>
+                </div> -->
+                <div class="description">
+                    
+                    <div style="width:100%;border-radius: 30px;;" cellpadding="1px" cellspacing="1px">
+                        <div  >
+                            <td fxFlex="17"> 
+                                Bed Type
+                            </td>
+                            <td fxFlex="20">
+                                Bed Name
+                            </td> 
+                            <td fxFlex="35" >                                                                          
+                                  Patient Name
+                            </td> 
+                            <td fxFlex="25" colspan='2' >                                                                          
+                                IPD ID
+                          </td> 
+                        </div>
+                        <div *ngFor="let itemOut of asyncPipeBedReport[0]?.teachers">
+                            <div  *ngFor="let item of itemOut.batches;let ss=index">
+                                <td fxFlex="17" *ngIf="item.OccupySatus=='BOOKED'"> 
+                                    {{itemOut.name|uppercase }}
+                                </td>
+                                <td fxFlex="20" *ngIf="item.OccupySatus=='BOOKED'">
+                                    <span style="color:black"><b>{{item.name}}</b></span>
+                                </td> 
+                                <td fxFlex="35"  *ngIf="item.OccupySatus=='BOOKED'">                                                                          
+                                       <span style="color:black"><b>{{item.OccupiedBy}}</b></span> 
+                                </td> 
+                                <td fxFlex="25" colspan='2' *ngIf="item.OccupySatus=='BOOKED'" >                                                                          
+                                    <u><span style="color:blue;cursor: pointer;" (click)="addEditExpenseItemBed(item.CaseUniqueID,item.OPDIPDID,item.OccupiedBy)"><b>{{item.OPDIPDID}}</b></span> </u> 
+                               </td> 
+                                <!-- <td fxFlex="25" colspan='2' *ngIf="item.OccupySatus=='BOOKED'" >                                                                          
+                                   <u><span style="color:blue;cursor: pointer;" (click)="addEditExpenseItemBed(findUnqueid(item.name),findOPDIPDid(item.name),findName(item.name))"><b>{{item.OPDIPDID}}</b></span> </u> 
+                              </td>  -->
+                            </div>
+                        </div>
+                        
+                       
+                    </div>
+                   
+                </div>
+                <div class="unlocked-role">
+                    <div class="progress-container">
+                        <progress id="progress" class="progress-bar" value="{{ (availableBeds/(availableBeds+occupiedBed))*100| number : '1.2-2'}}" max="100"></progress>
+                        <label for="progress"></label>
+
+                        <span class="completed" >
+                            Available: {{availableBeds}} ({{ (availableBeds/(availableBeds+occupiedBed))*100| number : '1.2-2'}}%), Ocuupied: {{occupiedBed}} ({{ (occupiedBed/(availableBeds+occupiedBed))*100| number : '1.2-2'}}%)
+                        </span>
+                    </div>
+                    <div class="in-progress">
+                       
+                    </div>
+        
+                    <!-- <div class="completed-before">
+                        <span class="completed">
+                            69% Completed
+                        </span>
+                        
+                    </div> -->
+        
+                    <!-- <div class="new-role">
+                        <button class="sign-up-btn new" (click)="signUp()">Sign Up</button>
+                    </div> -->
+        
+                </div>
+                <!-- <div class="locked-role">
+                    <div class="prereq-title">
+                        Prerequisite Roles Remaining:
+                    </div>
+                    <div class="remaining-prereqs">
+                        <ul class="check-for-prereq">
+                            <ul class="iterate-cards">
+                                <div class="prereq-compare">
+        
+                                    <img class="preReq-roles" [src]="constructSrc('6877F2', 10)" matTooltip="I love Dali">
+        
+        
+                                </div>
+                            </ul>
+                        </ul>
+                    </div>
+                </div> -->
+            </ul>
+           
+
+            <ul class="card">
+                <div class="panel panel-primary" style="margin:0px;">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-9">
+                                <!-- <i class="fa fa-comments fa-5x"></i> -->
+                                <img class="hexagon" [src]="constructSrc('113409', 5)">
+                                <span style="font-size: large;" ><b> Other Informations</b></span>
+                            </div>
+                            <div class="col-xs-3 text-right">
+                                <span class="numberCircle">... </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- <div class="card-title">
+                    <img class="hexagon" [src]="constructSrc('113409', 10)">
+                    <span class="title"><b> OPD CASES</b></span>
+                </div> -->
+                <div class="description" style="height:400px;margin:0px;">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-comments fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge"> Total Expense!&nbsp;<b>&#8377;.{{Expense}}.00</b> </div>
+                                        <div>({{myDate1}}&nbsp;to&nbsp;{{myDate2}})</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                          
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-comments fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge"> Total Income!&nbsp;<b>&#8377;.{{Income}}.00</b> </div>
+                                        <div>({{myDate1}}&nbsp;to&nbsp;{{myDate2}})</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-comments fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">27</div>
+                                        <div>Total Satff Count!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                          
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-comments fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">3</div>
+                                        <div>Today Leave Count!</div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            
+                        </div>
+                    </div>
+                  
+                </div>
+               
+               
+    
+              
+            </ul>
+
+
+
+            <ul class="card">
+                <div class="panel panel-primary" style="margin:0px;">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <!-- <i class="fa fa-comments fa-5x"></i> -->
+                                <img class="hexagon" [src]="constructSrc('113409', 5)">
+                                <span style="font-size: large;" ><b> ACCOUNT SECTION</b></span>
+                            </div>
+                            <div class="col-xs-3 text-right">
+                                <span class="numberCircle">Exp &#8377;.{{Expense}}.00  </span>
+                            </div>
+                            <div class="col-xs-3 text-right">
+                                <span class="numberCircle">Inc &#8377;.{{Income}}.00  </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- <div class="card-title">
+                    <img class="hexagon" [src]="constructSrc('113409', 10)">
+                    <span class="title"><b> OPD CASES</b></span>
+                </div> -->
+                <div class="description" style="height:400px;margin:0px;">
+                    <div class="btn-group" style="width:100%; padding:0px;margin:0px;">
+                        <!-- <input type='text' class="form-control input-sm" style="width:80px;height:18px;margin-top:12px;"> -->
+                        <!-- <mat-form-field  style="width:80px;height:18px;margin-bottom:2px;padding-bottom: 2px;">
+                            <input matInput   (keyup)="applyFilterOPD($event.target.value)" placeholder="Search OPD" [(ngModel)]='filterOPD'>
+                          </mat-form-field> -->
+                          <mat-form-field style="padding-top:0px;width:88px;height:18px;margin-bottom:2px;padding-bottom: 2px;">
+                            <mat-label>Start&nbsp;Date</mat-label>
+                            <input matInput [matDatepicker]="StartDate1" placeholder="Start Date" [(ngModel)]="StartDate"
+                            readonly (click)="StartDate1.open()" (focus)="StartDate1.open()"
+                              >
+                            <mat-datepicker-toggle matSuffix [for]="StartDate1"></mat-datepicker-toggle>
+                            <mat-datepicker #StartDate1></mat-datepicker>
+                          </mat-form-field> &nbsp; 
+                          <mat-form-field style="padding-top:0px;width:88px;height:18px;margin-bottom:2px;padding-bottom: 2px;">
+                            <mat-label>End&nbsp;Date</mat-label>
+                            <input matInput [matDatepicker]="EndDate1" placeholder="End Date" [(ngModel)]="EndDate" 
+                            readonly (click)="EndDate1.open()" (focus)="EndDate1.open()">
+                            <mat-datepicker-toggle matSuffix [for]="EndDate1"></mat-datepicker-toggle>
+                            <mat-datepicker #EndDate1></mat-datepicker>
+                          </mat-form-field>
+                          <button type="button"  class="btn-sm sign-up-btn new" style="width:25%"  (click)="ShowData('grp')">LOAD DATA</button>
+                         
+                      
+                      </div>
+                    
+                    
+                      <table *ngIf="showgrp" style="width:95%">
+                        <thead>
+                            <tr>
+                                <th style="text-align:left;">Sl No.</th>
+                                <th style="text-align:left;">Date</th>
+                                <!-- <th>Last Name</th> -->
+                                <th style="text-align:left;">Expense</th>
+                                <!-- <th style="text-align:left;">No. of Expense entry</th> -->
+                                <th style="text-align:left;">Income</th>
+
+                                <!-- <th style="text-align:left;">No. of Income entry</th> -->
+                                <!-- <th>Age</th>
+                                <th>Price</th> -->
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let people1 of groubedByTeam; let j=index;">
+                            <!-- {{people1|json}} -->
+                            <tr>  
+                                <td>{{j+1}}.</td>                           
+                                <td > <span >{{people1[0].DateUse | date: 'dd/MM/yyyy'}}</span></td>
+                                <!-- <td> {{people1[0].ProductName}}</td> -->
+
+                                <td>
+                                    <!-- pl{{people1.length}} -->
+                                     <span *ngIf='people1.length <= 1 && people1[0].ProductName == "Expense"'>&#8377; {{people1[0].Price < 0?-1*people1[0].Price:people1[0].Price}}.00 </span>
+                                     <span *ngIf='people1.length <= 1 && people1[0].ProductName == "Income"'>&#8377; 00.00 </span>
+                                    
+                                     <span *ngIf="people1.length >1 && people1[0].ProductName == 'Expense'">&#8377; {{people1[0]?.Price < 0?-1*people1[0].Price:people1[0].Price}}.00 </span>
+                                    <span *ngIf="people1.length >1 && people1[1].ProductName == 'Expense'">&#8377; {{people1[1]?.Price < 0?-1*people1[1].Price:people1[1].Price}}.00 </span>
+                                    
+                                </td>
+                                <!-- <td> <span >({{people1[0].Quantity}})</span></td> -->
+                                <td> 
+                                    <span *ngIf="people1.length <= 1 && people1[0].ProductName == 'Income'">&#8377; {{people1[0].Price}}.00 </span>
+                                    <span *ngIf="people1.length <= 1 && people1[0].ProductName == 'Expense'">&#8377; 00.00 </span>
+                                   
+                                    <span *ngIf="people1.length >1 && people1[0].ProductName == 'Income'">&#8377; {{people1[0]?.Price}}.00 </span>
+                                     <span *ngIf="people1.length >1 && people1[1].ProductName == 'Income'">&#8377; {{people1[1]?.Price}}.00 </span>
+                                    
+                                </td>
+                                <!-- <td> <span *ngIf='people1.length >1'>&nbsp;({{people1[1].Quantity}})</span>
+                                    <span *ngIf='people1.length <= 1'>&nbsp;(0)</span>
+                                </td> -->
+
+                                <!-- <td>{{people1[0].Quantity}}</td>
+                                <td>{{people1[0].Price}}</td> -->
+                            </tr>
+                            
+                        </tbody>
+                       
+                        <tfoot>
+                            <th style="text-align:left;"></th>
+                            <th style="text-align:left;">Total</th>
+                            <!-- <th>Last Name</th> -->
+                            <th style="text-align:left;">&#8377;.{{Expense}}.00</th>
+                            <!-- <th style="text-align:left;">No. of Expense entry</th> -->
+                            <th style="text-align:left;">&#8377;.{{Income}}.00  </th>
+                        </tfoot>
+                    </table>
+                  
+                </div>
+               
+               
+        <div class="unlocked-role"> 
+            <div class="panel-footer" style="margin:0px;padding:0px;color:rgb(54, 2, 54);font-weight: bold;">
+                
+                 <span class="completed">
+                     Proffit:&nbsp; {{(Income-Expense)| number : '1.2-2'}} &nbsp;
+                 </span>
+                 <a style="margin:0px;padding-bottom:5px;" [routerLink]="['/CaseDetails','']">
+                    <span class="pull-right" style="margin:0px;padding-bottom:0px;"> View details<i class="fa fa-arrow-circle-right"></i></span>
+                 </a>
+                <!-- <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span> -->
+                <div class="clearfix"></div>
+            </div>
+            
+                    
+                  
+                 
+        
+                </div>
+              
+            </ul>
+            <ul class="card">
+                <div class="panel panel-primary" style="margin:0px;">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <!-- <i class="fa fa-comments fa-5x"></i> -->
+                                <img class="hexagon" [src]="constructSrc('113409', 5)">
+                                <span style="font-size: large;" ><b> LEAVE&nbsp;DETAILS</b></span>
+                            </div>
+                            <!-- <div class="col-xs-3 text-right">
+                                <span class="numberCircle">Total.{{Expense}}  </span>
+                            </div> -->
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- <div class="card-title">
+                    <img class="hexagon" [src]="constructSrc('113409', 10)">
+                    <span class="title"><b> OPD CASES</b></span>
+                </div> -->
+                <div class="description" style="height:400px;margin:0px;">
+                    <div class="btn-group" style="width:100%; padding:0px;margin:0px;">
+                        <!-- <input type='text' class="form-control input-sm" style="width:80px;height:18px;margin-top:12px;"> -->
+                        <!-- <mat-form-field  style="width:80px;height:18px;margin-bottom:2px;padding-bottom: 2px;">
+                            <input matInput   (keyup)="applyFilterOPD($event.target.value)" placeholder="Search OPD" [(ngModel)]='filterOPD'>
+                          </mat-form-field> -->
+                          <mat-form-field style="padding-top:0px;width:88px;height:18px;margin-bottom:2px;padding-bottom: 2px;">
+                            <mat-label>Start&nbsp;Date</mat-label>
+                            <input matInput [matDatepicker]="StartDate1Leave" placeholder="Start Date" [(ngModel)]="StartDateLeave"
+                            readonly (click)="StartDate1Leave.open()" (focus)="StartDate1Leave.open()"
+                              >
+                            <mat-datepicker-toggle matSuffix [for]="StartDate1Leave"></mat-datepicker-toggle>
+                            <mat-datepicker #StartDate1Leave></mat-datepicker>
+                          </mat-form-field> &nbsp; 
+                          <mat-form-field *ngIf="false" style="padding-top:0px;width:88px;height:18px;margin-bottom:2px;padding-bottom: 2px;">
+                            <mat-label>End&nbsp;Date</mat-label>
+                            <input matInput [matDatepicker]="EndDate1Leave" placeholder="End Date" [(ngModel)]="EndDateLeave" 
+                            readonly (click)="EndDate1Leave.open()" (focus)="EndDate1Leave.open()">
+                            <mat-datepicker-toggle matSuffix [for]="EndDate1Leave"></mat-datepicker-toggle>
+                            <mat-datepicker #EndDate1Leave></mat-datepicker>
+                          </mat-form-field>
+                          <button type="button"  class="btn-sm sign-up-btn new" style="width:25%"  (click)="ShowLeaveData('grp')">LOAD DATA</button>
+                          <button type="button"  class="btn-sm sign-up-btn new" style="width:25%" (click)='AllLeave()'>ALL</button>
+                      
+                      </div>
+                    
+                    
+                      <table *ngIf="showgrp" style="width:95%">
+                        <thead>
+                            <tr>
+                                <th style="text-align:left;">Sl No.</th>
+                                <th style="text-align:left;">Name</th>
+                                <!-- <th>Last Name</th> -->
+                                <th style="text-align:left;">Req Date</th>
+                                <!-- <th style="text-align:left;">No. of Expense entry</th> -->
+                                <th style="text-align:left;">From - To</th>
+                                <th style="text-align:left;">Days</th>
+                                <!-- <th style="text-align:left;">No. of Income entry</th> -->
+                                <!-- <th>Age</th>
+                                <th>Price</th> -->
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let people1 of leaveresultRetrieveAll; let j=index;">
+                            <!-- {{people1|json}} -->
+                            <tr>  
+                                <td>{{j+1}}.</td> 
+                                <td>{{people1.ProductName}}</td>                           
+                                <td > <span >{{people1.CreditStatus | date: 'dd/MM/yyyy'}}</span></td>
+                                <td>
+                                    {{people1.DateUse }}   
+                                </td>
+                                
+                                <td>{{people1.Price}}</td> 
+                            </tr>
+                            
+                        </tbody>
+                       
+                    </table>
+                  
+                </div>
+               
+               
+        <div class="unlocked-role"> 
+            <div class="panel-footer" style="margin:0px;padding:0px;color:rgb(54, 2, 54);font-weight: bold;">
+                
+                 <!-- <span class="completed">
+                     Proffit:&nbsp; {{(Income-Expense)| number : '1.2-2'}} &nbsp;
+                 </span> -->
+                 <a style="margin:0px;padding-bottom:5px;" [routerLink]="['/CaseDetails','']">
+                    <span class="pull-right" style="margin:0px;padding-bottom:0px;"> View details<i class="fa fa-arrow-circle-right"></i></span>
+                 </a>
+                <!-- <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span> -->
+                <div class="clearfix"></div>
+            </div>
+            
+                    
+                  
+                 
+        
+                </div>
+              
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i style="height:45px;" class="fa fa-arrow-circle-right"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">27</div>
+                        <div>User Count!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="/AllUsers/Users">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-comments fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">27</div>
+                        <div>User Count!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="/AllUsers/Users">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-shopping-cart fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">40</div>
+                        <div>Total Projects Count!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="/Project/Index">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+</div> -->
+
+
+
+

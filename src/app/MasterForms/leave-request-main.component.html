@@ -1,0 +1,148 @@
+
+<form [formGroup]="leaveForm"  class="mx-auto col-md-12 offset-md-4 form-box">
+
+
+<!-- {{leaveForm.value|json}} -->
+    
+  <!-- {{referralMaster|json}} -->
+    <h4 class="mb-3 form-title"> Request For Leave 
+      <button type="button" class="btn btn-sm btn-success mt-3" (click)="startALeave()" style="margin:0px;padding:0px;;width:70px;height:25px;">
+        &#10003;&nbsp;New Request</button>&nbsp; 
+
+        <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+          <mat-icon class="close-icon" color="warn">close</mat-icon>
+        </button>
+        
+      </h4>
+    <div class="container1">
+        <label  for="leaveType" >Leave&nbsp;Type&nbsp;<span class="text-danger">* </span></label>
+        
+          <mat-form-field fxFlex>
+              <!-- <input matInput type="text" placeholder="Department" formControlName="Department"> -->
+              <mat-label>Leave Type</mat-label>
+              <mat-select  formControlName="leaveId">
+                <mat-option >-Select-</mat-option>
+                <mat-option *ngFor="let city of asyncPipeExpenses" [value]=city.CategoryName>{{city.CategoryName}}</mat-option>
+              </mat-select>
+             
+            </mat-form-field>
+        
+      </div>
+    <div class="container1">
+        <label for="leaveDateFrom"  >&nbsp;Staff&nbsp;Type&nbsp;<span class="text-danger">*</span></label>
+       
+            <mat-form-field fxFlex>
+                <!-- <input matInput type="text" placeholder="Department" formControlName="Department"> -->
+                <mat-label>Staff Type</mat-label>
+                <mat-select  formControlName="StaffType" (selectionChange)="onWriterChange()">
+                  <mat-option >-Select-</mat-option>
+                  <mat-option *ngFor="let city of constStaffType" [value]=city.name>{{city.name}}</mat-option>
+                </mat-select>
+               
+              </mat-form-field>
+        
+
+        <label for="leaveDateFrom">&nbsp;&nbsp;Staff&nbsp;Name&nbsp;<span class="text-danger">*</span></label>
+       
+            <mat-form-field fxFlex>
+                <!-- <input matInput type="text" placeholder="Department" formControlName="Department"> -->
+                <mat-label>Staff Name</mat-label>
+                <mat-select  formControlName="FirstName" (selectionChange)="onStaffChange()">
+                  <mat-option >-Select-</mat-option>
+                  <mat-option *ngFor="let staff of referralMaster" [value]=staff.FirstName>{{staff.FirstName}}</mat-option>
+                </mat-select>
+               
+              </mat-form-field>
+        
+      </div>
+
+    
+  
+    <div class="container1">
+        <label for="leaveReason" >Leave&nbsp;Reason&nbsp;<span
+                class="text-danger">*</span></label>
+        
+            <mat-form-field fxFlex>
+                <mat-label>Leave&nbsp;Reason</mat-label>
+                <input matInput placeholder="Leave Reason" formControlName="leaveReason">
+            </mat-form-field>
+            
+        
+    </div>
+   
+    <div class="container1">
+        <label for="leaveDateFrom" >Date&nbsp;From&nbsp;<span class="text-danger">*</span></label>
+        
+            <mat-form-field fxFlex>
+                <input matInput readonly [matDatepicker]="fromDate" placeholder="From Date"
+                formControlName="dateFrom" [min]="minDate" (click)="fromDate.open()" (focus)="fromDate.open()"
+                    readonly>
+                <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+                <mat-datepicker #fromDate></mat-datepicker>
+
+                <!-- <mat-label>Billing Date</mat-label>
+                <input matInput placeholder="BillingDate" formControlName="BillingDate"> -->
+            </mat-form-field>
+        
+
+        <label for="leaveDateFrom">&nbsp;&nbsp;Date&nbsp;To&nbsp;<span class="text-danger">*</span></label>
+        
+            <mat-form-field style="margin-bottom: 25px;" fxFlex>
+                <input matInput readonly [matDatepicker]="toDate" placeholder="To Date"
+                formControlName="dateTo" (click)="toDate.open()" (focus)="toDate.open()"
+                    readonly>
+                <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+                <mat-datepicker #toDate></mat-datepicker>
+
+                <!-- <mat-label>Billing Date</mat-label>
+                <input matInput placeholder="BillingDate" formControlName="BillingDate"> -->
+            </mat-form-field>
+        
+      </div>
+
+
+      <div class="container1">
+        <!-- <label for="leaveDateFrom" >Reporting&nbsp;Manager:&nbsp;<span class="text-danger">*</span></label>
+         -->
+        <mat-form-field fxFlex>
+          <!-- <input matInput type="text" placeholder="Department" formControlName="Department"> -->
+          <mat-label>Reporting&nbsp;Manager</mat-label>
+          <mat-select  formControlName="ReportingManager" (selectionChange)="onStaffChange()">
+            <mat-option >-Select-</mat-option>
+            <mat-option *ngFor="let emp of asyncPipeUserDetails" [value]=emp.UserName>{{emp.UserName}}</mat-option>
+          </mat-select>
+         
+        </mat-form-field>&nbsp;
+        
+
+        <!-- <label for="leaveDateFrom">Leave&nbsp;Status:&nbsp;<span class="text-danger">*</span></label> -->
+        
+        <mat-form-field fxFlex style="width:80px;">
+          <!-- <input matInput type="text" placeholder="Department" formControlName="Department"> -->
+          <mat-label>&nbsp;&nbsp;Leave&nbsp;Status</mat-label>
+          <mat-select  formControlName="approved" (selectionChange)="onStatusChange($event)">
+            <mat-option value="Pending">Pending</mat-option>
+            <mat-option value="Approved">Approved</mat-option>
+            <mat-option value="Rejected">Rejected</mat-option>
+          </mat-select>
+         
+        </mat-form-field>&nbsp;
+
+        <!-- <label for="leaveDateFrom">&nbsp;&nbsp;Comment/Rejection&nbsp;Reason:&nbsp;<span class="text-danger">*</span></label> -->
+        
+        <mat-form-field fxFlex>
+          <mat-label>Comment/Rejection&nbsp;Reason:&nbsp;</mat-label>
+          <input matInput placeholder="Comment/Rejection&nbsp;Reason:&nbsp;" formControlName="deniedReason">
+      </mat-form-field>&nbsp;
+      <label for="leaveDateFrom" >
+        Applied&nbsp;On:&nbsp;{{appliedDate}}&nbsp;<button type="button" class="btn btn-sm btn-success mt-3 btn-block" (click)="onSave()" style="margin:0px;padding:0px;;width:70px;height:25px;">
+          &#10003;&nbsp;SAVE</button>&nbsp;
+          <!-- <button class="btn btn-sm" type="button" style="margin-bottom: 20px;width:20px;" mat-raised-button color="primary" class="mt-3 btn-block" (click)="onSave()">SAVE </button> -->
+       </label>
+      </div>
+
+     
+  
+    
+    
+  </form>

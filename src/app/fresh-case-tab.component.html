@@ -1,0 +1,583 @@
+<form [formGroup]="addrFrom" fxLayout="column" (ngSubmit)="onSubmit(addrFrom.value)">
+    <h5 class="card-header"> Case ID: <span *ngIf="false"> {{geCaseType(this.parValue)}}</span> <span style="color:red;font-size: larger;" *ngIf ="this.parValue !== 'conv'"><u><b>{{newid}}</b></u>&nbsp;</span>
+      <span *ngIf="showUpdateGIF">Update mode...</span>&nbsp;&nbsp;||&nbsp;&nbsp;
+      <!-- <img src="/assets/images/updating.gif" alt="add" width="110" height="18" *ngIf="showUpdateGIF"> -->
+      <span style="color:blue;font-weight: bold;">Project Type&nbsp;</span><mat-radio-group formControlName="opdipd" (change)="radioChange($event.value)">
+        <!-- <mat-radio-button value="1">OPD</mat-radio-button>&nbsp;
+        <mat-radio-button value="2">IPD</mat-radio-button>&nbsp; -->
+        <mat-radio-button value="4">Patho LAB</mat-radio-button>&nbsp;
+        <mat-radio-button value="3">All(Hospital Management)</mat-radio-button>
+      </mat-radio-group>
+  
+      
+     
+      
+  
+      <!-- <button type="button" mat-raised-button (mouseover)="openDialog()" (click)="openDialog()">Pick one</button> -->
+      &nbsp;<button  *ngIf="!CaseRecordStatus" type="button" class="btn btn-success" [disabled]="CalculationDone" (click)="btnDischargePrint()" ><span
+        class="glyphicon glyphicon-off"></span> Discharge Report(In Details with Print Option)</button>
+    </h5>
+    <div class="div1">
+        &nbsp; <mat-radio-group [disabled]="disableIPDOPDOption" formControlName="OPDkimbaIPD"
+            (change)="radioChangeOPDIPD($event.value)">
+            <!-- <mat-radio-button value="1">OPD</mat-radio-button>&nbsp;
+<mat-radio-button value="2">IPD</mat-radio-button>&nbsp; -->
+            <mat-radio-button value="IPD">IPD</mat-radio-button>&nbsp;
+            <mat-radio-button value="OPD">OPD</mat-radio-button>&nbsp;
+            <mat-radio-button value="VS">Vaccination </mat-radio-button>
+
+        </mat-radio-group>
+    </div>
+<mat-tab-group >
+    <mat-tab *ngIf="panelOpenStatePatientSH">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon" style="color:rgb(90, 28, 4)">family_restroom</mat-icon>
+            Patient
+        </ng-template>
+        <br />
+        <div class="UpperDIV">
+            <div class="InnerDIV">
+        <mat-expansion-panel *ngIf="panelOpenStatePatientSH" style="border-radius: 15px;" [expanded]="true" (click)="$event.stopPropagation();">
+            <mat-expansion-panel-header (click)="$event.stopPropagation();">
+                <mat-panel-title>
+                    <mat-icon style="color:red"> family_restroom </mat-icon>
+                    <b>Patient Data</b>&nbsp;
+                    <div class="div1">
+                        &nbsp; <mat-radio-group [disabled]="disableIPDOPDOption" formControlName="OPDkimbaIPD"
+                            (change)="radioChangeOPDIPD($event.value)">
+                            <!-- <mat-radio-button value="1">OPD</mat-radio-button>&nbsp;
+              <mat-radio-button value="2">IPD</mat-radio-button>&nbsp; -->
+                            <mat-radio-button value="IPD">IPD</mat-radio-button>&nbsp;
+                            <mat-radio-button value="OPD">OPD</mat-radio-button>&nbsp;
+                            <mat-radio-button value="VS">Vaccination </mat-radio-button>
+
+                        </mat-radio-group>
+                    </div>
+                    &nbsp;<button *ngIf="isEditCase && passOPDkimbaIPD=='OPD'" style="display: inline-block;"
+                        type="button" class="btn btn-info"
+                        (click)="addEditExpenseItem(this.parValue,this.addrFrom.value.home.FirstName)"><span
+                            class="glyphicon glyphicon-print"></span>
+                        Convert to IPD</button>
+                    <!-- <span *ngIf="isEditCase && passOPDkimbaIPD=='OPD'" (click)="addEditExpenseItem(addrFrom.value.IPDOPDId,this.addrFrom.value.home.FirstName)"> <b><i>&nbsp;Convert to IPD</i></b></span> -->
+                </mat-panel-title>
+                <mat-panel-description class="right-aligned">
+                    Enter Patient information.
+
+                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span>
+                        SAVE</button>
+                    <button style="display: inline-block;" type="button" (click)="OpenPrescription('patient')"
+                        class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
+                        Print</button>
+                            <mat-icon>help</mat-icon>
+                          
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <app-pataient-detail-main #child [events]="eventsSubject.asObservable()" [passOPDkimbaIPD]="passOPDkimbaIPD"
+                [home]="addrFrom.get('home')" [caseType]="parValue" [usrName]="usrName" [diectOnline]="'No'"
+                (countChanged)="countChangedHandler($event)"></app-pataient-detail-main>
+
+
+        </mat-expansion-panel>
+        </div>
+        </div>
+    </mat-tab>
+
+    <mat-tab *ngIf="panelOpenStateBEDSH">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon" style="color:red">thumb_up</mat-icon>
+            Bed Allocation
+        </ng-template>
+        <br />
+        <div class="UpperDIV">
+            <div class="InnerDIV">
+        <mat-expansion-panel *ngIf="panelOpenStateBEDSH" style="border-radius: 15px;" [expanded]="true">
+            <mat-expansion-panel-header (click)="$event.stopPropagation();">
+                <mat-panel-title>
+                    <mat-icon style="color:red"> bathtub </mat-icon>
+                    <b>Bed Management </b>&nbsp;
+                    <button style="display: inline-block;border-radius: 15px;" type="button"
+                        class="btn btn-info"><span></span>
+                        Bed Availability Status</button>
+                </mat-panel-title>
+                <mat-panel-description class="right-aligned">
+                    Bed alert and price system.
+                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span>
+                        SAVE</button>
+                    <button style="display: inline-block;" type="button" *ngIf="isEditCase"
+                        (click)="OpenPrescription('Bed')" class="btn btn-info"><span
+                            class="glyphicon glyphicon-print"></span>
+                        Print</button>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <app-bed-patient-management [caseid]='caseValue' [BedDetailsVisit]="addrFrom.get('BedDetailsVisit')">
+            </app-bed-patient-management>
+
+        </mat-expansion-panel>
+        </div>
+        </div>
+
+
+    </mat-tab>
+    <mat-tab *ngIf="panelOpenStateDoctortoPatientCommentMedicineReDevelopSH">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon" style="color:blue">view_day</mat-icon>
+            Advice & Prescription
+
+        </ng-template>
+        <br />
+        <div class="UpperDIV">
+            <div class="InnerDIV">
+
+                <mat-expansion-panel *ngIf="panelOpenStateDoctortoPatientCommentMedicineReDevelopSH"
+                    style="border-radius: 15px;" [expanded]="true"
+                    (opened)="panelOpenStateDoctortoPatientCommentMedicineReDevelop = true"
+                    (closed)="panelOpenStateDoctortoPatientCommentMedicineReDevelop = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon style="color:red"> view_day </mat-icon>
+                            <b> Doctors Advice and Prescription</b>
+                        </mat-panel-title>
+                        <mat-panel-description class="right-aligned">
+                            Enter Medicine and comments as required.
+                            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-off"></span>
+                                SAVE</button>
+                            <button style="display: inline-block;" type="button" *ngIf="isEditCase"
+                                (click)="OpenPrescription('prescription')" class="btn btn-info"><span
+                                    class="glyphicon glyphicon-print" (click)="btnDischargePrint()"></span>
+                                Print</button>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <app-doctor-patient-assignment-redev [events]="eventsSubject1.asObservable()" [caseid]='caseValue'
+                        [CaseDetailValues]="addrFrom.value.CaseDetails" [caseid]='caseValue'
+                        [PatientValues]="addrFrom.value.home"
+                        [DoctortoPatientCommentMedicineReDevelop]="addrFrom.get('DoctortoPatientCommentMedicineReDevelop')">
+                    </app-doctor-patient-assignment-redev>
+                </mat-expansion-panel>
+            </div>
+        </div>
+    </mat-tab>
+
+    <mat-tab *ngIf="panelOpenStateVaccineSH">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon" style="color:rgb(104, 12, 96)">create</mat-icon>
+            Vaccine
+        </ng-template>
+        <br />
+        <div class="UpperDIV">
+            <div class="InnerDIV">
+                <mat-expansion-panel *ngIf="panelOpenStateVaccineSH" [expanded]="true" style="border-radius: 15px;"
+                    (opened)="panelOpenStateVaccine = true" (closed)="panelOpenStateVaccine = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon style="color:red"> create </mat-icon>
+                            <b>Vaccine Management</b>
+                        </mat-panel-title>
+                        <mat-panel-description class="right-aligned">
+                            vaccine applied details.
+                            <button type="submit" class="btn btn-success"  ><span
+                                class="glyphicon glyphicon-floppy-floppy-disk"></span> SAVE</button>
+                            <button style="display: inline-block;" type="button" *ngIf="isEditCase"
+                                (click)="OpenPrescription('Vaccine')" class="btn btn-info"><span
+                                    class="glyphicon glyphicon-print"></span>
+                                Print</button>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <app-vaccine-patient-management [caseid]='caseValue'
+                        [VaccineDetailsVisit]="addrFrom.get('VaccineDetailsVisit')"></app-vaccine-patient-management>
+                    <hr class="zeroMarginPadding" *ngIf="!activePathoLAB" />
+                </mat-expansion-panel>
+
+            </div>
+        </div>
+    </mat-tab>
+
+    <mat-tab *ngIf="panelOpenStateLABSH">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon" style="color:rgb(121, 5, 5)">local_hospital</mat-icon>
+            LAB
+        </ng-template>
+        <br />
+        <div class="UpperDIV">
+            <div class="InnerDIV">
+                <mat-expansion-panel *ngIf="panelOpenStateLABSH" style="border-radius: 15px;" [expanded]="true"
+                    (opened)="panelOpenStateLAB = true" (closed)="panelOpenStateLAB = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon style="color:red"> local_hospital </mat-icon>
+                            <b>LAB Management</b>
+                        </mat-panel-title>
+                        <mat-panel-description class="right-aligned">
+                            Enter and select Laboratory Test as required.
+                            <button style="display: inline-block;" type="button" *ngIf="isEditCase"
+                                (click)="OpenPrescription('Lab')" class="btn btn-info"><span
+                                    class="glyphicon glyphicon-print" (click)="btnDischargePrint()"></span>
+                                Print</button>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <app-case-details [CaseDetails]="addrFrom.get('CaseDetails')"></app-case-details>
+                </mat-expansion-panel>
+
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab *ngIf="panelOpenStateNurseVisitSH">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon" style="color:rgb(194, 160, 8)">view_day</mat-icon>
+            Nurse Visit
+        </ng-template>
+        <br />
+        <div class="UpperDIV">
+            <div class="InnerDIV">
+                <mat-expansion-panel *ngIf="panelOpenStateNurseVisitSH" style="border-radius: 15px;" [expanded]="true"
+                    (opened)="panelOpenStateNurseVisit = true" (closed)="panelOpenStateNurseVisit = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon style="color:red"> view_day </mat-icon>
+                            <b>Nurse Visit</b>
+                        </mat-panel-title>
+                        <mat-panel-description class="right-aligned">
+                            Enter Nurse Visit observations as required.
+                            <button type="submit" class="btn btn-success"  ><span
+                                class="glyphicon glyphicon-floppy-disk"></span> SAVE</button>
+                            <button type="button" style="display: inline-block;" *ngIf="isEditCase" class="btn btn-info"
+                                (click)="OpenPrescription('nurse')"><span class="glyphicon glyphicon-print"></span>
+                                Print</button>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <app-nurse-assignment [caseid]='caseValue' [NurseVisit]="addrFrom.get('NurseVisit')">
+                    </app-nurse-assignment>
+                </mat-expansion-panel>
+
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab *ngIf="panelOpenStateAmbulanceVisitSH">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon" style="color:rgb(71, 9, 151)">commute</mat-icon>
+            Ambulance
+        </ng-template>
+        <br />
+        <div class="UpperDIV">
+            <div class="InnerDIV">
+                <mat-expansion-panel *ngIf="panelOpenStateAmbulanceVisitSH" [expanded]="true"
+                    style="border-radius: 15px;" (opened)="panelOpenStateAmbulanceVisit = true"
+                    (closed)="panelOpenStateAmbulanceVisit = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon style="color:red"> commute </mat-icon>
+                            <b>Ambulance Management</b>
+                        </mat-panel-title>
+                        <mat-panel-description class="right-aligned">
+                            Ambulance Details as required.
+                            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span>
+                                SAVE</button>
+                            <button style="display: inline-block;" type="button" *ngIf="isEditCase"
+                                (click)="OpenPrescription('Ambulance')" class="btn btn-info"><span
+                                    class="glyphicon glyphicon-print"></span>
+                                Print</button>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <app-ambulance-management [caseid]='caseValue' [AmbulanceVisit]="addrFrom.get('AmbulanceVisit')">
+                    </app-ambulance-management>
+                </mat-expansion-panel>
+
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab *ngIf="panelOpenStateOTSH" >
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon" style="color:rgb(55, 27, 92)">bathtub</mat-icon>
+            OT
+        </ng-template>
+        <br />
+        <div class="UpperDIV">
+            <div class="InnerDIV">
+                <mat-expansion-panel *ngIf="panelOpenStateOTSH" [expanded]="true" style="border-radius: 15px;"
+                    (opened)="panelOpenStateOT = true" (closed)="panelOpenStateOT = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon style="color:red"> bathtub </mat-icon>
+                            <b>OT Notes</b>
+                        </mat-panel-title>
+                        <mat-panel-description class="right-aligned">
+                            OT Details and price system.
+                            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-off"></span>
+                                SAVE</button>
+                            <button style="display: inline-block;" type="button" *ngIf="isEditCase"
+                                (click)="OpenPrescription('OT')" class="btn btn-info"><span
+                                    class="glyphicon glyphicon-print"></span>
+                                Print</button>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <app-ot-assignment [caseid]='caseValue' [OTDetails]="addrFrom.get('OTDetails')"
+                        (getSearchStatusChange)="FinalCalculation('')">
+                    </app-ot-assignment>
+                </mat-expansion-panel>
+
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab *ngIf="panelOpenStateDoctorVisitSH">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon" style="color:rgb(3, 129, 20)">view_day</mat-icon>
+            Pharmacy
+        </ng-template>
+        <br />
+        <div class="UpperDIV">
+            <div class="InnerDIV">
+                <mat-expansion-panel *ngIf="panelOpenStateDoctorVisitSH" [expanded]="true" style="border-radius: 15px;"
+                    (opened)="panelOpenStateDoctorVisit = true" (closed)="panelOpenStateDoctorVisit = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon style="color:red"> view_day </mat-icon>
+                            <b>Pharmacy</b>
+                        </mat-panel-title>
+                        <mat-panel-description class="right-aligned">
+                            All medicine used.
+                            <button style="display: inline-block;" type="button" *ngIf="isEditCase"
+                                (click)="OpenPrescription('Pharmacy')" class="btn btn-info"><span
+                                    class="glyphicon glyphicon-print"></span>
+                                Print</button>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <app-farmacy-patient-details [caseid]='caseValue'></app-farmacy-patient-details>
+                </mat-expansion-panel>
+
+
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab *ngIf="panelOpenStateDoctorVisitSH">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon" style="color:rgb(34, 3, 146)">view_day</mat-icon>
+            Followup
+        </ng-template>
+        <br />
+        <div class="UpperDIV">
+            <div class="InnerDIV">
+                <mat-expansion-panel *ngIf="panelOpenStateDoctorVisitSH" [expanded]="true" style="border-radius: 15px;"
+                    (opened)="panelOpenStateDoctorVisit = true" (closed)="panelOpenStateDoctorVisit = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon style="color:red"> view_day </mat-icon>
+                            <b>Follow-up Management</b>
+                        </mat-panel-title>
+                        <mat-panel-description class="right-aligned">
+                            Enter daily Doctor Visit as required.
+                            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span>
+                                SAVE</button>
+                            <button style="display: inline-block;" type="button" *ngIf="isEditCase"
+                                (click)="OpenPrescription('DoctorVisit')" class="btn btn-info"><span
+                                    class="glyphicon glyphicon-print"></span>
+                                Print</button>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <app-doctor-regular-followup [caseid]='caseValue' [DoctorVisit]="addrFrom.get('DoctorVisit')">
+                    </app-doctor-regular-followup>
+                </mat-expansion-panel>
+
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab *ngIf="panelOpenStateDailyExpenseSH">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon" style="color:rgb(155, 6, 50)">view_day</mat-icon>
+            Expense
+        </ng-template>
+        <br />
+        <div class="UpperDIV">
+            <div class="InnerDIV">
+                <mat-expansion-panel *ngIf="panelOpenStateDailyExpenseSH" [expanded]="true" style="border-radius: 15px;"
+                    (opened)="panelOpenStateDailyExpense = true" (closed)="panelOpenStateDailyExpense = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon style="color:red"> view_day </mat-icon>
+                            <b>Daily Expenses</b>
+                        </mat-panel-title>
+                        <mat-panel-description class="right-aligned">
+                            Enter daily expense as required.
+                            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span>
+                                SAVE</button>
+                            <button style="display: inline-block;" type="button" *ngIf="isEditCase"
+                                (click)="OpenPrescription('DailyExp')" class="btn btn-info"><span
+                                    class="glyphicon glyphicon-print"></span>
+                                Print</button>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <app-daily-expense [caseid]='caseValue' [DailyExpense]="addrFrom.get('DailyExpense')"
+                        (getSearchStatusChange)="FinalCalculation('')"></app-daily-expense>
+                </mat-expansion-panel>
+
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab *ngIf="panelOpenStateOTSH">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon" style="color:rgb(4, 122, 20)">bathtub</mat-icon>
+            Discharge
+        </ng-template>
+        <br />
+        <div class="UpperDIV">
+            <div class="InnerDIV">
+                <mat-expansion-panel *ngIf="panelOpenStateOTSH" [expanded]="true" style="border-radius: 15px;"
+                    (opened)="panelOpenStateOT = true" (closed)="panelOpenStateOT = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon style="color:red"> bathtub </mat-icon>
+                            <b>Discharge Note</b>
+                        </mat-panel-title>
+                        <mat-panel-description class="right-aligned">
+                            Discharge Comments and Advice.
+                            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span>
+                                SAVE</button>
+                            <button style="display: inline-block;" type="button" *ngIf="isEditCase"
+                                (click)="OpenPrescription('DischargeaRep')" class="btn btn-info"><span
+                                    class="glyphicon glyphicon-print"></span>
+                                Print</button>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <app-patient-discharge-note [DischargeNote]="addrFrom.get('DischargeNote')">
+                    </app-patient-discharge-note>
+                </mat-expansion-panel>
+
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab *ngIf="panelOpenStateBILLSH">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon" style="color:red">account_balance</mat-icon>
+            Billing
+        </ng-template>
+        <br />
+        <div class="UpperDIV">
+            <div class="InnerDIV">
+                <mat-expansion-panel *ngIf="panelOpenStateBILLSH" [expanded]="true" style="border-radius: 15px;"
+                    (opened)="panelOpenStateBILL = true" (closed)="panelOpenStateBILL = false"
+                    (click)="FinalCalculation('')">
+                    <mat-expansion-panel-header style="border-radius: 15px;">
+                        <mat-panel-title>
+                            <mat-icon style="color:red"> account_balance </mat-icon>
+                            <b>Billing Management</b>
+                        </mat-panel-title>
+                        <mat-panel-description class="right-aligned">
+                            Billing section(It tracks all the billing information).
+                            <button style="display: inline-block;" type="button" *ngIf="isEditCase"
+                                (click)="OpenBillPrint(this.parValue,'Billing')" class="btn btn-info"><span
+                                    class="glyphicon glyphicon-print"></span>
+                                Print</button>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <app-payment-details #paymentDetails [PaymentDetails]="addrFrom.get('PaymentDetails')"
+                        [caseid]='parValue' [siblings]="siblings" [TotalAmountRecived]='TotalAmountRecived'
+                        [paymentParams]='paymentParams' [ServiceType]='serviceType'></app-payment-details>
+
+
+                </mat-expansion-panel>
+
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab *ngIf="false">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon" style="color:green">thumb_up</mat-icon>
+            Final SAVE
+        </ng-template>
+        <br />
+        <div class="UpperDIV">
+            <div class="InnerDIV">
+
+                <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px"
+                    fxLayoutGap.lt-md="0px">
+
+
+                    <div class="col-md-7" *ngIf="CaseRecordStatus">
+                        <button type="button" class="btn btn-success" (click)="CancelMe()"><span
+                                class="glyphicon glyphicon-off"></span> Cancel</button>
+                        <button *ngIf="showBasedOnRole" type="button" class="btn btn-success"
+                            (click)="FinalCalculation('')"><span class="glyphicon glyphicon-tasks"></span> Final
+                            Calculation</button>
+                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span>
+                            {{SubmitButtonNameDynamically}}</button>
+                        <!-- <button type="button" class="btn btn-success" [disabled]="CalculationDone" (click)="btnBillPrint()" ><span
+                          class="glyphicon glyphicon-off"></span> Bill Show/Print</button> -->
+                        <button type="button" class="btn btn-success" *ngIf="showBasedOnRole"
+                            [disabled]="CalculationDone" (click)="OpenBillPrint(this.parValue,'Billing')"><span
+                                class="glyphicon glyphicon-print"></span> Bill Show/Print</button>
+                        <button type="button" class="btn btn-success"
+                            *ngIf="this.parValue !== 'Add' && this.parValue !== 'Addnew' && this.parValue !== '' "
+                            (click)="CloseTheCase()"><span class="glyphicon glyphicon-off"></span> Close the CASE
+                            (Discharged <span style="color:red">&#10003;</span>)</button>
+                        <!-- {{this.parValue}} -->
+                    </div>
+
+                    <div class="col-md-4" *ngIf="!CaseRecordStatus">
+                        <button type="button" class="btn btn-success" (click)="CancelMe()"><span
+                                class="glyphicon glyphicon-off"></span> Close/Home</button> &nbsp;
+                        <span style="color:red"> * Closed CASE. Data modication are not allowed.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-tab>
+
+    <mat-tab *ngIf="panelOpenStatePHSH">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon" style="color:red">fact_check</mat-icon>
+            Payment History
+        </ng-template>
+        <br />
+        <div class="UpperDIV">
+            <div class="InnerDIV">
+
+                <mat-expansion-panel *ngIf="panelOpenStatePHSH" style="border-radius: 15px;"
+                    (opened)="panelOpenStatePH = true" (closed)="panelOpenStatePH = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon style="color:green"> fact_check </mat-icon>
+                            <b>Payment History <u><b>{{newid}}</b></u></b>
+                        </mat-panel-title>
+                        <mat-panel-description class="right-aligned">
+                            Detail payments by Patient.
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <app-payment-history [caseid]='caseValue'></app-payment-history>
+
+
+                </mat-expansion-panel>
+            </div>
+        </div>
+    </mat-tab>
+
+</mat-tab-group>
+
+<br/>
+<hr style="border-top: 1px dotted red;"/>
+<div class="row ">
+    
+    <div class="col-md-7" *ngIf="CaseRecordStatus">
+        <button type="button" class="btn btn-success btn-lg" (click)="CancelMe()"><span
+                class="glyphicon glyphicon-off"></span> Cancel</button>
+        <button *ngIf="showBasedOnRole" type="button" class="btn btn-success  btn-lg" (click)="FinalCalculation('')"><span
+                class="glyphicon glyphicon-tasks"></span> Final Calculation</button>
+        <button type="submit" class="btn btn-success  btn-lg"><span class="glyphicon glyphicon-floppy-disk"></span>
+            {{SubmitButtonNameDynamically}}</button>
+
+        <button type="button" class="btn btn-success  btn-lg" *ngIf="showBasedOnRole" [disabled]="CalculationDone"
+            (click)="OpenBillPrint(this.parValue,'Billing')"><span class="glyphicon glyphicon-print"></span> Bill
+            Show/Print</button>
+        <button type="button" class="btn btn-success  btn-lg"
+            *ngIf="this.parValue !== 'Add' && this.parValue !== 'Addnew' && this.parValue !== '' "
+            (click)="CloseTheCase()"><span class="glyphicon glyphicon-off"></span> Close the CASE (Discharged <span
+                style="color:red">&#10003;</span>)</button>
+
+    </div>
+
+    <div class="col-md-4" *ngIf="!CaseRecordStatus">
+        <button type="button" class="btn btn-success  btn-lg" (click)="CancelMe()"><span
+                class="glyphicon glyphicon-off"></span> Close/Home</button> &nbsp;
+        <span style="color:red"> * Closed CASE. Data modication are not allowed.</span>
+    </div>
+</div>
+<hr/>
+
+</form>

@@ -1,0 +1,55 @@
+.mat-column-Amount {
+    flex: 0 0 10%;
+  }
+  .mat-column-CommPerc {
+    flex: 0 0 6%;
+  }
+  .mat-column-Doctor {
+    flex: 0 0 20%;
+  }
+  .mat-column-slno {
+    flex: 0 0 5%;
+    padding-left: 0;
+  }
+  .mat-column-UnqueID {
+    flex: 0 0 9%;
+  }
+  .mat-column-TestType {
+    flex: 0 0 34%;
+  }
+  .mat-column-PatientID {
+    flex: 0 0 6%;
+  }
+  .mat-column-PatientInfo {
+    flex: 0 0 23%;
+  }
+  .mat-column-Location {
+    flex: 0 0 6%;
+  }
+  .mat-column-DateStart {
+    flex: 0 0 7%;
+  }
+  .mat-column-BillingDate {
+    flex: 0 0 7%;
+  }
+  .mat-column-Payment {
+    flex: 0 0 8%;
+  }
+  .mat-column-CeditStatus {
+    flex: 0 0 8%;
+  }
+  .mat-column-BillNo {
+    flex: 0 0 8%;
+  }
+  .mat-column-CustomerName {
+    flex: 0 0 20%;
+  }
+  .mat-column-CaseID {
+    flex: 0 0 5%;
+  }
+  .mat-column-Pharmacy {
+    flex: 0 0 10%;
+  }
+  .mat-column-GrossSalePriceOnthisBill {
+    flex: 0 0 8%;
+  }

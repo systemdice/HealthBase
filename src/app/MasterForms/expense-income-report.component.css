@@ -1,0 +1,36 @@
+/* table, td {
+    
+    border-collapse: collapse;
+  }
+
+  th{
+      font-weight: bold;
+  } */
+  .example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }
+  table, th, td {
+    border: 1px solid rgb(202, 200, 200);
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .table1 {
+    border: 0px  rgb(202, 200, 200);
+    border-collapse: collapse;
+  }
+
+
+  .test {
+    white-space: pre-line;
+  }
+
+ 
+
+
+  

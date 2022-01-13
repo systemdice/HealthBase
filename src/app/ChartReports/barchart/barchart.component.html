@@ -1,0 +1,96 @@
+<div class="container">
+    <h3>Year/Month wise CASE Details report:</h3>
+    <hr style="padding:0px"/>
+    <div class="row">
+        <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;">
+            <b><u>Case count Month to Month</u></b>
+            <canvas baseChart
+                  [datasets]="barChartDataE"
+                  [labels]="barChartLabelsE"
+                  [options]="barChartOptionsE"
+                  [plugins]="barChartPluginsE"
+                  [legend]="barChartLegendE"
+                  [colors]="lineChartColorsE"
+                  [chartType]="barChartTypeE">
+                </canvas>
+        </div>
+
+        <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;">
+          <b><u>Case flow Month to Month</u></b>
+          <canvas baseChart
+                [datasets]="barChartDataE"
+                [labels]="barChartLabelsE"
+                [options]="barChartOptionsE"
+                [plugins]="barChartPluginsE"
+                [legend]="barChartLegendE"
+                [colors]="lineChartColorsE"
+                [chartType]="barChartTypeEP">
+              </canvas>
+             
+      </div>
+        <!-- <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;">
+            <b><u>Income</u></b>
+            <canvas baseChart
+                  [datasets]="barChartDataI"
+                  [labels]="barChartLabelsI"
+                  [options]="barChartOptionsI"
+                  [plugins]="barChartPluginsI"
+                  [legend]="barChartLegendI"
+                  [colors]="lineChartColorsI"
+                  [chartType]="barChartTypeI">
+                </canvas>
+        </div> -->
+    </div>
+   
+
+    <!-- <div class="row">
+        <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;">
+            <b><u>Expense flow</u></b>
+            <canvas baseChart
+                  [datasets]="barChartDataE"
+                  [labels]="barChartLabelsE"
+                  [options]="barChartOptionsE"
+                  [plugins]="barChartPluginsE"
+                  [legend]="barChartLegendE"
+                  [colors]="lineChartColorsE"
+                  [chartType]="barChartTypeEP">
+                </canvas>
+               
+        </div>
+
+        <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;">
+            <b><u>Income flow</u></b>
+            <canvas baseChart
+            [datasets]="barChartDataI"
+            [labels]="barChartLabelsI"
+            [options]="barChartOptionsI"
+            [plugins]="barChartPluginsI"
+            [legend]="barChartLegendI"
+            [colors]="lineChartColorsI"
+            [chartType]="barChartTypeIP">
+          </canvas>
+        </div>
+    </div> -->
+
+    <!-- <div class="row">
+        <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;">
+            <b><u>Expense ng2</u></b>
+            <div style="display: block">
+                <canvas baseChart
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [plugins]="barChartPlugins"
+                  [legend]="barChartLegend"
+                  [chartType]="barChartType">
+                </canvas>
+              </div>
+              <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
+        </div>
+
+        <div class="col-md-6 mx-auto p-1 m-1" style="text-align: center;">
+            <b><u>Income</u></b>
+            
+        </div>
+    </div> -->
+</div>

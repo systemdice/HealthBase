@@ -1,0 +1,124 @@
+<!-- app.component.html -->
+<h3>Group Test Details
+   
+</h3>
+
+
+
+ 
+
+<div class="example-header">
+  <div fxFlex>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <div fxFlex>
+    <button mat-icon-button color="primary"  (click)="openDialog('Add',{})" fxHide.gt-sm >
+      <mat-icon matTooltip="Add a new entry" matTooltipPosition="below" aria-label="heart icon">add</mat-icon> <b><u>Add</u></b>
+    </button> 
+  </div>
+   
+  </div>
+  <div class="example-container mat-elevation-z8">
+
+    <!-- <button mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Add Row</button> -->
+  
+    <mat-table [dataSource]="dataSource" matSort #mytable class="my-table mat-elevation-z8">
+  
+      <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+          <ng-container matColumnDef="slno">
+            <mat-header-cell *matHeaderCellDef class="HeaderStyle"> Slno </mat-header-cell>
+            <mat-cell *matCellDef="let item; let i = index"> <span class="mobile-label ">Serial No:</span>
+              {{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }} 
+            </mat-cell>
+    
+          </ng-container>
+ <!-- Id Column -->
+ <ng-container matColumnDef="UnqueID">
+  <mat-header-cell *matHeaderCellDef  mat-sort-header> Group ID </mat-header-cell>
+  <mat-cell *matCellDef="let element"><b> <span  class="mobile-label ">ID:</span>
+    <u (click)="openDialog('Update',element)">{{element.UnqueID}}</u>
+</b> </mat-cell>
+</ng-container>
+  
+      <!-- Id Column -->
+      <ng-container matColumnDef="GroupName">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> Group Name </mat-header-cell>
+        <mat-cell *matCellDef="let element">  <span  class="mobile-label ">Name:</span>{{element.GroupName}} </mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="Description">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> Description </mat-header-cell>
+        <mat-cell *matCellDef="let element">  <span  class="mobile-label ">Desc:</span>{{element.Description}} </mat-cell>
+      </ng-container>
+
+       <!-- Name Column -->
+       <ng-container matColumnDef="Status">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element">  <span  class="mobile-label ">Status:</span>{{element.Status==undefined || element.Status==undefined ?'Active':element.Status }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="alltests">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> All Tests Included </mat-header-cell>
+        <mat-cell *matCellDef="let element">  <span  class="mobile-label ">All Tests:</span>
+            <div class="ex1">
+                <u>
+                    <li   *ngFor="let itemInn of element.names; let j = index">
+                        <span style="cursor:pointer;color:blue"
+                          >
+                          {{j+1}}.&nbsp;{{itemInn?.TestName}}
+                          <span  fxHide fxShow.lt-sm>
+                          {{j+1}}.&nbsp;{{ (itemInn?.TestName?.length>18)? (itemInn?.TestName | slice:0:18)+'...':(itemInn?.TestName) }}
+                          </span>
+                        </span>
+                      </li>
+    
+                </u>
+              </div>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="ActualPrice">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> Actual Price </mat-header-cell>
+        <mat-cell *matCellDef="let element">  <span  class="mobile-label ">Real&nbsp;Price:</span>{{element.ActualPrice}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="TotalPrice">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> Disc Price </mat-header-cell>
+        <mat-cell *matCellDef="let element">  <span  class="mobile-label ">Disc Price:</span>{{element.TotalPrice}} </mat-cell>
+      </ng-container>
+  
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef > Action 
+            <button mat-icon-button color="primary"  (click)="openDialog('Add',{})">
+                <mat-icon matTooltip="Add a new entry" matTooltipPosition="below" aria-label="Example icon-button with a heart icon">add</mat-icon> Add
+              </button> 
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="action-link">
+
+            <button mat-icon-button color="accent" (click)="openDialog('Update',element)">
+                <mat-icon matTooltip="Edit the entry" matTooltipPosition="below" aria-label="Edit">edit</mat-icon>
+              </button>
+      
+              <button mat-icon-button color="accent" (click)="DeleteItem(element.UnqueID)">
+                <mat-icon matTooltip="Delete the entry" matTooltipPosition="below" aria-label="Delete">delete</mat-icon>
+              </button>
+
+             
+          <!-- <a (click)="openDialog('Update',element)">Edit</a> | 
+          <a (click)="openDialog('Delete',element)">Delete</a>   -->
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator  #paginatorRef [pageSizeOptions]="[12, 25,50, 100]"></mat-paginator>
+  
+  </div>
+  
+  
+
+
+  

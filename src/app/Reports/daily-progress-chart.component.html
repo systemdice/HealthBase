@@ -1,0 +1,508 @@
+
+
+<div class="row" style="font-size:11px; margin-left:5px; margin-right:5px;"
+id="frmIndividualLapReport">
+
+
+<table width="100%" cellspacing="0px" cellpadding="0px">
+
+    <tbody>
+        <tr>
+            <td style="border: 1px solid black ;">
+
+
+
+                <div style="text-align:center;">
+                    <div style="text-align:center;">
+                        <h4 style="text-align:center; padding-bottom:10px;">
+                            {{Addressline1}}<br />
+                            {{Addressline2}}<br />
+                            {{Addressline3}},&nbsp;{{Addressline4}}<br />
+
+                        </h4>
+
+                       
+                        <hr />
+                        <h3>DAILY PROGRESS CHART
+
+                        </h3>
+
+
+
+
+                    </div>
+
+
+                    <div class="col-sm-12">
+
+                        <button type="button" style="display: inline-block;float:left;" id="printElement"
+                            (click)="myPrint('frmIndividualLapReport')" class="btn btn-info"><span
+                                class="glyphicon glyphicon-print"></span>
+                            Print</button>
+                            <div class="form-row" id="searchtElement" *ngIf="showSearch">
+
+                             
+                              <div class="form" style="display: flex;margin-top:5px;">
+                                <label>IPD/OPD ID (CASE ID):</label>
+                                
+                              </div>
+  
+                              <div class="form-group " style="display: flex">
+                                  <input type="text" [(ngModel)]="CustomID">
+  
+                              </div>
+                              <div class="form">
+  
+                                      <button type="button" style="display: inline-block;float:left;" id="closePopup"
+                                  (click)="LoadSearchID()" class="btn btn-warning"><span
+                                      class="glyphicon glyphicon-print"></span>
+                                      Search</button>
+                              </div>
+                          </div>
+                        <!-- <button type="button" style="display: inline-block;float:left;" id="CloseMe"
+                            (click)="CloseMe()" class="btn btn-info"><span
+                                class="glyphicon glyphicon-print"></span>
+                            Close Me</button> -->
+
+
+<!-- 
+                        <button type="button" style="display: inline-block;float:left;" id="closePopup"
+                            (click)="onNoClick()" class="btn btn-info"><span
+                                class="glyphicon glyphicon-print"></span>
+                            Close Me/Popup</button> -->
+
+
+                        <!-- <input id="printCheckElement" style="display: inline-block;float:left;" (change)="fieldsChange($event)" value="Show header on each page" type="checkbox"/>
+    <span id="printCheckTextElement" style="display: inline-block;float:left;">Show header on each page</span> -->
+
+
+                    </div>
+                    
+                </div>
+
+                <!-- <hr style="padding:0px;margin:0px" /> -->
+
+
+
+
+                <!-- <hr style="margin-bottom:0px; margin-top:0px;"> -->
+                <table class="table" style="width:100%"  cellpadding = "0" cellspacing = "0">
+                    <thead>
+                      <tr>
+                        <th style="width: 33%;text-align: left;">Regd No:&nbsp;{{EditedCaseData?.IPDOPDId|uppercase}}&nbsp;</th>
+                        <th style="width: 33%;text-align: left;">Name:&nbsp;{{EditedCaseData?.Home?.FirstName|uppercase}}&nbsp; {{EditedCaseData?.Home?.LastName|uppercase}}&nbsp;</th>
+                        <th style="width: 33%;text-align: left;">Bed No:&nbsp;&nbsp;&nbsp;&nbsp;{{EditedCaseData?.BedDetailsVisit== undefined?'':(EditedCaseData?.BedDetailsVisit[0]?.BedCategory)}}/{{EditedCaseData?.BedDetailsVisit== undefined?'':(EditedCaseData?.BedDetailsVisit[0]?.BedName)}}</th>
+                       
+                      </tr>
+                      <tr>
+                        <th style="width: 33%;text-align: left;">Age:&nbsp;&nbsp;&nbsp;&nbsp;{{EditedCaseData?.Home?.Year}}Yrs&nbsp;&nbsp;&nbsp;&nbsp;{{EditedCaseData?.Home?.Month}}Mon&nbsp;&nbsp;&nbsp;{{EditedCaseData?.Home?.Days}}Days</th>
+                        <th style="width: 33%;text-align: left;">Sex:&nbsp;{{EditedCaseData?.Home == undefined?'':(EditedCaseData?.Home?.Gender == '1'?'Male':'Female')}}&nbsp;</th>
+                        <th style="width: 33%;text-align: left;">Doctor:&nbsp;{{EditedCaseData?.Home == undefined?'':(EditedCaseData?.Home?.RefferDoctorName)}}&nbsp;</th>
+                      </tr>
+                      <tr>
+                        <td colspan="3">
+                            <hr/>
+                        </td>
+                       
+                      </tr>
+                      <tr>
+                        <td colspan="3">
+                            Vital Signs:
+                        </td>
+                       
+                      </tr>
+                    </thead>
+                    
+                  </table>
+                  <br/>
+                  
+               
+                  <table class="table" style="border:1px solid;width:100%"  cellpadding = "0" cellspacing = "0" width="100%">
+                    <thead>
+                     <tr>
+                      <th colspan="2"  style="border:1px solid;" scope="col"></th>
+                      <th colspan="4" style="border:1px solid;" scope="col">
+                        <table style="width:100%">
+                            <tr><td style="text-align: Center;" colspan="4">Date</td></tr>
+                            <tr><td style="text-align: Center;" colspan="4">
+                                <hr style="background-color: black;padding:0px;margin:0px;"/></td></tr>
+                            <tr>
+                                <td  style="width: 25%;text-align: Center;">6AM</td>
+                                <td  style="width: 25%;text-align: Center;">10AM</td>
+                                <td  style="width: 25%;text-align: Center;">6PM</td>
+                                <td style="width: 25%;text-align: Center;">10PM</td>
+                            </tr>
+                        </table>
+                    </th>
+                    <th colspan="4" style="border:1px solid;" scope="col">
+                        <table style="width:100%">
+                            <tr><td style="text-align: Center;" colspan="4">Date</td></tr>
+                            <tr><td style="text-align: Center;" colspan="4"><hr style="background-color: black;padding:0px;margin:0px;"/></td></tr>
+                            <tr>
+                                <td  style="width: 25%;text-align: Center;">6AM</td>
+                                <td  style="width: 25%;text-align: Center;">10AM</td>
+                                <td  style="width: 25%;text-align: Center;">6PM</td>
+                                <td style="width: 25%;text-align: Center;">10PM</td>
+                            </tr>
+                        </table>
+                    </th>
+                    <th colspan="4" style="border:1px solid;" scope="col">
+                        <table style="width:100%">
+                            <tr><td style="text-align: Center;" colspan="4">Date</td></tr>
+                            <tr><td style="text-align: Center;" colspan="4"><hr style="background-color: black;padding:0px;margin:0px;"/></td></tr>
+                            <tr>
+                                <td  style="width: 25%;text-align: Center;">6AM</td>
+                                <td  style="width: 25%;text-align: Center;">10AM</td>
+                                <td  style="width: 25%;text-align: Center;">6PM</td>
+                                <td style="width: 25%;text-align: Center;">10PM</td>
+                            </tr>
+                        </table>
+                    </th>
+                      
+                     </tr>
+                    </thead>
+                  
+                    <tbody>
+                        <tr style="height:25px">
+                            <td colspan="1"  rowspan="10" style="border:1px solid;">Temp ℉</td>
+                            <td style="border:1px solid;">106</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                         
+                          
+                            
+                           <tr style="height:25px">
+                            <td style="border:1px solid;">105</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                         
+                           <tr style="height:25px">
+                            
+                            <td style="border:1px solid;">104</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                         
+                           <tr sstyle="height:25px">
+                             <td style="border:1px solid;">103</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                         
+                           <tr sstyle="height:25px">
+                             <td style="border:1px solid;">102</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                          
+                           <tr sstyle="height:25px">
+                             <td style="border:1px solid;">101</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                           <tr sstyle="height:25px">
+                             <td style="border:1px solid;">100</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                           <tr sstyle="height:25px">
+                             <td style="border:1px solid;">99</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                           <tr sstyle="height:25px">
+                             <td style="border:1px solid;">98</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                           <tr sstyle="height:25px">
+                             <td style="border:1px solid;">97</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                           <tr sstyle="height:25px">
+                            <td colspan="1" rowspan="5"  style="border:1px solid;white-space:nowrap;">Medication Time /Pulse</td>
+                             <td style="border:1px solid;">180</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                           <tr sstyle="height:25px">
+                             <td style="border:1px solid;">160</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                           <tr sstyle="height:25px">
+                             <td style="border:1px solid;">140</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                           <tr sstyle="height:25px">
+                             <td style="border:1px solid;">120</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                           <tr sstyle="height:25px">
+                             <td style="border:1px solid;">100</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                           <tr sstyle="height:25px"><td colspan="1" rowspan="5" style="border:1px solid;">Respiration Rate</td>
+                             <td style="border:1px solid;">80</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                           <tr sstyle="height:25px">
+                             <td style="border:1px solid;">60</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                           <tr sstyle="height:25px">
+                             <td style="border:1px solid;">40</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                           <tr sstyle="height:25px">
+                             <td style="border:1px solid;">20</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                           <tr sstyle="height:25px">
+                             <td style="border:1px solid;">0</td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                            <td style="border:1px solid;"></td>
+                           </tr>
+                           
+                         
+                    </tbody>
+                  </table>
+                
+
+
+                
+
+
+
+
+                <!-- <hr style="border-top: 1px dashed black;" /> -->
+
+
+
+
+
+
+            </td>
+        </tr>
+    </tbody>
+    <!-- follwing line make footer repeatable for each page -->
+    <!-- <tfoot><tr><td style="border: 1px solid black ;" >Your footer goes here</td></tr></tfoot> -->
+</table>
+
+
+<div>
+
+
+
+
+</div>

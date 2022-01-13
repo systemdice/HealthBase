@@ -1,0 +1,195 @@
+
+    
+ 
+
+
+
+
+<form  [formGroup]="teachersForm" (ngSubmit)="onSubmit()" id="frmIndividualLapReport">
+    <div style="border-style:solid; margin-left:5px; margin-right:5px;">
+      
+        <!-- {{caseData|json}} -->
+      
+        <hr class="noPaddingMargin" />
+        <div>
+
+            <div class="container" *ngIf="!finalSave" style="background-color:#e7e4e4 ; padding-top:10px;">
+                <div class="row">
+                    <h3>&nbsp;&nbsp;&nbsp;Test Name:{{this.teachersForm.value.TestName}}, (Category
+                        :{{this.teachersForm.value.CategoryName}})</h3>
+                </div>
+                <hr class="noPaddingMargin" />
+
+                <div formArrayName="test">
+                    <!-- sysdice  {{found}} -->
+                    <table style="width:100%">
+                        <tr>
+                            <th width="5%">SlNo.</th>
+                            <th width="25%">Test</th>
+                            <th width="20%">Value</th>
+                            <th width="20%">&nbsp;Unit</th>
+                            <th width="20%">Reference(Min to Max)</th>
+                            <th width="5%"></th>
+                        </tr>
+                        <tr *ngFor="let teacher of teachers().controls; let ti=index" [formGroupName]="ti">
+
+                            <td>{{ti+1}}.</td>
+                            <td>{{teacher.value.ParamterName}}</td>
+
+                            <td>
+                                <mat-form-field fxFlex>
+                                    <input type="text" style="background-color: white;height:22px;font-size: medium;" matInput
+                                        formControlName="InputValue" placeholder="InputValue">
+                                </mat-form-field>
+
+                            <td>&nbsp;{{teacher.value.Unit}}</td>
+                            <!-- <td>{{myval(caseData?.Home?.PatientCategory,ti)}}</td> -->
+                            <td>
+                                <!-- <mat-form-field fxFlex>
+                                    <input type="text" style="background-color: white;height:22px;font-size: medium;" matInput
+                                        formControlName="GeneralRef" placeholder="GeneralRef">
+                                </mat-form-field> -->
+                                {{myval(caseData?.Home?.PatientCategory,ti)}}</td>
+                            <td>
+                                <!-- <span style="color:#9F000F" class="btn">
+                                    <button type="button" class="btn btn-sm btn-danger" (click)="removeTeacher(ti)">
+                                        &#x2717;&nbsp;Delete</button>&nbsp;
+                                   
+                                </span> -->
+                                <!-- <button type="button" (click)="addTeacher()">Add Teacher</button>
+                                        <button (click)="removeTeacher(ti)">Remove</button>  -->
+                            </td>
+
+                            <!-- <hr class="noPaddingMargin" /> -->
+
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                <hr class="noPaddingMargin" />
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+                <div>
+                    <mat-form-field fxFlex>
+                        <mat-label>More details/Leave a comment</mat-label>
+                        <textarea matInput placeholder="More details...." formControlName="MoreDetails" rows="5"
+                            style="background-color: white;"></textarea>
+                    </mat-form-field>
+                </div>
+
+                <!-- {{teachersForm.value|json}} -->
+
+
+                <!-- {{this.caseData|json}}
+--------------------------------
+
+                {{this.teachersForm.value | json}} -->
+
+            </div>
+
+
+<ng-template [ngIf]="finalSave">
+    <div class="container" style="background-color:#e7e4e4; padding-top:10px;">
+        <div class="row">
+            <h3>&nbsp;&nbsp;&nbsp;Test Name: {{this.teachersForm.value.TestName}}, (Category
+                :{{this.teachersForm.value.CategoryName}})</h3>
+        </div>
+        <hr class="noPaddingMargin" />
+
+        <div formArrayName="test">
+            <!-- sysdice  {{found}} -->
+            <table style="width:100%">
+                <tr>
+                    <th width="5%" style="text-align:left;">SlNo.</th>
+                    <th width="25%" style="text-align:left;">Test</th>
+                    <th width="20%" style="text-align:left;">Value</th>
+                    <th width="20%" style="text-align:left;">&nbsp;Unit</th>
+                    <th width="20%" style="text-align:left;">Reference(Min-Max)</th>
+                    <th width="5%" style="text-align:left;" ></th>
+                </tr>
+                <tr *ngFor="let teacher of teachers().controls; let ti=index" [formGroupName]="ti">
+
+                    <td>{{ti+1}}.</td>
+                    <td>{{teacher.value.ParamterName}}</td>
+
+                    <td>
+                        <label *ngIf="myvalRangeSecurity(teacher.value.InputValue,caseData?.Home?.PatientCategory,ti) !=='(Normal)'"><b>{{teacher.value.InputValue}}</b></label>
+                        <!-- {{teacher.value.InputValue}} -->
+                        <span *ngIf="myvalRangeSecurity(teacher.value.InputValue,caseData?.Home?.PatientCategory,ti) =='(Normal)'">{{teacher.value.InputValue}}</span>
+                       
+                     </td>
+
+                    <td>&nbsp;{{teacher.value.Unit}}</td>
+                    <td>{{myval(caseData?.Home?.PatientCategory,ti)}} </td>
+                    <td>
+                        
+                    </td>
+
+                    <!-- <hr class="noPaddingMargin" /> -->
+
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        <hr class="noPaddingMargin" />
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+        <div>
+            <br/>
+            Remarks By Doctor:&nbsp;{{this.teachersForm.value.MoreDetails ==''?'Not Required':this.teachersForm.value.MoreDetails }} 
+            
+        </div>
+
+       
+
+    </div>
+
+</ng-template>
+
+
+
+
+
+
+            <hr class="noPaddingMargin" />
+<br/>
+         
+
+            <div class="container">
+                <div class="row">
+                   
+                    <div class="col-sm-3">                        
+                            <button type="button" style="display: inline-block;float:left;"  id="CloseMe"  
+                            (click)="onNoClick()" class="btn btn-info"><span
+                                class="glyphicon glyphicon-print" ></span>
+                            Close Me</button>
+                           
+                    </div>
+                   
+
+                   
+                </div>
+
+                
+            </div>
+
+            
+
+
+        </div>
+        <br />
+    </div>
+    <br />
+
+</form>
+
+<!-- {{data11|json}} -->
+

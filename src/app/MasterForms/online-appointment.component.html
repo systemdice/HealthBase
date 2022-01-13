@@ -1,0 +1,443 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    
+    <h1>NUA SAKALA</h1>
+    <span class="menu-spacer"></span>
+    <div>
+      <span  style="font-size: 14px;"> Welcomes you and wishing your good health </span> 
+        
+
+    </div>
+    <span class="toolbar-spacer"></span>
+    <span style="font-size: 12px;">ONLINE Appointment system (Book your appointment in easy way)</span>
+
+  </mat-toolbar-row>
+
+ 
+</mat-toolbar>
+<br>
+<hr/>
+
+<!-- {{referralMaster|json}} -->
+<form *ngIf="!showAppointmentID" [formGroup]="addrFrom" >
+
+  <div class="row">
+    <div class="form-group col-xs-12">
+      <div class="panel panel-info">
+        <div class="panel-body" >
+          <app-pataient-detail-main #child [home]="addrFrom.get('home')" [diectOnline]="'Yes'"></app-pataient-detail-main>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <ng-container *ngIf="isHidden">
+  
+  
+    <div class="row">
+      <div class="form-group col-xs-12">
+  
+        <div class="panel panel-info">
+          <div class="panel-heading">Fill the Event/Activity details:</div>
+          <div class="panel-body">
+  
+            <div fxLayout="column">
+              <mat-divider class="gapDevider"></mat-divider>
+  
+              <div fxLayout="column">
+                <div class="row">
+                  <div class="col-md-3 col-sm-3">
+                    <app-color-picker  ></app-color-picker>
+                  </div>
+                  <div class="col-md-3 col-sm-3">
+                    <mat-form-field>
+                      <mat-label>Title</mat-label>
+                      <input matInput placeholder="Title">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-2 col-sm-2">
+                    <mat-form-field>
+                      <mat-label>Start Date Time</mat-label>
+                      <input matInput placeholder="Start Date Time" >
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-2 col-sm-2">
+                    <mat-form-field>
+                      <mat-label>End Date Time</mat-label>
+                      <input matInput placeholder="End Date Time" >
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-2 col-sm-2" style="padding-top:10px;">
+  
+                    <button class="btn btn-success"><span class="glyphicon glyphicon-off"></span> Save</button>
+  
+                    <button  class="btn btn-success" (click)="closeEventSetting()"><span
+                        class="glyphicon glyphicon-off"></span> Close</button>
+  
+  
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+  
+  
+  
+  
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <div class="row">
+    <div class=" col-md-12 col-sm-12  col-xs-12">
+      <div class="panel panel-info" style="padding-left:10px;">
+        <div class="panel-heading">
+          <button mat-button style="font-size:small;padding-left:1px;">
+            <mat-icon> exit_to_app </mat-icon> Appointment Date and Booking
+          </button>&nbsp;
+          
+          
+        </div>
+        <div class="panel-body row" >
+          
+
+
+          <div class="row">
+            <div class="col-md-8 col-sm-8">
+             
+
+              <mat-form-field >
+                <mat-label>Choose an Appointment Date</mat-label>
+                <input matInput readonly  [matDatepicker]="picker" [min]="todayDate" formControlName="appointment">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <mat-error *ngIf="addrFrom.get('appointment').hasError('required') && addrFrom.get('appointment').pristine">
+                Fill appointment date
+      </mat-error>
+            </div>
+           
+
+
+
+          </div>
+          <div class="d-flex align-content-between flex-wrap" style="margin-top:17px;">
+
+            <!-- <button type="submit" [disabled]="addrFrom.invalid">submit</button> -->
+
+            &nbsp;<button  class="btn btn-success" (click)="CreateTheAppointmnet()"><span
+              class="glyphicon glyphicon-off"></span> Book your Appointment</button>&nbsp;
+
+            <!-- <button  class="btn btn-success" (click)="openDialog(addrFrom)"><span
+                class="glyphicon glyphicon-off"></span> Show Bill and Print</button> -->
+
+                <!-- <button  class="btn btn-success" (click)="btnClick()"><span
+                  class="glyphicon glyphicon-off"></span> SaveArray</button>
+
+                  <button (click)="findTimeConflict()"> find </button> -->
+
+                  <!-- {{this.result|json}}
+
+                  {{AppointmentDetail|json}}
+                  -------------------------
+                  {{result1|json}}
+                  *************
+                  {{result2|json}}
+                  -------------------------{{result3|json}} -->
+
+                  <!-- <ngx-barcode *ngFor="let bcValue of values"  [bc-value]="bcValue"
+                    [bc-width]="1" [bc-height]="30">
+                  </ngx-barcode> -->
+                  <br/>
+                  <!-- <qrcode [qrdata]="Qrvalues" [size]="256" [level]="'M'"></qrcode> -->
+
+          </div>
+
+         
+
+          <!-- {{addrFrom.value|json}} -->
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <div class="panel mepanelo">
+              <div class="row ">
+                <div class="col-md-6 col-sm-6 big_list">
+                  <!-- <ul class="list1">
+                    <li *ngFor="let option of referralMaster" [value]="option.FirstName">
+                      Dr. &nbsp;{{option.FirstName}}
+                    </li>
+                    
+
+                  </ul> -->
+                </div>
+                
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+      </div>
+    </div>
+    
+
+  </div>
+  <div *ngIf="false" class="row">
+    <div class=" col-md-12 col-sm-12  col-xs-12">
+      <div class="panel panel-info">
+        <div class="panel-heading">Doctor's Details &nbsp;
+          
+          <a [routerLink]="['/ReffersDetails']" style="color:black">
+            <span class="glyphicon glyphicon-plus" style="color:red;font-weight:bold;cursor:pointer ;" aria-hidden="true"></span>
+            &nbsp;<u>Add a Doctor</u></a>
+        </div>
+        <div class="panel-body row">
+          <div class="row">
+            <div class="col-md-8 col-sm-8">
+              <mat-form-field>
+                <mat-label>Find Doctor</mat-label>
+                <!-- <mat-select formControlName="CollectionCenter">
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let city of cities" value="{{city}}">{{city}}</mat-option>
+                </mat-select> -->
+
+                <mat-select placeholder="Select your doctor" formControlName="doctorname"
+                  (selectionChange)="referralChangeAction()">
+                  <mat-option>-Select a doctor-</mat-option>
+                  <mat-option *ngFor="let option of referralMaster" [value]="option.FirstName">
+                    {{option.FirstName}}
+                  </mat-option>
+                  <mat-error *ngIf="addrFrom.get('doctorname').hasError('required') && addrFrom.get('doctorname').pristine">
+                    Select a doctor
+          </mat-error>
+                </mat-select>
+
+               
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+              <mat-form-field>
+                <input matInput type="text" formControlName="ContactNumber" placeholder="Mobile">
+              </mat-form-field>
+            </div>
+            
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 col-sm-4">
+              <mat-form-field>
+                <input matInput type="text" formControlName="department" placeholder="Department">
+              </mat-form-field>
+
+
+            </div>
+            <div class="col-md-4 col-sm-4">
+
+              <mat-form-field>
+                <input matInput type="text" placeholder="Fees" formControlName="fees">
+              </mat-form-field>
+            </div>
+            <div class="col-md-4 col-sm-4">
+
+              <mat-form-field>
+                <input matInput type="text" placeholder="Discount" formControlName="discount">
+              </mat-form-field>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 col-sm-4">
+              <mat-form-field>
+                <input matInput type="text" formControlName="hospitalname" placeholder="Hospital Name">
+              </mat-form-field>
+
+
+            </div>
+            <div class="col-md-4 col-sm-4">
+
+              <mat-form-field>
+                <input matInput type="text" placeholder="counternumber" formControlName="counternumber">
+              </mat-form-field>
+            </div>
+            <div class="col-md-4 col-sm-4">
+
+              <mat-form-field>
+                <mat-label>Payment Mode</mat-label>
+                <mat-select formControlName="paymentmode">
+                  <mat-option value="">-Select one-</mat-option>
+                  <mat-option value="Cash">Cash</mat-option>
+                  <mat-option value="CreditCard">Credit Card</mat-option>
+                  <mat-option value="DebitCard">Debit Card</mat-option>
+                  <mat-option value="Paytm" disabled>Paytm</mat-option>
+                  <mat-option value="UPI">UPI</mat-option>
+                  <mat-option value="Other">Other</mat-option>
+                </mat-select>
+
+              </mat-form-field>
+              <mat-error *ngIf="addrFrom.get('paymentmode').hasError('required') && addrFrom.get('paymentmode').pristine">
+                Fill Payment mode
+      </mat-error>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 col-sm-4">
+              <mat-form-field>
+                <input matInput type="text"  placeholder="Address 1" formControlName="address1">
+              </mat-form-field>
+
+
+            </div>
+            <div class="col-md-4 col-sm-4">
+
+              <mat-form-field>
+                <input matInput type="text" placeholder="Address 2" formControlName="address2">
+              </mat-form-field>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <mat-form-field>
+              <input matInput type="text" placeholder="Address 3" formControlName="address3">
+
+              </mat-form-field>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-8 col-sm-8">aa
+              
+              <mat-form-field >
+                <mat-label>Choose a date11</mat-label>
+                <input matInput [matDatepicker]="picker" [min]="todayDate" formControlName="appointment" (dateChange)="valueChanged()">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <mat-error *ngIf="addrFrom.get('appointment').hasError('required') && addrFrom.get('appointment').pristine">
+                Fill appointment date
+      </mat-error>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <!-- <mat-form-field>
+              <input matInput type="text" placeholder="Experience">
+            </mat-form-field> -->
+              <input style="padding-top:15px;" matInput type="time" atp-time-picker formControlName="time">
+              <mat-error *ngIf="addrFrom.get('time').hasError('required') && addrFrom.get('appointment').pristine">
+                Fill appointment time
+      </mat-error>
+            </div>
+
+
+
+          </div>
+          <div class="d-flex align-content-between flex-wrap">
+
+            <!-- <button type="submit" [disabled]="addrFrom.invalid">submit</button> -->
+
+            <button  class="btn btn-success" (click)="CreateTheAppointmnet()"><span
+              class="glyphicon glyphicon-off"></span> Save</button>&nbsp;
+
+            <!-- <button  class="btn btn-success" (click)="openDialog(addrFrom)"><span
+                class="glyphicon glyphicon-off"></span> Show Bill and Print</button> -->
+
+                <!-- <button  class="btn btn-success" (click)="btnClick()"><span
+                  class="glyphicon glyphicon-off"></span> SaveArray</button>
+
+                  <button (click)="findTimeConflict()"> find </button> -->
+
+                  <!-- {{this.result|json}}
+
+                  {{AppointmentDetail|json}}
+                  -------------------------
+                  {{result1|json}}
+                  *************
+                  {{result2|json}}
+                  -------------------------{{result3|json}} -->
+
+                  <!-- <ngx-barcode *ngFor="let bcValue of values"  [bc-value]="bcValue"
+                    [bc-width]="1" [bc-height]="30">
+                  </ngx-barcode> -->
+                  <br/>
+                  <!-- <qrcode [qrdata]="Qrvalues" [size]="256" [level]="'M'"></qrcode> -->
+
+          </div>
+
+         
+
+          <!-- {{addrFrom.value|json}} -->
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <div class="panel mepanelo">
+              <div class="row ">
+                <div class="col-md-6 col-sm-6 big_list"> hi
+                  <!-- <ul class="list1">
+                    <li *ngFor="let option of referralMaster" [value]="option.FirstName">
+                      Dr. &nbsp;{{option.FirstName}}
+                    </li>
+                    
+
+                  </ul> -->
+                </div>
+                
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+      </div>
+    </div>
+    
+
+  </div>
+
+</form>
+
+
+<!-- 
+<div *ngIf="false">
+{{addrFrom.value|json}}
+<br/> new data
+{{AppointmentDetail|json}}</div>
+<div></div> -->
+
+
+<div class="container">
+
+<div *ngIf="showAppointmentID" >
+  <div class="panel panel-info">
+    <div class="panel-heading"><h3>Online Appointment</h3></div>
+    <div class="panel-body"> 
+      <br/>
+      <h2>Thank you!!! Your Appointment ID is: <span style="color:red">{{BillID}}</span></h2><br/>
+      <br/><br/><br/>
+    </div>
+    <div class="panel-footer"><span style="font-size:small">
+      <button  type="button" class="btn btn-success" ><span
+        class="glyphicon glyphicon-off"></span> Send Email</button>&nbsp;
+        <button type="button" class="btn btn-success" ><span
+          class="glyphicon glyphicon-off"></span> Send SMS</button>&nbsp;
+      Thank you for the Booking, Nua Sakala</span></div>
+  </div>
+  
+  
+  <div >
+  </div>
+
+   <!--   -->
+
+<!-- {{addrFrom.value|json}} -->

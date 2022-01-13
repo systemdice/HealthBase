@@ -1,0 +1,179 @@
+
+
+<div class="row" style="font-size:11px; margin-left:5px; margin-right:5px;"
+id="frmIndividualLapReport">
+
+
+<table width="100%" cellspacing="0px" cellpadding="0px">
+
+    <tbody>
+        <tr>
+            <td style="border: 1px solid black ;">
+
+
+
+                <div style="text-align:center;">
+                    <div style="text-align:center;">
+                        <h3 style="text-align:center; padding-bottom:10px;">
+                            {{Addressline1}}<br />
+                            {{Addressline2}}<br />
+                            {{Addressline3}}<br />
+                            {{Addressline4}}<br />
+
+                        </h3>
+
+                       
+                        <hr />
+                        <h2>CONTINUATION
+
+                        </h2>
+
+
+
+
+                    </div>
+
+
+                    <div class="col-sm-12">
+
+                        <button type="button" style="display: inline-block;float:left;" id="printElement"
+                            (click)="myPrint('frmIndividualLapReport')" class="btn btn-info"><span
+                                class="glyphicon glyphicon-print"></span>
+                            Print</button>
+                            <div class="form-row" id="searchtElement" *ngIf="showSearch">
+
+                             
+                                <div class="form" style="display: flex;margin-top:5px;">
+                                  <label>IPD/OPD ID (CASE ID):</label>
+                                  
+                                </div>
+    
+                                <div class="form-group " style="display: flex">
+                                    <input type="text" [(ngModel)]="CustomID">
+    
+                                </div>
+                                <div class="form">
+    
+                                        <button type="button" style="display: inline-block;float:left;" id="closePopup"
+                                    (click)="LoadSearchID()" class="btn btn-warning"><span
+                                        class="glyphicon glyphicon-print"></span>
+                                        Search</button>
+                                </div>
+                            </div>
+                        <!-- <button type="button" style="display: inline-block;float:left;" id="CloseMe"
+                            (click)="CloseMe()" class="btn btn-info"><span
+                                class="glyphicon glyphicon-print"></span>
+                            Close Me</button> -->
+
+
+<!-- 
+                        <button type="button" style="display: inline-block;float:left;" id="closePopup"
+                            (click)="onNoClick()" class="btn btn-info"><span
+                                class="glyphicon glyphicon-print"></span>
+                            Close Me/Popup</button> -->
+
+
+                        <!-- <input id="printCheckElement" style="display: inline-block;float:left;" (change)="fieldsChange($event)" value="Show header on each page" type="checkbox"/>
+    <span id="printCheckTextElement" style="display: inline-block;float:left;">Show header on each page</span> -->
+
+
+                    </div>
+                    <!-- <div class="form-row" id="searchtElement" *ngIf="showSearch">
+
+                        <div class="form-group col-md-2" style="display: flex;margin-top:15px;">
+
+                        </div>
+
+                        <div class="form-group col-md-3" style="display: flex">
+
+
+                        </div>
+                        <div class="form-group col-md-2" style="display: flex;margin-top:15px;">
+                            <h4>CASE ID </h4>
+                        </div>
+
+                        <div class="form-group col-md-3" style="display: flex">
+                            <input type="text">
+
+                        </div>
+                        <div class="form-group col-md-2">
+                            <button type="button" style="display: inline-block;" class="btn btn-info"><span
+                                    class="glyphicon glyphicon-print"></span>
+                                Search</button>
+                        </div>
+                    </div> -->
+                </div>
+
+                <!-- <hr style="padding:0px;margin:0px" /> -->
+
+
+
+
+                <hr style="margin-bottom:0px; margin-top:0px;">
+                <table class="table" style="width:100%"  cellpadding = "0" cellspacing = "0">
+                    <thead>
+                      
+                        <tr>
+                            <th style="width: 20%;text-align: left;">IPD No &nbsp;{{EditedCaseData?.IPDOPDId|uppercase}}</th>
+                            <th style="width: 25%;text-align: left;">Name:  &nbsp;{{EditedCaseData?.Home?.FirstName|uppercase}}&nbsp; {{EditedCaseData?.Home?.LastName|uppercase}}&nbsp;</th>
+                            <th style="width: 10%;text-align: left;">Age:&nbsp;&nbsp;&nbsp;{{EditedCaseData?.Home?.Year}}Yrs&nbsp;&nbsp;&nbsp;{{EditedCaseData?.Home?.Month}}Mon&nbsp;&nbsp;&nbsp;{{EditedCaseData?.Home?.Days}}Days</th>
+                            <th style="width: 10%;text-align: left;">Sex:&nbsp;{{EditedCaseData?.Home == undefined?'':(EditedCaseData?.Home?.Gender == '1'?'Male':'Female')}}&nbsp;</th>
+                            
+                            <th style="width: 15%;text-align: left;">Weight:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{EditedCaseData?.Home?.Weight}}KG</th>
+                          </tr>
+                      
+                    </thead>
+                    
+                  </table>
+                  <br/>
+                  <br/>
+                <table class="table" style="border:1px solid;height:700px;width:100%"  cellpadding = "0" cellspacing = "0">
+                    <thead>
+                      <tr>
+                        <th style="width: 20% ;border:1px solid;">Date & Time</th>
+                        <th style="width: 20%;border:1px solid;">Observation</th>
+                        <th style="width: 20%;border:1px solid;">Investigation</th>
+                        <th style="width: 20%;border:1px solid;">Advice</th>
+                        <th style="width: 20%;border:1px solid;">Signature</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td  style="border:1px solid;"></td>
+                        <td  style="border:1px solid;"></td>
+                        <td  style="border:1px solid;"></td>
+                        <td  style="border:1px solid;"></td>
+                        <td  style="border:1px solid;"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                
+
+
+                
+
+
+
+
+                <!-- <hr style="border-top: 1px dashed black;" /> -->
+
+
+
+
+
+
+            </td>
+        </tr>
+    </tbody>
+    <!-- follwing line make footer repeatable for each page -->
+    <!-- <tfoot><tr><td style="border: 1px solid black ;" >Your footer goes here</td></tr></tfoot> -->
+</table>
+
+
+<div>
+
+
+
+
+</div>

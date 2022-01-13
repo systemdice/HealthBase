@@ -1,0 +1,414 @@
+<form [formGroup]="home" autocomplete="off">
+
+
+  <div class="panel panel-info">
+    
+    <div class="panel-body">
+      <div class="row">
+        
+        <!-- <span matPrefix style="padding-top:7px;" *ngIf="diectOnline !== 'Yes'">
+          <mat-icon> person_search </mat-icon>
+          &nbsp;
+        </span> -->
+        <div class="col-md-4 col-sm-4 col-xs-4">
+        <mat-form-field fxFlex *ngIf="diectOnline !== 'Yes'">
+          <input matInput type="text"  placeholder="Search by IPD/OPD ID (Press Enter to search)"  (keyup.enter)="onOPDIPD($event)">
+        </mat-form-field>&nbsp;
+        
+      </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+        <mat-form-field fxFlex *ngIf="diectOnline !== 'Yes'">
+          <input matInput type="text" placeholder="Search by Name (Press Enter to search)" [(ngModel)]="patientName"
+          [ngModelOptions]="{standalone: true}"  (keyup.enter)="onNameChange(patientName);" 
+            >
+        </mat-form-field>
+        &nbsp;<span style="height:15px;padding-top:15px;"><button  class="btn btn-success" (click)="onNameChange(patientName)" *ngIf="diectOnline !== 'Yes'"><span
+          class="glyphicon glyphicon-search"></span> Search</button>  </span></div>
+        
+
+      <div class="col-md-4 col-sm-4 col-xs-4">
+
+        <mat-form-field fxFlex *ngIf="diectOnline !== 'Yes'">
+          <input matInput type="text"  placeholder="Search by Mobile Number (Press Enter to search)"  (keyup.enter)="onPhoneChange($event)">
+        </mat-form-field></div>
+        <!-- <button type="button" (click)="searchme()">Search</button> -->
+      </div>
+      <hr style="padding:5px;margin-top:2px;border-top: 1px dashed rgb(198, 198, 243);"/>
+      <div class="row">
+        <div class="col-md-1 col-sm-1 col-xs-1">
+          <mat-form-field>
+            <mat-label>Title</mat-label>
+            <mat-select formControlName="Title">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+
+          <mat-form-field fxFlex>
+            <mat-label><span style="color:red"><b>*</b>First Name</span></mat-label>
+            <input matInput type="text" formControlName="FirstName" placeholder="First Name" (blur)="onFocusOutEventContactNumber()">
+            <mat-error *ngIf="home.get('FirstName').hasError('required')">
+              First Name is Required!
+            </mat-error>
+
+
+          </mat-form-field>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+
+          <mat-form-field fxFlex>
+            
+            <input matInput type="text" formControlName="LastName" placeholder="Last Name" />
+          </mat-form-field>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <mat-radio-group fxFlex aria-label="* Sex" formControlName="Gender" style="padding-top:10px;">
+            <mat-radio-button value="1">Male</mat-radio-button>&nbsp;
+            <mat-radio-button value="2">Female</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="col-md-5 col-sm-5 col-xs-5">
+          <div class="d-flex align-content-between flex-wrap">
+            <div style="width:45%">
+              <mat-form-field style="padding-top:0px;">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput readonly  [matDatepicker]="StartDate1" placeholder="Date of Birth" formControlName="DOB"
+                  [max]="tomorrow" (dateChange)="addEvent('change', $event)">
+                <mat-datepicker-toggle  matSuffix [for]="StartDate1"></mat-datepicker-toggle>
+                <mat-datepicker  #StartDate1></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div style="width:28%">
+              <mat-form-field>
+                <!-- <span matPrefix style="background-color:rgb(241, 237, 237)">Year &nbsp;</span> -->
+                
+                <input type="number" style="color:red;" matInput placeholder="Year(*Required)" formControlName="Year" min="0" max="99">
+                
+
+              </mat-form-field>
+            </div>
+            <div style="width:12%">
+              <mat-form-field>
+                <!-- <span matPrefix style="background-color:rgb(241, 237, 237)">Month &nbsp;</span> -->
+                <input type="number" matInput placeholder="Month" formControlName="Month" maxLength="2">
+              </mat-form-field>
+            </div>
+            <div style="width:15%">
+
+              <mat-form-field>
+                <!-- <span matPrefix style="background-color:rgb(241, 237, 237)">Days &nbsp;</span> -->
+                <input type="number" matInput placeholder="Days" formControlName="Days">
+              </mat-form-field>
+
+
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+
+      </div>
+
+
+      <div class="row">
+
+        <div class="col-md-2 col-sm-2 col-xs-2">
+
+          <mat-form-field fxFlex>
+            <input matInput type="email" placeholder="Email" formControlName="Email">
+          </mat-form-field>
+
+        </div>
+
+
+        <div class="col-md-2 col-sm-2 col-xs-2">
+
+
+          <mat-form-field fxFlex>
+            <mat-label><span style="color:red"><b>*</b>Mobile number</span></mat-label>
+            <span matPrefix style="color:Red">+91 &nbsp;</span>
+            <input type="tel" matInput  (keypress)="keyPressNumbers($event)" placeholder="Mobile Number" maxLength="10" formControlName="ContactNumber" (blur)="onFocusOutEventContactNumber()">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+
+            <mat-error *ngIf="home.get('ContactNumber').hasError('required')">
+              ContactNumber is Required!
+            </mat-error>
+            <mat-error *ngIf="home.get('ContactNumber').hasError('minlength')">
+              ContactNumber should be atleast 10 characters long!
+            </mat-error>
+
+            <mat-error *ngIf="home.get('ContactNumber').hasError('maxlength')">
+              ContactNumber can be at max 10 characters long!
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+          <mat-form-field fxFlex>
+            <textarea matInput placeholder="Address" maxlength="300" #message formControlName="Address"></textarea>
+            
+          </mat-form-field>
+
+
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <mat-form-field>
+            <mat-label>Relationship with Patient</mat-label>
+            <mat-select formControlName="Relationship">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let relationship of relationships" [value]="relationship">{{relationship}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2" fxFlex *ngIf="caseType == 'Edit'">
+          <button type="button" class="btn btn-default" (click)="openDialog('Update',obj)">
+            <span class="glyphicon glyphicon-plus" style="color:red;font-weight: bold;" aria-hidden="true"></span>
+            &nbsp;Update me</button>
+        </div>
+        <div *ngIf="false">
+          <input type="checkbox"  formControlName="Pregnancy" [value]="Pregnancy" (change)="onCheckboxChange($event.target)" >&nbsp;Pregnent
+         
+        </div>
+        <div *ngIf="visibledoctorassignment">
+          <!-- <button type="submit" class="btn btn-default">
+            <span class="glyphicon glyphicon-eye-open" style="color:red;font-weight: bold;"
+              aria-hidden="true"></span>&nbsp;Validate</button> -->
+              <mat-form-field fxFlex style="padding-left: 15px;">
+                <mat-label>Assign a Doctor</mat-label>
+                <mat-select formControlName="RefferDoctorName" (selectionChange)="onStatusChange($event)" >
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let option of referralMaster" [value]="option.FirstName">
+                    {{option.FirstName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              
+        </div>
+
+
+      </div>
+      <div class="row">
+
+        <div *ngIf="false" class="col-md-2 col-sm-2 col-xs-2">
+          <mat-form-field fxFlex>
+            <textarea matInput placeholder="Permananet Address" maxlength="300" #message formControlName="PermananetAddress"></textarea>
+            
+          </mat-form-field>
+        </div>
+        <div *ngIf="false" class="col-md-2 col-sm-2 col-xs-2">
+           <mat-form-field fxFlex>
+            <textarea matInput placeholder="Office Address" maxlength="300" #message formControlName="OfficeAddress"></textarea>
+            
+          </mat-form-field>
+        </div>
+        <div *ngIf="false" class="col-md-3 col-sm-3 col-xs-3" style="padding-top:15px;">
+          
+          <mat-radio-group fxFlex  placeholder="Office Address" aria-label="Marital Status" formControlName="MaritalStatus" style="padding-top:10px;">
+            <mat-radio-button value="1">Married</mat-radio-button>&nbsp;
+            <mat-radio-button value="2">UnMarried</mat-radio-button>
+          </mat-radio-group>
+
+        </div>
+        <div *ngIf="false" class="col-md-2 col-sm-2 col-xs-2" >
+          
+         
+          <mat-radio-group fxFlex aria-label="Marital Status" formControlName="Religion" style="padding-top:10px;">
+            <mat-radio-button value="1">Hindu</mat-radio-button>&nbsp;
+            <mat-radio-button value="2">Muslim</mat-radio-button>
+            <mat-radio-button value="3">Christian</mat-radio-button>
+            <mat-radio-button value="4">Sikh</mat-radio-button>
+            <mat-radio-button value="5">Other</mat-radio-button>
+          </mat-radio-group>
+
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+
+          <mat-form-field fxFlex>
+            <input matInput type="text" placeholder="FatherName" formControlName="FatherName">
+          </mat-form-field>
+
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+
+          <mat-form-field fxFlex>
+            <input matInput type="text" placeholder="Mothername" formControlName="MotherName">
+          </mat-form-field>
+
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+
+          <mat-form-field fxFlex>
+            <input matInput type="email" placeholder="C/O" formControlName="CO">
+          </mat-form-field>
+
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-1">
+
+          <mat-form-field fxFlex>
+            <input matInput type="email" placeholder="Occupation" formControlName="Occupation">
+          </mat-form-field>
+
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+
+          <mat-form-field fxFlex>
+            <input matInput type="email" placeholder="Respiratory Rate" formControlName="RespiratoryRate">
+          </mat-form-field>
+
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2" *ngIf="false">
+          <mat-form-field fxFlex>
+            <mat-label>Assigned Dept</mat-label>
+            <mat-select formControlName="AssignedDept" >
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let option of assignDept" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <mat-form-field fxFlex>
+            <mat-label>Pharamacy User</mat-label>
+            <mat-select formControlName="AssignedPharma" >
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let option of pharmaMaster" [value]="option.FirstName">
+                {{option.FirstName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+         
+
+        </div>
+        <!-- subjectdata:{{showAdvanceBoxval}} -->
+        <div class="col-md-1 col-sm-1 col-xs-1" *ngIf="showAdvanceBox && showAdvanceBoxval !=='OPD'">
+
+          <mat-form-field fxFlex>
+            <input matInput type="email" placeholder="Advance(₹)" formControlName="AdvPayment" >
+          </mat-form-field>
+
+        </div>
+      </div>
+
+      <div class="row">
+
+        
+        <div class="col-md-2 col-sm-2 col-xs-2">
+
+          <mat-form-field fxFlex>
+            <input matInput type="email" placeholder="BP Reading" formControlName="BPReading">
+          </mat-form-field>
+
+        </div>
+        
+        
+        
+        <div class="col-md-2 col-sm-2 col-xs-2">
+
+          <mat-form-field fxFlex>
+            <input matInput type="email" placeholder="Allergy" formControlName="Allergy">
+          </mat-form-field>
+
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+
+          <mat-form-field fxFlex>
+            <input matInput type="email" placeholder="BloodGroup" formControlName="BloodGroup">
+          </mat-form-field>
+
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+
+          <mat-form-field fxFlex>
+            <input matInput type="email" placeholder="Rh. Type" formControlName="RhType">
+          </mat-form-field>
+
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+
+          <mat-form-field fxFlex>
+            <input matInput type="email" placeholder="Temperature" formControlName="Temperature">
+          </mat-form-field>
+
+        </div>
+        
+
+        <div class="col-md-1 col-sm-1 col-xs-1">
+        <mat-form-field fxFlex>
+          <input matInput type="email" placeholder="Height" formControlName="Height">
+        </mat-form-field>
+      </div>
+      
+      <div class="col-md-1 col-sm-1 col-xs-1">
+
+        <mat-form-field fxFlex>
+          <input matInput type="email" placeholder="Weight" formControlName="Weight">
+        </mat-form-field>
+
+      </div>
+        </div>
+
+
+
+
+      <!-- {{addrFrom.value|json}} -->
+
+    </div>
+
+  </div>
+
+
+  <!-- <div class="panel panel-info">
+
+         
+
+            <div class="panel-heading">
+              <span  >
+                <button mat-button style="font-size: x-small;" >
+                  <mat-icon> exit_to_app </mat-icon> Patient Details</button> <mat-form-field>
+                    <span matPrefix style="background-color:rgb(241, 237, 237)"><mat-icon> person_search </mat-icon> &nbsp;</span>
+                        <input type="text" matInput ></mat-form-field> 
+              </span>
+            </div>
+            <div class="panel-body">
+                <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+                    
+                                       
+                     
+
+                      
+                        
+                  </div>
+            
+                  <div id="container"  fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+                    
+
+                      
+
+                      
+                      <div class="form-group col-xs-1"   fxFlex *ngIf="caseType == 'Edit'">
+                        <button type="button" class="btn btn-default" (click)="openDialog('Update',obj)">
+                          <span class="glyphicon glyphicon-plus" style="color:red;font-weight: bold;" aria-hidden="true"></span>&nbsp;Update me</button>
+                        </div>
+                  </div>
+            </div>
+        </div> -->
+
+
+
+
+
+
+
+</form> <!-- -->
+<!-- {{home.value|json}}
+{{caseType}} -->

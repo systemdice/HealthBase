@@ -1,0 +1,157 @@
+
+.outlet-page-content {
+    margin-top: 1px;
+}
+
+.container {  
+    display: grid;  
+    grid-gap: 5px;  
+    grid-template-columns: repeat(auto-fit, 100px);
+    grid-template-rows: repeat(2, 100px); 
+}
+.close-button{
+    float: right;
+    top:-24px;
+    right:-24px;
+  }
+  
+  .close-icon {
+    transition: 1s ease-in-out;
+  }
+  
+  .close-icon:hover {
+    transform: rotate(180deg);
+  }
+  
+  ::ng-deep .icon-outside .close-button{
+    float: right;
+    top:-52px;
+    right:-52px;
+  }
+  
+  ::ng-deep .icon-outside .mat-dialog-container {
+   overflow: unset
+  }
+
+.numberCircle {
+    width: 35px;
+    line-height: 35px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 12px;
+    border: 2px solid rgb(224, 188, 212);
+    background-color: rgb(243, 244, 247);
+    color:white;
+    margin:2px;
+    padding:2px;
+}
+
+/* Custom Paragraph */
+.long-copy {
+    line-height: 145%;
+    width: 70%;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 1%;
+    letter-spacing: 1px;
+}
+.content-box {
+    padding: 0.1%;
+}
+/* All Form Box */
+ /* .form-box {
+    margin-top: 1px;
+    margin-bottom: 1px;
+    border: 1px solid #dadada;
+    padding: 1%;
+    background-color: #f7f7f7;
+    box-shadow: 0px 0px 10px #dadada;
+    
+} */
+.custom-ngSelect.is-invalid {
+    border: 1px solid rgb(248, 20, 20);
+    padding: 1%;
+}
+
+.form-box .form-group {
+    /* border-bottom: 1px solid #dee2e6; */
+    padding: 2px 0%;
+}
+.form-box .form-title {
+    color: #3f51b5;
+    padding: 1% 0%;
+    border-bottom: 1px solid #ccc;
+}
+.custom-tab a.active {
+    color: #0000ff;
+    border-bottom: 1px solid #0000ff;
+}
+.table thead {
+    cursor: pointer;
+}
+.mat-icon {
+    vertical-align: middle;
+}
+.table-details {
+    font-weight: 100;
+    color: #767676;
+    font-style: italic;
+}
+.ngx-pagination li {
+    border-radius: 5px !important;
+    font-size: 1.05rem;
+}
+.list-search {
+    margin-left: -8%;
+}
+.cal-month-view .cal-day-badge {
+    background-color: #39538c;
+}
+/* .cal-month-view, .cal-week-view, .cal-day-view {
+    margin: auto;
+    zoom: 90%;
+} */
+/*
+.form-box h4 {
+    letter-spacing: 1px;
+    font-size: 1.7em;
+    font-weight: 500;
+    font-family: sans-serif;
+}
+.form-box input {
+    height: 45px;
+    margin-top: 5px;
+}
+.form-box .checkbox input {
+    height: 20px;
+    width: 20px;
+} */
+
+/* .selected {
+    background-color: #0d597a !important;
+    color: white;
+  } */
+
+
+
+
+
+div {
+    margin: 10px;
+}
+
+.first {
+    
+    display: inline-block;
+}
+
+label{
+    text-align: right;margin-top: 12px;
+}
+
+.container1{
+   
+    display:flex;
+    flex-wrap:wrap;
+  }
+

@@ -1,0 +1,43 @@
+.row {
+    display: flex; /* equal height of the children */
+    padding:10px;
+  margin:10px;
+  }
+  
+  .col11 {
+    flex: 1; /* additionally, equal width */
+    
+    padding: 1em;
+    border: solid;
+  }
+
+  #myTable{
+    font-family: 'helvetica neue',helvetica,arial,'lucida grande',sans-serif;
+    border-collapse: collapse;
+ }
+ #myTable td{
+    border: solid 1px #C9C9C9;
+    padding: 10px;
+    font-size: 12px;
+    text-align: center;
+ }
+ #myTable tr{
+    background-color: #EBEBEB;
+    color: #000000;
+ }
+ #myTable tr:hover{
+    background-color: #FFFFFF;
+    color: #000000;
+ }
+ #myTable th{
+    border: solid 1px #BFBFBF;
+    padding: 10px;
+    color: #000000;
+    background-color: #D4D4D4;
+    text-align: center;
+    font-size: 12px;
+ }
+
+ th{
+    border:1px solid;
+ }

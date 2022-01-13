@@ -1,0 +1,138 @@
+
+    <div class="main-content">
+    <h3>LAB test Details:</h3>
+    
+    <hr style="padding:0px"/>
+    <div >
+      <div fxFlex>
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter for (Case ID or Patient ID or Date)" name="filterVal" [ngModelOptions]="{standalone: true}" [(ngModel)]="filterVal">
+        </mat-form-field>
+      </div>
+      <div fxFlex>
+        <button mat-icon-button color="primary" fxHide.gt-sm  (click)="addEditExpenseItem(null,null)">
+          <mat-icon matTooltip="Add a new entry" matTooltipPosition="below" aria-label="heart icon">add</mat-icon>  <b><u>Add</u></b>
+        </button> 
+        
+      </div>
+       
+      </div>
+      
+      <div class="example-container mat-elevation-z8">
+    
+        <!-- <button mat-button (click)=(click)="openDialog('Add',{},element.UnqueID,'Add')" mat-flat-button color="primary">Add Row</button> -->
+      
+        <mat-table [dataSource]="dataSource" matSort #mytable class="my-table mat-elevation-z8" 
+        style="background-color:#FFFFFF;border-radius: 2em; border:2px #6D7B8D; padding:5px;width:99%;
+      table-layout:fixed;">
+    
+            <ng-container matColumnDef="slno">
+                <mat-header-cell *matHeaderCellDef class="HeaderStyle"> Slno. </mat-header-cell>
+                <mat-cell *matCellDef="let item; let i = index">  <span  class="mobile-label ">SlNo:</span>
+                  {{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }} </mat-cell>
+                
+               </ng-container>
+    
+            
+               <!-- Id Column -->
+               <ng-container matColumnDef="UnqueID">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> LAB Test ID </mat-header-cell>
+                <mat-cell *matCellDef="let element" > <span  class="mobile-label ">LABTest ID:</span>
+                  <u style="cursor:pointer;color:blue" (click)="addEditExpenseItem(element,element.TestName)">
+                  {{element.UnqueID}} </u></mat-cell>
+              </ng-container>
+    
+              <ng-container matColumnDef="CategoryName">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> CategoryName </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Catgry Name:</span>{{element.CategoryName}} </mat-cell>
+              </ng-container>
+              
+             
+              <!-- <ng-container matColumnDef="DateStart">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Date </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.DateStart}} </mat-cell>
+              </ng-container> -->
+
+              <ng-container matColumnDef="TestName">
+                <mat-header-cell *matHeaderCellDef class="HeaderStyle"> TestName </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Name:</span>{{element.TestName}} </mat-cell>
+                
+               </ng-container>
+               <ng-container matColumnDef="TestPrice">
+                <mat-header-cell *matHeaderCellDef class="HeaderStyle"> Price </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Price:</span>{{element.TestPrice}} </mat-cell>
+                
+               </ng-container>
+                <!-- Id Column -->
+            <ng-container matColumnDef="DateStart">
+              <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Date </mat-header-cell>
+              <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Date:</span>{{element.DateStart}} </mat-cell>
+            </ng-container>
+
+              <!-- <div *ngIf="item.hideme">
+                <li *ngFor="let itemInn of returnAllAppoinrmrmnt(item.DateStart); let j = index">
+                  <span class="glyphicon glyphicon-user" style="color:red"></span>{{itemInn.PatientDetails.FirstName}}&nbsp;&nbsp;[Sex:<span style="color:red">{{itemInn.PatientDetails.Gender=='1'?'M':'F'}}</span>]&nbsp;&nbsp;<span class="glyphicon glyphicon-phone-alt" style="color:red"></span>:<u>{{itemInn.PatientDetails.ContactNumber}}</u>
+                </li>
+    
+              </div> -->
+            <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+                
+                  <!-- <ng-container matColumnDef="Notes">
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Notes </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Notes}} </mat-cell>
+                  </ng-container> -->
+                  <!-- <ng-container matColumnDef="BusinessType">
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"><span style="color:red;">*</span> Revenue </mat-header-cell>
+                    <mat-cell *matCellDef="let element"
+                      [ngStyle]="{'color': getColor(element.BusinessType)}">
+                      {{element.BusinessType}} &nbsp;<span *ngIf=getGreenMark(element.BusinessType)>&#10003;</span> <span *ngIf=getRedMark(element.BusinessType)>&#10003;</span></mat-cell>
+                  </ng-container>
+    
+                  
+                  <ng-container matColumnDef="ExpenseCategory">
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Category Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.ExpenseCategory}} </mat-cell>
+                  </ng-container>
+                   -->
+    
+                  
+        
+            <!-- Action Column -->
+            <ng-container matColumnDef="action"> 
+              <mat-header-cell *matHeaderCellDef class="HeaderStyle">  
+                <button class="btn btn-sm btn-success text-white actionButtonMain" matTooltip="Add New Test" (click)="addEditExpenseItem(null,null)">
+                    <i class="fa fa-plus"></i> <span class="ml-2"> </span>Add a New Test &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </button>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element" class="action-link"> <span  class="mobile-label ">Actions:</span>
+    
+                <button class="btn btn-sm btn-info text-white actionButton mr-2" matTooltip="Edit Test" 
+                (click)="addEditExpenseItem(element,element.TestName)">
+                    <i class="fa fa-pencil"></i><span class="sm-1"></span> Modify Test
+        </button>
+        <button class="btn btn-sm btn-danger text-white actionButton mr-2" matTooltip="Delete Test" 
+                (click)="DeleteItem(element.UnqueID)">
+                    <i class="fa fa-trash"></i><span class="sm-1"></span> Delete Test
+        </button>
+    
+                <!-- <button class="btn btn-sm btn-danger text-white actionButton mr-2" matTooltip="Delete Expense"                 
+                (click)="DeleteItem(element.UnqueID)">
+                    <i class="fa fa-trash"></i> <span class="sm-1"></span> Delete
+                </button> -->
+      
+                 
+                   
+                <!-- <a (click)="openDialog('Update',element)">Edit</a> | 
+                <a (click)="openDialog('Delete',element)">Delete</a>   -->
+              </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></mat-row>
+          </mat-table>
+          <mat-paginator #paginatorRef [pageSizeOptions]="[15, 25,50, 100]"></mat-paginator>
+          <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+      
+      </div>
+    </div>

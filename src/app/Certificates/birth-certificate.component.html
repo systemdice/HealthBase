@@ -1,0 +1,363 @@
+<form  id="frmIndividualLapReport">
+    <div  style="text-align:center;">
+        <div style="text-align:center;">
+            <h3 style="text-align:center; padding-bottom:10px;">
+                {{Addressline1}}<br />
+                {{Addressline2}}<br />
+                {{Addressline3}}<br />
+                {{Addressline4}}<br />
+        
+            </h3>
+            
+            <hr style="height:1px;background-color:black;"/>
+            <hr style="height:3px;background-color:black;" />
+    
+            
+            
+               
+        </div>
+       
+        <div class="col-sm-12" >
+            
+            
+            <button style="display: inline-block;float:left;" type="button" id="printElement"  (click)="myPrint('frmIndividualLapReport')" class="btn btn-info"><span
+                class="glyphicon glyphicon-print" ></span>
+            Print</button>
+            <button type="button" style="display: inline-block;float:left;"  id="CloseMe"  (click)="CloseMe()" class="btn btn-info"><span
+                class="glyphicon glyphicon-print" ></span>
+            Close Me</button>
+            </div>
+            </div>
+    <table>
+        <tr>
+            <td>
+                
+            </td>
+        </tr>
+    </table>
+    <table BORDER="2" FRAME="VOID" RULES="ALL" style="border: 5px solid;">
+        <tr>
+            <td>
+                <DIV id="id1_1_1">
+                    <P style="font: bold 12px 'Arial';line-height: 14px;text-align: center;">Schedule XXX - Form No. 23 (Revised)</P>
+                    <P style="font: bold 12px 'Arial';line-height: 14px;text-align: center;">NABA DIGANTA</P>
+                    <P style="font: bold 12px 'Arial';line-height: 14px;text-align: center;">PRIMARY CARE HOSPITAL</P>
+                    <P style="font: bold 12px 'Arial';line-height: 14px;text-align: center;">Gaudunibeda, Dhurpada, Kendujhar - 758013</P>
+                    <P style="font: bold 12px 'Arial';line-height: 14px;text-align: center;">BIRTH REPORT</P>
+                    <P style="font: bold 12px 'Arial';line-height: 14px;text-align: center;">Form No. I (See Rule 5)</P>
+                    <P style="font: bold 12px 'Arial';line-height: 14px;text-align: center;">PART - I (Legal Information)</P>
+                    <hr style="background:black;height:2px;"/>
+                    <TABLE cellpadding=0 cellspacing=0 class="t0" >
+                    <TR>
+                        <TD colspan=2 class="tr0 td0"><P class="p7 ft0">This part to be added to the Birth Register</P></TD>
+                    </TR>
+                    <TR>
+                        <TD colspan=2 class="tr1 td0"><P class="p8 ft0">( To be filled by the Information )</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr2 td1"><P class="p9 ft0">1. Date of the Birth :</P></TD>
+                        <TD class="tr2 td2"><P class="p8 ft2">{{underScoreLength2}}</P></TD>
+                    </TR>
+                    </TABLE>
+                    <P class="p10 ft0"><SPAN class="ft0">2.</SPAN><SPAN class="ft3">Sex :</SPAN>{{underScoreLength2}}</P>
+                    <P class="p11 ft0"><SPAN class="ft0">3.</SPAN><SPAN class="ft3">Name of the child, (if any)</SPAN>{{underScoreLength2}}</P>
+                    <P class="p11 ft0"><SPAN class="ft0">4.</SPAN><SPAN class="ft3">Name of the Father</SPAN>{{underScoreLength2}}</P>
+                    <P class="p11 ft0"><SPAN class="ft0">5.</SPAN><SPAN class="ft3">Name of the Mother</SPAN>{{underScoreLength2}}</P>
+                    <P class="p11 ft0"><SPAN class="ft0">6.</SPAN><SPAN class="ft3">Permanent Address</SPAN>{{underScoreLength2}}</P>
+                    <P class="p12 ft2"><SPAN class="ft0">7.</SPAN><SPAN class="ft3">Place of Birth : </SPAN>NABA DIGANTA HOSPITAL</P>
+                    <P class="p13 ft0"><SPAN class="ft0">(1)</SPAN><SPAN class="ft4">Hospital/Institution Name</SPAN>{{underScoreLength2}}</P>
+                    <P class="p14 ft0"><SPAN class="ft0">(2)</SPAN><SPAN class="ft4">House Address :</SPAN>{{underScoreLength2}}</P>
+                    <P class="p11 ft0"><SPAN class="ft0">8.</SPAN><SPAN class="ft3">Order of Birth</SPAN>{{underScoreLength2}}</P>
+                    <P class="p15 ft6"><SPAN class="ft0">9.</SPAN><SPAN class="ft5">Informant 's Name Address</SPAN>{{underScoreLength2}}</P>
+                    <P class="p16 ft0">Date</P><br/><br/>
+                    <P class="p17 ft0">Signature of Left Thumb Mark of the Informant</P>
+                    <hr style="background:black;height:2px;"/>
+                    <P class="p18 ft0">( To be filled by the Registrar )</P>
+                    <TABLE cellpadding=0 cellspacing=0 class="t1" >
+                    <TR>
+                        <TD class="tr3 td3"></TD>
+                        <TD class="tr3 td4"><P class="p9 ft0">Registration No. :{{underScoreLength2}}</P></TD>
+                        <TD class="tr3 td5"><P class="p9 ft0">Registration Date :{{underScoreLength2}}</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr0 td3"></TD>
+                        <TD class="tr0 td4"><P class="p9 ft0">RegistrationUnit :{{underScoreLength2}}</P></TD>
+                        <TD rowspan=2 class="tr4 td5"><P class="p19 ft0">District :{{underScoreLength2}}</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr5 td3"></TD>
+                        <TD rowspan=2 class="tr6 td4"><P class="p9 ft0">Town / Village :{{underScoreLength2}}</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr7 td3"></TD>
+                        <TD class="tr7 td5"><P class="p9 ft7">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr8 td3"></TD>
+                        <TD class="tr8 td4"><P class="p9 ft0">Remarks (if any) :{{underScoreLength2}}</P></TD>
+                        <TD class="tr8 td5"><P class="p9 ft8">&nbsp;</P></TD>
+                    </TR>
+                    </TABLE>
+                    <br/>
+                    <P class="p20 ft0"><br/><br/>Name and Signature of the Registrar</P>
+                    </DIV>
+            </td>
+            <td>
+                <DIV id="id1_1_2">
+                    <P style="font: bold 12px 'Arial';line-height: 14px;text-align: center;">NABA DIGANTA</P>
+                    <P style="font: bold 12px 'Arial';line-height: 14px;text-align: center;">PRIMARY CARE HOSPITAL</P>
+                    <P style="font: bold 12px 'Arial';line-height: 14px;text-align: center;">Gaudunibeda, Dhurpada, Kendujhar - 758013</P>
+                    <P style="font: bold 12px 'Arial';line-height: 14px;text-align: center;">BIRTH REPORT</P>
+                    <P style="font: bold 12px 'Arial';line-height: 14px;text-align: center;">Form No. I (See Rule 5)</P>
+                    <P style="font: bold 12px 'Arial';line-height: 14px;text-align: center;">PART - II (Statistical Information)</P>
+                    <P style="font: bold 12px 'Arial';line-height: 14px;text-align: center;">This part to be detached and sent for Statistical Processing</P>
+                    <TABLE cellpadding=0 cellspacing=0 class="t2" style="border: 2px solid;">
+                    <TR>
+                        <TD class="tr6 td6"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr6 td7"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD colspan=3 class="tr6 td8"><P class="p28 ft0">( To be filled by the Information )</P></TD>
+                        <TD class="tr6 td9"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr6 td10"><P class="p9 ft8">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD colspan=3 rowspan=2 class="tr5 td11"><P class="p29 ft0">10. Town or Village of Residence of the Mother :{{underScoreLength2}}</P></TD>
+                        <TD class="tr9 td12"><P class="p9 ft10">&nbsp;</P></TD>
+                        <TD colspan=3 rowspan=2 class="tr5 td13"><P class="p30 ft0">18. Number of Children born alive to the:{{underScoreLength2}}</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr10 td14"><P class="p9 ft11">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD colspan=2 rowspan=2 class="tr11 td15"><P class="p31 ft0">a) Name of Town / Village</P></TD>
+                        <TD class="tr2 td16"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr2 td14"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD colspan=3 class="tr2 td13"><P class="p32 ft0">mother so far including this child</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr7 td16"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD class="tr7 td14"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD class="tr7 td17"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD class="tr7 td18"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD class="tr7 td19"><P class="p9 ft7">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD colspan=2 class="tr6 td15"><P class="p31 ft2">b) Is it a Town or Village : (Put a &nbsp;&#x2714;</P></TD>
+                        <TD class="tr6 td16"><P class="p33 ft0">mark )</P></TD>
+                        <TD class="tr6 td14"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD colspan=3 rowspan=2 class="tr12 td13"><P class="p30 ft0">19. Type of attention at delivery : ( Tick</P></TD>
+                    </TR>
+                    <TR>
+                        <TD colspan=2 rowspan=2 class="tr6 td15"><P class="p34 ft0">1) Town</P></TD>
+                        <TD rowspan=2 class="tr6 td16"><P class="p35 ft0">2) Village</P></TD>
+                        <TD class="tr13 td14"><P class="p9 ft12">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr14 td14"><P class="p9 ft13">&nbsp;</P></TD>
+                        <TD colspan=3 rowspan=2 class="tr2 td13"><P class="p32 ft0">the appropriate entry below )</P></TD>
+                    </TR>
+                    <TR>
+                        <TD colspan=2 rowspan=2 class="tr6 td15"><P class="p31 ft0">c) Name of District</P></TD>
+                        <TD class="tr7 td16"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD class="tr7 td14"><P class="p9 ft7">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr5 td16"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr5 td14"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD colspan=3 rowspan=2 class="tr6 td13"><P class="p32 ft0">a) Institutional - Government</P></TD>
+                    </TR>
+                    <TR>
+                        <TD rowspan=2 class="tr6 td20"><P class="p31 ft0">d) Name of State</P></TD>
+                        <TD class="tr7 td21"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD class="tr7 td16"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD class="tr7 td14"><P class="p9 ft7">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr5 td21"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr5 td16"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr5 td14"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD colspan=3 rowspan=2 class="tr1 td13"><P class="p32 ft0">b) Institutional - Private or</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr15 td20"><P class="p9 ft14">&nbsp;</P></TD>
+                        <TD class="tr15 td21"><P class="p9 ft14">&nbsp;</P></TD>
+                        <TD class="tr15 td16"><P class="p9 ft14">&nbsp;</P></TD>
+                        <TD class="tr15 td14"><P class="p9 ft14">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD colspan=2 class="tr2 td15"><P class="p29 ft0">11. Religion of the Family :</P></TD>
+                        <TD class="tr2 td16"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr2 td14"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD colspan=3 class="tr2 td13"><P class="p36 ft0">Non - Government</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr6 td20"><P class="p31 ft0">a) Hindu</P></TD>
+                        <TD class="tr6 td21"><P class="p9 ft0">b) Muslim</P></TD>
+                        <TD class="tr6 td16"><P class="p37 ft0">c) Christian</P></TD>
+                        <TD class="tr6 td14"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD colspan=3 class="tr6 td13"><P class="p32 ft0">c) Doctor, Nurse or Trained Midwife</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr6 td20"><P class="p31 ft0">d) Sikh</P></TD>
+                        <TD colspan=2 class="tr6 td22"><P class="p9 ft0">e) Any other Religion</P></TD>
+                        <TD class="tr6 td14"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD colspan=3 class="tr6 td13"><P class="p32 ft0">d) Traditional Birth Attendant</P></TD>
+                    </TR>
+                    <TR>
+                        <TD colspan=2 class="tr6 td15"><P class="p29 ft0">12. Father's level of Education :</P></TD>
+                        <TD class="tr6 td16"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr6 td14"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD colspan=3 class="tr6 td13"><P class="p32 ft0">e) Relatives others</P></TD>
+                    </TR>
+                    <TR>
+                        <TD colspan=2 rowspan=2 class="tr8 td15"><P class="p29 ft0">13. Mother's level of Education :</P></TD>
+                        <TD class="tr6 td16"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr6 td14"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD colspan=3 class="tr6 td13"><P class="p30 ft0">20. Method of delivery :</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr7 td16"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD class="tr7 td14"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD colspan=3 rowspan=2 class="tr6 td13"><P class="p32 ft0">a) Normal</P></TD>
+                    </TR>
+                    <TR>
+                        <TD colspan=2 rowspan=2 class="tr8 td15"><P class="p29 ft0">14. Father's Occupation :</P></TD>
+                        <TD class="tr5 td16"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr5 td14"><P class="p9 ft8">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr5 td16"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr5 td14"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD colspan=3 rowspan=2 class="tr6 td13"><P class="p32 ft0">b) Caesarean</P></TD>
+                    </TR>
+                    <TR>
+                        <TD colspan=2 rowspan=2 class="tr6 td15"><P class="p29 ft0">15. Mother's Occupation :</P></TD>
+                        <TD class="tr7 td16"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD class="tr7 td14"><P class="p9 ft7">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr5 td16"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr5 td14"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD colspan=3 rowspan=2 class="tr6 td13"><P class="p32 ft0">c) Forceps / Vacuum</P></TD>
+                    </TR>
+                    <TR>
+                        <TD colspan=3 rowspan=2 class="tr1 td11"><P class="p29 ft0">16. Age of the Mother ( in completed years ) at the</P></TD>
+                        <TD class="tr7 td14"><P class="p9 ft7">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr13 td14"><P class="p9 ft12">&nbsp;</P></TD>
+                        <TD colspan=3 rowspan=2 class="tr6 td13"><P class="p30 ft0">21. Birth Weight (in Kgs)</P></TD>
+                    </TR>
+                    <TR>
+                        <TD rowspan=2 class="tr2 td20"><P class="p31 ft2">time of Marriage :</P></TD>
+                        <TD class="tr14 td21"><P class="p9 ft13">&nbsp;</P></TD>
+                        <TD class="tr14 td16"><P class="p9 ft13">&nbsp;</P></TD>
+                        <TD class="tr14 td14"><P class="p9 ft13">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr7 td21"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD class="tr7 td16"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD class="tr7 td14"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD colspan=3 rowspan=2 class="tr6 td13"><P class="p30 ft0">22. Duration of Pregnancy (in weeks) :</P></TD>
+                    </TR>
+                    <TR>
+                        <TD colspan=3 rowspan=2 class="tr1 td11"><P class="p29 ft0">17. Age of the Mother ( in completed Years ) at the</P></TD>
+                        <TD class="tr5 td14"><P class="p9 ft8">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr15 td14"><P class="p9 ft14">&nbsp;</P></TD>
+                        <TD class="tr15 td17"><P class="p9 ft14">&nbsp;</P></TD>
+                        <TD class="tr15 td18"><P class="p9 ft14">&nbsp;</P></TD>
+                        <TD class="tr15 td19"><P class="p9 ft14">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD colspan=2 class="tr2 td15"><P class="p31 ft0">time of this Birth :</P></TD>
+                        <TD class="tr2 td16"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr2 td14"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr2 td17"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr2 td18"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr2 td19"><P class="p9 ft8">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr10 td23"><P class="p9 ft11">&nbsp;</P></TD>
+                        <TD class="tr10 td24"><P class="p9 ft11">&nbsp;</P></TD>
+                        <TD class="tr10 td25"><P class="p9 ft11">&nbsp;</P></TD>
+                        <TD class="tr10 td26"><P class="p9 ft11">&nbsp;</P></TD>
+                        <TD class="tr10 td27"><P class="p9 ft11">&nbsp;</P></TD>
+                        <TD class="tr10 td28"><P class="p9 ft11">&nbsp;</P></TD>
+                        <TD class="tr16 td19"><P class="p9 ft15">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr6 td20"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr6 td21"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD colspan=3 class="tr6 td29"><P class="p30 ft0">( To be filled by the Registrar )</P></TD>
+                        <TD class="tr6 td18"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr6 td19"><P class="p9 ft8">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr2 td20"><P class="p29 ft0">Name :</P></TD>
+                        <TD class="tr2 td21"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr2 td30"><P class="p38 ft0">Code :</P></TD>
+                        <TD colspan=2 class="tr2 td31"><P class="p39 ft0">Registration No. :</P></TD>
+                        <TD class="tr2 td18"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr2 td19"><P class="p9 ft8">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD rowspan=2 class="tr17 td20"><P class="p29 ft0">District :</P></TD>
+                        <TD class="tr0 td21"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr0 td30"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD colspan=2 class="tr0 td31"><P class="p39 ft0">Registration Date :</P></TD>
+                        <TD class="tr0 td18"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr0 td19"><P class="p9 ft8">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr7 td21"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD class="tr7 td30"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD colspan=2 rowspan=2 class="tr6 td31"><P class="p39 ft0">Date of Birth :</P></TD>
+                        <TD class="tr7 td18"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD class="tr7 td19"><P class="p9 ft7">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD rowspan=2 class="tr6 td20"><P class="p29 ft0">Town / Village :</P></TD>
+                        <TD class="tr5 td21"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr5 td30"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr5 td18"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr5 td19"><P class="p9 ft8">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr7 td21"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD class="tr7 td30"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD colspan=2 rowspan=2 class="tr6 td31"><P class="p39 ft0">Sex : 1) Male.</P></TD>
+                        <TD colspan=2 rowspan=2 class="tr6 td32"><P class="p9 ft0">2) Female</P></TD>
+                    </TR>
+                    <TR>
+                        <TD rowspan=2 class="tr6 td20"><P class="p29 ft0">Registration Unit :</P></TD>
+                        <TD class="tr5 td21"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr5 td30"><P class="p9 ft8">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr7 td21"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD class="tr7 td30"><P class="p9 ft7">&nbsp;</P></TD>
+                        <TD colspan=4 rowspan=2 class="tr6 td33"><P class="p39 ft0">Place of Birth : 1) Hospital / Institution. 2) House.</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr5 td20"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr5 td21"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr5 td30"><P class="p9 ft8">&nbsp;</P></TD>
+                    </TR>
+                    <TR>
+                        <TD class="tr18 td23"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr18 td24"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr18 td34"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD class="tr18 td35"><P class="p9 ft8">&nbsp;</P></TD>
+                        <TD colspan=3 class="tr18 td36">
+                            <P class="p32 ft0"><br/><br/><br/><br/>Name and Signature of the Registrar</P></TD>
+                    </TR>
+                    </TABLE>
+                    </DIV>
+            
+              
+            </td>
+        </tr>
+    </table>
+   
+    </form>

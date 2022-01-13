@@ -1,0 +1,223 @@
+<div class="row" style="font-size:11px;border-style:solid; margin-left:5px; margin-right:5px;"
+    id="frmIndividualLapReport">
+
+
+    <table width="100%">
+
+        <tbody>
+
+            <tr style="vertical-align: top;">
+                <td style="text-align:left;" colspan="2">Dr. Mahesh Prasad Mohanta <br />MD(Pediatric) <br/>Mobile No. 09437655781</td>
+                <td colspan="4">
+                    <div style="text-align:left;">
+                        <div style="text-align:right;">
+                            <div style="text-align:right;">
+                                <h3 style="text-align:right; padding-bottom:10px;">
+                                    {{Addressline1}}<br />
+                                    {{Addressline2}}<br />
+                                    {{Addressline3}}<br />
+
+                                </h3>
+                                
+                                
+
+
+
+
+                            </div>
+                            
+
+                            <div class="col-sm-12">
+
+
+                                <button style="display: inline-block;float:left;" type="button" id="printElement"
+                                    (click)="myPrint('frmIndividualLapReport')" class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print"></span>
+                                    Print</button>
+                                <!-- <button type="button" style="display: inline-block;float:left;" id="CloseMe"
+                                    (click)="CloseMe()" class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print"></span>
+                                    Close Me</button> -->
+                                <button type="button" style="display: inline-block;float:left;" id="closePopup"
+                                    (click)="onNoClick()" class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print"></span>
+                                    Close Me/Popup</button>
+
+
+                                <!-- <input id="printCheckElement" style="display: inline-block;float:left;" (change)="fieldsChange($event)" value="Show header on each page" type="checkbox"/>
+                <span id="printCheckTextElement" style="display: inline-block;float:left;">Show header on each page</span> -->
+
+
+                            </div>
+                            <div class="form-row" id="searchtElement" *ngIf="showSearch">
+
+                                <div class="form-group col-md-2" style="display: flex;margin-top:15px;">
+
+                                </div>
+
+                                <div class="form-group col-md-3" style="display: flex">
+
+
+                                </div>
+                                <div class="form-group col-md-2" style="display: flex;margin-top:15px;">
+                                    <h4>CASE ID </h4>
+                                </div>
+
+                                <div class="form-group col-md-3" style="display: flex">
+                                    <input type="text">
+
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <button type="button" style="display: inline-block;" id="CloseMe"
+                                        class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
+                                        Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <!-- <td style="text-align:right;">Mobile No. 09437655781
+                </td> -->
+            </tr>
+<tr >
+    <td colspan="6">
+        <hr/>
+    </td>
+</tr>
+<tr style="text-align:center;"> 
+    <td colspan="6">
+        <h2>Out Patient Consultation        </h2>
+    </td>
+</tr>
+
+
+            <tr>
+                <td colspan="2">OP No.:{{EditedCaseData?.IPDOPDId}}</td>
+                <td colspan="2"></td>
+                <td colspan="2" style="text-align:left;">Date:&nbsp; {{myDate}}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Patient Name:&nbsp;{{EditedCaseData?.Home.FirstName|uppercase}}&nbsp;
+                    {{EditedCaseData?.Home.LastName|uppercase}}</td>
+                    <td colspan="2"></td>
+                <td colspan="2" style="text-align:left;">Father Name:&nbsp;  {{EditedCaseData?.Home.FatherName}}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Weight:{{EditedCaseData?.Home.Weight}}&nbsp;&nbsp;&nbsp;&nbsp;KG</td>
+                <td colspan="2"></td>
+                <td colspan="2" style="text-align:left;">Age: &nbsp;&nbsp;&nbsp;
+                    {{EditedCaseData?.Home.Year}}Yrs&nbsp;&nbsp;&nbsp;{{EditedCaseData?.Home.Month}}Month &nbsp;&nbsp;&nbsp; </td>
+            </tr>
+            <tr>
+                <td colspan="2">Temp:&nbsp;{{EditedCaseData?.Home.Temperature}}</td>                
+                <td colspan="2"></td>
+                <td colspan="2" style="text-align:left;">Sex: 
+                    &nbsp;&nbsp; {{EditedCaseData?.Home.Gender == '1'?'Male':'Female'}}</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2"></td>
+                <td colspan="2"style="text-align:left;">Address:&nbsp; {{EditedCaseData?.Home.Address}}</td>
+            </tr>
+
+            <tr>
+                <td colspan="6">
+
+
+
+
+
+                    <hr style="padding:0px;margin:0px" />
+                    <br />
+                    <br />
+                    <br /> <br />
+                    <br />
+                    <br /> <br />
+                    <br />
+                    <br /> <br />
+                    <br />
+                    <br /> <br />
+                    <br />
+                    <br />
+
+                    <br />
+                    <br />
+                    <br />
+
+                    <br />
+
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    
+                    <p style="text-align: right;">Doctor's Signature</p>
+
+
+
+
+                    <hr style="border-top: 1px dashed black;" />
+
+
+
+
+
+
+                </td>
+            </tr>
+
+            <tr style="vertical-align: top;">
+                <td colspan="2" style="text-align:center;"><b>Morning</b> <br/> 8.30 AM-1.30 PM
+                <td colspan="2">
+                    <div style="text-align:right;">
+                        <div style="text-align:center;">
+                            <div style="text-align:center;">
+                                <h3 style="text-align:center; padding-bottom:10px;">
+                                    {{Addressline1}}<br />
+                                    {{Addressline2}}<br />
+                                    8895421052<br />
+
+                                </h3>
+                                
+                                
+
+
+
+
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                </td>
+                <td colspan="2" style="text-align:center;"><b>Evening</b> <br/> 5.30 PM-7.30 PM
+                </td>
+            </tr>
+            
+        </tbody>
+        <!-- follwing line make footer repeatable for each page -->
+        <!-- <tfoot><tr><td>Your footer goes here</td></tr></tfoot> -->
+    </table>
+
+
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>

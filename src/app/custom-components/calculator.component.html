@@ -1,0 +1,92 @@
+<button *ngIf="showClose !=='No'" mat-icon-button class="close-button" [mat-dialog-close]="true">
+  <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<!-- <h5>CALCULATOR</h5> -->
+<!-- <form id="cal-form">
+  <input placeholder="type value one" autofocus type="number" name="val1" id="val1" [(ngModel)]="val1">
+  <input [value]="currentSign" type="text" name="sign" id="sign">
+  <input placeholder="type value two" type="number" name="val2" id="val2" [(ngModel)]="val2">
+  <input [value]="currentSign" type="text" name="sign" id="sign">
+  <section class="symbols">
+    <input type="button"  value="AC" (click)="currentSign=''; Clear()">
+    <input type="button"  value="+" (click)="currentSign='+'; add()">
+    <input type="button" value="-" (click)="currentSign='-'; minus()">
+    <input type="button" value="x" (click)="currentSign='x'; multiply()">
+    <input type="button" value="/" (click)="currentSign='/'; divide()">
+    <input type="button" value="%" (click)="currentSign='%'; percent()">
+    <input type="button" value="Direct%" (click)="currentSign='ର'; Dpercent()"> 
+  </section>
+  <input type="number" name="ans" id="ans" [(ngModel)]="ans" disabled>
+</form> -->
+
+<input type="text" [ngModel]="formattedTokens" class="form-control-sm form-control text-right" readonly>
+
+<input type="text" [ngModel]="input" class="form-control form-control-lg text-right" readonly>
+
+<div class="row mt-3">
+	<div class="col-3">
+		<button class="btn btn-secondary btn-block" (click)="reset()">AC</button>
+	</div>
+	<div class="col-3">
+    <button class="btn btn-primary btn-block" (click)="execOperator('(')">(</button>
+  </div>
+	<div class="col-3">
+    <button class="btn btn-primary btn-block" (click)="execOperator(')')">)</button>
+  </div>
+	<div class="col-3">
+		<button class="btn btn-primary btn-block" (click)="execOperator('/')">/</button>
+	</div>
+</div>
+<div class="row mt-3">
+	<div class="col-3">
+		<button class="btn btn-secondary btn-block" (click)="insertChar('1')">1</button>
+	</div>
+	<div class="col-3">
+		<button class="btn btn-secondary btn-block" (click)="insertChar('2')">2</button>
+	</div>
+	<div class="col-3">
+		<button class="btn btn-secondary btn-block" (click)="insertChar('3')">3</button>
+	</div>
+	<div class="col-3">
+		<button class="btn btn-primary btn-block" (click)="execOperator('*')">x</button>
+	</div>
+</div>
+<div class="row mt-3">
+	<div class="col-3">
+		<button class="btn btn-secondary btn-block" (click)="insertChar('4')">4</button>
+	</div>
+	<div class="col-3">
+		<button class="btn btn-secondary btn-block" (click)="insertChar('5')">5</button>
+	</div>
+	<div class="col-3">
+		<button class="btn btn-secondary btn-block" (click)="insertChar('6')">6</button>
+	</div>
+	<div class="col-3">
+		<button class="btn btn-primary btn-block" (click)="execOperator('+')">+</button>
+	</div>
+</div>
+<div class="row mt-3">
+	<div class="col-3">
+		<button class="btn btn-secondary btn-block" (click)="insertChar('7')">7</button>
+	</div>
+	<div class="col-3">
+		<button class="btn btn-secondary btn-block" (click)="insertChar('8')">8</button>
+	</div>
+	<div class="col-3">
+		<button class="btn btn-secondary btn-block" (click)="insertChar('9')">9</button>
+	</div>
+	<div class="col-3">
+		<button class="btn btn-primary btn-block" (click)="execOperator('-')">-</button>
+	</div>
+</div>
+<div class="row mt-3">
+	<div class="col-6">
+		<button class="btn btn-secondary btn-block" (click)="insertChar('0')">0</button>
+	</div>
+	<div class="col-3">
+		<button class="btn btn-secondary btn-block" (click)="insertChar('.')">.</button>
+	</div>
+	<div class="col-3">
+		<button class="btn btn-primary btn-block" (click)="evaluate()">=</button>
+	</div>
+</div>

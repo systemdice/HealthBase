@@ -1,0 +1,241 @@
+<form [formGroup]="PaymentDetails" *ngIf="PaymentDetails">
+  <div class="panel panel-info">
+
+    <div class="panel-heading">
+      <div class="row">
+
+
+
+
+
+      </div>
+
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12">
+
+            <span>
+              <button mat-button style="font-size: x-small;">
+                <mat-icon> exit_to_app </mat-icon> Payment Details:
+              </button>
+              <!-- {{msgFromComponent}} {{caseid}} -->
+
+            </span>
+
+
+          </div>
+          <div class="col-4 control-buttons">
+
+          </div>
+        </div>
+        <hr>
+      </div>
+
+
+    </div>
+
+
+    <div style="overflow-x:auto;">
+      <table class="table table table-bordered" style="border-color: lightgray;" >
+        <thead style="background-color: rgb(240, 240, 240);height:10px;">
+          <tr>
+           <th scope="col"><label >Consultation Fee(<span style="color:blue">&#x20B9;</span>)</label></th>
+            <th scope="col"><label >Doctor Visiting Fees(<span style="color:blue">&#x20B9;</span>)</label></th>
+            <th scope="col"><label >Nurse Fees(<span style="color:blue">&#x20B9;</span>)</label></th>
+            <!-- <th scope="col"><label >Patholab Fees(<span class='spanBlink' style="color:blue">&#x20B9;</span>)</label></th> -->
+            <th scope="col"><label >Patholab Fees(<span style="color:blue">&#x20B9;</span>)</label></th>
+            <th scope="col"><label >Bed Fees(<span style="color:blue">&#x20B9;</span>)</label></th>
+            <th scope="col"><label >Daily Expense(<span style="color:blue">&#x20B9;</span>)</label></th>
+            <th scope="col"><label >Pharmacy Fees(<span style="color:blue">&#x20B9;</span>)</label></th>
+            <th scope="col"><label >OT Fees(<span style="color:blue">&#x20B9;</span>)</label></th>
+            <th scope="col"><label >Other Fees(<span style="color:blue">&#x20B9;</span>)</label></th>
+            <th scope="col"><label >Registration(<span style="color:blue">&#x20B9;</span>)</label>(Once)</th>
+            <th scope="col"><label >Ambulance Fees(<span style="color:blue">&#x20B9;</span>)</label></th>
+            <th scope="col"><label >Vaccination Fees(<span style="color:blue">&#x20B9;</span>)</label></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background-color: rgb(245, 244, 244);height:10px;">
+            
+            
+			      <td data-th="Consultation Fee"><input type="number" class="form-control" formControlName="OPDCharge" aria-describedby="emailHelp" placeholder="OPD Charge" (input)="oninputChange('')"></td>
+            <td layout-align="left left" data-th="Doctor Visiting Fees"><input type="number" class="form-control" formControlName="DoctorCharge" aria-describedby="emailHelp" placeholder="DoctorCharge" readonly></td>
+            <td data-th="NBurse Fees"><input type="number" class="form-control" formControlName="NurseCharge" aria-describedby="emailHelp" placeholder="Nurse Charge" readonly></td>
+          
+            <td data-th="Patholab Fees"> <input type="number" class="form-control" formControlName="LabTestCharge" aria-describedby="emailHelp" placeholder="PathoLAB Charge" readonly></td>
+            <td data-th="Bed Fee"><input type="number" class="form-control" formControlName="BedCharge" aria-describedby="emailHelp" placeholder="Bed Charge" readonly></td>
+            <td data-th="Daily Expense"><input type="number" class="form-control" formControlName="DailyExpense" aria-describedby="emailHelp" placeholder="Daily Expense" readonly></td>
+            <td data-th="Pharmacy Fee"> <input type="number" class="form-control" formControlName="FarmaCharge" aria-describedby="emailHelp" placeholder="Farmacy Charge" readonly></td>
+            <td data-th="OT Fee"><input type="number" class="form-control" formControlName="OTCharge" aria-describedby="emailHelp" placeholder="OT Charge" readonly></td>
+            <td data-th="Other Fee"><input type="number" class="form-control" formControlName="OtherCharge" aria-describedby="emailHelp" placeholder="Other Charge" (input)="oninputChange('')"></td>
+            <td data-th="Registration Fee"><input type="number" class="form-control" formControlName="RegdCharge" readonly aria-describedby="emailHelp" placeholder="Reg Charge" (input)="oninputChange('')" readonly></td>
+            <td data-th="Ambulance Fee"><input type="number" class="form-control" formControlName="AmbulanceCharge" aria-describedby="emailHelp" placeholder="Ambulance Charge" (input)="oninputChange('')" readonly></td>
+            <td data-th="Vaccination Fee"><input type="number" class="form-control" formControlName="VaccinationCharge" aria-describedby="emailHelp" placeholder="Vaccination Charge" (input)="oninputChange('')" readonly></td>
+           
+          </tr>
+          
+         
+        </tbody>
+      </table>
+      <hr/>
+      <table class="table table table-bordered" style="border-color: lightgray;" >
+        <thead style="background-color: rgb(240, 240, 240);height:10px;">
+          <tr>
+           <th scope="col"><label >Grand Total(<span style="color:blue">&#x20B9;</span>)</label></th>
+            <th scope="col"><label >Discount {{disType}}(<span style="color:blue">&#x20B9;</span>)</label></th>
+            <th scope="col"><label >Amount Received(<span style="color:blue">&#x20B9;</span>)</label></th>
+            <th scope="col"><label >Amount Refund(<span style="color:blue">&#x20B9;</span>)</label></th>
+           
+            <th scope="col"><label >Amount Advance(<span style="color:blue">&#x20B9;</span>)</label></th>
+            <th scope="col"><label >Balance(<span style="color:blue">&#x20B9;</span>)</label></th>
+            <th scope="col"><label >Received By</label> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background-color: rgb(245, 244, 244);height:10px;">
+            
+            
+			<td data-th="Grand Total" ><input type="number" class="form-control" formControlName="Amount" aria-describedby="emailHelp" placeholder="Grand Total"  readonly></td>
+          
+			
+            <td data-th="Discount">
+              <div style="display:inline">
+              <!-- <input type="number" class="form-control" formControlName="Discount"  (input)="oninputChange('')" aria-describedby="emailHelp" placeholder="Discount ({{disType}})"><mat-icon [inline]="true" matSuffix (click)="CalculatePercent()" style="cursor:pointer;">% </mat-icon><span (click)="CalculatePercent()"><u style="cursor:pointer;">&nbsp;Calculation</u></span> -->
+              <input type="number" class="form-control" formControlName="Discount"   (input)="oninputChange('')"
+               aria-describedby="emailHelp" placeholder="Discount ({{disType}})"><mat-icon [inline]="true" 
+               matSuffix (click)="CalculatePercent()" style="cursor:pointer;">% </mat-icon><span 
+               (click)="CalculatePercent()"><u style="cursor:pointer;">&nbsp;Calculation</u></span>
+            
+            </div>
+            </td>
+            <td data-th="Amount Received"> <input type="number" class="form-control" formControlName="PaidAmount" (input)="oninputChange('')" aria-describedby="emailHelp" placeholder="Amount Received">
+               Net Received amount:<span style="color:blue">&#x20B9;</span>.{{TotalAmountRecived}}</td>
+              <td> <input type="number" class="form-control" formControlName="RefundAmount" (input)="OnRefundChangeRefund();" aria-describedby="emailHelp" placeholder="Amount Refunded">
+               </td>
+            
+                
+            <td data-th="Amount Advance"><input type="number" class="form-control" formControlName="EarlierPayment" (input)="oninputChange('')" aria-describedby="emailHelp" placeholder="0"></td>
+            <td data-th="Balance"><input type="number" class="form-control" formControlName="Balance" aria-describedby="emailHelp" placeholder="Balance"
+              [ngStyle]="{
+                'background-color': ReturnStatusColor()}"
+              ></td>
+            <td data-th="Received By"><input type="text" class="form-control" readonly formControlName="ReceivedBy" aria-describedby="emailHelp" placeholder="Received By"></td>
+            
+          </tr>
+          
+         
+        </tbody>
+      </table>
+    
+     <!-- <span *ngFor="let sibling of siblings"> 
+        {{ sibling }} <br>.
+    </span> -->
+
+      <!-- <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+
+
+        <mat-form-field fxFlex>
+          <span matPrefix style="color:blue">&#x20B9;. &nbsp;</span>
+          <input type="number" value="100" matInput formControlName="OPDCharge" placeholder="OPD charge"
+          (input)="oninputChange('')">
+         
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <span matPrefix style="color:blue">&#x20B9;. &nbsp;</span>
+          <input type="number" value="100" matInput formControlName="DoctorCharge" placeholder="Doctor Charge"
+          (input)="oninputChange('')">
+         
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <span matPrefix style="color:blue">&#x20B9;. &nbsp;</span>
+          <input type="number" value="100" matInput formControlName="LabTestCharge" placeholder="LabTest Charge"
+          (input)="oninputChange('')">
+         
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <span matPrefix style="color:blue">&#x20B9;. &nbsp;</span>
+          <input type="number" value="100" matInput formControlName="BedCharge" placeholder="Bed Charge"
+          (input)="oninputChange('')">
+         
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <span matPrefix style="color:blue">&#x20B9;. &nbsp;</span>
+          <input type="number" value="100" matInput formControlName="DailyExpense" placeholder="Daily Expense"
+          (input)="oninputChange('')">
+          
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <span matPrefix style="color:blue">&#x20B9;. &nbsp;</span>
+          <input type="number" value="100" matInput formControlName="FarmaCharge" placeholder="Farma/Medicine Expense"
+          (input)="oninputChange('')">
+          
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <span matPrefix style="color:blue">&#x20B9;. &nbsp;</span>
+          <input type="number" value="0" matInput placeholder="OT Expense" (input)="oninputChange('')" formControlName="OTCharge">
+          
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <span matPrefix style="color:blue">&#x20B9;. &nbsp;</span>
+          <input type="number" value="0" matInput placeholder="Other Expense" (input)="oninputChange('')" formControlName="OtherCharge">
+          
+        </mat-form-field>
+
+
+      </div>
+      <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+
+
+
+
+        <mat-form-field fxFlex>
+          <span matPrefix style="color:blue">&#x20B9;. &nbsp;</span>
+          <input type="number" value="100" matInput formControlName="Amount" placeholder="Grand Total"
+            (input)="oninputChange('')" [disabled]=true>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <span matPrefix style="color:blue">&#x20B9;. &nbsp;</span>
+          <input type="number" matInput placeholder="Discount ({{disType}})" formControlName="Discount" value="0"
+            (input)="oninputChange('')">
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-icon [inline]="true" matSuffix (click)="CalculatePercent()">%</mat-icon>Calculation
+
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <span matPrefix style="color:blue">&#x20B9;. &nbsp;</span>
+          <input type="number" matInput placeholder="Amount Received" formControlName="PaidAmount" value="0"
+            (input)="onPaidChange()">
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <span matPrefix style="color:blue">&#x20B9;. &nbsp;</span>
+          <input type="number" matInput placeholder="Earlier Payment" formControlName="EarlierPayment" 
+          value="0"
+            >
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <span matPrefix style="color:blue">&#x2714; &nbsp;&#x20B9;. &nbsp;</span>
+          <input type="number" matInput placeholder="Balance" formControlName="Balance" value="0">
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+
+          <input type="text" matInput placeholder="ReceivedBy" formControlName="ReceivedBy" value="XYZ">
+
+        </mat-form-field>
+
+      </div> -->
+
+
+
+
+    </div>
+    <br>
+    <span style="color:red">* &nbsp; Balance(₹) Formula = </span> <span style="color:blue">(Grand Total) - (Net Received amount + Amount Received + Amount Advance + Discount ).</span><br/>
+    <span style="color:red">* &nbsp; Minus(-) with Amount Received:&nbsp; </span> <span style="color:blue">It means Hospital refunded to patient due to some reason.</span><br/>
+    <span style="color:red">* &nbsp; Discount:&nbsp;</span> <span style="color:blue">It means This amount will be deducted from Gross amount.</span>
+    
+  </div>
+</form>

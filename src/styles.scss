@@ -1,0 +1,506 @@
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+/*@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}*/
+
+/* You can add global styles to this file, and also import other style files */
+
+/*@import '@angular/material/prebuilt-themes/deeppurple-amber.css';*/
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css";
+
+
+.container { width:80%; margin: auto;}
+.form-field { width:400px; display: block !important;}
+button { margin-right: 10px !important;}
+
+/*body {
+  height: 100%;
+}*/
+
+html, body {
+  height: 100%;
+  // overflow:hidden;
+}
+.ShowToolTipCustom {
+  white-space: pre-line;
+}
+
+
+// below code solved my page shaking and flickering issue
+::-webkit-scrollbar { 
+  width: 15px!important;
+}
+
+
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(236, 234, 234); 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(241, 227, 227); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(102, 100, 100); 
+}
+
+
+// /* width */
+// ::-webkit-scrollbar {
+//   width: 10px;
+// }
+
+// /* Track */
+// ::-webkit-scrollbar-track {
+//   background: #f1f1f1; 
+// }
+ 
+// /* Handle */
+// ::-webkit-scrollbar-thumb {
+//   background: #888; 
+// }
+
+// /* Handle on hover */
+// ::-webkit-scrollbar-thumb:hover {
+//   background: #555; 
+// }
+
+
+@media print {
+  :not(.printMe) {
+    visibility: hidden;
+  }
+}
+
+@media print {
+  .printMe {
+    visibility: visible
+  }
+}
+
+// app-print-patient-appointment {
+//   /* hide the printing component from @media screen */
+//   display: none;
+//   //visibility: hidden;
+// }
+
+
+//#06112020 bellow lines will help to change the theme color
+// @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+// body { 
+//   font-family: Roboto, Arial, sans-serif;
+//   margin: 0;
+// } //eende here #06112020
+
+
+/* Overwrite the styles of the mat-dialog-container element globally, but only for those
+that have an id of `modal-component` */
+/* https://stackoverflow.com/a/48689004/9263761 */
+/*mat-dialog-container#modal-component {
+  border: 3px solid #262626;
+  border-radius: 11px;
+  background-color: #1a1a1a;
+}*/
+
+.panel-heading {
+  padding: 0px;
+  height: 30px;
+  border-radius:5px;
+}
+
+.mat-drawer {
+  background-color: #9bbdf1;
+  color: #fff
+}
+
+.main-content {
+  padding: 20px;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+.nav-link[data-toggle].collapsed:before {
+  content: " ▾";
+}
+
+.nav-link[data-toggle]:not(.collapsed):before {
+  content: " ▴";
+}
+
+.panel-heading{
+  padding:0px;
+  height:40px;
+}
+
+/*-----------------Social media buttons--------------*/
+
+.fa {
+  padding: 2px;
+  font-size: 12px;
+  width: 16px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 4px;
+  border-radius: 50%;
+}
+
+
+  .fa:hover {
+    opacity: 0.7;
+  }
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+
+.fa-pinterest {
+  background: #cb2027;
+  color: white;
+}
+
+.fa-snapchat-ghost {
+  background: #fffc00;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.fa-skype {
+  background: #00aff0;
+  color: white;
+}
+
+.fa-android {
+  background: #a4c639;
+  color: white;
+}
+
+.fa-dribbble {
+  background: #ea4c89;
+  color: white;
+}
+
+.fa-vimeo {
+  background: #45bbff;
+  color: white;
+}
+
+.fa-tumblr {
+  background: #2c4762;
+  color: white;
+}
+
+.fa-vine {
+  background: #00b489;
+  color: white;
+}
+
+.fa-foursquare {
+  background: #45bbff;
+  color: white;
+}
+
+.fa-stumbleupon {
+  background: #eb4924;
+  color: white;
+}
+
+.fa-flickr {
+  background: #f40083;
+  color: white;
+}
+
+.fa-yahoo {
+  background: #430297;
+  color: white;
+}
+
+.fa-soundcloud {
+  background: #ff5500;
+  color: white;
+}
+
+.fa-reddit {
+  background: #ff5700;
+  color: white;
+}
+
+.fa-rss {
+  background: #ff6600;
+  color: white;
+}
+
+/*-----------------Social media buttons--------------*/
+
+.fa {
+  padding: 2px;
+  font-size: 14px;
+  width: 14px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+
+  .fa:hover {
+    opacity: 0.7;
+  }
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+
+.fa-pinterest {
+  background: #cb2027;
+  color: white;
+}
+
+.fa-snapchat-ghost {
+  background: #fffc00;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.fa-skype {
+  background: #00aff0;
+  color: white;
+}
+
+.fa-android {
+  background: #a4c639;
+  color: white;
+}
+
+.fa-dribbble {
+  background: #ea4c89;
+  color: white;
+}
+
+.fa-vimeo {
+  background: #45bbff;
+  color: white;
+}
+
+.fa-tumblr {
+  background: #2c4762;
+  color: white;
+}
+
+.fa-vine {
+  background: #00b489;
+  color: white;
+}
+
+.fa-foursquare {
+  background: #45bbff;
+  color: white;
+}
+
+.fa-stumbleupon {
+  background: #eb4924;
+  color: white;
+}
+
+.fa-flickr {
+  background: #f40083;
+  color: white;
+}
+
+.fa-yahoo {
+  background: #430297;
+  color: white;
+}
+
+.fa-soundcloud {
+  background: #ff5500;
+  color: white;
+}
+
+.fa-reddit {
+  background: #ff5700;
+  color: white;
+}
+
+.fa-rss {
+  background: #ff6600;
+  color: white;
+}
+.mobile-label {
+  display: none;
+}
+
+
+
+@media(max-width: 600px) {
+  .mobile-label {
+    min-width: 80px;
+    display: inline-block;
+        font-weight: bold;
+        vertical-align: top;
+        text-align: top;
+  }
+
+  .mat-header-row {
+    display: none;
+    vertical-align: top;
+  }
+
+  .mat-row { 
+    flex-direction: column;
+    align-items: start;
+    vertical-align: top;
+    padding: 8px 24px;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  /* thead th:not(:first-child) {
+      display: none;
+      content: "";
+  } */
+  thead th {
+    display: none;
+    content: "";
+  }
+  thead th:first-child {
+    content: "first-child";
+  }
+  thead th:first-child:after {
+      content: "Item Sale Entry";
+  }
+  
+  td, th {
+      display: block;
+      width: 100% !important;
+  }
+  td:first-child {
+      font-weight: bold;
+  }
+  
+  td[data-th]:before {
+      content: attr(data-th);
+      border-radius: 10px 0px 0px 10px;
+      font-weight: bold;
+      min-width: 10rem;
+      display: inline-block;
+  }
+  
+  }
+
+  mat-datepicker-content .mat-calendar{
+    width: unset !important;
+    height: 300px !important;
+    overflow: auto;
+    
+}
+
+.mat-datepicker-content .mat-calendar{
+  width: unset !important;
+  height: 300px !important;
+  overflow: auto;
+  
+}
+
+fieldset.scheduler-border {
+  border: solid 1px rgb(196, 192, 192) !important;
+  padding: 0 10px 10px 10px;
+  border-bottom: none;
+}
+
+legend.scheduler-border {
+  width: auto !important;
+  border: none;
+  font-size: 14px;
+}
+
+.myButton {
+	background:linear-gradient(to bottom, #44c767 5%, #bd2ab8 100%);
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #a419ab;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:11px;
+	font-weight:bold;
+	padding:2px 2px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #bd2ab8 5%, #44c767 100%);
+	background-color:#bd2ab8;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}

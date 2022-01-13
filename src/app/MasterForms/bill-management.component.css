@@ -1,0 +1,32 @@
+.bar{ height: 400px; overflow-x: hidden; }
+
+mat-form-field {
+    width: 90%;
+    transition: none;
+  }
+
+  
+
+  select { transition: none; }
+
+  /** No CSS for this example */
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+    color:rgb(233, 57, 57);
+    font-weight: bold;
+    background-color: rgb(198, 236, 198);
+    border-radius: 70px;
+    height: 35px;
+    padding:0px;
+    margin:0px;
+    font-style: italic;
+    }
+    
+    ::ng-deep .mat-tab-list .mat-tab-labels {
+    color:blue;height: 20px;
+    background-color: rgb(238, 238, 206);
+    height: 35px;
+    padding:0px;
+    margin:0px;
+    font-weight: bold;
+    font-style: italic;
+    }

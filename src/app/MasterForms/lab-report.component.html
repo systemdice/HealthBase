@@ -1,0 +1,340 @@
+
+
+    
+    
+<div class="row" style="border-style:solid; margin-left:5px; margin-right:5px;" id="frmIndividualLapReport">
+    
+     <!-- {{EditedCaseData|json}} -->
+    <table width="100%">
+        <thead><tr><td>
+            <div *ngIf="HeaderRepeat">
+                
+                <h3 style="text-align:center; padding-bottom:10px;">
+                    {{Addressline1}}<br />
+                                   {{Addressline2}}<br />
+                                   {{Addressline3}}<br />
+                                   {{Addressline4}}<br />
+            
+                </h3>
+
+                
+                
+                   
+            </div> 
+            <div *ngIf="HeaderRepeat"  class="container">
+                <table width="100%" class="table1">
+                    <tr>
+                        <td style="text-align:left;"><b>Bill Number: </b>&nbsp;{{BillNo}} </td>
+                        
+                        <td style="text-align:right;"> <button style="display: inline-block;float:left;" class="btn btn-info" [disabled]= "!activatePrint"  type="button" (click)="addAPrintBill()" id="printBill">Generate Bill Number (<span style="color:white">&#10003;</span>) and then Print</button></td>
+                       
+                    </tr>
+                    <!-- <tr>
+                        <td style="text-align:left;"><b>Bill Number: </b>&nbsp;{{getBillNUmber(EditedCaseData?.IPDOPDId)}}</td>
+                        <td style="text-align:right;"></td>
+                       
+                    </tr> -->
+                    <tr>
+                        <td style="text-align:left;"><b>IP/OP no: </b>&nbsp;{{EditedCaseData?.IPDOPDId}}</td>
+                        <td style="text-align:right;"><b>Referred By:</b>&nbsp;{{EditedCaseData?.Home?.RefferDoctorName}}</td>
+                       
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;"><b>Name:</b>&nbsp;{{EditedCaseData?.Home?.FirstName}}&nbsp;{{EditedCaseData?.Home?.LastName}}</td>
+                        <td style="text-align:right;"><b>Admission Date:</b>&nbsp;{{EditedCaseData?.DateStart}}</td>            
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;"><b>Age & Sex:</b>&nbsp;{{EditedCaseData?.Home?.Year}}Yrs&nbsp;{{EditedCaseData?.Home?.Month}}months&nbsp;{{EditedCaseData?.Home?.Days}}Days&nbsp;/{{EditedCaseData?.Home?.Gender=="1"?'Male':'Female'}}</td>
+                        <td style="text-align:right;"><b>Received By:</b>&nbsp;{{EditedCaseData?.PaymentHistory[0]?.ReceivedBy}}</td>            
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;"><b>Mobile No:</b>&nbsp;{{EditedCaseData?.Home?.ContactNumber}}</td>
+                        <td style="text-align:right;"></td>            
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;"><b>Email:</b>&nbsp;{{EditedCaseData?.Home?.Email}}</td>
+                        <td style="text-align:right;"></td>            
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;"> <b>Address:</b>&nbsp;{{EditedCaseData?.Home?.Address}}</td>
+                        <td style="text-align:right;"><b> Discharge and Billing Date:</b>&nbsp;{{myDate}}</td>            
+                    </tr>
+                    <tr>
+                        <td colspan="2"><hr/></td>
+                    </tr>
+                   
+                </table>
+                
+                </div>
+        </td></tr></thead>
+        <tbody>
+          <tr><td>
+           
+
+
+<div style="text-align:right;">
+    <div  style="text-align:center;">
+        <div style="text-align:center;" *ngIf="!HeaderRepeat">
+            <h3 style="text-align:center; padding-bottom:10px;">
+                {{Addressline1}}<br />
+                {{Addressline2}}<br />
+                {{Addressline3}}<br />
+                {{Addressline4}}<br />
+        
+            </h3>
+
+            
+            
+               
+        </div>
+        <div *ngIf="!HeaderRepeat" class="container">
+            <table width="100%" class="table1">
+                <tr>
+                    <td style="text-align:left;"><b>Bill Number: </b>&nbsp;{{BillNo}}</td>
+                    <td style="text-align:right;">
+                        <button style="display: inline-block;float:left;" class="btn btn-info"  [disabled]= "!activatePrint" type="button" (click)="addAPrintBill()" id="printBill">Generate Bill Number<span style="color:white">&#10003;</span> and then Print</button>
+                        
+                        <span id="printBillms1">Select & Load existing Bill data <select name="BusinessType" #BusinessType="ngModel" (change)="CategorySelected($event.target)" [(ngModel)]="billidForCase" >
+                            <option value="0">--Select a Bill ID/Close Me--</option>
+                            <option *ngFor = "let billIdsforThisCase of BillIdsforThisCase" 
+                             value="{{billIdsforThisCase.BillNo}}"> {{billIdsforThisCase.BillNo}}({{billIdsforThisCase.BillID}})
+                        </option>
+                        </select></span>
+                    </td>
+                   
+                </tr>
+                <!-- <tr>
+                    <td style="text-align:left;"><b>Bill Number: </b>&nbsp;{{getBillNUmber(EditedCaseData?.IPDOPDId)}}</td>
+                    <td style="text-align:right;"></td>
+                   
+                </tr> -->
+                <tr>
+                    <td style="text-align:left;"><b>IP/OP no: </b>&nbsp;{{EditedCaseData?.IPDOPDId}}</td>
+                    <td style="text-align:right;"><b>Referred By:</b>&nbsp;{{EditedCaseData?.Home?.RefferDoctorName}}</td>
+                   
+                </tr>
+                <!-- <tr>
+                    <td style="text-align:left;"><b>Reg.no: </b>&nbsp;{{EditedCaseData?.UnqueID}}</td>
+                    <td style="text-align:right;"><b>Referred By:</b>Dr. {{EditedCaseData?.TestNameWithCase?.RefferDoctorName}}</td>
+                   
+                </tr> -->
+                <tr>
+                    <td style="text-align:left;"><b>Name:</b>&nbsp;{{EditedCaseData?.Home?.FirstName}}&nbsp;{{EditedCaseData?.Home?.LastName}}</td>
+                    <td style="text-align:right;"><b>Admission Date:</b>&nbsp;{{EditedCaseData?.DateStart}}</td>            
+                </tr>
+                <tr>
+                    <td style="text-align:left;"><b>Age & Sex:</b>&nbsp;{{EditedCaseData?.Home?.Year}}Yrs&nbsp;{{EditedCaseData?.Home?.Month}}months&nbsp;{{EditedCaseData?.Home?.Days}}Days&nbsp;/{{EditedCaseData?.Home?.Gender=="1"?'Male':'Female'}}</td>
+                    <td style="text-align:right;"><b>Received By:</b>&nbsp;{{EditedCaseData?.PaymentHistory[0]?.ReceivedBy}}</td>            
+                </tr>
+                <tr>
+                    <td style="text-align:left;"><b>Mobile No:</b>&nbsp;{{EditedCaseData?.Home?.ContactNumber}}</td>
+                    <td style="text-align:right;"></td>            
+                </tr>
+                <tr>
+                    <td style="text-align:left;"><b>Email:</b>&nbsp;{{EditedCaseData?.Home?.Email}}</td>
+                    <td style="text-align:right;"></td>            
+                </tr>
+                <tr>
+                    <td style="text-align:left;"> <b>Address:</b>&nbsp;{{EditedCaseData?.Home?.Address}}</td>
+                    <td style="text-align:right;"><b> Discharge and Billing Date:</b>&nbsp;{{myDate}}</td>            
+                </tr>
+                <tr>
+                    <td colspan="2"><hr/></td>
+                </tr>
+               
+            </table>
+            
+            </div>
+        <div class="col-sm-12" >
+            <ngx-barcode  *ngFor="let bcValue of values" [bc-value]="bcValue" [bc-width]="1" [bc-height]="20">
+            </ngx-barcode>
+            <label id="printCheckElement" style="display: inline-block;float:left;">
+                <input type="checkbox" (change)="fieldsChange($event)" />
+                Show header on each page
+              </label>
+            <button style="display: inline-block;float:left;" type="button" id="printElement"  [disabled]= "activatePrint" (click)="myPrint('frmIndividualLapReport')" class="btn btn-info"><span
+                class="glyphicon glyphicon-print" ></span>
+            Print</button>
+            <button *ngIf="false" type="button" style="display: inline-block;float:left;"  id="CloseMe"  (click)="CloseMe()" class="btn btn-info"><span
+                class="glyphicon glyphicon-print" ></span>
+            Close Me</button>
+
+            <button type="button" style="display: inline-block;float:left;"  id="closePopup" 
+      (click)="onNoClick()" class="btn btn-info"><span
+          class="glyphicon glyphicon-print" ></span>
+      Close Me/Popup</button>
+
+           
+
+            
+
+            <!-- <input id="printCheckElement" style="display: inline-block;float:left;" (change)="fieldsChange($event)" value="Show header on each page" type="checkbox"/>
+            <span id="printCheckTextElement" style="display: inline-block;float:left;">Show header on each page</span> -->
+
+        
+        </div>
+    </div>
+</div>
+
+<hr style="padding:0px;margin:0px" />
+
+
+    <!-- <p style="text-align:center;">
+        <b>Bill No.</b>:B{{EditedCaseData?.UnqueID}}
+    </p> -->
+    <div class="container" style="padding-top:1px;">
+    <div class="row">
+       
+        </div>
+        </div>
+    <hr style="margin-bottom:0px; margin-top:0px;">
+
+
+
+    <p style="text-align:center; padding-bottom:10px;"><b>Investigation/Test and Hospital Payment Details</b></p>
+   
+
+    <table style="width:100%" *ngFor="let itemOut of EditedCaseData?.TestNameWithCase?.TestType; let p=index;">
+                    
+        <thead style="width:100%">
+            <tr> 
+                <th colspan="5">
+                    #{{p+1}}. Investigation/Test Type: {{itemOut.parentTest}}
+                </th>
+            </tr>
+            <tr>
+                <th style="width:5%" style="text-align:left;">SlNo.</th>
+                <th style="width:60%" style="text-align:left;">Test Name</th>
+                <th style="width:35%;text-align:right;">Test Price(&#8377;)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of itemOut.names; let pInn=index">
+                <th style="width:5%" >{{ pInn+1 }}</th>
+                <td style="width:60%">{{ item.TestName }}</td>
+                <td style="width:36%;text-align:right;">{{ item.TestPrice }}</td>
+                
+            </tr>
+        </tbody>
+    </table>
+    <br/>
+    <!-- billing data: {{EditedCaseData|json}} -->
+    <table width="100%" class="table1">
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.LabTestCharge !== '0'">
+            <td style="text-align:left;">LabTest Charge:</td>
+            <td style="text-align:right;"> {{EditedCaseData?.PaymentHistory[0]?.LabTestCharge| currency :'INR':'symbol':'1.2-2'}}</td>           
+        </tr>
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.DailyExpense!= undefined && EditedCaseData?.PaymentHistory[0]?.DailyExpense !== '0' && EditedCaseData?.PaymentHistory[0]?.DailyExpense !== ''">
+            <td style="text-align:left;">Daily Expense Charge:</td>
+            <td style="text-align:right;"> {{EditedCaseData?.PaymentHistory[0]?.DailyExpense}}</td>           
+        </tr>
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.OPDCharge !== '0'">
+            <td style="text-align:left;">Consultation Charge:</td>
+            <td style="text-align:right;"> {{EditedCaseData?.PaymentHistory[0]?.OPDCharge| currency :'INR':'symbol':'1.2-2'}}</td>           
+        </tr>
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.DoctorCharge !== '0'">
+            <td style="text-align:left;">Doctor Visiting Fee:</td>
+            <td style="text-align:right;"> {{EditedCaseData?.PaymentHistory[0]?.DoctorCharge| currency :'INR':'symbol':'1.2-2'}}</td>           
+        </tr>
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.BedCharge !== '0' && EditedCaseData?.PaymentHistory[0]?.BedCharge !== ''">
+            <td style="text-align:left;">Bed Charge:</td>
+            <td style="text-align:right;"> {{EditedCaseData?.PaymentHistory[0]?.BedCharge| currency :'INR':'symbol':'1.2-2'}}</td>           
+        </tr>
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.FarmaCharge !== '0'">
+            <td style="text-align:left;">Pharmacy Charge:</td>
+            <td style="text-align:right;"> {{EditedCaseData?.PaymentHistory[0]?.FarmaCharge| currency :'INR':'symbol':'1.2-2'}}</td>           
+        </tr>
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.OTCharge !== '0' && EditedCaseData?.PaymentHistory[0]?.OTCharge !== ''">
+            <td style="text-align:left;">OT Charge:</td>
+            <td style="text-align:right;"> {{EditedCaseData?.PaymentHistory[0]?.OTCharge| currency :'INR':'symbol':'1.2-2'}}</td>           
+        </tr>
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.OtherCharge !== '0'">
+            <td style="text-align:left;">Other Charge:</td>
+            <td style="text-align:right;"> {{EditedCaseData?.PaymentHistory[0]?.OtherCharge| currency :'INR':'symbol':'1.2-2'}}</td>           
+        </tr>
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.RegdCharge !== '0'">
+            <td style="text-align:left;">Registration Charge:</td>
+            <td style="text-align:right;"> {{EditedCaseData?.PaymentHistory[0]?.RegdCharge| currency :'INR':'symbol':'1.2-2'}}</td>           
+        </tr>
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.NurseCharge !== '0'">
+            <td style="text-align:left;">Nursing Charge:</td>
+            <td style="text-align:right;"> {{EditedCaseData?.PaymentHistory[0]?.NurseCharge| currency :'INR':'symbol':'1.2-2'}}</td>           
+        </tr>
+        
+        <tr>
+            <td colspan="2"><hr/></td>
+            </tr>
+
+        <tr>
+            <td style="text-align:left;">Total Fees:</td>
+            <td style="text-align:right;"> {{EditedCaseData?.PaymentHistory[0]?.Amount| currency :'INR':'symbol':'1.2-2'}}</td>           
+        </tr>
+        <tr>
+            <td style="text-align:left;">Discount:</td>
+            <td style="text-align:right;"> {{EditedCaseData?.PaymentHistory[0]?.Discount| currency :'INR':'symbol':'1.2-2'}}</td>           
+        </tr>
+        <tr>
+            <td style="text-align:left;">Advance Payment:</td>
+            <td style="text-align:right;"> {{EditedCaseData?.PaymentHistory[0]?.EarlierPayment| currency :'INR':'symbol':'1.2-2'}}</td>           
+        </tr>
+        <tr>
+            <td style="text-align:left;">Amount Received:</td>
+            <td style="text-align:right;"><span style="color:green">&#10003; </span>&nbsp;{{TotalAmountRecived| currency :'INR':'symbol':'1.2-2'}}</td>           
+        </tr>
+        <tr>
+            <td style="text-align:left;" colspan="2"><hr/></td>
+                      
+        </tr>
+        <tr>
+            <td style="text-align:left;">Balance Amount:</td>
+            <td style="text-align:right;">{{EditedCaseData?.PaymentHistory[0]?.Balance| currency :'INR':'symbol':'1.2-2'}}</td>           
+        </tr>
+        </table>
+
+    
+    <br/>
+    <div class="row">
+        <div class="col-sm-6">
+            <p style="text-align:left;">
+                <b>Place By:</b><br />
+                <b>Date:</b>&nbsp;{{myDate}}<br /><br />                           
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <p style="text-align:right;">
+                <b></b>
+                <br />
+                <b>Authorized Signature:&nbsp;</b>
+                <!-- <img src="/assets/images/signDoctor.png" alt="add" width="50" height="24"> -->
+                <br />                           
+            </p>
+        </div>
+    </div>
+    <p style="text-align:center;"><b>~~~~Thank You~~~~</b></p>
+    
+
+
+          </td></tr>
+        </tbody>
+        <!-- follwing line make footer repeatable for each page -->
+        <!-- <tfoot><tr><td>Your footer goes here</td></tr></tfoot> -->
+     </table>
+  
+       
+        <div >
+       
+        
+           
+    
+         
+           
+            
+    
+  
+    
+   
+    
+
+</div>  
+
+

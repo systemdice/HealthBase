@@ -1,0 +1,16 @@
+.color-preview {
+    margin-left: 6px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    text-align: center;
+  }
+  
+  .color-container {
+    padding-left: 8px;
+  }
+
+  mat-form-field {
+    width: 82%;
+  }

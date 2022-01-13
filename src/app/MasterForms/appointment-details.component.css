@@ -1,0 +1,50 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+     min-width: 400px; 
+    max-height: 400px;
+  }
+  dl, ol, ul {
+    margin-top: 0;
+    margin-bottom: 0rem;
+    margin-left: 0p;
+    margin-left: 0px;
+    padding-left: 0px;
+  }
+
+  .mat-expansion-panel {
+    box-sizing: border-box;
+ }
+  
+  .example-header {
+    min-height: 64px;
+    padding: 2px 12px 0;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 400px;
+  }
+  .mat-cell{
+    display:flex !important;
+    justify-content:flex-start!important;
+  
+  }
+
+  ::ng-deep .mat-cell{
+    display:flex !important;
+    justify-content:flex-start!important;
+  }
+
+  h3{
+    background-color: rgb(174, 198, 243);
+    color: white;
+    text-align: left;
+    padding:6px;
+  }
+  

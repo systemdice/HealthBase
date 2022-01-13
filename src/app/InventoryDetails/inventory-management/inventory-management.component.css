@@ -1,0 +1,109 @@
+
+.fill-space {
+    flex: 1 1 auto;
+}
+
+.solution { padding: 15px;}
+
+.HeaderStyle{
+    height: 30px; background-color:#336699 ; color:#FFFFFF ;border: solid 1px #659EC7;
+}
+
+/* .table-row {
+    height: 40px !important;
+  } */
+
+  .mat-header-row, .mat-row {
+    min-height: 40px;
+    /* height: 40px !important; */
+  }
+
+  .mat-column-stockQty {
+    flex: 0 0 8%;
+}
+.mat-column-slno {
+  flex: 0 0 5%;
+  padding-left: 0;
+}
+.mat-column-priorityStatus {
+  flex: 0 0 5%;
+}
+
+.mat-column-inventoryID {
+  flex: 0 0 6%;
+}
+.mat-column-itemName {
+  flex: 0 0 12%;
+}
+.mat-column-ItemCode {
+  flex: 0 0 10%;
+}
+.mat-column-CGST {
+  flex: 0 0 3%;
+}
+.mat-column-SGST {
+  flex: 0 0 3%;
+}
+.mat-column-Discount {
+  flex: 0 0 4%;
+}
+.mat-column-UnitPrice {
+  flex: 0 0 4%;
+}
+.mat-column-SellPrice {
+  flex: 0 0 4%;
+}
+.mat-column-Expiry {
+  flex: 0 0 5%;
+}
+.mat-column-priorityStatus {
+  flex: 0 0 3%;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-child {
+  flex: 1;
+  border: 2px solid yellow;
+}  
+
+.flex-child:first-child {
+  margin-right: 20px;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: row;
+}
+
+.column-item {
+  flex: 1 0 61%;   /*; flex-grow, flex-shrink, flex-basis */
+  margin: 2px;
+  background-color: lightgreen;
+}
+
+.container1{
+  
+  width:100%;
+  background-color: #336699;
+  display:flex;
+  flex-wrap:wrap;
+}
+.itemC1{
+  width:350px;
+  
+  background-color:#3c70a3;
+  margin:10px;
+  padding:3px;
+}
+.itemC{
+  width:200px;
+  
+  background-color:#3c70a3;
+  margin:10px;
+  padding:3px;
+}
+
+

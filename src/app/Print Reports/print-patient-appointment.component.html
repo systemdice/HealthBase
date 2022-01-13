@@ -1,0 +1,179 @@
+
+<!-- {{data.pp|json}} -->
+
+<div id="prnt" class="form-group row">
+    <div class="col-md-5 col-sm-5">
+        
+            <!-- <button  class="btn btn-success btnOneLine" (click)="printPage()" >
+                <span class="glyphicon glyphicon-off"></span> PRINT</button>  -->
+                <button type="button" class="btn btn-info btnOneLine" (click)="printPage()"><span class="glyphicon glyphicon-print"></span> Print</button>
+
+                <button class="btn btn-success btnOneLine" (click)="onNoClick()" color="warn"> <span
+                    class="glyphicon glyphicon-off"></span>Cancel</button>
+        
+      </div>
+   
+</div> 
+<body style="padding:1%; margin:auto;">
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- <img src="/assets/images/logo.png" alt="add" width="24" height="24" > -->
+            <img src="/assets/images/truesmilelogo.PNG" alt="addlogo"  width="100" height="65" style="padding-left:10%;">
+            <!-- <img src="image/logo1.jpg" style="padding-left:10%;"> -->
+        </div>
+        <div class="col-md-6" style="text-align:center;">
+            <p style="font-size:34px; font-family:Geneva;">{{Address1}}</p>
+            <p style="font-size:22px; font-family:Geneva;">{{Address2}}</p><br>
+            <p style="font-size:22px; font-family:Geneva;">{{Address3}}</p><br>
+            <p style="font-size:20px; font-family:Geneva;">Doctor Appointment</p>
+        </div>
+        <div class="col-md-3">
+            <!-- <img src="/assets/images/scannew.jpg" alt="add"> -->
+            <!-- <img src="image/scannew.jpg"><br/> -->
+            <ngx-barcode *ngFor="let bcValue of values"  [bc-value]="bcValue"
+                    [bc-width]="1" [bc-height]="30">
+                  </ngx-barcode>
+            
+        </div>
+    </div>
+</div>
+<hr>
+
+<div class="container" style="font-family:Geneva;">
+    <div class="row">
+        <div class="col-md-4">
+            <table>
+            <tr>
+                <td>Hospital Name </td> 
+                <td>:</td>
+                <td><b>{{HospitalName}}</b></td>
+            </tr>
+            <tr>
+                <td>Appointment Date </td> 
+                <td>:</td>
+                <td><b>{{AppointmentDate}}</b></td>
+            </tr>
+            </table>
+        </div>
+        <div class="col-md-1">
+            <p>Age : <b>{{Age}}</b></p>
+        </div>
+        <div class="col-md-2">
+            <p>Gender : <b>{{Gender}}</b></p>
+            
+        </div>
+        <div class="col-md-5">
+            <p>Name : <b>{{PatientName}}</b></p>
+            <p><b>Report to MRO at : {{AppointmentTime}}</b></p>
+        </div>
+    </div>
+</div><br/>
+
+<div class="container" style="font-family:Geneva;">
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-6">
+        <table>
+            <tr>
+                <td>Clinic </td> 
+                <td>:</td>
+                <td><b> &nbsp; {{Address1}}</b></td>
+            </tr>
+            <tr>
+                <td>Counter </td> 
+                <td>:</td>
+                <td><b>&nbsp; {{CounterName}}</b></td>
+            </tr>
+            <tr>
+                <td>Doctor Name </td> 
+                <td>:</td>
+                <td><b>&nbsp; {{DoctorName}}</b></td>
+            </tr>
+            <tr>
+                <td>Mode of Payment </td> 
+                <td>:</td>
+                <td><b> &nbsp;{{PaymentMode}}</b></td>
+            </tr>
+            
+        </table>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+</div>
+<br/>
+<div class="container" style="font-family:Geneva;">
+    <div class="row">
+        <div class="col-md-7">
+        <table>
+            <tr>
+                <!-- <td>Invoice Number  &nbsp;</td> 
+                <td>:</td>
+                <td> &nbsp;W2185913</td> -->
+            </tr>
+            <tr>
+                <td>Bill No </td> 
+                <td>:</td>
+                <td>&nbsp;BSD{{BillID}}</td>
+            </tr>
+            <tr>
+                <td>paid On</td> 
+                <td>:</td>
+                <td>&nbsp;{{PaidOn}}</td>
+            </tr>
+         </table>
+        </div>
+        <div class="col-md-5">
+            <table>
+            <tr>
+                <td>Fees  &nbsp;</td> 
+                <td>:</td>
+                <td> &nbsp;<b>&#x20B9;. &nbsp;{{Amount}}</b></td>
+            </tr>
+            <tr>
+                <td>Discount  &nbsp;</td> 
+                <td>:</td>
+                <td> &nbsp;<b>&#x20B9;. &nbsp;{{Discount}}</b></td>
+            </tr>
+            <tr>
+                <td><b>Total</b></td> 
+                <td>:</td>
+                <td> &nbsp;<b>&#x20B9;.&nbsp;{{Amount-Discount}}&nbsp;<span class="glyphicon glyphicon-ok" style="color:green"></span>  &nbsp;</b>
+                   </tr>
+            <tr>
+                <td>Reciept No </td> 
+                <td>:</td>
+                <td>&nbsp;WEBSD{{BillID}}</td>
+            </tr>
+            <tr>
+                <td>Printed On</td> 
+                <td>:</td>
+                <td>&nbsp;{{printedon}}</td>
+            </tr>
+         </table>
+            
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="container" style="text-align:center; font-family:Geneva;">
+    <p> Before reporting to MEDICAL RECORDS OFFICERS, Please contact IRO (900B) to completies the formalities.</p>
+    <p><b>Thank You</b></p>
+</div>
+
+<div class="container" style="font-family:Geneva;">
+    <p style="font-size:20px;">General Instructions</p>
+    <p>
+        1.If a patients require in-patient admission a female attendant is mandatory.<br/>
+        2.Appointment booked online will Not be Refunded.<br/>
+        3.Change of Department/Unit Not allowed.<br/>
+        4.Change in Appointment Date will be allowed only once upto one day prior To the appointment Date.
+    </p>
+</div>
+
+</body>
+            

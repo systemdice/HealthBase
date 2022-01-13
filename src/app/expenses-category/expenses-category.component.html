@@ -1,0 +1,57 @@
+<h3 class="display-7">New Category&nbsp;(<span style="color:blue;">{{formDataExpense.UnqueID}}</span>)</h3>
+<hr>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+
+
+
+    <div class="form-row">
+       
+        <div class="form-group col-md-12">
+        <input type="hidden" name="Id" #Id="ngModel" [(ngModel)]="formDataExpense.UnqueID">
+
+        <div class="form-group col-md-6" style="display: flex">
+
+            <input type="text" name="Notes" class="form-control" name="CategoryName" #CategoryName="ngModel" [(ngModel)]="formDataExpense.CategoryName" placeholder="Category Name">
+        
+        </div>
+        <div class="form-group col-md-6">
+            
+            <mat-form-field fxFlex>
+                <mat-label><span style="color:red">*</span> Category Type</mat-label>
+                <!-- Collection Center By -->
+                <mat-select name="CategoryType" #CategoryType="ngModel" [(ngModel)]="formDataExpense.CategoryType">
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let cagerotyType of CategoryCollection" value="{{cagerotyType}}">{{cagerotyType}}</mat-option>
+                </mat-select>
+      
+              </mat-form-field>
+           </div>
+
+         </div>
+        </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <textarea name="Notes" class="form-control" style="width:100%;height:150px;" #Notes="ngModel" [(ngModel)]="formDataExpense.Notes" placeholder="Expense Notes"></textarea>
+            <!-- <input type="text" name="Notes" class="form-control" #Notes="ngModel" [(ngModel)]="formDataExpense.Notes" placeholder="Expense Notes"> -->
+        </div>
+    </div>
+
+    <div class="form-row">
+        
+
+        <div class="form-group col-md-6" style="display: flex">
+
+            <input type="text" [matDatepicker]="picker" placeholder="Date" name="Date" #Date="ngModel" [(ngModel)]="formDataExpense.Date" readonly class="form-control">
+            <mat-datepicker-toggle matSuffix [for]="picker" text-color="yellow"></mat-datepicker-toggle>
+            <mat-datepicker #picker disabled=false></mat-datepicker>
+        </div>
+        <div class="form-group col-md-6">
+            <button type="submit" class="btn btn-primary btn-md text-white " ><i class="fa fa-save"><span class="ml-1"></span></i>Save</button>
+            <button type="button" class="btn btn-danger btn-md float-right " (click)="closeModel()"><i class="fa fa-close"></i><span class="ml-1"></span>Cancel</button>
+       </div>
+    </div>
+
+    
+</form>
+<!-- {{form.value|json}} -->

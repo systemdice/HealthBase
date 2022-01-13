@@ -1,0 +1,76 @@
+ :host {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0px;
+  }
+
+
+  .container {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    
+}
+hr {
+  border: 1;
+  display:block;
+  width: 20%;               
+  background-color:#69690b;
+  height: 1px;
+}
+/*  .mat-form-field {
+    width: 100%;
+    min-width: 300px;
+  }
+  
+  mat-card-title,
+  mat-card-content {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .error {
+    padding: 16px;
+    width: 300px;
+    color: white;
+    background-color: red;
+  }
+  
+  .button {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  
+  
+  .huge {
+    font-size: 40px;
+  } */
+
+  /* Login Form Box */
+/* Login Form Box */
+.loginform-box {
+  border: 8px solid rgb(206, 204, 204);
+  border-radius: 30px;
+  /* background-color: #3297a7; */
+  padding: 2%;
+  margin: 10% 0%;
+  /* color: #fff; */
+}
+.login-title {
+  letter-spacing: 1px;
+  font-weight: 400;
+  color: #3f51b5;
+}
+
+/* .body {
+  background: linear-gradient(to left top, rgb(179, 179, 241), rgb(241, 216, 216)) fixed;
+} */
+
+.body {
+  background: #eb01a5;
+  background-image: url("/assets/images/dashboardMobile.PNG"); /* fallback */
+  background-image: url("/assets/images/dashboardMobile.PNG"), linear-gradient(#eb01a5, #d13531); /* W3C */
+}
+
+

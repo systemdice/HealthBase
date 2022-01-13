@@ -1,0 +1,53 @@
+
+<h3 mat-dialog-title>Current Execution :: <strong>{{action}}</strong><span style="color:red"> Patient ID({{getUnit(data.uid)}})</span></h3>
+
+<div fxLayout="column" style="height:500px;overflow-y: auto;overflow-x: hidden;">
+<form [formGroup]="addrFrom" fxLayout="column" > 
+
+    <!-- <div class="solution">
+
+        
+        <div fxLayout="row" fxLayout.xs="column">
+            <div fxFlex="40%;" fxFlex.xs="80%">
+                <h2>Left Card 1</h2>
+            </div>
+    
+            <div fxFlex="40%;" fxFlex.xs="80%">
+                <h2>Left Card 2</h2>
+            </div>
+    
+            <div fxFlex="20%;" fxFlex.xs="80%">
+                <h2>Left Card 3</h2>
+            </div>
+        </div>
+        </div> -->
+
+
+    <!-- Name : <input type="text" formControlName="name" /><br/>
+    <hr/> -->
+    <!-- <button (click)="SavePP()" >Call Child Component Method</button> -->
+    <app-pataient-detail-main #child [home]="addrFrom.get('home')" [caseType]="parValue"></app-pataient-detail-main><hr/>
+  
+    
+
+    <br/>
+    <div class="row">
+<div class="col-md-2"> <button type="button"  class="btn btn-success" (click)="doAction(action)">
+    <span class="glyphicon glyphicon-off"></span> {{action}} &nbsp;Patient</button></div>
+<div class="col-md-9">
+    <button class="btn btn-success" (click)="closeDialog()" color="warn"> <span class="glyphicon glyphicon-off"></span>Cancel</button>
+
+    
+</div>
+    </div>
+   
+    
+  
+  </form>
+  
+  <!-- {{addrFrom.value | json}} -->
+</div>
+
+
+
+  

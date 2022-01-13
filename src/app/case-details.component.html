@@ -1,0 +1,286 @@
+<form [formGroup]="CaseDetails">
+
+<!-- {{asyncPipeLabTestMaster|json}} -->
+  <!-- <button (click)= "patchValue2()">load</button> -->
+<!-- {{CaseDetails.value|json}} -->
+  <div class="panel panel-info">
+    <!-- <div class="panel-heading">
+      <span>
+        <button mat-button style="font-size: x-small;">
+          <mat-icon> exit_to_app </mat-icon> Case Details
+        </button>
+      </span>
+    </div> -->
+    <div class="panel-body">
+      <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+
+        <mat-form-field fxFlex>
+          <mat-label>Referrer</mat-label>
+          <mat-select formControlName="RefferDoctorName" (selectionChange)="referralChangeAction()">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let option of referralMaster" [value]="option.FirstName">
+              {{option.FirstName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!-- <a mat-flat-button href="" [disabled]="isLoading" 
+               (click)="clickme($event);"><i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-check': !isLoading}"></i><u>Add reffer</u></a>
+                 -->
+        <div fxFlex>
+          <button mat-icon-button (click)="openInvestigationDialogNew('Add')">
+            <mat-icon>menu</mat-icon> &nbsp; Add new Referrer
+          </button>
+        </div>
+
+       
+        <!-- <div fxFlex>
+           <button mat-icon-button (click)="AddTestInNewTab()">
+            <mat-icon>menu</mat-icon> &nbsp; Add PathoLAB Test
+          </button>
+        </div> -->
+        <div fxFlex>
+          <button mat-icon-button (click)="openLabTestAdd()">
+           <mat-icon>menu</mat-icon> &nbsp; Add PathoLAB Test
+         </button>
+       </div>
+
+
+        <mat-form-field fxFlex>
+          <mat-label><span style="color:red">*</span> Collection Center</mat-label>
+          <!-- Collection Center By -->
+          <mat-select formControlName="CollectionCenter">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let city of CollectionCenter" value="{{city}}">{{city}}</mat-option>
+          </mat-select>
+
+        </mat-form-field>
+
+
+      </div>
+
+      <!-- <div class="input-row">
+        <button mat-icon-button>
+          <mat-icon (click)="openDialogNew('Add')">menu</mat-icon> &nbsp; ManageRefferer
+        </button>
+
+      </div>
+ -->
+
+
+
+
+
+
+
+
+      <section>
+
+        <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+
+
+
+          <div class="col-xs-2 divB">
+            <button mat-icon-button class="matBtn" (click)="addAddress('LAB')">
+              <mat-icon class="divB">menu</mat-icon> &nbsp; LAB
+            </button>
+          </div>
+          <div class="col-xs-2 divB">
+            <button mat-icon-button class="matBtn" (click)="addAddress('DENTAL')">
+              <mat-icon>settings_ethernet</mat-icon> &nbsp; DENTAL
+            </button>
+          </div>
+          <div class="col-xs-2 divB">
+            <button mat-icon-button class="matBtn" (click)="addAddress('SCANNING')">
+              <mat-icon>settings</mat-icon> &nbsp; SCANNING
+            </button>
+          </div>
+
+        </div>
+
+
+
+
+      </section>
+
+      <!-- <ng-template [ngIf]="lessons" [ngIfElse]="loading">
+                <div >
+                  ... Hide me
+                  <button mat-icon-button (click)="hideLabTemplate()">Hide me</button>
+                </div>
+             </ng-template>
+             
+             <ng-template #loading>
+                 <div>Show me...</div>
+             </ng-template> -->
+
+      <!-- address form portion -->
+
+      <!-- <div class="col-6">
+                <mat-form-field>
+                <mat-label>Toppings</mat-label>
+  <mat-select formControlName="toppingsControl" multiple>
+
+    <mat-select-trigger>
+      <mat-chip-list>
+        <mat-chip *ngFor="let topping of CaseDetails.get('toppingsControl').value"
+          [removable]="true" (removed)="onToppingRemoved(topping)">
+          {{ topping }} (&#x20B9;.100)
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </mat-select-trigger>
+  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}} (₹100) <mat-icon matTooltip="add the entry" matTooltipPosition="below" aria-label="Delete">control_point</mat-icon></mat-option>
+
+</mat-select>
+</mat-form-field>
+              </div> -->
+      <div class="row" formArrayName="TestType">
+       
+        
+        <div class="col-12" *ngFor="let group of TestTypeArray.controls; let i = index;" [formGroupName]="i">
+
+          <div class="row">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-9">
+                  <h4> {{i+1}}. Analysis for: &nbsp; {{TestTypeArray.controls[i]['controls'].parentTest.value}}
+                    <button type="button" class="btn btn-sm btn-danger"
+                    (click)="removeAllTests(i)"> &#x2717;&nbsp;Del</button>&nbsp;
+                    <button type="button" class="btn btn-sm btn-success"
+                    (click)="RefreshForNewlyAddedTests()"> &#x2717;&nbsp;Refresh for new Tests</button>
+                    &nbsp;<button type="button" class="btn btn-sm btn-success"
+                    (click)="AddTestInNewTab()"> &#x2717;&nbsp;Add new Tests</button>
+                    <!-- {{grp|json}} -->
+                    <mat-form-field >
+                      <!-- <input matInput type="text" placeholder="Department" formControlName="Department"> -->
+                      <mat-label>Group Test</mat-label>
+                      <mat-select   (selectionChange)="onSupplierValueChange($event,i)" >
+                        <mat-option >-Select-</mat-option>
+                        <mat-option  *ngFor="let option of grp" [value]="option">{{option.GroupName}}&nbsp;(<span style="color:red">₹{{option.TotalPrice}}</span>&nbsp;of &nbsp;{{option.ActualPrice}})</mat-option>
+                      </mat-select>
+                     
+                    </mat-form-field>
+<!-- {{SelectedGroups|json}}---------- -->
+
+
+                    <!-- {{param|json}} -->
+                    <button type="button" class="btn btn-sm btn-warning"
+                                (click)="addGroupVal(groupTestNames,i)"> &nbsp;Add Group Tests</button>&nbsp;
+                                <!-- {{groupTestNames|json}} -->
+                               
+                    </h4>
+                 <h6> <label>Groups Used:&nbsp;{{TestTypeArray?.controls[i]['controls']?.grpPkgName?.value}}</label></h6>
+                  <h6>Total: &#x20B9;.{{TestTypeArray.controls[i]['controls'].TotalSum.value}} &nbsp;Due: Rs. 0</h6>
+                  <!-- <h6><img src="/assets/icons/remove.svg" alt="remove" width="24" height="24" (click)="removeAddress(i)"></h6> -->
+                  <div class="col-12">
+                    <mat-form-field class="demo-chip-list">
+      
+                      <mat-chip-list #chipList formArrayName="names">
+                        <mat-chip
+                          *ngFor="let fruit of TestTypeArray.controls[i]['controls'].names.value; let deleteIndex=index"
+                          [selectable]="selectable" [removable]="removable" (removed)="remove(fruit,deleteIndex,i)">
+                          {{fruit.TestName}} (₹{{fruit.TestPrice}})
+                          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Selected PathoLAB Tests will be added here" #fruitInput [formControl]="fruitCtrl" 
+                        [matAutocomplete]="matAutocomplete"
+                          [matChipInputFor]="chipList" [matChipInputAddOnBlur]="addOnBlur"  />
+                      </mat-chip-list>
+                      <!-- <mat-autocomplete #auto="matAutocomplete"  [displayWith]="displayFn" (optionSelected)="selected($event,i)">
+                        <mat-option *ngFor="let fruit of asyncPipeLabTestMaster" [value]="fruit">
+                          {{ fruit.TestName }}(₹{{fruit.TestPrice}})
+                        </mat-option>
+                      </mat-autocomplete> -->
+                    </mat-form-field>
+                    
+                    
+                  <mat-form-field>
+                    <mat-label>Search and Add PathoLAB Tests... Type your guess/prediction</mat-label>
+                    <input type="text"
+                           placeholder="Pick one"  aria-label="Number" matInput [formControl]="myControl" 
+                           [matAutocomplete]="auto2" value="">
+                    <mat-autocomplete #auto2="matAutocomplete" [displayWith]="displayFn"  (optionSelected)="selected($event,i)">
+                      <mat-option *ngFor="let option of (slide.checked ? [] : (filteredOptions| async)) " 
+                        [value]="option">
+                        {{ option.TestName }}(₹{{option.TestPrice}})
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                  <mat-slide-toggle [checked]="false" #slide>
+                    Disable Auto search?
+                  </mat-slide-toggle>
+                      
+                  </div>
+                </div>
+                <div class="col-3 control-buttons ex1">
+                  <!-- <img src="/assets/icons/remove.svg" alt="remove" width="24" height="24" (click)="removeAddress(i)"> -->
+                All PathoLAB Tests(View)<br/>
+                <ul>
+                 
+                  
+                  <li class="liClass" *ngFor="let name of alphabet ">
+                    <a href="javascript:void(null)" (click)="applyFilterAlphabet(name)" style="cursor:pointer;">{{name}}</a>&nbsp;
+                  </li>
+                  <li class="liClass">
+                    <a href="javascript:void(null)" (click)="applyFilterAlphabet('All')"><u>(All)</u></a>&nbsp; </li>&nbsp;
+                 </ul>
+                  <ul *ngIf="options!=undefined">
+                    <li *ngFor="let alert of optionsView; let i=index">
+      {{alert.TestName}}(<span style="color:red">₹.{{alert.TestPrice}}</span>)
+                    </li>
+                    </ul>
+                </div>
+              </div>
+
+            </div>
+
+            
+
+            <!-- <div class="col-12">
+              <div class="row">
+                <div class="col">
+                  <button mat-icon-button (click)="openInvestigationDialogNew('Add')">
+                    <mat-icon>menu</mat-icon> &nbsp; Add new Test
+                  </button>
+                </div>
+                <div class="col">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Paid" formControlName="Paid" value="100">
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Discount" formControlName="Discount" value="0">
+                  </mat-form-field>
+                </div>
+
+                <div class="col">
+                  <mat-form-field fxFlex>
+                    <mat-label>Referral Discount</mat-label>                   
+
+                    <mat-select formControlName="DiscountType">
+                      <mat-option>--</mat-option>
+                      <mat-option *ngFor="let city of cities" value="{{city}}">{{city}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <app-payment-details [msgFromComponent]="msgFromComponent"></app-payment-details>
+
+
+
+
+  <!-- <input type="text" formControlName="street" placeholder="street" />
+      <app-error *ngIf="CaseDetails.get('street').hasError('required') && CaseDetails.get('street').touched">The Street is required</app-error>
+        <p></p>
+      <input type="text" formControlName="city"  placeholder="city"/>
+      <app-error *ngIf="CaseDetails.get('city').hasError('required') && CaseDetails.get('city').touched">The City is required</app-error> -->
+</form> <!-- -->

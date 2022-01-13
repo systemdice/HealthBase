@@ -1,0 +1,222 @@
+<form [formGroup]="DoctortoPatientCommentMedicineReDevelop" autocomplete="off">
+  <!-- {{this.DoctortoPatientCommentMedicineReDevelop.value|json}} -->
+  <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+    <b> Test Reports assigned:</b> <span style="cursor:pointer;color:blue"
+      *ngIf="CaseDetailValues.TestType.length < 1">Nothing assigned yet.</span>
+
+    <span *ngFor="let item of CaseDetailValues.TestType; let jOut = index">
+
+
+      <span *ngFor="let itemInn of item.names; let j = index">
+        <span style="cursor:pointer;color:blue" (click)="OpenLabReport(caseid,itemInn.TestName,item.parentTest)">
+          <span
+            style="cursor:pointer;color:rgb(241, 106, 106)"><b>{{jOut+1}}.{{j+1}}</b>)</span>&nbsp;{{itemInn.TestName}},&nbsp;
+        </span>
+
+
+      </span>
+
+    </span>
+
+
+  </div>
+  <div formArrayName="teachersDoctortoPatientCommentMedicineReDevelop">
+
+    <div *ngFor="let teacher of teachers().controls; let ti=index" class="row">
+      <div [formGroupName]="ti" fxFlex style="padding-left:20px;padding-right:30px;">
+        
+
+        <div>
+
+          <div>
+            <div class="row">
+              <div class="col-md-4 col-sm-4 col-xs-4" fxFlex>
+                <mat-form-field>
+                  <mat-label>Select a Doctor</mat-label>
+                  <mat-select formControlName="name" (selectionChange)="onBookChange($event)">
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let expense of referralMaster" [value]="expense.FirstName">{{expense.FirstName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <button type="button" class="btn btn-sm btn-success" (click)="addMedicines(ti)">Add Medicines</button>&nbsp;
+              </div>
+            </div>
+
+            <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px"
+              *ngIf="showAdvanceBoxval == 'OPD'">
+
+              <mat-form-field fxFlex>
+                <span matPrefix style="color:blue"></span>
+                <textarea matInput id="idPatientHistory" style="background-color: #fcfcfc" placeholder="Patient History"
+                  rows="3" formControlName="PatientHistory"></textarea>
+
+
+              </mat-form-field>
+
+              <mat-form-field fxFlex>
+                <span matPrefix style="color:blue"></span>
+                <textarea matInput id="idPatientFinding" style="background-color: #fcfcfc"
+                  placeholder="Patient Findings" rows="3" formControlName="PatientFinding"></textarea>
+
+
+              </mat-form-field>
+              <mat-form-field fxFlex>
+                <span matPrefix style="color:blue"></span>
+                <textarea matInput id="idPatientDiagnosis" style="background-color: #fcfcfc"
+                  placeholder="Patient Condition" rows="3" formControlName="PatientDiagnosis"></textarea>
+
+
+              </mat-form-field>
+
+            </div>
+
+
+
+            <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+
+              <mat-form-field fxFlex>
+                <span matPrefix style="color:blue"></span>
+                <textarea matInput style="background-color: #fcfcfc" placeholder="Doctor observations" rows="6"
+                  formControlName="DoctorComments"></textarea>
+
+
+              </mat-form-field>
+              <mat-form-field fxFlex>
+                <span matPrefix style="color:blue"></span>
+                <textarea matInput rows="6" readonly style="background-color: rgb(248, 248, 248);"
+                  placeholder="Doctor Observations History" formControlName="DoctorCommentsHL"></textarea>
+
+
+              </mat-form-field>
+
+
+            </div>
+            <hr style="padding:1px;margin:1px;" />
+            <div formArrayName="medicines" >
+ 
+              <div *ngFor="let batch of medicines(ti).controls; let bi=index">
+     
+                <div [formGroupName]="bi" class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+     
+                  <mat-form-field fxFlex>
+                    <span matPrefix style="color:blue"></span>
+                    <input matInput id="IndMedicineName" style="background-color: #fcfcfc" placeholder="Medicine Name"
+                     formControlName="IndMedicineName">
+                  </mat-form-field>
+    
+                  <mat-form-field fxFlex>
+                    <span matPrefix style="color:blue"></span>
+                    <input matInput id="unit" 
+                      placeholder="unit"
+                      formControlName="unit">
+                  </mat-form-field>
+                  <mat-form-field fxFlex>
+                    <span matPrefix style="color:blue"></span>
+                    <input matInput id="noOfTimes" 
+                      placeholder="Number Of Times"
+                      formControlName="noOfTimes">
+                  </mat-form-field>
+                  <mat-form-field fxFlex>
+                    <span matPrefix style="color:blue"></span>
+                    <input matInput id="noOfDays" 
+                      placeholder="No Of Days"
+                      formControlName="noOfDays">
+                  </mat-form-field>
+
+                  <mat-form-field fxFlex style="width:100px">
+                    <mat-label>Time to use Medicine</mat-label>
+                      <mat-select formControlName="whichTime"  >
+                      <mat-option></mat-option>
+                      <mat-option *ngFor="let whichTime of WhichTime" [value]="whichTime">{{whichTime}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+                  <span style="color:#9F000F" class="btn">
+                    <button type="button" class="btn btn-sm btn-success" (click)="addMedicines(ti)">Add Medicines</button>&nbsp;
+                    <button type="button" class="btn btn-sm btn-danger" (click)="removeMedicines(ti,bi)">Remove Medicines</button>&nbsp;
+                  </span>
+                  <!-- <button type="button" (click)="addMedicines(ti)">Add Medicines(pres)</button>
+                  <button (click)="removeMedicines(ti,bi)">Remove Medicines(pres)</button> -->
+                </div>
+     
+              </div>
+     
+            </div>
+
+            <div *ngIf="false" class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+
+              <mat-form-field fxFlex>
+                <span matPrefix style="color:blue"></span>
+                <textarea matInput id="idMedicineNames" style="background-color: #fcfcfc" placeholder="New Medicines"
+                  rows="6" formControlName="MedicineNames"></textarea>
+
+
+              </mat-form-field>
+
+              <mat-form-field fxFlex>
+                <span matPrefix style="color:blue"></span>
+                <textarea matInput rows="6" id="idMedicineNamesHL" readonly
+                  style="background-color: rgb(248, 248, 248);" placeholder="Medicine History"
+                  formControlName="MedicineNamesHL"></textarea>
+
+
+              </mat-form-field>
+            </div>
+            <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+
+              <mat-form-field fxFlex>
+                <span matPrefix style="color:blue"></span>
+                <textarea matInput id="idPatientPathoLabTestAdvice" style="background-color: #fcfcfc"
+                  placeholder="Patient PathoLab Test Advice" rows="4"
+                  formControlName="PatientPathoLabTestAdvice"></textarea>
+
+
+              </mat-form-field>
+
+
+            </div>
+
+
+
+
+          
+
+
+
+
+
+            <div>
+            
+              <div class="col-md-1 col-sm-1 col-xs-1">
+                <button style="display: inline-block;" type="button" (click)="OpenPrescription(ti)"
+                  class="btn btn-info"><span class="glyphicon glyphicon-print"></span>
+                  Print the Prescription</button>
+              </div>
+
+              &nbsp;&nbsp;<div class="col-md-8 col-sm-8 col-xs-8" style="padding-bottom:5px;">
+                <span style="color:#9F000F" class="btn">
+                  <button type="button" class="btn btn-sm btn-success" (click)="addTeacher()">
+                    &#10003;&nbsp;Add Doctor Advice & prescription</button>&nbsp;
+                  <button type="button" class="btn btn-sm btn-danger" (click)="removeTeacher(ti)">
+                    &#x2717;&nbsp;Delete Advice & prescription</button>&nbsp;
+                </span>
+              </div>
+            </div>
+
+   
+          </div>
+        </div>
+
+        
+
+        <hr />
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+</form>

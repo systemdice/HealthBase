@@ -1,0 +1,351 @@
+<h3 class="display-7">New Wok or Job entry&nbsp;(<span style="color:blue;">{{formDataFollowup.UnqueID}}</span>)</h3>
+<hr>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+    <div class="ex3">
+        <!-- {{fromDataCategory|json}}---{{fromDataCategoryMaster|json}}
+{{fromDataCategoryFilter|json}}--------------- -->
+
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="name" class="control-label">Resource Name</label>
+                <input type="text" name="UserName" class="form-control" #UserName="ngModel"
+                    [(ngModel)]="formDataFollowup.UserName" placeholder="Username">
+
+            </div>
+            <div class="form-group col-md-2">
+                <label for="FollowupCategory" class="control-label">Work Category</label>
+                <select style="display:inline;" name="FollowupCategory" #FollowupCategory="ngModel"                
+                    (change)="CategorySelected($event.target)" [(ngModel)]="formDataFollowup.FollowupCategory"
+                    (ngModelChange)="CategorySelected($event.target)"
+                    
+                    class="form-control">
+                    <option value="0">--Select Category type--</option>
+                    <option *ngFor="let cat of formCategoryMaster" value="{{cat.Name}}"> {{cat.Name}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="CategoryName" class="control-label">Work Name</label>
+                <select style="display:inline;" name="CategoryName" #CategoryName="ngModel"
+                    [(ngModel)]="formDataFollowup.CategoryName" class="form-control">
+                    <option value="0">--Select Category type--</option>
+                    <option *ngFor="let cat of fromDataCategoryFilter" value="{{cat.CategoryName}}">
+                        {{cat.CategoryName}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="WorkStatus" class="control-label">Work Status</label>
+                <select name="WorkStatus" #WorkStatus="ngModel" [(ngModel)]="formDataFollowup.WorkStatus"
+                    class="form-control">
+                    <!-- <option value="D" disabled>Choose here</option> -->
+                    <option value="0">--Select Work Status--</option>
+                    <option value="Need to Followup">Need to Followup</option>
+                    <option value="Followup started">Followup started</option>
+                    <option value="Followup Progress">Followup Progress</option>
+                    <option value="Followup Cancelled">Followup Cancelled</option>
+                    <option value="Followup Completed">Followup Completed</option>
+
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="ClientName" class="control-label">Client Name</label>
+                <input type="text" name="ClientName" class="form-control" #Notes="ngModel"
+                    [(ngModel)]="formDataFollowup.ClientName" placeholder="Client Name">
+
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="FollowupStartDate" class="control-label">Followup start Date</label>
+                <mat-form-field style="padding-top:0px; width:100%;">
+
+                    <input matInput readonly [matDatepicker]="FollowupStartDate" placeholder="Followup start Date"
+                        name="FollowupStartDate" #Date="ngModel" [(ngModel)]="formDataFollowup.FollowupStartDate"
+                        readonly>
+                    <mat-datepicker-toggle matSuffix [for]="FollowupStartDate"></mat-datepicker-toggle>
+                    <mat-datepicker #FollowupStartDate></mat-datepicker>
+                </mat-form-field>
+
+            </div>
+
+
+
+            <input type="hidden" name="Id" #Id="ngModel" [(ngModel)]="formDataFollowup.UnqueID">
+
+            <input type="hidden" name="CategoryName" #CategoryName="ngModel"
+                [(ngModel)]="formDataFollowup.CategoryName">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="ClientLocation" class="control-label">Client Location</label>
+                <input type="text" ng-init="formDataFollowup.ClientLocation ='can you see me'" name="ClientLocation"
+                    class="form-control" #Notes="ngModel" [(ngModel)]="formDataFollowup.ClientLocation"
+                    placeholder="Client Location">
+
+            </div>
+            <div class="form-group col-md-2">
+                <label for="ClientAddress" class="control-label">Client Address</label>
+                <input type="text" name="ClientAddress" class="form-control" #ClientAddress="ngModel"
+                    [(ngModel)]="formDataFollowup.ClientAddress" placeholder="Client Address">
+
+            </div>
+            <div class="form-group col-md-2">
+                <label for="ClientContactName" class="control-label">Client Contact Name</label>
+                <input type="text" name="ClientContactName" class="form-control" #ClientContactName="ngModel"
+                    [(ngModel)]="formDataFollowup.ClientContactName" placeholder="Client Contact Name">
+
+            </div>
+            <div class="form-group col-md-2">
+                <label for="ClientContactNumber" class="control-label">Client Contact Number</label>
+                <input type="text" name="ClientContactNumber" class="form-control" #ClientContactNumber="ngModel"
+                    [(ngModel)]="formDataFollowup.ClientContactNumber" placeholder="Client Contact Number">
+
+            </div>
+            <div class="form-group col-md-2">
+                <label for="ClientWebsite" class="control-label">Client Website</label>
+                <input type="text" name="ClientWebsite" class="form-control" #ClientWebsite="ngModel"
+                    [(ngModel)]="formDataFollowup.ClientWebsite" placeholder="Client Website">
+
+            </div>
+            <div class="form-group col-md-2">
+                <label for="ClientReply" class="control-label">Client Reply</label>
+                <select name="ClientReply" #ClientReply="ngModel" [(ngModel)]="formDataFollowup.ClientReply"
+                    class="form-control">
+                    <option value="0">--Select Client Reply--</option>
+                    <option value="1">Quite early</option>
+                    <option value="2">Satishfactory</option>
+                    <option value="3">No reply</option>
+                    <option value="4">Disssatishfied</option>
+                    <option value="5">Positive</option>
+
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <mat-accordion class="accordion"> 
+
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            History Log
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <span fxShow fxHide.lt-sm>   All previous comments.</span>
+                            
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <textarea name="ExperienceNotesHL" class="form-control" style="width:100%;height:150px;"
+                        #Notes="ngModel" [(ngModel)]="formDataFollowup.ExperienceNotesHL" readonly
+                        placeholder="Experience Notes historylog"></textarea>
+                    <!-- <p>{{formDataFollowup.ExperienceNotesHL}}</p> -->
+                </mat-expansion-panel>
+            </mat-accordion>
+            <div class="form-group col-md-12">
+                <label for="ExperienceNotes" class="control-label">Description and Followup note</label>
+                <textarea name="ExperienceNotes" class="form-control" style="width:100%;height:60px;" #ExperienceNotes="ngModel"
+                    [(ngModel)]="formDataFollowup.ExperienceNotes" placeholder="Experience Notes"></textarea>
+                <!-- <input type="text" name="Notes" class="form-control" #Notes="ngModel" [(ngModel)]="formDataFollowup.Notes" placeholder="Expense Notes"> -->
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="DemoRequired" class="control-label">Demo Required</label>
+                <select name="DemoRequired" #DemoRequired="ngModel" [(ngModel)]="formDataFollowup.DemoRequired"
+                    class="form-control">
+                    <option value="0">--Select--</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="DemoDate" class="control-label">Demo Date</label>
+                <mat-form-field style="padding-top:0px; width:100%;">
+
+                    <!-- <input matInput readonly [matDatepicker]="DemoDate" placeholder="Followup start Date"
+                    name="DemoDate" #DemoDate="DemoDate" [(ngModel)]="formDataFollowup.DemoDate"
+                    readonly>
+                <mat-datepicker-toggle matSuffix [for]="DemoDate"></mat-datepicker-toggle>
+                <mat-datepicker #DemoDate></mat-datepicker> -->
+
+                    <input matInput [matDatepicker]="DemoDate" placeholder="Demo Date" name="DemoDate"
+                        #Date="ngModel" [(ngModel)]="formDataFollowup.DemoDate" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="DemoDate"></mat-datepicker-toggle>
+                    <mat-datepicker #DemoDate></mat-datepicker>
+                </mat-form-field>
+
+            </div>
+            <div class="form-group col-md-3">
+                <label for="DemoStatus" class="control-label">Demo Status</label>
+                <select name="DemoStatus" #DemoStatus="ngModel" [(ngModel)]="formDataFollowup.DemoStatus"
+                    class="form-control">
+                    <option value="0">--Select--</option>
+                    <option value="Waiting">Waiting</option>
+                    <option value="Progress">Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+
+
+            <div class="form-group col-md-3">
+                <label for="DemoAssignedTo" class="control-label">Demo Assigned to</label>
+                <select name="DemoAssignedTo" #DemoAssignedTo="ngModel" [(ngModel)]="formDataFollowup.DemoAssignedTo"
+                    class="form-control">
+                    <option value="0">--Select--</option>
+                    <option value="Demo Team">Demo Team</option>
+                    <option value="Debasish">Debasish</option>
+                    <option value="Deepak">Deepak</option>
+                    <option value="Debasmit">Debasmit</option>
+                    <option value="Support Team">Support Team</option>
+                </select>
+            </div>
+
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="InstallationRequired" class="control-label">Installation Required</label>
+                <select name="InstallationRequired" #InstallationRequired="ngModel"
+                    [(ngModel)]="formDataFollowup.InstallationRequired" class="form-control">
+                    <option value="0">--Select--</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="InstallationRequiredDate" class="control-label">InstallationDate</label>
+                <mat-form-field style="padding-top:0px; width:100%;">
+
+                    <input matInput readonly [matDatepicker]="InstallationRequiredDate" placeholder="Installtion Date"
+                        name="InstallationRequiredDate" #Date="ngModel"
+                        [(ngModel)]="formDataFollowup.InstallationRequiredDate" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="InstallationRequiredDate"></mat-datepicker-toggle>
+                    <mat-datepicker #InstallationRequiredDate></mat-datepicker>
+                </mat-form-field>
+
+            </div>
+            <div class="form-group col-md-2">
+                <label for="InstallationStatus" class="control-label">Installation Status</label>
+                <select name="InstallationStatus" #InstallationStatus="ngModel"
+                    [(ngModel)]="formDataFollowup.InstallationStatus" class="form-control">
+                    <option value="0">--Select--</option>
+                    <option value="1">Waiting</option>
+                    <option value="2">Progress</option>
+                    <option value="3">Completed</option>
+                </select>
+            </div>
+
+
+            <div class="form-group col-md-2">
+                <label for="InstallationAssignedTo" class="control-label">Installation Assigned to</label>
+                <select name="InstallationAssignedTo" #InstallationAssignedTo="ngModel"
+                    [(ngModel)]="formDataFollowup.InstallationAssignedTo" class="form-control">
+                    <option value="0">--Select--</option>
+                    <option value="1">Technical Team</option>
+                    <option value="2">Debasish</option>
+                    <option value="3">Deepak</option>
+                    <option value="4">Debasmit</option>
+                    <option value="5">Support Team</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <div class="d-flex flex-column">
+                    <label for="SupportAssigned" class="control-label">Support Assigned</label>
+                    <select name="SupportAssigned" #SupportAssigned="ngModel"
+                        [(ngModel)]="formDataFollowup.SupportAssigned" class="form-control">
+                        <option value="0">Support Assigned</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-md-2">
+                <div class="d-flex flex-column">
+                    <label for="RenewalStatus" class="control-label">Renewal Status</label>
+                    <select name="RenewalStatus" #RenewalStatus="ngModel" [(ngModel)]="formDataFollowup.RenewalStatus"
+                        class="form-control">
+                        <option value="0">Renewal Status</option>
+                        <option value="One year">One year</option>
+                        <option value="Continue">Continue</option>
+                        <option value="Lifetime">Lifetime</option>
+                    </select>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="BasePrice" class="control-label">Base Price</label>
+                <input type="text" name="BasePrice" class="form-control" #BasePrice="ngModel"
+                    [(ngModel)]="formDataFollowup.BasePrice" placeholder="Base Price">
+
+            </div>
+            <div class="form-group col-md-2">
+                <label for="ExpectedPrice" class="control-label">ExpectedPrice</label>
+                <input type="text" name="ExpectedPrice" class="form-control" #ExpectedPrice="ngModel"
+                    [(ngModel)]="formDataFollowup.ExpectedPrice" placeholder="Expected Price">
+
+            </div>
+            <div class="form-group col-md-2">
+                <label for="ActualPrice" class="control-label">Actual Price</label>
+                <input type="text" name="ActualPrice" class="form-control" #ActualPrice="ngModel"
+                    [(ngModel)]="formDataFollowup.ActualPrice" placeholder="Expense ActualPrice">
+
+            </div>
+            <div class="form-group col-md-2">
+                <label for="CommisionPrice" class="control-label">Commision Price</label>
+                <input type="text" name="CommisionPrice" class="form-control" #CommisionPrice="ngModel"
+                    [(ngModel)]="formDataFollowup.CommisionPrice" placeholder="Commision Price">
+
+            </div>
+            <div class="form-group col-md-2">
+                <div class="d-flex flex-column">
+                    <label for="AgreementProcess" class="control-label">Agreement Process</label>
+                    <select name="AgreementProcess" #AgreementProcess="ngModel"
+                        [(ngModel)]="formDataFollowup.AgreementProcess" class="form-control">
+                        <option value="0">--Agreement--</option>
+                        <option value="Progress">Progress</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-md-2">
+                <div class="d-flex flex-column">
+                    <label for="Signup" class="control-label">Signup</label>
+                    <select name="Signup" #Signup="ngModel" [(ngModel)]="formDataFollowup.Signup"
+                        class="form-control">
+                        <option value="0">Signup Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Progress">Progress</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+
+
+
+        </div>
+        <!-- {{formDataFollowup|json}} -->
+    </div>
+
+    <div class="outerDiv">
+        <div class="leftDiv">
+            <button type="submit" class="btn btn-primary btn-sm text-white "><i class="fa fa-save"><span
+                        class="ml-1"></span></i>Save</button>
+        </div>
+        <div class="rightDiv">
+            <button type="button" class="btn btn-danger btn-sm float-right " (click)="closeModel()"><i
+                    class="fa fa-close"></i><span class="ml-1"></span>Cancel</button>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+
+
+    
+</form>

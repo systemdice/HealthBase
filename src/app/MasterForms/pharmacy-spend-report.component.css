@@ -1,0 +1,54 @@
+/* table, td {
+    
+    border-collapse: collapse;
+  }
+
+  th{
+      font-weight: bold;
+  } */
+
+  table, th, td {
+    border: 1px solid rgb(202, 200, 200);
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .table1 {
+    border: 0px  rgb(202, 200, 200);
+    border-collapse: collapse;
+  }
+
+
+  .test {
+    white-space: pre-line;
+  }
+
+  .btn-group button {
+    background-color: #ccf5e6; /* Green background */
+    border: 1px solid rgb(89, 219, 89); /* Green border */
+    color: black; /* White text */
+    padding: 1px 1px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+    border-radius: 5px;;
+    
+  }
+ 
+  .first {
+    
+    display: inline-block;
+}
+@media screen and (max-width: 500px) {
+  
+  .first,
+  .second,
+  .third {
+      width: 70%;
+  }
+}
+
+  

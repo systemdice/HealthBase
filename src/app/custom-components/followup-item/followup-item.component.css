@@ -1,0 +1,67 @@
+button{
+    width: 97px;
+}
+.flex-container {
+  display: flex;
+}
+
+.flex-child {
+  flex: 1;
+  border: 2px solid yellow;
+}  
+
+.flex-child:first-child {
+  margin-right: 20px;
+}
+
+.outerDiv
+			{
+				background-color: #edf2f5;
+				color: #fff;
+				margin: 0px auto;
+				padding: 5px;
+			}
+			.leftDiv
+			{
+				background-color: #efefef;
+				color: #000;
+				float: right;
+			}
+			.rightDiv
+			{
+				background-color: #efefef;
+				color: #000;
+				float: right;
+			}
+
+
+div.ex3 {
+    background-color: rgb(230, 241, 245);
+    height: 470px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .accordion {
+    background-color: rgb(238, 235, 235);
+    color: #444;
+    cursor: pointer;
+    padding: 4px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 12px;
+    transition: 0.3s;
+  }
+  
+  .active, .accordion:hover {
+    background-color: #ccc; 
+  }
+  
+  .panel {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+  }

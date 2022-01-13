@@ -1,0 +1,45 @@
+.leave-emp-profile-img {
+    width: 60%;
+    border-radius: 5%;
+}
+
+.mat-column-SingleDayLeave {
+    flex: 0 0 4%;
+  }
+
+  .mat-column-DateStart {
+    flex: 0 0 6%;
+  }
+
+  .mat-column-dateFrom {
+    flex: 0 0 5%;
+  }
+
+  .mat-column-dateTo {
+    flex: 0 0 5%;
+  }
+
+  .mat-column-slno {
+    flex: 0 0 4%;
+    padding-left: 0;
+  }
+
+  .mat-column-UnqueID {
+    flex: 0 0 5%;
+  }
+
+  .mat-column-approved {
+    flex: 0 0 5%;
+  }
+
+  .mat-column-leaveId {
+    flex: 0 0 9%;
+  }
+  .mat-column-leaveReason {
+    flex: 0 0 20%;
+  }
+  li {
+    display: inline;
+    font-size:larger;
+    font-weight: bold;
+}

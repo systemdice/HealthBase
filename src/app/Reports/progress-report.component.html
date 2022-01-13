@@ -1,0 +1,184 @@
+<div class="row" style="font-size:11px;border-style:solid; margin-left:5px; margin-right:5px;" id="frmIndividualLapReport">
+
+
+    <table width="100%">
+       
+        <tbody>
+            <tr>
+                <td>
+
+
+
+                    <div style="text-align:right;">
+                        <div style="text-align:center;">
+                            <div style="text-align:center;">
+                                <h3 style="text-align:center; padding-bottom:10px;">
+                                    {{Addressline1}}<br />
+                                    {{Addressline2}}<br />
+                                    {{Addressline3}}<br />
+                                    {{Addressline4}}<br />
+
+                                </h3>
+                                <hr/>
+                                <h2> PROGRESS REPORT
+                                </h2>
+                                <hr style="height:1px;background-color:black;" />
+                                <hr style="height:3px;background-color:black;" />
+
+
+
+
+                            </div>
+
+                            <div class="col-sm-12">
+
+
+                                <button style="display: inline-block;float:left;" type="button" id="printElement"
+                                    (click)="myPrint('frmIndividualLapReport')" class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print"></span>
+                                    Print</button>
+                                <button type="button" style="display: inline-block;float:left;" id="CloseMe"
+                                    (click)="CloseMe()" class="btn btn-info"><span
+                                        class="glyphicon glyphicon-print"></span>
+                                    Close Me</button>
+
+                               
+                                <!-- <input id="printCheckElement" style="display: inline-block;float:left;" (change)="fieldsChange($event)" value="Show header on each page" type="checkbox"/>
+            <span id="printCheckTextElement" style="display: inline-block;float:left;">Show header on each page</span> -->
+
+
+                            </div>
+                           
+                        </div>
+                    </div>
+
+                    <hr style="padding:0px;margin:0px" />
+
+
+                   
+                    <div class="container" style="padding-top:1px;">
+                        <div class="row">
+
+                        </div>
+                    </div>
+                    <hr style="margin-bottom:0px; margin-top:0px;">
+
+                    <!-- <table style="width:90%">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Age</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let people of resultRetrieve; let i=index;">
+                            <tr >                                
+                                <td>{{people.DateUse}}</td>
+                                <td>
+                                    <div>
+                                        {{people.ProductName}} 
+                                    </div></td>
+                                <td>{{people.Quantity}}</td>
+                                <td>{{people.Price}}</td>
+                            </tr>
+                           
+                        </tbody>
+                    </table> -->
+
+                    <table style="width:100%">
+                        <thead>
+                            <tr>
+                                <th style="text-align:left;">REgn No. : </th>
+                                <th style="text-align:left;">	
+                                    Name :</th>
+                            
+                                <th style="text-align:left;">Bed No :</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:left;">Age :</th>
+                                <th style="text-align:left;">Sex:</th>
+                                <th style="text-align:left;">	
+                                    Dr. :</th>
+                              
+                            </tr>
+
+                            
+                        </thead>
+                        <tbody>
+                           
+                            
+                        </tbody>
+                       
+                        
+                    </table>
+                    <hr style="border-top: 1px dashed black;" />
+                    <table style="border: 2px;"> 
+                        <tr style="height: 100px;">
+                            <th></th>
+                        </tr>
+                    </table>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/><br/>
+<br/>
+<br/>
+<br/>
+<br/><br/>
+<br/>
+<br/>
+<br/>
+<br/><br/>
+<br/>
+<br/>
+<br/>
+<br/><br/>
+<br/>
+<br/>
+<br/>
+
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p style="text-align:left;">
+                                <b>Place:</b><br />
+                                <b>Date:</b><br /><br />
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p style="text-align:right;">
+                                <b></b>
+                                
+                                
+                            </p>
+                        </div>
+                    </div>
+                   
+
+                </td>
+            </tr>
+        </tbody>
+        <!-- follwing line make footer repeatable for each page -->
+        <!-- <tfoot><tr><td>Your footer goes here</td></tr></tfoot> -->
+    </table>
+
+
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>

@@ -1,0 +1,115 @@
+<h1>{{title}} <button class="btn btn-success" *ngIf="PopupClose" (click)="closeDialog()" color="warn"> <span class="glyphicon glyphicon-off"></span>Close Me</button>
+  <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+  </button>
+</h1>
+<!-- {{teachersForm.value|json}} -->
+<form [formGroup]="teachersForm" (ngSubmit)="onSubmit()">
+
+  
+
+  <div style="border: 1px solid rgb(83, 91, 126); padding: 10px; width: 99%; display: inline-block; margin: 5px;">
+   
+      
+
+    <div class="form-row">
+
+
+     
+
+      <div class="form-group col-md-3">
+        <label for="name" class="control-label">PathoLab Group Test Name</label>
+        <input type="text" class="form-control" formControlName="GroupName">
+
+      </div>
+      <div class="form-group col-md-3">
+        <label for="name" class="control-label">Description</label>
+        <textarea matInput class="form-control" formControlName="Description"> </textarea>
+
+      </div>
+
+      <div class="form-group col-md-1">
+        <label for="name" class="control-label">Actual&nbsp;Price</label>
+        <input type="number" class="form-control" formControlName="ActualPrice" placeholder="ActualPrice">
+
+      </div>
+      <div class="form-group col-md-1">
+        <label for="name" class="control-label">Discount</label>
+        <input type="number" class="form-control" formControlName="Discount" placeholder="Discount">
+
+      </div>
+      <div class="form-group col-md-1">
+        <label for="name" class="control-label">Price</label>
+        <input type="number" class="form-control" formControlName="TotalPrice" placeholder=" Total Price">
+
+      </div>
+      <div class="form-group col-md-2">
+        <label for="name" class="control-label">Created By</label>
+        <input type="text" class="form-control" formControlName="CreatedBy" placeholder="Created By">
+        <!-- <button type="button" (click)="UpdateCheckBox()">show</button> -->
+
+      </div>
+
+      
+    </div>
+<div>
+    <!-- <button (click)="add()" >add.!</button> -->
+
+<!-- <div style="color:blue">
+  selected 
+  <p *ngFor="let d of selectedString">
+    {{ d|json }}
+  </p>
+</div> -->
+</div>
+    <div>
+       
+        <div style="overflow: auto;margin-top: 15px;" [ngClass]="{'cb-vertival': !tmp }">
+        
+            
+            <!-- <div class="row">
+                <div class="main-box">
+                    <mat-checkbox (change)="updateCheck()" class="example-margin" [(ngModel)]="selectAll">
+                        Select All
+                    </mat-checkbox>
+                </div>
+                </div> -->
+            <div class="row">
+                
+                <div class="col-md-12 ">
+                  <div class="form-group">
+                    
+                    <div class="main-box">
+                      <div class="five-a-row" 
+                        *ngFor="let d of asyncPipeLabTestMaster; let j = index">
+                        <input id="{{j}}" 
+                               type="checkbox" 
+                               [checked]="d.checked" (change)="d.checked = !d.checked; checkValue(d.checked, d.TestPrice)"
+                               
+                               > 
+                          {{d.TestName}}&nbsp;<span style="color:red">({{d.TestPrice}})</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+        </div>
+        </div>
+  </div>
+<!-- {{asyncPipeLabTestMaster|json}} -->
+  <!-- {{rows.length}} -->
+ 
+  <div class="col-md-12">
+
+    <button type="button" (click)="saveLabTest()" class="btn btn-success"><span class="glyphicon glyphicon-off"></span>
+      {{SubmitButtonNameDynamically}}</button>
+
+
+  </div>
+
+</form>
+
+<!-- {{this.teachersForm.value | json}} -->
+
+<!-- {{formCategoryMaster|json}} -->

@@ -1,0 +1,53 @@
+<form [formGroup]="companyMasterForm">
+    <h2>Company Master Entry</h2> 
+   
+    <div>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="CompanyName" formControlName="CompanyName" >
+        </mat-form-field>&nbsp;
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="CompanyID" formControlName="CompanyID" >
+        </mat-form-field>&nbsp;
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Version" formControlName="Version" >
+        </mat-form-field>&nbsp;
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Favorite food" formControlName="DateStart" >
+        </mat-form-field>&nbsp;
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="SignOffbyWhom" formControlName="SignOffbyWhom" >
+        </mat-form-field>&nbsp;
+
+        
+    </div>
+    <div>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Favorite food" value="Sushi">
+        </mat-form-field>&nbsp;
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Favorite food" value="Sushi">
+        </mat-form-field>&nbsp;
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Favorite food" value="Sushi">
+        </mat-form-field>&nbsp;
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Favorite food" value="Sushi">
+        </mat-form-field>&nbsp;
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Favorite food" value="Sushi">
+        </mat-form-field>&nbsp;
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Favorite food" value="Sushi">
+        </mat-form-field>&nbsp;
+    </div>
+</form>
+<button (click)="add()" *ngIf="!isEdit">Add</button>
+<button (click)="edit()" *ngIf="isEdit">Update</button>
+<button (click)="resetForm()" *ngIf="!isEdit">Reset</button>
