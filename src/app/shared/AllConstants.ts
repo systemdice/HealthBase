@@ -1,7 +1,7 @@
 export const APIDetails = {
   //'HelathAPI':"https://localhost:44380"  
-  //'HelathAPI':"http://45.34.15.113:9014"
-  'HelathAPI': "http://45.34.15.113:9002"
+  'HelathAPI':"http://45.34.15.113:9014"
+  //'HelathAPI': "http://45.34.15.113:9002"
   };
 
   export const AllMasterFixedData = { 

@@ -185,7 +185,7 @@ export class FreshCaseComponent implements OnInit {
         this.radioChange('3');
         this.radioChangeOPDIPD('IPD');
         if (this.passOPDkimbaIPD == 'IPD') {
-          this.addrFrom.get('PaymentDetails').get('RegdCharge').patchValue('50');
+          //////this.addrFrom.get('PaymentDetails').get('RegdCharge').patchValue('50');
         }
         else {
           this.addrFrom.get('PaymentDetails').get('RegdCharge').patchValue('0');
@@ -241,7 +241,7 @@ export class FreshCaseComponent implements OnInit {
         //this.showUpdateGIF = true;
         this.radioChangeOPDIPD('IPD');
         if (this.passOPDkimbaIPD == 'IPD') {
-          this.addrFrom.get('PaymentDetails').get('RegdCharge').patchValue('50');
+          //////this.addrFrom.get('PaymentDetails').get('RegdCharge').patchValue('50');
         }
         else {
           this.addrFrom.get('PaymentDetails').get('RegdCharge').patchValue('0');
@@ -349,7 +349,7 @@ export class FreshCaseComponent implements OnInit {
     this.CalculationDone = false;
     if (this.parValue == "Add" || this.parValue == "Addnew" || this.parValue == "" || this.parValue == "conv") {
       if (this.passOPDkimbaIPD == 'IPD') {
-        this.addrFrom.get('PaymentDetails').get('RegdCharge').patchValue('50');
+        ////this.addrFrom.get('PaymentDetails').get('RegdCharge').patchValue('50');
       }
       else {
         this.addrFrom.get('PaymentDetails').get('RegdCharge').patchValue('0');

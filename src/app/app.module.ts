@@ -191,6 +191,7 @@ import { CreateGroupTestComponent } from './MasterForms/create-group-test.compon
 import { GrouTestService } from './Services/grou-test.service';
 import { AllGroupDetailsComponent } from './MasterForms/all-group-details.component';
 import { AccountBookCategoryComponent } from './MasterForms/account-book-category.component';
+import { AccountBookGrossComponent } from './MasterForms/account-book-gross.component';
 // import { MomentDateModule } from '@angular/material-moment-adapter';
 // import { MAT_DATE_FORMATS } from '@angular/material/core';
 // import { MY_DATE_FORMATS } from './models/AllConstansts';
@@ -284,7 +285,7 @@ const shortcutConfig: NgShortcutConfig[] = [
        OpdTicketReportComponent, FreshCaseTabComponent, MainDashboardComponent, StaffWorkLeaveManagementComponent,
         LeaveMasterComponent, LeaveRequestMainComponent, CasePaymentFilterComponent, HelpPageComponent, CalculatorComponent,
          ConsultationReportComponent, PharmacyDoctorCommsionComponent, CreateGroupTestComponent, AllGroupDetailsComponent, 
-         AccountBookCategoryComponent,
+         AccountBookCategoryComponent, AccountBookGrossComponent,
   ],
   imports: [
     BrowserModule,

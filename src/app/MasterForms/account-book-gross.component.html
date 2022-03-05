@@ -1,0 +1,158 @@
+<h2 style="text-align: center"> <u>Gross Earning Report</u></h2>
+<form [formGroup]="patientCategory">
+    <!-- {{asyncPipeNewModifyCase|json}}
+    Total is {{total}} -->
+    <div class="form-row">
+    
+      <!-- <div class="form-group col-md-12" style="float:left">
+        <h3>Balance sheet Department wise: </h3>
+        
+        <input type="checkbox" (change)="eventCheck($event)" /> Activate Tab Mode
+      </div> -->
+      <hr/>
+    </div>
+    
+    <div class="container1">
+     
+     
+    
+    
+      <div fxFlex>
+        <div fxFlex>
+            <mat-form-field >
+              <input matInput (keyup)="applyFilter($event.target.value)"
+                placeholder="Filter for data" name="filterVal" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="filterVal">
+            </mat-form-field>
+            
+              
+          
+              
+             
+            
+          </div>
+        <div *ngIf="false" fxFlex>
+          <div>
+            <mat-form-field >
+              <mat-label>Select Department:</mat-label>
+            <mat-select  (valueChange)="changeValue($event)" formControlName="patientCategory">
+              <mat-option *ngFor="let catalog of IncomeDeptType" [value]="catalog">{{catalog}}</mat-option>
+             </mat-select>
+            </mat-form-field> &nbsp;
+          </div>
+        </div>
+      </div>
+    
+      <div fxFlex>
+    
+        <mat-form-field >
+    
+          <input matInput readonly [matDatepicker]="FollowupStartDateF1" placeholder="From Date" [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="fromdate" (click)="FollowupStartDateF1.open()" (focus)="FollowupStartDateF1.open()" readonly>
+          <mat-datepicker-toggle matSuffix [for]="FollowupStartDateF1"></mat-datepicker-toggle>
+          <mat-datepicker #FollowupStartDateF1></mat-datepicker>
+        </mat-form-field>
+    </div>&nbsp;
+    <div fxFlex>
+      
+        <mat-form-field >
+    
+          <input matInput readonly [matDatepicker]="FollowupStartDateF2" placeholder="To Date" [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="todate" (click)="FollowupStartDateF2.open()" (focus)="FollowupStartDateF2.open()" readonly>
+          <mat-datepicker-toggle matSuffix [for]="FollowupStartDateF2"></mat-datepicker-toggle>
+          <mat-datepicker #FollowupStartDateF2></mat-datepicker>
+        </mat-form-field>
+    
+      </div>
+      <div fxFlex>
+        <div>      
+    
+            <button type="button" (click)="ShowBalnacesheetFromToDataFromCalendar(fromdate,todate)" class="btn btn-success myButton"><span
+              class="glyphicon glyphicon-edit"></span>
+            Cash Book</button> &nbsp;
+
+             <button type="button" (click)="DepartmentWiseCollection(fromdate,todate)" class="btn btn-success myButton"><span
+          class="glyphicon glyphicon-edit"></span>
+        Department Collection</button>
+    
+            <h2><b>Total is: </b>{{total| currency :'INR':'symbol':'1.2-2'}}</h2>
+        </div>
+      </div>
+    
+     
+ 
+    </div>
+    <!-- <input type="text" name="UserName" class="form-control"  (keyup)="applyFilter($event.target.value)"
+          [(ngModel)]="UserName" placeholder="Username" (input)="applyFilter($event.target.value)">
+       Filter: {{UserName}} -->
+    <hr style="padding:0px;margin:1px;" />
+    <div class="example-header" style="width:99%;">
+    
+    
+      <button type="button" (click)="exportArray()" class="btn btn-success myButton"><span
+          class="glyphicon glyphicon-download"></span>
+        Export to EXCEL</button>
+      <div class="example-container mat-elevation-z8" #mytable1 *ngIf="GrossWiseShow">
+    
+        <!-- <button mat-button (click)=(click)="openDialog('Add',{},element.UnqueID,'Add')" mat-flat-button color="primary">Add Row</button> -->
+    
+        <mat-table id="ExampleMaterialTable" [dataSource]="dataSource" matSort #mytable class="my-table mat-elevation-z8"
+          style="background-color:#FFFFFF;border-radius: 2em; border:2px #6D7B8D; padding:5px;width:99%;
+          table-layout:fixed;">
+    
+          <ng-container matColumnDef="slno">
+            <mat-header-cell *matHeaderCellDef class="HeaderStyle"> Slno </mat-header-cell>
+            <mat-cell *matCellDef="let item; let i = index"> <span class="mobile-label ">Serial No:</span>
+              {{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }} </mat-cell>
+    
+          </ng-container>
+    
+          <ng-container matColumnDef="dt">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Date </mat-header-cell>
+            <mat-cell *matCellDef="let element let i1 = index"> <span class="mobile-label">Date:</span> {{element.dt}} &nbsp;(Case count:{{myresult[i1].ct}}) </mat-cell>
+          </ng-container>
+         
+          <ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="HeaderStyle"> Amount </mat-header-cell>
+            <mat-cell *matCellDef="let element"> <span class="mobile-label">Amount:</span>
+              <ul style="padding:0px;margin:1px;">
+               
+                <li style="padding:0px;margin:1px;" *ngIf="caseRecordTotal">
+                  
+                    <span style="color:red">{{ConvertStringToNumber(element.amount,'0')| currency :'INR':'symbol':'1.2-2'}}</span>
+                </li>
+                
+              </ul>
+            </mat-cell>
+          </ng-container>
+         
+    
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></mat-row>
+        </mat-table>
+        <mat-paginator #paginatorRef [pageSizeOptions]="[10,15, 20, 50, 100]"></mat-paginator>
+        <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+       
+    
+      </div>
+    </div>
+
+    
+        <div *ngIf="departmentwiseShow">
+          <h2><u>Department wise collection</u></h2>
+          <h5><b>Registration:&nbsp;    </b>{{ttlRegdCharge   | currency :'INR':'symbol':'1.2-2'}}</h5>
+          <h5><b>Earlier Payment:&nbsp; </b>{{ttlEarlierPayment | currency :'INR':'symbol':'1.2-2'}}</h5>
+          <h5><b>Bed:&nbsp;   </b>{{ttlBedCharge  | currency :'INR':'symbol':'1.2-2'}}</h5>
+          <h5><b>Doctor:&nbsp;   </b>{{ttlDoctorCharge  | currency :'INR':'symbol':'1.2-2'}}</h5>
+          <h5><b>Nurse:&nbsp;  </b>{{ttlNurseCharge  | currency :'INR':'symbol':'1.2-2'}}</h5>
+          <h5><b>Daily Expense for patient:&nbsp;  </b>{{ttlDailyExpense  | currency :'INR':'symbol':'1.2-2'}}</h5>
+          <h5><b>OT :&nbsp;  </b>{{ttlOTCharge  | currency :'INR':'symbol':'1.2-2'}}</h5>
+          <h5><b>Sample Collection:&nbsp;   </b>{{ttlCollectionChargePaid | currency :'INR':'symbol':'1.2-2'}}</h5>
+          <!-- <h5><b>OPD :&nbsp; </b>{{ttlOPDCharge  | currency :'INR':'symbol':'1.2-2'}}</h5>         -->
+          <h5><b>Pathology:&nbsp;   </b>{{ttlLabTestCharge  | currency :'INR':'symbol':'1.2-2'}}</h5>
+          <h5><b>Pharmacy:&nbsp;  </b>{{ttlFarmaCharge  | currency :'INR':'symbol':'1.2-2'}}</h5>  
+          <h5><b>Others:&nbsp;   </b>{{ttlOtherCharge   | currency :'INR':'symbol':'1.2-2'}}</h5>
+        </div>
+       
+        
+      </form>

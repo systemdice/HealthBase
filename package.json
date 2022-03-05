@@ -79,5 +79,8 @@
     "ts-node": "~8.5.4",
     "tslint": "~6.1.0",
     "typescript": "3.9.7"
-  }
+  },
+  "config": {
+    "ionic_source_map": "source-map"}
+
 }

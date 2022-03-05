@@ -14,7 +14,7 @@ Total is {{total}} -->
   <div fxFlex>
     <mat-form-field >
       <input matInput (keyup)="applyFilter($event.target.value)"
-        placeholder="Filter for (Case ID or Patient ID or Date)" name="filterVal" [ngModelOptions]="{standalone: true}"
+        placeholder="Filter for data" name="filterVal" [ngModelOptions]="{standalone: true}"
         [(ngModel)]="filterVal">
     </mat-form-field>
     
@@ -78,10 +78,7 @@ Total is {{total}} -->
 
  
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 47b2d2466c1ad937628721b931400bebb5853ac8
 </div>
 <!-- <input type="text" name="UserName" class="form-control"  (keyup)="applyFilter($event.target.value)"
       [(ngModel)]="UserName" placeholder="Username" (input)="applyFilter($event.target.value)">

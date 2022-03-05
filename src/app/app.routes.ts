@@ -84,6 +84,8 @@ import { PharmacyDoctorCommsionComponent } from './MasterForms/pharmacy-doctor-c
 import { CreateGroupTestComponent } from './MasterForms/create-group-test.component';
 import { AllGroupDetailsComponent } from './MasterForms/all-group-details.component';
 import { AccountBookCategoryComponent } from './MasterForms/account-book-category.component';
+import { AccountBookGrossComponent } from './MasterForms/account-book-gross.component';
+
 
 const appRoutes: Routes = [
   {
@@ -116,6 +118,7 @@ const appRoutes: Routes = [
       { path: 'TestCategory', component: TestCategoriesComponent, canActivate: [AuthGuardService]  },
       { path: "AccountBook", component: ExpensesComponent , canActivate: [AuthGuardService]},
       { path: "AccountBookCategory", component: AccountBookCategoryComponent , canActivate: [AuthGuardService]},
+      { path: "AccountBookGross", component: AccountBookGrossComponent , canActivate: [AuthGuardService]},
       { path: "Followup", component: FollowupComponent, canActivate: [AuthGuardService]  },
       { path: "Category", component: CategoriesComponent, canActivate: [AuthGuardService]  },
 
