@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatMenuTrigger, MatPaginator, MatSort } from '@angular/material';
 import { MatDialogModule, MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AddModifyCaseService } from '../Services/add-modify-case.service';
@@ -20,6 +20,10 @@ import { TableUtil } from '../shared/tableUtil';
 import * as XLSX from 'xlsx';
 import { BedManagementService } from '../Services/bed-management.service';
 
+export interface Item {
+  id: number;
+  name: string;
+}
 
 @Component({
   selector: 'app-case-details-main',
@@ -27,6 +31,38 @@ import { BedManagementService } from '../Services/bed-management.service';
   styleUrls: ['./case-details-main.component.css']
 })
 export class CaseDetailsMainComponent implements OnInit {
+
+  items = [
+    {id: 1, name: 'Item 1'},
+    {id: 2, name: 'Item 2'},
+    {id: 3, name: 'Item 3'}
+  ];
+
+  @ViewChild(MatMenuTrigger)
+  contextMenu: MatMenuTrigger;
+
+  contextMenuPosition = { x: '0px', y: '0px' };
+
+  onContextMenu(event: MouseEvent, item: Item) {
+    event.preventDefault();
+    this.contextMenuPosition.x = event.clientX + 'px';
+    this.contextMenuPosition.y = event.clientY + 'px';
+    this.contextMenu.menuData = { 'item': item };
+    this.contextMenu.menu.focusFirstItem('mouse');
+    this.contextMenu.openMenu();
+  }
+
+  onContextMenuAction1(item: Item) {
+    alert(`Click on Action 1 for ${item.name}`);
+  }
+
+  onContextMenuAction2(item: Item) {
+    alert(`Click on Action 2 for ${item.name}`);
+  }
+
+
+//context menu ended here
+
   displayedColumns: string[] = ['slno', 'UnqueID', 'DateStart','PatientInfo', 'TestType','Payment','Location', 'action'];
   //dataSource: MatTableDataSource<UsersData>;
   dataSource: MatTableDataSource<any>;

@@ -5,7 +5,7 @@ import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 //import { UserDetails } from './UserDetails';
-import { UserDetails } from '../models/UserData';
+import { Patient, UserDetails } from '../models/UserData';
 import { APIDetails } from '../models/AllConstansts';
 
 @Injectable({
@@ -14,12 +14,17 @@ import { APIDetails } from '../models/AllConstansts';
 export class UserDetailsService {
 
   private apiServer =  APIDetails.HelathAPI; //"https://localhost:44380"; //
+  url = 'https://localhost:44362/api/PersonDetails';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   }
   constructor(private httpClient: HttpClient) { }
+
+  getAllPatient(): Observable<Patient[]> {
+    return this.httpClient.get<Patient[]>(this.url + '/GetAllPersons');
+  }
 
   create(UserDetails): Observable<UserDetails> {
     return this.httpClient.post<UserDetails>(this.apiServer + '/UserDetails/', JSON.stringify(UserDetails), this.httpOptions)

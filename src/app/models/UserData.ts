@@ -605,6 +605,8 @@ export class PaymentHistorySingle {
     FarmaCharge :string;
         BedCharge :string;
         DailyExpense :string;
+        PharmacyManualEntry :string;
+        Nebulization :string;
         OTCharge :string;
         OtherCharge :string;
 }
@@ -629,14 +631,17 @@ export class PaymentHistory {
   RegdCharge:string;
   EarlierPayment:string;
   OPDCharge:string;
-        DoctorCharge :string;
-        NurseCharge :string;
-        LabTestCharge:string;
-    FarmaCharge :string;
-        BedCharge :string;
-        DailyExpense :string;
-        OTCharge :string;
-        OtherCharge :string;
+  DoctorCharge :string;
+  NurseCharge :string;
+  LabTestCharge:string;
+  FarmaCharge :string;
+  BedCharge :string;
+  PharmacyManualEntry :string;
+  DailyExpense :string;
+  Nebulization :string;
+  OTCharge :string;
+  OtherCharge :string;
+  VaccinationCharge:string;
 }
 export class NotifyPendingTestData
 {
@@ -692,7 +697,7 @@ export class NewModifyCase {
   IPDOPDId:string;
   CaseLife:string;
   IPDOPDConversionStatus:string;
-      IPDOPDConversionFrom :string;
+  IPDOPDConversionFrom :string;
   public PatientID: string;
   public UnqueID:string;
   public PaymentHistoryID:string;
@@ -711,6 +716,8 @@ export class NewModifyCase {
   public DoctortoPatientCommentMedicine:DoctortoPatientCommentMedicine;
   public DischargeNote:DischargeNote;
   public DailyExpense: DailyExpense;
+  public PharmacyManualEntry: PharmacyManualEntry;
+  public Nebulization: Nebulization;
   public DoctorVisit:DoctorVisit;
   public NurseVisit:NurseVisit;
   public DoctortoPatientCommentMedicineReDevelop:DoctortoPatientCommentMedicineReDevelop;
@@ -796,6 +803,14 @@ export class DailyExpense {
   
   teachers: DailyExpenseChoice[];
 }
+export class PharmacyManualEntry {
+  
+  teachers: PharmacyManualEntryChoice[];
+}
+export class Nebulization {
+  
+  teachers: NebulizationChoice[];
+}
 export class DoctorVisit {
   
   teachers: DoctorVisitChoice[];
@@ -825,6 +840,18 @@ export class OTDetails {
   teachers: OTDetailsChoice[];
 }
 export class DailyExpenseChoice {
+  name: string;
+    ExpenseDescription: string;
+    Amount: string;
+    expDate: string;
+}
+export class PharmacyManualEntryChoice {
+  name: string;
+    ExpenseDescription: string;
+    Amount: string;
+    expDate: string;
+}
+export class NebulizationChoice {
   name: string;
     ExpenseDescription: string;
     Amount: string;
@@ -1115,7 +1142,13 @@ export class LoginAndPasswordResetModel
       ReportingManagerEmail :string;
   }
 
-
+  export class Patient {
+    Id!: number;       
+    UserName: string ='';
+    UserPassword: string ='';
+    UserEmail: string ='';
+    IsDeleted:boolean= false;
+}
 
 
 

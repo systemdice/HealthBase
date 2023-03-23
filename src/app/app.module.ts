@@ -192,6 +192,10 @@ import { GrouTestService } from './Services/grou-test.service';
 import { AllGroupDetailsComponent } from './MasterForms/all-group-details.component';
 import { AccountBookCategoryComponent } from './MasterForms/account-book-category.component';
 import { AccountBookGrossComponent } from './MasterForms/account-book-gross.component';
+import { AccountBookPatientWiseComponent } from './MasterForms/account-book-patient-wise.component';
+import { NewPatientRegistrationComponent } from './Reports/new-patient-registration.component';
+import { PaharmacyManualEntryComponent } from './MasterForms/paharmacy-manual-entry.component';
+import { NebulizerDetailsComponent } from './MasterForms/nebulizer-details.component';
 // import { MomentDateModule } from '@angular/material-moment-adapter';
 // import { MAT_DATE_FORMATS } from '@angular/material/core';
 // import { MY_DATE_FORMATS } from './models/AllConstansts';
@@ -285,7 +289,7 @@ const shortcutConfig: NgShortcutConfig[] = [
        OpdTicketReportComponent, FreshCaseTabComponent, MainDashboardComponent, StaffWorkLeaveManagementComponent,
         LeaveMasterComponent, LeaveRequestMainComponent, CasePaymentFilterComponent, HelpPageComponent, CalculatorComponent,
          ConsultationReportComponent, PharmacyDoctorCommsionComponent, CreateGroupTestComponent, AllGroupDetailsComponent, 
-         AccountBookCategoryComponent, AccountBookGrossComponent,
+         AccountBookCategoryComponent, AccountBookGrossComponent, AccountBookPatientWiseComponent, NewPatientRegistrationComponent, PaharmacyManualEntryComponent, NebulizerDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -32,7 +32,7 @@
                                 </table>
                                                             </div>
                             <hr />
-                            <h2> PATIENT REGISTRATION FORM
+                            <h2>NEW PATIENT REGISTRATION FORM
 
                             </h2>
                             
@@ -122,15 +122,11 @@
                     <table style="width:100%;border: 1px solid black;" cellspacing="0px" cellpadding="0px">
 
                         <tr>
-                            <td  style="border: 1px solid black ;" colspan="2">
-                                <!-- <div class="div1">IP No.:&nbsp;{{EditedCaseData?.IPDOPDId}}<br />(To be written by Hosp.
-                                    Staff)
-                                </div> -->
-                            </td>
-                            <td style="border: 1px solid black ;">
+                           
+                            <td style="border: 1px solid black ;" >
                                 <P>Observation</P>
                             </td>
-                            <td style="border: 1px solid black ;"> <input type="checkbox" class="chkbox"></td>
+                            <td style="border: 1px solid black ;" colspan="2"> <input type="checkbox" class="chkbox"></td>
                             <td style="border: 1px solid black ;">
                                 <P>Casuality</P>
                             </td>
@@ -139,6 +135,46 @@
                                 <P>Admission </P>
                             </td>
                             <td style="border: 1px solid black ;"> <input type="checkbox" class="chkbox"></td>
+
+
+                        </tr>
+                        <tr style="border: 0px solid white ;">
+                           
+                            <td style="border: 0px solid white ;"  colspan="7">
+                                <P>1. To be filled by patient</P>
+                            </td>
+                            
+
+
+                        </tr>
+                        <tr style="border: 0px solid white ;">
+                           
+                            <td style="border: 1px solid black ;"  colspan="7">
+                                <P>2. If patient has already</P>
+                            </td>
+                            
+
+
+                        </tr>
+                        <tr style="border: 0px solid white ;">
+                           
+                            <td style="border: 1px solid black ;" >
+                                <P>Admission date</P>
+                            </td>
+                            <td style="border: 1px solid black ;"  >
+                                <P><input type="checkbox" class="chkbox"><input type="checkbox" class="chkbox"></P>
+                            </td>
+                            <td style="border: 1px solid black ;"  >
+                                <P><input type="checkbox" class="chkbox"><input type="checkbox" class="chkbox"></P>
+                            </td>
+                            <td style="border: 1px solid black ;"  >
+                                <P><input type="checkbox" class="chkbox"><input type="checkbox" class="chkbox"><input type="checkbox" class="chkbox"><input type="checkbox" class="chkbox"></P>
+                            </td>
+
+                            <td style="border: 1px solid black ;"  colspan="3">
+                                <P>Admission Time _____________________________</P>
+                            </td>
+                            
 
 
                         </tr>
@@ -180,13 +216,22 @@
 
                         </tr>
                         <tr>
-                            <td style="border: 1px solid black ;" style="border: 1px solid black ;" colspan="2">
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;">
                                 <P>
                                     Patient's Name</P>
+                                    {{EditedCaseData?.Home?.FirstName|uppercase}}&nbsp;
+                                {{EditedCaseData?.Home?.LastName|uppercase}}
                             </td>
-                            <td style="border: 1px solid black ;" style="border: 1px solid black ;" colspan="2">
-                                {{EditedCaseData?.Home?.FirstName|uppercase}}&nbsp;
-                                {{EditedCaseData?.Home?.LastName|uppercase}}</td>
+                            
+                                <td style="border: 1px solid black ;">
+                                    <P>Ward </P>
+                                </td>
+                                <td style="border: 1px solid black ;" style="border: 1px solid black ;">
+                                    </td>
+                                    <td style="border: 1px solid black ;">
+                                        <P>Room </P>
+                                    </td>
+                                    
 
                             <td style="border: 1px solid black ;">
                                 <P>Category </P>
@@ -194,7 +239,7 @@
                             <td style="border: 1px solid black ;" style="border: 1px solid black ;">
                                 {{EditedCaseData?.BedDetailsVisit[0]?.BedCategory}}</td>
                             <td style="border: 1px solid black ;">
-                                <p>Bed Name</p>
+                                <p>Bed</p>
                             </td>
                             <td style="border: 1px solid black ;">{{EditedCaseData?.BedDetailsVisit[0]?.BedName}}</td>
                         </tr>
@@ -202,33 +247,22 @@
                         <tr>
                             <td style="border: 1px solid black ;" style="border: 1px solid black ;">
                                 <P>
-                                    Age </P>
+                                    Age 
+                                    
+                                {{EditedCaseData?.Home.Year}}Yrs&nbsp;&nbsp;&nbsp;{{EditedCaseData?.Home.Month}}Month </P>
                             </td>
-                            <td style="border: 1px solid black ;" style="border: 1px solid black ;" colspan="3">
-                                &nbsp;&nbsp;&nbsp;
-                                {{EditedCaseData?.Home.Year}}Yrs&nbsp;&nbsp;&nbsp;{{EditedCaseData?.Home.Month}}Month
+                            
+                            <td style="border: 1px solid black ;" colspan="2">
+                                <P>Sex&nbsp;{{EditedCaseData?.Home.Gender == '1'?'Male':'Female'}}</P>
                             </td>
-                            <td style="border: 1px solid black ;">
-                                <P>Sex</P>
-                            </td>
-                            <td style="border: 1px solid black ;" style="border: 1px solid black ;" colspan="3">
-                                {{EditedCaseData?.Home.Gender == '1'?'Male':'Female'}}</td>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;" colspan="2">
+                                Height&nbsp;{{EditedCaseData?.Home.Height == ''?'':EditedCaseData?.Home.Height}}</td>
+                                <td style="border: 1px solid black ;" style="border: 1px solid black ;" colspan="2">
+                                    Weight:&nbsp;{{EditedCaseData?.Home.Weight == ''?'':EditedCaseData?.Home.Weight}}
+                                </td>
 
                         </tr>
-                        <tr>
-                            <td style="border: 1px solid black ;">
-                                <P>
-                                    Height : </P>
-                            </td>
-                            <td style="border: 1px solid black ;" colspan="3">
-                                &nbsp;&nbsp;&nbsp;{{EditedCaseData?.Home.Height}}CM</td>
-                            <td style="border: 1px solid black ;">
-                                <P>Weight</P>
-                            </td>
-                            <td style="border: 1px solid black ;" colspan="3">
-                                &nbsp;&nbsp;&nbsp;{{EditedCaseData?.Home.Weight}}KG</td>
-
-                        </tr>
+                       
                         <tr>
                             <td style="border: 1px solid black ;">
                                 <P>
@@ -244,17 +278,17 @@
                         <tr>
                             <td style="border: 1px solid black ;">
                                 <P>
-                                    Address :
+                                    Official Address :
                                     
 
-                                      <input type="checkbox" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'A':'B')" /> Same as permanent Address
-                                </P>
-                            </td>
-                            <td style="border: 1px solid black ;" colspan="7">{{EditedCaseData?.Home.Address}}</td>
+                                     
+                            {{EditedCaseData?.Home.Address}}</P></td>
 
 
                         </tr>
                         <tr>
+                            <td colspan="4"></td>
+                            
                             <td style="border: 1px solid black ;">
                                 <P>
 
@@ -334,36 +368,52 @@
 
                         </tr>
                         <tr>
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;">
+                                <P>
+                                    Reffered to:</P>
+                            </td>
+                            <td style="border: 1px solid black ;" colspan="7"></td>
+
+
+                        </tr>
+                        <tr>
                             <td style="border: 1px solid black ;" style="border: 1px solid black ;">Discharge Type:
-                                <br/>Reffered to:
+                                
                             </td>
                             <td style="border: 1px solid black ;"  style="border: 1px solid black ;"> 
                                 <input
                                     type="checkbox" class="chkbox">Lama
                                 &nbsp; <input type="checkbox" class="chkbox">Discharged
-                                &nbsp;<input type="checkbox" class="chkbox">Discharge On Request</td>
-                            <td style="border: 1px solid black ;"> <input type="checkbox" class="chkbox">Reffered</td>
-                            <td style="border: 1px solid black ;"> <input type="checkbox" class="chkbox">Death</td>
+                                &nbsp;<input type="checkbox" class="chkbox">Discharge On Request
+                                &nbsp;<input type="checkbox" class="chkbox">Reffered
+                                &nbsp;<input type="checkbox" class="chkbox">Death</td>
+                            
                             <td style="border: 1px solid black ;"> Date:</td>
-                            <td style="border: 1px solid black ;" colspan="2"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td style="border: 1px solid black ;" colspan="4"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                         </tr>
 
                         <tr>
                             <td style="border: 1px solid black ;" colspan="8" style="border: 1px solid black ;">
                                 <P>I have been explained about the disease and I want myself / my child to under go
-                                    treatment in this hospital. I/We agree to abide by the schedule of charges and the
+                                    treatment in this hospital. </P>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black ;" colspan="8" style="border: 1px solid black ;">
+                                <P>I/We agree to abide by the schedule of charges and the
                                     rules and regulations of the Hospital.</P>
                             </td>
 
                         </tr>
                         <tr>
-
-                            <td style="border: 1px solid black ;" style="border: 1px solid black ;">Name</td>
-                            <td style="border: 1px solid black ;" style="border: 1px solid black ;" colspan="1">
+                            <td style="border: 1px solid black ;" >Signature</td>
+                           
+                            <td style="border: 1px solid black ;" style="border: 1px solid black ;" ><p>Name
                                 {{EditedCaseData?.Home.FirstName|uppercase}}&nbsp;
-                                {{EditedCaseData?.Home.LastName|uppercase}}</td>
-                            <td style="border: 1px solid black ;" colspan="1">Signature</td>
-                            <td style="border: 1px solid black ;" colspan="5"></td>
+                                {{EditedCaseData?.Home.LastName|uppercase}} </p></td>
+                           
+                            
                         </tr>
                     </table>
 

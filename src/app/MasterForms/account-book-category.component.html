@@ -67,8 +67,11 @@ Total is {{total}} -->
   </div>
   <div fxFlex>
     <div>      
+      <button type="button" (click)="ShowBalnacesheetFromToDataFromCalendar(fromdate,todate,'All')" class="btn btn-success myButton"><span
+        class="glyphicon glyphicon-edit"></span>
+      Case wise Deatails Cash Book</button>
 
-        <button type="button" (click)="ShowBalnacesheetFromToDataFromCalendar(fromdate,todate)" class="btn btn-success myButton"><span
+        <button type="button" (click)="ShowBalnacesheetFromToDataFromCalendar(fromdate,todate,'')" class="btn btn-success myButton"><span
           class="glyphicon glyphicon-edit"></span>
         Cash Book</button>
 
@@ -112,8 +115,8 @@ Total is {{total}} -->
         <mat-cell *matCellDef="let element"> <span class="mobile-label">ID:</span>
           <ul style="padding:0px;margin:1px;">
             <li style="padding:0px;margin:1px;">
-              <u style="cursor:pointer;color:blue" (click)="addEditExpenseItem(element,element.Home.FirstName)">
-                {{element.IPDOPDId}} </u> (<span style="color:red">{{element.CaseStatus.charAt(0)}}</span>)
+              <span style="color:blue" (click)="addEditExpenseItem(element,element.Home.FirstName)">
+                {{element.IPDOPDId}} </span> (<span style="color:red">{{element.CaseStatus.charAt(0)}}</span>)
             </li>
 
             <li *ngIf="false" style="padding:0px;margin:1px;">
@@ -169,7 +172,7 @@ Total is {{total}} -->
           <ul style="padding:0px;margin:1px;">
             <li style="padding:0px;margin:1px;" *ngIf="EarlierPayment">
               <u >
-                EarlierPayment:&nbsp;</u> <span style="color:red">{{element.PaymentHistory[0].EarlierPayment| currency :'INR':'symbol':'1.2-2'}}</span>
+                EarlierPayment:&nbsp;</u> <span style="color:red">{{element.PaymentHistory[0].EarlierPayment==''?'₹0.00':element.PaymentHistory[0].EarlierPayment | currency :'INR':'symbol':'1.2-2'}}</span>
             </li>
 
             <li style="padding:0px;margin:1px;" *ngIf="OPDCharge"> 
@@ -196,7 +199,7 @@ Total is {{total}} -->
             </li>
             <li style="padding:0px;margin:1px;" *ngIf="BedCharge">
               <u>
-                BedCharge:&nbsp;</u> <span style="color:red">{{element.PaymentHistory[0].BedCharge==''?'0':element.PaymentHistory[0].BedCharge| currency :'INR':'symbol':'1.2-2'}}</span>
+                BedCharge:&nbsp;</u> <span style="color:red">{{element.PaymentHistory[0].BedCharge==''?'₹0.00':element.PaymentHistory[0].BedCharge| currency :'INR':'symbol':'1.2-2'}}</span>
             </li>
 
             <li style="padding:0px;margin:1px;" *ngIf="DailyExpense">
@@ -206,6 +209,10 @@ Total is {{total}} -->
             <li style="padding:0px;margin:1px;" *ngIf="RegdCharge">
               <u>
                 Regd Charge:&nbsp;</u> <span style="color:red">{{element.PaymentHistory[0].RegdCharge| currency :'INR':'symbol':'1.2-2'}}</span>
+            </li>
+            <li style="padding:0px;margin:1px;" *ngIf="vaccineCharge">
+              <u>
+                Vaccination Charge:&nbsp;</u> <span style="color:red">{{(element.PaymentHistory[0].VaccinationCharge=='' || element.PaymentHistory[0].VaccinationCharge==null) ?'₹0.00':element.PaymentHistory[0].VaccinationCharge| currency :'INR':'symbol':'1.2-2'}}</span>
             </li>
             
             <hr color="red"/>
@@ -287,24 +294,6 @@ Total is {{total}} -->
     </mat-table>
     <mat-paginator #paginatorRef [pageSizeOptions]="[10,15, 20, 50, 100]"></mat-paginator>
     <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
-    <div class="row" *ngIf="false">
-      <ul>
-        <li><span style="color:red">* (P)</span> -Indicates that CASE is in Progress.</li>
-        <li><span style="color:red">* (C)</span> -Indicates that CASE is Closed. No Modifiaction allowed.</li>
-        <li><span style="color:red">* (Clear)</span> -Indicates No Due no Refund for the CASE. </li>
-        <li><span style="color:red">* (Due)</span> -Payment needs to be collected from client for the CASE.</li>
-        <li><span style="color:red">* (Ref)</span> -Fund needs to be returned to client for the CASE.</li>
-        <li><span style="color:red">* (Final)</span> -This PathoLAB Test is completed and Report is ready for the
-          CASE.This can can be printed.</li>
-        <li><span style="color:red">* (Progress)</span> -This PathoLAB Test is in progress and findings are being
-          entered for the CASE.</li>
-        <li><span style="color:red">* (Pending)</span> -This PathoLAB Test is not yet started for the CASE.</li>
-        <li><span style="color:green">* (Discharge)</span> -This will generate and print the complete history for the
-          CASE and Patient experience.</li>
-        <li><span style="color:red">* (Print Bill)</span> -This will print the receipt for he CASE.</li>
-
-      </ul>
-    </div>
 
   </div>
 </div>

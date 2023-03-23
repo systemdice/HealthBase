@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./expenses.component.css']
 })
 export class ExpensesComponent implements OnInit {
-  displayedColumns: string[] = ['slno', 'UnqueID', 'ExpenseAmount', 'Date', 'BusinessType', 'ExpenseCategory','action'];
+  displayedColumns: string[] = ['slno', 'UnqueID', 'Date', 'ExpenseCategory','BusinessType', 'ExpenseAmount','rtotal','action'];
   //dataSource: MatTableDataSource<UsersData>;
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
@@ -36,6 +36,7 @@ export class ExpensesComponent implements OnInit {
 
   asyncPipeExpenses:Expenses[] =[];
   asyncPipeExpensesFilter:Expenses[] =[];
+ 
 
   constructor(private expenseService : ExpensesService,private dateAdapter: DateAdapter<Date>,
     private dialog : MatDialog
@@ -50,17 +51,28 @@ export class ExpensesComponent implements OnInit {
     // console.log(this.asyncPipeExpenses$);
     //console.log("rajat")
   }
+
+  
   ShowAllExpense(){
     this.ClearDateRangeField();
     this.expenseService.getAll().subscribe((data: Expenses[]) => {
       //console.log('jay'+data);
       this.asyncPipeExpenses = data;
+       //outside accumulator to hold the running total
+       let t = 0;
+      
+       //new obj to hold results with running total
+       this.asyncPipeExpenses = this.asyncPipeExpenses
+        .map( x => ({...x,"rtotal": x.BusinessType=='Expense'? (t-= +(x.ExpenseAmount==''?'0':x.ExpenseAmount)):(t+= +(x.ExpenseAmount==''?'0':x.ExpenseAmount)) }) )
 
-      this.dataSource = new MatTableDataSource(data);
+
+      this.dataSource = new MatTableDataSource(this.asyncPipeExpenses);
       this.dataSource.paginator = this.actualPaginator; //this.paginator;
       this.dataSource.sort = this.actualSort; //this.sort;
       this.filterVal = '';
       //this.GroupedDat();
+
+     
 
     })
   }
@@ -96,6 +108,12 @@ export class ExpensesComponent implements OnInit {
         (a => this.addDays(new Date(a.Date),0) >= new Date(passdateFrom) && this.addDays(new Date(a.Date),-1) <= new Date(passdateTo) );
     
     this.filterVal = '';
+
+    let t = 0;
+      
+    //new obj to hold results with running total
+    this.asyncPipeExpensesFilter = this.asyncPipeExpensesFilter
+      .map( x => ({...x,"rtotal": x.BusinessType=='Expense'? (t-= +(x.ExpenseAmount==''?'0':x.ExpenseAmount)):(t+= +(x.ExpenseAmount==''?'0':x.ExpenseAmount)) }) )
 
     this.dataSource = new MatTableDataSource(this.asyncPipeExpensesFilter);
     this.dataSource.paginator = this.actualPaginator; //this.paginator;

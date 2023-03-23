@@ -36,7 +36,7 @@
         
                   <ng-container matColumnDef="Amount">
                     <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Gross (Charge to patient) </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Gross:</span>{{element.Amount}} </mat-cell>
+                    <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Gross:</span>{{element.Amount | currency :'INR':'symbol':'1.2-2'}} </mat-cell>
                   </ng-container>
                   <ng-container matColumnDef="RegdCharge">
                     <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Reg.Fee(one time) </mat-header-cell>
@@ -52,11 +52,11 @@
                   </ng-container>
                   <ng-container matColumnDef="PaidAmount">
                     <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"><span style="color:blue"> Received By Hospital</span></mat-header-cell>
-                    <mat-cell *matCellDef="let element"> <span style="color:blue"><span  class="mobile-label ">Paid:</span>{{element.PaidAmount}} </span><span style="color:red">{{element.PaidAmount < 0?'(Refund)':''}} </span></mat-cell>
+                    <mat-cell *matCellDef="let element"> <span style="color:blue"><span  class="mobile-label ">Paid:</span>{{element.PaidAmount  | currency :'INR':'symbol':'1.2-2'}} </span><span style="color:red">{{element.PaidAmount < 0?'(Refund)':''}} </span></mat-cell>
                   </ng-container>
                   <ng-container matColumnDef="Balance">
                     <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Balance </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Balance:</span>{{element.Balance}} </mat-cell>
+                    <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Balance:</span>{{element.Balance | currency :'INR':'symbol':'1.2-2'}} </mat-cell>
                   </ng-container>
                   <ng-container matColumnDef="ReceivedBy">
                     <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> ReceivedBy </mat-header-cell>

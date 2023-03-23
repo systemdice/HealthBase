@@ -49,6 +49,8 @@ export class FreshCaseComponent implements OnInit {
   panelOpenStateOPD = false;
   panelOpenStateLAB = false;
   panelOpenStateDailyExpense = false;
+  panelOpenStatePharmacyManualEntry = false;
+  panelOpenStateNebulization = false;
   panelOpenStateDoctorVisit = false;
   panelOpenStateNurseVisit = false;
   panelOpenStateDoctortoPatientCommentMedicineReDevelop = false;
@@ -65,6 +67,8 @@ export class FreshCaseComponent implements OnInit {
   panelOpenStateOPDSH = false;
   panelOpenStateLABSH = false;
   panelOpenStateDailyExpenseSH = false;
+  panelOpenStatePharmacyManualEntrySH = false;
+  panelOpenStateNebulizationSH = false;
   panelOpenStateDoctorVisitSH = false;
   panelOpenStateNurseVisitSH = false;
   panelOpenStateDoctortoPatientCommentMedicineReDevelopSH = false;
@@ -380,6 +384,22 @@ export class FreshCaseComponent implements OnInit {
       });
     }
 
+    var sumPharmacyManualEntry: number = 0;
+    if (this.addrFrom.value.PharmacyManualEntry.teachersPharmacyManualEntry.length > 0) {
+      sumPharmacyManualEntry = this.addrFrom.value.PharmacyManualEntry.teachersPharmacyManualEntry.map(a => a.Amount).reduce(function (a, b) {
+        //return parseFloat(a) + parseFloat(b);
+        return parseFloat(a == "" ? "0" : a) + parseFloat(b == "" ? "0" : b);
+      });
+    }
+
+    var sumNebulization: number = 0;
+    if (this.addrFrom.value.Nebulization.teachersNebulization.length > 0) {
+      sumNebulization = this.addrFrom.value.Nebulization.teachersNebulization.map(a => a.Amount).reduce(function (a, b) {
+        //return parseFloat(a) + parseFloat(b);
+        return parseFloat(a == "" ? "0" : a) + parseFloat(b == "" ? "0" : b);
+      });
+    }
+
     // var sumOTExpense: number = 0;
     // if (this.addrFrom.value.OTDetails.teachersOTDetails.length > 0) {
     //   sumOTExpense = this.addrFrom.value.OTDetails.teachersOTDetails.map(a => a.TotalPrice).reduce(function (a, b) {
@@ -533,6 +553,8 @@ export class FreshCaseComponent implements OnInit {
 
     this.addrFrom.get('PaymentDetails').get('LabTestCharge').patchValue(sum);
     this.addrFrom.get('PaymentDetails').get("DailyExpense").patchValue(sumDailyExpense == 0 ? '0' : sumDailyExpense);
+    this.addrFrom.get('PaymentDetails').get("PharmacyManualEntryCharge").patchValue(sumPharmacyManualEntry == 0 ? '0' : sumPharmacyManualEntry);
+    this.addrFrom.get('PaymentDetails').get("NebulizationCharge").patchValue(sumNebulization == 0 ? '0' : sumNebulization);
     this.addrFrom.get('PaymentDetails').get("FarmaCharge").patchValue(farmaExpense);
     this.addrFrom.get('PaymentDetails').get('OTCharge').patchValue(sumOtCharges == 0 ? '0' : sumOtCharges);
     this.addrFrom.get('PaymentDetails').get('NurseCharge').patchValue(sumNurseCharge);
@@ -558,7 +580,7 @@ export class FreshCaseComponent implements OnInit {
     // else {
     //   //   let grandTotal = Number(this.paymentParams?.OPD) + Number(this.paymentParams?.Doctor) + Number(this.paymentParams?.LabTest) + Number(this.paymentParams?.Bed);
     //   // this.PaymentDetails.get('Amount').patchValue('500');
-    //   // this.PaymentDetails.get('Amount').patchValue(grandTotal);
+    //   // this.PaymentDetails.get('Amount').patchValue(grandTotal);DailyExpense
 
     // }
     //console.log(this.addrFrom.get('PaymentDetails').get('OPDCharge').value);
@@ -571,13 +593,16 @@ export class FreshCaseComponent implements OnInit {
 
     let BedCharge = parseFloat(this.addrFrom.get('PaymentDetails').get('BedCharge').value == "" ? "0" : this.addrFrom.get('PaymentDetails').get('BedCharge').value)
     let DailyExpenseCharge = parseFloat(this.addrFrom.get('PaymentDetails').get('DailyExpense').value == "" ? "0" : this.addrFrom.get('PaymentDetails').get('DailyExpense').value)
+    let PharmacyManualEntryCharge = parseFloat(this.addrFrom.get('PaymentDetails').get('PharmacyManualEntryCharge').value == "" ? "0" : this.addrFrom.get('PaymentDetails').get('PharmacyManualEntryCharge').value)
+    let NebulizationCharge = parseFloat(this.addrFrom.get('PaymentDetails').get('NebulizationCharge').value == "" ? "0" : this.addrFrom.get('PaymentDetails').get('NebulizationCharge').value)
+    
     let OtherCharge = parseFloat(this.addrFrom.get('PaymentDetails').get('OtherCharge').value == "" ? "0" : this.addrFrom.get('PaymentDetails').get('OtherCharge').value)
     let RegdCharge = parseFloat(this.addrFrom.get('PaymentDetails').get('RegdCharge').value == "" ? "0" : this.addrFrom.get('PaymentDetails').get('RegdCharge').value)
     let NurseCharge = parseFloat(this.addrFrom.get('PaymentDetails').get('NurseCharge').value == "" ? "0" : this.addrFrom.get('PaymentDetails').get('NurseCharge').value)
     let AmbulanceCharge = parseFloat(this.addrFrom.get('PaymentDetails').get('AmbulanceCharge').value == "" ? "0" : this.addrFrom.get('PaymentDetails').get('AmbulanceCharge').value)
     let VaccinationCharge = parseFloat(this.addrFrom.get('PaymentDetails').get('VaccinationCharge').value == "" ? "0" : this.addrFrom.get('PaymentDetails').get('VaccinationCharge').value)
 
-    let GTotal = OPDCharge + DoctorCharge + LabTestCharge + FarmaCharge + OTCharge + BedCharge + DailyExpenseCharge + OtherCharge + RegdCharge + NurseCharge + AmbulanceCharge + VaccinationCharge;
+    let GTotal = OPDCharge + DoctorCharge + LabTestCharge + FarmaCharge + OTCharge + BedCharge + DailyExpenseCharge + PharmacyManualEntryCharge +NebulizationCharge + OtherCharge + RegdCharge + NurseCharge + AmbulanceCharge + VaccinationCharge;
     this.addrFrom.get('PaymentDetails').get('Amount').patchValue(GTotal);
     var ct = 0;
     let price = this.addrFrom.get('PaymentDetails').get('Amount').value;
@@ -606,12 +631,15 @@ export class FreshCaseComponent implements OnInit {
     //this.addrFrom.get('PaymentDetails').get('PaidAmount').patchValue(ct - earlierPayment);
     //let bal =(parseFloat(price) - parseFloat(paidAmount)) - parseFloat(earlierPayment.toString());
     let bal = (parseFloat(price) - (paidVal + parseFloat(this.TotalAmountRecived)) - parseFloat(disvalue.toString())) - parseFloat(earlierPayment.toString());
-    this.addrFrom.get('PaymentDetails').get('Balance').patchValue(bal);
+    this.addrFrom.get('PaymentDetails').get('Balance').patchValue(this.round(bal));
     //this.addrFrom.get('PaymentDetails').get('EarlierPayment').patchValue(bal);
 
   }
   disType: string = 'In Rupees';
-
+  round(num) {
+    var m = Number((Math.abs(num) * 100).toPrecision(15));
+    return Math.round(m) / 100 * Math.sign(num);
+}
   CalculatePercent() {
     let perval = this.addrFrom.get('PaymentDetails').get('Discount').value;
     this.disType = "With (" + perval + " %)"
@@ -688,6 +716,12 @@ export class FreshCaseComponent implements OnInit {
       DailyExpense: this._fb.group({
         teachers: this._fb.array([]),
       }),
+      PharmacyManualEntry: this._fb.group({
+        teachersPharmacyManualEntry: this._fb.array([]),
+      }),
+      Nebulization: this._fb.group({
+        teachersNebulization: this._fb.array([]),
+      }),
       DoctorVisit: this._fb.group({
         teachersDoctorVisit: this._fb.array([]),
       }),
@@ -741,6 +775,8 @@ export class FreshCaseComponent implements OnInit {
         DoctorCharge: ['0'],
         LabTestCharge: ['0'],
         DailyExpense: ['0'],
+        PharmacyManualEntryCharge: ['0'],
+        NebulizationCharge: ['0'],
         FarmaCharge: ['0'],
         BedCharge: ['0'],
         OTCharge: ['0'],
@@ -786,6 +822,8 @@ export class FreshCaseComponent implements OnInit {
       this.panelOpenStateOPDSH = false;
       this.panelOpenStateLABSH = true;
       this.panelOpenStateDailyExpenseSH = false;
+      this.panelOpenStatePharmacyManualEntrySH = false;
+      this.panelOpenStateNebulizationSH = false;
       this.panelOpenStateDoctorVisitSH = false;
       this.panelOpenStateNurseVisitSH = false;
       this.panelOpenStateDoctortoPatientCommentMedicineReDevelopSH = true;
@@ -809,6 +847,8 @@ export class FreshCaseComponent implements OnInit {
       this.panelOpenStateOPDSH = false;
       this.panelOpenStateLABSH = false;
       this.panelOpenStateDailyExpenseSH = false;
+      this.panelOpenStatePharmacyManualEntrySH = false;
+      this.panelOpenStateNebulizationSH = false;
       this.panelOpenStateDoctorVisitSH = false;
       this.panelOpenStateNurseVisitSH = false;
       this.panelOpenStateDoctortoPatientCommentMedicineReDevelopSH = true;
@@ -1231,6 +1271,8 @@ export class FreshCaseComponent implements OnInit {
     student.DoctortoPatientCommentMedicine = this.addrFrom.value.DoctortoPatientCommentMedicine;
     student.DischargeNote = this.addrFrom.value.DischargeNote;
     student.DailyExpense = this.addrFrom.value.DailyExpense.teachers;
+    student.PharmacyManualEntry = this.addrFrom.value.PharmacyManualEntry.teachersPharmacyManualEntry;
+    student.Nebulization = this.addrFrom.value.Nebulization.teachersNebulization;
     student.DoctorVisit = this.addrFrom.value.DoctorVisit.teachersDoctorVisit;
     student.NurseVisit = this.addrFrom.value.NurseVisit.teachersNurseVisit;
     student.DoctortoPatientCommentMedicineReDevelop = this.addrFrom.value.DoctortoPatientCommentMedicineReDevelop.teachersDoctortoPatientCommentMedicineReDevelop;
@@ -1483,6 +1525,8 @@ export class FreshCaseComponent implements OnInit {
   disableIPDOPDOption: boolean = false;
   patientEntry='active';
   dlExp='active';
+  dlPharmaManual='active';
+  dlNebulization='active';
   drVisit='active';
   nurseVisit='active';
   manageBed='active';
@@ -1505,6 +1549,17 @@ export class FreshCaseComponent implements OnInit {
       if(this.data11?.DailyExpense[0]?.name ==''){
           this.dlExp = "col";
       }
+      if(this.data11?.PharmacyManualEntry != null){
+      if(this.data11?.PharmacyManualEntry[0]?.name ==''){
+        this.dlPharmaManual = "col";
+    }
+  }
+  if(this.data11?.Nebulization !=null){
+    if(this.data11?.Nebulization[0]?.name ==''){
+      this.dlNebulization = "col";
+  }
+}
+      
       if(this.data11?.DoctorVisit[0]?.name ==''){
         this.drVisit = "col";
     }
@@ -1609,7 +1664,6 @@ if(this.data11?.DischargeNote?.AdviceNote ==''){
       //data.Home.AdvPayment = "0";
       this.addrFrom.get('home').patchValue(data.Home);
       this.child.ShowPatientID(data.Home.FirstName, data.Home.ContactNumber);
-      //this.addrFrom.get('DailyExpense').patchValue(data.DailyExpense);
       data.DailyExpense?.forEach(t => {
 
         var teacher: FormArray = (this.addrFrom.get('DailyExpense').get("teachers") as FormArray); //this.addAllTestsGroup();
@@ -1617,6 +1671,26 @@ if(this.data11?.DischargeNote?.AdviceNote ==''){
         teacher.push(teacher1);
       });
       this.addrFrom.get('DailyExpense').get("teachers").patchValue(data.DailyExpense);
+      //for Pharmacy Manual visit
+      if(data.PharmacyManualEntry!= null){
+      data.PharmacyManualEntry?.forEach(t => {
+
+        var teacher: FormArray = (this.addrFrom.get('PharmacyManualEntry').get("teachersPharmacyManualEntry") as FormArray); //this.addAllTestsGroup();
+        var teacher1: FormGroup = this.newPharmacyManualEntry();
+        teacher.push(teacher1);
+      });
+      this.addrFrom.get('PharmacyManualEntry').get("teachersPharmacyManualEntry").patchValue(data.PharmacyManualEntry);
+    }
+      //for Nebilization visit
+      if(data.Nebulization !=null){
+      data.Nebulization?.forEach(t => {
+
+        var teacher: FormArray = (this.addrFrom.get('Nebulization').get("teachersNebulization") as FormArray); //this.addAllTestsGroup();
+        var teacher1: FormGroup = this.newNebulization();
+        teacher.push(teacher1);
+      });
+      this.addrFrom.get('Nebulization').get("teachersNebulization").patchValue(data.Nebulization);
+    }
       //for doctor visit
       if (data.DoctorVisit != null) {
         data.DoctorVisit?.forEach(t => {
@@ -1813,6 +1887,24 @@ if(this.data11?.DischargeNote?.AdviceNote ==''){
       //expDate:''
     })
   }
+  newPharmacyManualEntry(): FormGroup {
+    return this._fb.group({
+      name: '',
+      ExpenseDescription: '',
+      Amount: '',
+      expDate: []
+      //expDate:''
+    })
+  }
+  newNebulization(): FormGroup {
+    return this._fb.group({
+      name: '',
+      ExpenseDescription: '',
+      Amount: '',
+      expDate: []
+      //expDate:''
+    })
+  }
 
   newDoctorVisit(): FormGroup {
     return this._fb.group({
@@ -1961,6 +2053,8 @@ if(this.data11?.DischargeNote?.AdviceNote ==''){
   clearFormArray() {
     (this.addrFrom.get('CaseDetails').get("TestType") as FormArray).clear();
     (this.addrFrom.get('DailyExpense').get("teachers") as FormArray).clear();
+    (this.addrFrom.get('PharmacyManualEntry').get("teachersPharmacyManualEntry") as FormArray).clear();
+    (this.addrFrom.get('Nebulization').get("teachersNebulization") as FormArray).clear();
     (this.addrFrom.get('DoctorVisit').get("teachersDoctorVisit") as FormArray).clear();
     (this.addrFrom.get('NurseVisit').get("teachersNurseVisit") as FormArray).clear();
     (this.addrFrom.get('DoctortoPatientCommentMedicineReDevelop').get("teachersDoctortoPatientCommentMedicineReDevelop") as FormArray).clear();
@@ -1997,6 +2091,8 @@ if(this.data11?.DischargeNote?.AdviceNote ==''){
       this.panelOpenStateOPDSH = false;
       this.panelOpenStateLABSH = true;
       this.panelOpenStateDailyExpenseSH = false;
+      this.panelOpenStatePharmacyManualEntrySH = false;
+      this.panelOpenStateNebulizationSH = false;
       this.panelOpenStateDoctorVisitSH = false;
       this.panelOpenStateNurseVisitSH = false;
       this.panelOpenStateDoctortoPatientCommentMedicineReDevelopSH = false;
@@ -2018,6 +2114,8 @@ if(this.data11?.DischargeNote?.AdviceNote ==''){
         this.panelOpenStateOPDSH = true;
         this.panelOpenStateLABSH = true;
         this.panelOpenStateDailyExpenseSH = true;
+        this.panelOpenStatePharmacyManualEntrySH = true;
+        this.panelOpenStateNebulizationSH = true;
         this.panelOpenStateDoctorVisitSH = true;
         this.panelOpenStateNurseVisitSH = true;
         this.panelOpenStateDoctortoPatientCommentMedicineReDevelopSH = true;
@@ -2039,6 +2137,8 @@ if(this.data11?.DischargeNote?.AdviceNote ==''){
         this.panelOpenStateOPDSH = true;
         this.panelOpenStateLABSH = true;
         this.panelOpenStateDailyExpenseSH = false;
+        this.panelOpenStatePharmacyManualEntrySH = false;
+        this.panelOpenStateNebulizationSH = false;
         this.panelOpenStateDoctorVisitSH = false;
         this.panelOpenStateNurseVisitSH = false;
         this.panelOpenStateDoctortoPatientCommentMedicineReDevelopSH = true;
@@ -2059,6 +2159,8 @@ if(this.data11?.DischargeNote?.AdviceNote ==''){
         this.panelOpenStateOPDSH = true;
         this.panelOpenStateLABSH = true;
         this.panelOpenStateDailyExpenseSH = false;
+        this.panelOpenStatePharmacyManualEntrySH = false;
+        this.panelOpenStateNebulizationSH = false;
         this.panelOpenStateDoctorVisitSH = false;
         this.panelOpenStateNurseVisitSH = false;
         this.panelOpenStateDoctortoPatientCommentMedicineReDevelopSH = false;
@@ -2079,6 +2181,8 @@ if(this.data11?.DischargeNote?.AdviceNote ==''){
         this.panelOpenStateOPDSH = false;
         this.panelOpenStateLABSH = true;
         this.panelOpenStateDailyExpenseSH = false;
+        this.panelOpenStatePharmacyManualEntrySH = false;
+        this.panelOpenStateNebulizationSH = false;
         this.panelOpenStateDoctorVisitSH = false;
         this.panelOpenStateNurseVisitSH = false;
         this.panelOpenStateDoctortoPatientCommentMedicineReDevelopSH = false;

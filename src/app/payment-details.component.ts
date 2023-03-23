@@ -100,6 +100,9 @@ export class PaymentDetailsComponent implements OnInit {
     let DoctorCharge = parseFloat(this.PaymentDetails.get('DoctorCharge').value == "" ? "0" : this.PaymentDetails.get('DoctorCharge').value)
     let LabTestCharge = parseFloat(this.PaymentDetails.get('LabTestCharge').value == "" ? "0" : this.PaymentDetails.get('LabTestCharge').value)
     let FarmaCharge = parseFloat(this.PaymentDetails.get('FarmaCharge').value == "" ? "0" : this.PaymentDetails.get('FarmaCharge').value)
+    let PharmacyManualEntryCharge = parseFloat(this.PaymentDetails.get('PharmacyManualEntryCharge').value == "" ? "0" : this.PaymentDetails.get('PharmacyManualEntryCharge').value)
+    let NebulizationCharge = parseFloat(this.PaymentDetails.get('NebulizationCharge').value == "" ? "0" : this.PaymentDetails.get('NebulizationCharge').value)
+    
     //let OTCharge = parseFloat("0")//parseFloat(this.PaymentDetails.get('OPDCharge').value)
     let OTCharge = parseFloat(this.PaymentDetails.get('OTCharge').value == "" ? "0" : this.PaymentDetails.get('OTCharge').value)
 
@@ -111,7 +114,7 @@ export class PaymentDetailsComponent implements OnInit {
     let AmbulanceCharge = parseFloat(this.PaymentDetails.get('AmbulanceCharge').value == "" ? "0" : this.PaymentDetails.get('AmbulanceCharge').value)
     let VaccinationCharge = parseFloat(this.PaymentDetails.get('VaccinationCharge').value == "" ? "0" : this.PaymentDetails.get('VaccinationCharge').value)
     
-    let GTotal = OPDCharge + DoctorCharge + LabTestCharge + FarmaCharge + OTCharge + BedCharge + DailyExpenseCharge + OtherCharge+RegdCharge+NurseCharge+AmbulanceCharge+VaccinationCharge;
+    let GTotal = OPDCharge + DoctorCharge + LabTestCharge + FarmaCharge + PharmacyManualEntryCharge + NebulizationCharge + OTCharge + BedCharge + DailyExpenseCharge + OtherCharge+RegdCharge+NurseCharge+AmbulanceCharge+VaccinationCharge;
     this.PaymentDetails.get('Amount').patchValue(GTotal);
     var ct = 0;
     let price = this.PaymentDetails.get('Amount').value;
@@ -146,12 +149,16 @@ export class PaymentDetailsComponent implements OnInit {
 
     //this.addrFrom.get('PaymentDetails').get('PaidAmount').patchValue(ct - earlierPayment);
     //let bal =(parseFloat(price) - parseFloat(paidAmount)) - parseFloat(earlierPayment.toString());
-    let bal = (parseFloat(price) - (paidVal + parseFloat(this.TotalAmountRecived)) - parseFloat(disvalue.toString())) - parseFloat(earlierPaymentInn.toString());
+    let bal = this.round((parseFloat(price) - (paidVal + parseFloat(this.TotalAmountRecived)) - parseFloat(disvalue.toString())) - parseFloat(earlierPaymentInn.toString()));
     this.PaymentDetails.get('Balance').patchValue(bal);
     //this.addrFrom.get('PaymentDetails').get('EarlierPayment').patchValue(bal);
 
 
   }
+  round(num) {
+    var m = Number((Math.abs(num) * 100).toPrecision(15));
+    return Math.round(m) / 100 * Math.sign(num);
+}
   onPaidChange() {
     //let paidAmount = this.PaymentDetails.get('PaidAmount').value;
     //this.PaymentDetails').get('EarlierPayment').patchValue('10');
@@ -170,7 +177,7 @@ export class PaymentDetailsComponent implements OnInit {
     //let discountTotal = this.CalculateanyPercent(price, discount);
     this.PaymentDetails.get('PaidAmount').patchValue(paidAmount);
     //this.PaymentDetails.get('EarlierPayment').patchValue(EarlierPayment);
-    this.PaymentDetails.get('Balance').patchValue(bal);
+    this.PaymentDetails.get('Balance').patchValue(this.round(bal));
 
   }
 

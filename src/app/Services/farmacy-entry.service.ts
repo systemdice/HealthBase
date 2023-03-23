@@ -77,6 +77,13 @@ export class FarmacyEntryService {
       catchError(this.errorHandler)
     )
   }
+
+  getCashFarmDataNamewise(storename:string): Observable<FarmacyDeliveryToPatient[]> {
+    return this.httpClient.get<FarmacyDeliveryToPatient[]>(this.apiServer + '/FarmacyDeliveryToPatient/getCashFarmDataNamewise/'+storename)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
   getFarmaComision(storename:string): Observable<FarmacyDeliveryToPatient[]> {
     return this.httpClient.get<FarmacyDeliveryToPatient[]>(this.apiServer + '/FarmacyDeliveryToPatient/getFarmaComision/'+storename)
     .pipe(

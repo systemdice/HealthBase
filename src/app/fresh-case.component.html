@@ -41,11 +41,12 @@
         <!-- <mat-radio-button value="1">OPD</mat-radio-button>&nbsp;
 <mat-radio-button value="2">IPD</mat-radio-button>&nbsp; -->
         <mat-radio-button value="IPD">IPD</mat-radio-button>&nbsp;
-        <mat-radio-button value="OPD">OPD</mat-radio-button>&nbsp;
-        <mat-radio-button value="VS">Vaccination </mat-radio-button>
+        <!-- <mat-radio-button value="OPD">OPD</mat-radio-button>&nbsp; -->
+        <!-- <mat-radio-button value="VS">Vaccination </mat-radio-button> -->
 
     </mat-radio-group> <span><button type="submit" class="btn btn-success myButton"  >&nbsp;<span
       class="glyphicon glyphicon-floppy-disk"></span> SAVE DATA INSTANTLY</button></span>
+      <!-- <span><b>Account Number:</b>&nbsp;</span> ntActvdg546 <span><b>Patient Name</b>&nbsp;</span>ambulanceDetails<span><b>Admit date:</b>&nbsp;</span>12/12/2021 -->
      
 </div>
 <div>
@@ -243,7 +244,9 @@
 
     
     <hr class="zeroMarginPadding" *ngIf="!activeOtherThanOPD"/>
-    <mat-expansion-panel *ngIf="panelOpenStateVaccineSH"  style="border-radius: 15px;" (opened)="panelOpenStateVaccine = true" 
+    <!-- <mat-expansion-panel *ngIf="panelOpenStateVaccineSH"  style="border-radius: 15px;" (opened)="panelOpenStateVaccine = true" 
+    (closed)="panelOpenStateVaccine = false"> -->
+    <mat-expansion-panel *ngIf="false"  style="border-radius: 15px;" (opened)="panelOpenStateVaccine = true" 
     (closed)="panelOpenStateVaccine = false">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -311,6 +314,28 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <app-nurse-assignment [caseid]='caseValue' [NurseVisit]="addrFrom.get('NurseVisit')" [allStaffParm]='allStaffParm'></app-nurse-assignment>
+    </mat-expansion-panel>
+    <hr class="zeroMarginPadding" *ngIf="!activeOtherThanOPD"/>
+    <mat-expansion-panel *ngIf="panelOpenStateNebulizationSH"  style="border-radius: 15px;" (opened)="panelOpenStateNebulization = true" 
+      (closed)="panelOpenStateDailyExpense = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon style="color:red"> view_day </mat-icon>
+          <b>Nebulization Entry</b>
+        </mat-panel-title>
+        <mat-panel-description class="right-aligned">
+          <span fxShow fxHide.lt-sm>  Nebulization details.</span>
+          
+          <button type="submit" class="btn btn-success"  ><span
+            class="glyphicon glyphicon-floppy-disk"></span> SAVE</button>
+          <button style="display: inline-block;" type="button"   fxShow fxHide.lt-sm  *ngIf="isEditCase"  (click)="OpenPrescription('NebulizationExp')" class="btn btn-info"><span
+            class="glyphicon glyphicon-print" ></span>
+        Print</button>
+        <mat-icon matTooltip="Regarding Patient section" color="primary" fxShow fxHide.lt-sm (click)="OpenHelpPage('Nebulization')">help</mat-icon>
+        
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <app-nebulizer-details [caseid]='caseValue' [Nebulization]="addrFrom.get('Nebulization')" (getSearchStatusChange)="FinalCalculation('')"></app-nebulizer-details>
     </mat-expansion-panel>
 <!-- 
     <hr class="zeroMarginPadding" *ngIf="!activePathoLAB"/>
@@ -439,7 +464,28 @@
     </mat-expansion-panel>
 
     
-
+    <hr class="zeroMarginPadding" *ngIf="!activeOtherThanOPD"/>
+    <mat-expansion-panel *ngIf="panelOpenStateDailyExpenseSH"  style="border-radius: 15px;" (opened)="panelOpenStatePharmacyManualEntry = true" 
+      (closed)="panelOpenStateDailyExpense = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon style="color:red"> view_day </mat-icon>
+          <b>Pharmacy Expenses entry by Hospital</b>
+        </mat-panel-title>
+        <mat-panel-description class="right-aligned">
+          <span fxShow fxHide.lt-sm>  Pharmacy Expenses Quick entry.</span>
+          
+          <button type="submit" class="btn btn-success"  ><span
+            class="glyphicon glyphicon-floppy-disk"></span> SAVE</button>
+          <button style="display: inline-block;" type="button"   fxShow fxHide.lt-sm  *ngIf="isEditCase"  (click)="OpenPrescription('DailyExp')" class="btn btn-info"><span
+            class="glyphicon glyphicon-print" ></span>
+        Print</button>
+        <mat-icon matTooltip="Regarding Patient section" color="primary" fxShow fxHide.lt-sm (click)="OpenHelpPage('DailyExpense')">help</mat-icon>
+        
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <app-paharmacy-manual-entry [caseid]='caseValue' [PharmacyManualEntry]="addrFrom.get('PharmacyManualEntry')" (getSearchStatusChange)="FinalCalculation('')"></app-paharmacy-manual-entry>
+    </mat-expansion-panel>
 
 
 

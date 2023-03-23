@@ -1,0 +1,50 @@
+
+ 
+<form [formGroup]="PharmacyManualEntry">
+ 
+    <div formArrayName="teachersPharmacyManualEntry">
+  
+      <div *ngFor="let teacher of teachers().controls; let ti=index">
+          <div  [formGroupName]="ti" class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+  
+              <mat-form-field fxFlex>
+                <span matPrefix style="color:blue"></span>
+                <input type="text" value="100" matInput formControlName="name" placeholder="{{PharmacyManualEntryPlaceHolder}}"
+                >
+               
+              </mat-form-field>
+              <mat-form-field fxFlex>
+                <span matPrefix style="color:blue"></span>
+                <textarea matInput placeholder="{{DailyExpensePlaceholder}}" formControlName="ExpenseDescription"  rows="4"  #message></textarea>
+                <!-- <input type="text" value="100" matInput formControlName="ExpenseDescription" placeholder="{{DailyExpensePlaceholder}}"> -->
+                
+              </mat-form-field>
+              <mat-form-field fxFlex>
+                <span matPrefix style="color:blue">&#x20B9;. &nbsp;</span>
+                <input type="number" value="100" matInput formControlName="Amount" placeholder="Expense Cost"
+                (input)="oninputChange('')" >
+                <mat-icon matSuffix>mode_edit</mat-icon>
+              </mat-form-field>
+              <mat-form-field fxFlex>
+                  <mat-label>Date Time</mat-label>
+                  <input type="text" readonly value="100" matInput formControlName="expDate" placeholder="Expense Description">
+                
+              </mat-form-field>
+              
+            <span style="color:#9F000F" class="btn">
+              <button type="button" class="btn btn-sm btn-success" (click)="addTeacher()">
+                  &#10003;&nbsp;Add</button>&nbsp;
+              <button type="button" class="btn btn-sm btn-danger"
+                  (click)="removeTeacher(ti)"> &#x2717;&nbsp;Del</button>&nbsp;
+          </span>
+                 
+      
+            </div>
+   
+          
+      </div>
+    </div>
+   
+    
+  
+  </form>

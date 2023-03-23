@@ -78,8 +78,8 @@ export class AccountBookCategoryComponent  implements OnInit {
   showPrintoption:boolean=false;
   NDaysData:number=5;
 ConvertStringToNumber(input1: string,input2:string) {
-    var numeric1 = parseInt(input1);
-    var numeric2 = parseInt(input2);
+    var numeric1 = parseInt(input1==''?'0':input1);
+    var numeric2 = parseInt(input2==''?'0':input2);
     return numeric1+numeric2;
 }
   exportArray() {
@@ -91,7 +91,7 @@ ConvertStringToNumber(input1: string,input2:string) {
       patientCategory: [null, Validators.required]
   });
 
-const toSelect = "All";
+const toSelect = "Select";
 this.patientCategory.get('patientCategory').setValue(toSelect);
 
     if(this.Role == 'Admin' || this.Role == 'SuperAdmin' ||  this.Role == 'Account' ||  this.Role == 'Reception'){
@@ -216,6 +216,7 @@ this.patientCategory.get('patientCategory').setValue(toSelect);
         RegdCharge:boolean = false;
         EarlierPayment:boolean=false;
         caseRecordTotal:boolean = false;
+        vaccineCharge:boolean=false;
   changeValue(value:any){
     //alert(value);
     this.EarlierPayment =  false;
@@ -230,7 +231,9 @@ this.patientCategory.get('patientCategory').setValue(toSelect);
     this.OtherCharge = false;
     this.RegdCharge = false;
     this.caseRecordTotal = false;
+    this.vaccineCharge = false;
     this.total = 0;
+    //alert(value);
     if(value== 'All'){
       this.EarlierPayment =  true;
       this.OPDCharge = true;
@@ -244,10 +247,11 @@ this.patientCategory.get('patientCategory').setValue(toSelect);
       this.OtherCharge = true;
       this.RegdCharge = true;
       this.caseRecordTotal =  true;
+      this.vaccineCharge = true;
 
       for (var i = 0; i < this.asyncPipeNewModifyCase.length; i++) {  //loop through the array
-        this.total += +this.asyncPipeNewModifyCase[i].PaymentHistory[0].Amount + +this.asyncPipeNewModifyCase[i].PaymentHistory[0].EarlierPayment;  //Do the math!
-    }
+        this.total += +this.asyncPipeNewModifyCase[i].PaymentHistory[0].Amount + +(this.asyncPipeNewModifyCase[i].PaymentHistory[0].EarlierPayment==''?'0':this.asyncPipeNewModifyCase[i].PaymentHistory[0].EarlierPayment);  //Do the math!
+      }
     }
     else if(value == 'OPDCharge'){
       this.OPDCharge = true;
@@ -270,17 +274,29 @@ this.patientCategory.get('patientCategory').setValue(toSelect);
     else if(value == 'BedCharge'){
       this.BedCharge = true;
       for (var i = 0; i < this.asyncPipeNewModifyCase.length; i++) {  //loop through the array
-        this.total += +this.asyncPipeNewModifyCase[i].PaymentHistory[0].BedCharge;  //Do the math!
-    }
+        this.total += +(this.asyncPipeNewModifyCase[i].PaymentHistory[0].BedCharge?'0':this.asyncPipeNewModifyCase[i].PaymentHistory[0].BedCharge);  //Do the math!
+      }
     }
     else if(value == 'DailyExpense'){
       this.DailyExpense = true;
+      for (var i = 0; i < this.asyncPipeNewModifyCase.length; i++) {  //loop through the array
+        this.total += +this.asyncPipeNewModifyCase[i].PaymentHistory[0].DailyExpense;  //Do the math!
+      }
     }
     else if(value == 'NurseCharge'){
       this.NurseCharge = true;
+      for (var i = 0; i < this.asyncPipeNewModifyCase.length; i++) {  //loop through the array
+        this.total += +this.asyncPipeNewModifyCase[i].PaymentHistory[0].NurseCharge;  //Do the math!
+      }
     }
     else if(value == 'EarlierPayment'){
       this.EarlierPayment = true;
+    }
+    else if(value == 'VaccineCharge'){
+      this.vaccineCharge = true;
+      for (var i = 0; i < this.asyncPipeNewModifyCase.length; i++) {  //loop through the array
+        this.total += +this.asyncPipeNewModifyCase[i].PaymentHistory[0].VaccinationCharge;  //Do the math!
+      }
     }
   }
   saveLabTest() {
@@ -415,7 +431,7 @@ else{
 
   total:number;
   nurseShow:boolean=false;
-  ShowBalnacesheetFromToDataFromCalendar(fromdateParam,todateParam) {
+  ShowBalnacesheetFromToDataFromCalendar(fromdateParam,todateParam,populateValueAll) {
 
     if(new Date(fromdateParam) > new Date(todateParam)){
       alert('From Date can not be greater than To date');
@@ -463,7 +479,8 @@ else{
         this.dataSource.sort = this.actualSort; //this.sort;
         this.filterVal = '';
         //this.GroupedDat();
-    
+        
+        this.changeValue(populateValueAll);
       })
     
     

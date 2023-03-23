@@ -1,0 +1,24 @@
+body {margin-top: 0px;margin-left: 0px;}
+
+
+
+.div1 {
+    width: 180px;
+    height: 60px;
+    border: 1px solid black;
+  }
+
+  .chkbox{
+    width:20px;
+    height:20px;
+    background:white;
+    border-radius:5px;
+    border:2px solid #555;
+  }
+  td{
+    border: 1px solid black ;
+  }
+  hr{
+    padding:0px;
+    margin:0px;
+  }

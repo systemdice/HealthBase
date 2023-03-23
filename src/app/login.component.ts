@@ -5,7 +5,7 @@ import { FormGroup, FormControl, NgForm } from "@angular/forms";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { StorageService } from "./shared/storage.service";
 import { UserDetailsService } from "./Services/user-details.service";
-import { UserDetails } from "./models/UserData";
+import { Patient, UserDetails } from "./models/UserData";
 import { Observable } from "rx";
 import { APIDetails } from "./models/AllConstansts";
 import { AllMasterFixedData } from "./shared/AllConstants";
@@ -39,8 +39,13 @@ export class LoginComponent implements OnInit {
     username: new FormControl(""),
     password: new FormControl("")
   });
+  patient!: Patient[];
   constructor(private _router: Router, private _store: StorageService,private http: HttpClient,
-    private userDetailsService:UserDetailsService) {}
+    private userDetailsService:UserDetailsService) {
+      this.userDetailsService.getAllPatient().subscribe(data => {
+        this.patient = data;
+     });
+    }
     country:string;
     ngOnInit() {
       //this.getIPAddress(); to get callers IP Address

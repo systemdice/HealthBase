@@ -260,6 +260,16 @@
             <td style="text-align:left;">Nursing Charge:</td>
             <td style="text-align:right;"> {{EditedCaseData?.PaymentHistory[0]?.NurseCharge| currency :'INR':'symbol':'1.2-2'}}</td>           
         </tr>
+
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.NebulizationCharge !== '0'">
+            <td style="text-align:left;">Nebulization Charge:</td>
+            <td style="text-align:right;"> {{EditedCaseData?.PaymentHistory[0]?.NebulizationCharge| currency :'INR':'symbol':'1.2-2'}}</td>           
+        </tr>
+
+        <tr *ngIf="EditedCaseData?.PaymentHistory[0]?.PharmacyManualEntryCharge !== '0'">
+            <td style="text-align:left;">PharmacyManualEntry Charge:</td>
+            <td style="text-align:right;"> {{EditedCaseData?.PaymentHistory[0]?.PharmacyManualEntryCharge| currency :'INR':'symbol':'1.2-2'}}</td>           
+        </tr>
         
         <tr>
             <td colspan="2"><hr/></td>

@@ -1,5 +1,5 @@
 export const APIDetails = {
-  //'HelathAPI':"https://localhost:44380"  
+  //'HelathAPI':"https://localhost:5001"  
   'HelathAPI':"http://45.34.15.113:9014"
   //'HelathAPI': "http://45.34.15.113:9002"
   };
@@ -36,6 +36,7 @@ export const APIDetails = {
     'PharmaMihirContactNumber':'Contact No- 8018330100',
     'alphabet' :['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' ],
    'IncomeDeptType':[
+    'Select',
      'All',
       'OPDCharge',
       'DoctorCharge',
@@ -47,7 +48,8 @@ export const APIDetails = {
       'OTCharge',
       'OtherCharge',
       'RegdCharge',
-      'EarlierPayment'
+      'EarlierPayment',
+      'VaccineCharge'
     ],
     "objectBasedVariable": [
       {
@@ -59,6 +61,10 @@ export const APIDetails = {
         value: "#0f0"
       },
      
+    ],
+    "storeNames":[
+      "Sachin",
+      "Mihir"
     ]
     
   };

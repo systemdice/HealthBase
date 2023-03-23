@@ -130,6 +130,22 @@ Total is {{total}} -->
         <mat-header-cell *matHeaderCellDef class="HeaderStyle"> Slno </mat-header-cell>
         <mat-cell *matCellDef="let item; let i = index"> <span class="mobile-label ">Serial No:</span>
           {{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }} </mat-cell>
+          <mat-list>
+            <mat-list-item *ngFor="let item of items" (contextmenu)="onContextMenu($event, item)">
+              {{ item.name }}
+            </mat-list-item>
+          </mat-list>
+          <div style="visibility: hidden; position: fixed"
+              [style.left]="contextMenuPosition.x"
+              [style.top]="contextMenuPosition.y"
+              [matMenuTriggerFor]="contextMenu">
+          </div>
+          <mat-menu #contextMenu="matMenu">
+            <ng-template matMenuContent let-item="item">
+              <button mat-menu-item (click)="onContextMenuAction1(item)">Action 1</button>
+              <button mat-menu-item (click)="onContextMenuAction2(item)">Action 2</button>
+            </ng-template>
+          </mat-menu>
 
       </ng-container>
 
@@ -272,11 +288,11 @@ Total is {{total}} -->
         <mat-cell *matCellDef="let element; let i = index"> <span class="mobile-label ">Payment:</span>
           <b> <span style="color:white;"  class="myButton" 
               [ngStyle]="{
-            'background-color': ReturnStatusPaymentColor(element.PaymentHistory[0].Balance)}">&#8377;.{{element.PaymentHistory[0].Balance}}&nbsp;</span>
+            'background-color': ReturnStatusPaymentColor(element.PaymentHistory[0].Balance)}">{{element.PaymentHistory[0].Balance| currency :'INR':'symbol':'1.2-2' }}&nbsp;</span>
           </b>
           <span 
             [ngStyle]="{
-              'color': ReturnStatusPaymentColor(element.PaymentHistory[0].Balance)}">({{ReturnStatusPaymentTest(element.PaymentHistory[0].Balance)}})</span>
+              'color': ReturnStatusPaymentColor(element.PaymentHistory[0].Balance)}">({{ReturnStatusPaymentTest(element.PaymentHistory[0].Balance )}})</span>
 
         </mat-cell>
 

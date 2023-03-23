@@ -1,5 +1,7 @@
 
     <div class="main-content">
+     
+      <!-- {{asyncPipeExpenses|json}} -->
     <h4>Expense Details:<button class="btn btn-sm btn-success text-white" f matTooltip="Add New Expense" (click)="ShowAllExpense()">
        <span class="ml-2"> </span>Show All Expense &nbsp;
 </button> <button class="btn btn-sm btn-success text-white" fxHide.gt-sm  matTooltip="Add New Expense" (click)="addEditExpenseItem(null)">
@@ -93,10 +95,7 @@
                   {{element.UnqueID}} </u></mat-cell>
               </ng-container>
     
-              <ng-container matColumnDef="ExpenseAmount">
-                <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Expense Amount </mat-header-cell>
-                <mat-cell *matCellDef="let element"><span  class="mobile-label ">Expense Amt:</span> {{element.ExpenseAmount}} </mat-cell>
-              </ng-container>
+              
               
               
               <!-- Id Column -->
@@ -112,15 +111,22 @@
                     <mat-cell *matCellDef="let element"> {{element.Notes}} </mat-cell>
                   </ng-container> -->
                   <ng-container matColumnDef="BusinessType">
-                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"><span style="color:red;">*</span> Revenue </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"><span style="color:red;">*</span> Revenue Type(Dr/Cr) </mat-header-cell>
                     <mat-cell *matCellDef="let element"
                       [ngStyle]="{'color': getColor(element.BusinessType)}">  <span  class="mobile-label ">Type:</span>
-                      {{element.BusinessType}} &nbsp;<span *ngIf=getGreenMark(element.BusinessType)>&#10003;</span> <span *ngIf=getRedMark(element.BusinessType)>&#10003;</span></mat-cell>
+                      {{element.BusinessType=='Expense'? element.BusinessType +' (Dr)':element.BusinessType+' (Cr)'}} &nbsp;<span *ngIf=getGreenMark(element.BusinessType)>&#10003;</span> <span *ngIf=getRedMark(element.BusinessType)>&#10003;</span></mat-cell>
                   </ng-container>
-    
-                  
+                  <ng-container matColumnDef="ExpenseAmount">
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Amount (₹) </mat-header-cell>
+                    <mat-cell *matCellDef="let element"><span  class="mobile-label ">Expense Amt:</span> {{element.ExpenseAmount| currency :'INR':'symbol':'1.2-2'}} </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="rtotal">
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Closing Balance (₹)</mat-header-cell>
+                    <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Category:</span> {{element.rtotal| currency :'INR':'symbol':'1.2-2'}} </mat-cell>
+                  </ng-container>
+
                   <ng-container matColumnDef="ExpenseCategory">
-                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Category Name </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef  mat-sort-header class="HeaderStyle"> Source Name</mat-header-cell>
                     <mat-cell *matCellDef="let element"> <span  class="mobile-label ">Category:</span> {{element.ExpenseCategory}} </mat-cell>
                   </ng-container>
                   

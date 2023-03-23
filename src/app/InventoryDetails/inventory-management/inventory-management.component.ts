@@ -77,7 +77,28 @@ export class InventoryManagementComponent implements OnInit {
       altKey: true
     }))
   }
+  indexAttention:number=-1;
+  ChangeExpiryColor(ExpireMonth,ExpireYear)
+  {
+    var currDateYear= (new Date().getMonth() + 1+1).toString() + '/' + new Date().getFullYear().toString();
+     //better than use a "typical for just use findIndex
+     //this.indexAttention=this.values.findIndex(x=>x==variable)
+     let clr:string ='';
+     if(ExpireYear == new Date().getFullYear()){
+      if(ExpireMonth < new Date().getMonth() + 1){
+        clr="red";
+      }
+     }
+     if(ExpireYear < new Date().getFullYear()){
+      clr="red";
+     }
 
+     if(clr!='') return clr;
+
+    //  if(currDateYear == ExpireMonth.toString()+"/" +ExpireYear.toString())
+    //  return "red";
+     
+  }
 
   ngOnInit(): void {
 

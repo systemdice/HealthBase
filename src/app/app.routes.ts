@@ -85,6 +85,8 @@ import { CreateGroupTestComponent } from './MasterForms/create-group-test.compon
 import { AllGroupDetailsComponent } from './MasterForms/all-group-details.component';
 import { AccountBookCategoryComponent } from './MasterForms/account-book-category.component';
 import { AccountBookGrossComponent } from './MasterForms/account-book-gross.component';
+import { AccountBookPatientWiseComponent } from './MasterForms/account-book-patient-wise.component';
+import { NewPatientRegistrationComponent } from './Reports/new-patient-registration.component';
 
 
 const appRoutes: Routes = [
@@ -188,6 +190,9 @@ const appRoutes: Routes = [
       { path: "DailyProgress", component: DailyProgressChartComponent , canActivate: [AuthGuardService] },
       { path: "PharmaDoctorCommission", component: PharmacyDoctorCommsionComponent , canActivate: [AuthGuardService] },
       { path: "GroupTest", component: AllGroupDetailsComponent, canActivate: [AuthGuardService] },
+      { path: "PatientReg", component: PatientRegistrationFirstPageComponent , canActivate: [AuthGuardService] },
+      { path: "NewPatientReg", component: NewPatientRegistrationComponent , canActivate: [AuthGuardService] },
+      { path: "PharmaWiseAccount", component: AccountBookPatientWiseComponent, canActivate: [AuthGuardService] },
       { path: '', redirectTo: 'login', pathMatch: 'full' },
     ]
   },
